@@ -1,0 +1,127 @@
+/* Sistema de grid y layout */
+
+/* Layout principal de mapas */
+.main-content {
+  display: flex;
+  gap: var(--spacing-lg);
+  height: 700px;
+}
+
+.map-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.map-container {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+/* Grid de resumen */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.summary-item {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius);
+  padding: 15px;
+  text-align: center;
+}
+
+.summary-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.summary-value {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-accent);
+  display: block;
+}
+
+/* Grid de estadísticas */
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  margin-top: 15px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+}
+
+.stat-value {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--color-accent);
+  display: block;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  margin-top: 5px;
+}
+
+/* Contenedores de secciones */
+.ag-summary,
+.scenario-config,
+.scenario-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 25px;
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 25px;
+}
+
+.ag-summary h3,
+.scenario-config h3,
+.scenario-result h3 {
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+/* Estados vacíos */
+.no-map-data {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-muted);
+}
+
+.empty-state {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.warning-text {
+  color: var(--color-danger);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Acciones */
+.actions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.actions .btn {
+  margin: 0 10px 10px 10px;
+}

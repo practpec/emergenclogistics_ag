@@ -1,0 +1,11 @@
+Flask
+python-dotenv
+folium
+geopy
+requests
+numpy
+pandas
+pytest
+black
+flake8
+colorlog

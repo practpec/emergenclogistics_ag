@@ -1,0 +1,176 @@
+/* Diseño responsive */
+
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .map-section {
+    height: 500px;
+  }
+  
+  .routes-panel {
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header h1 {
+    font-size: 1.8em;
+  }
+  
+  .module-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .module-nav .btn {
+    min-width: 200px;
+  }
+  
+  .vehicle-controls-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .config-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .overview-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .scenario-tabs {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  .header {
+    padding: 15px;
+  }
+  
+  .header h1 {
+    font-size: 1.5em;
+  }
+  
+  .controls,
+  .ag-summary,
+  .scenario-config,
+  .scenario-result {
+    padding: 15px;
+  }
+  
+  .panel-header {
+    padding: 15px;
+  }
+  
+  .route-item,
+  .destination-header {
+    padding: 12px 15px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: var(--font-size-sm);
+  }
+  
+  .module-nav .btn {
+    min-width: 100%;
+  }
+  
+  .overview-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .data-table th,
+  .data-table td,
+  .vehicles-table th,
+  .vehicles-table td,
+  .priority-table th,
+  .priority-table td {
+    padding: var(--spacing-sm);
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    gap: var(--spacing-sm);
+  }
+  
+  .route-stats {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .route-stat {
+    justify-content: space-between;
+  }
+  
+  .btn-large {
+    padding: 12px 25px;
+    font-size: var(--font-size-base);
+  }
+  
+  .stat-item {
+    padding: var(--spacing-sm);
+  }
+  
+  .stat-value {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Utilidades responsive */
+.hide-mobile {
+  display: block;
+}
+
+.show-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+  
+  .show-mobile {
+    display: block;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .container {
+    padding: var(--spacing-xs);
+  }
+  
+  .header h1 {
+    font-size: 1.3em;
+  }
+  
+  .btn {
+    padding: var(--spacing-sm) 15px;
+  }
+}

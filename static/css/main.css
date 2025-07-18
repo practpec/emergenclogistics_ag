@@ -1,0 +1,41 @@
+/* Archivo CSS principal - Importa todos los módulos */
+
+/* Variables y temas */
+@import url('./themes/variables.css');
+
+/* Layouts base */
+@import url('./layouts/base.css');
+@import url('./layouts/grid.css');
+@import url('./layouts/responsive.css');
+
+/* Componentes */
+@import url('./components/buttons.css');
+@import url('./components/forms.css');
+@import url('./components/tables.css');
+@import url('./components/panels.css');
+@import url('./components/maps.css');
+@import url('./components/loading.css');
+@import url('./components/navigation.css');
+
+/* Utilidades adicionales */
+.text-center { text-align: center; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+.hidden { display: none; }
+.block { display: block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }

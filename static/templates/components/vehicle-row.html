@@ -1,0 +1,14 @@
+<tr>
+    <td>Vehículo {{index}}</td>
+    <td>
+        <select class="vehicle-select vehicle-type" data-index="{{index}}" onchange="updateVehicleDetails({{index}})">
+            {{options}}
+        </select>
+    </td>
+    <td id="vehicle-specs-{{index}}">{{specs}}</td>
+    <td>
+        <button type="button" onclick="removeVehicle({{index}})" class="btn btn-danger btn-small">
+            Eliminar
+        </button>
+    </td>
+</tr>
