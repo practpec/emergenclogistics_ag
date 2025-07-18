@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "modelo": "Corolla",
+    "tipo": "auto",
+    "velocidad_kmh": 50,
+    "consumo_litros_km": 0.5,
+    "maximo_peso_ton": 1.5
+  },
+  {
+    "id": 2,
+    "modelo": "Hilux",
+    "tipo": "camion",
+    "velocidad_kmh": 60,
+    "consumo_litros_km": 0.7,
+    "maximo_peso_ton": 2.5
+  },
+  {
+    "id": 3,
+    "modelo": "Sprinter",
+    "tipo": "van",
+    "velocidad_kmh": 55,
+    "consumo_litros_km": 0.6,
+    "maximo_peso_ton": 2.0
+  },
+  {
+    "id": 4,
+    "modelo": "F-150",
+    "tipo": "camion",
+    "velocidad_kmh": 65,
+    "consumo_litros_km": 0.8,
+    "maximo_peso_ton": 3.0
+  },
+  {
+    "id": 5,
+    "modelo": "Transit",
+    "tipo": "van",
+    "velocidad_kmh": 50,
+    "consumo_litros_km": 0.65,
+    "maximo_peso_ton": 1.8
+  }
+]

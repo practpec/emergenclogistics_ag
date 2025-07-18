@@ -2,6 +2,10 @@
 
 {% block title %}EmergenLogistics - Sistema de Distribución Humanitaria{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/pages/index.css">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Header -->
@@ -93,7 +97,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <!-- Datos del backend -->
 <script>
     const ENTITIES_DATA = {

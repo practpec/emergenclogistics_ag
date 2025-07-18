@@ -1,0 +1,50 @@
+[
+  {
+    "tipo": "inundacion",
+    "prioridad": [
+      { "categoria": "Alimentación básica", "nivel": "alta" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "alta" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "media" },
+      { "categoria": "Artículos para refugio", "nivel": "media" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "baja" },
+      { "categoria": "Logística y almacenamiento", "nivel": "baja" },
+      { "categoria": "Agua", "nivel": "alta" }
+    ]
+  },
+  {
+    "tipo": "terremoto",
+    "prioridad": [
+      { "categoria": "Alimentación básica", "nivel": "alta" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "alta" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "alta" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "media" },
+      { "categoria": "Artículos para refugio", "nivel": "media" },
+      { "categoria": "Logística y almacenamiento", "nivel": "baja" },
+      { "categoria": "Agua", "nivel": "alta" }
+    ]
+  },
+  {
+    "tipo": "incendio",
+    "prioridad": [
+      { "categoria": "Artículos para refugio", "nivel": "alta" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "alta" },
+      { "categoria": "Alimentación básica", "nivel": "media" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "media" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "baja" },
+      { "categoria": "Logística y almacenamiento", "nivel": "baja" },
+      { "categoria": "Agua", "nivel": "media" }
+    ]
+  },
+  {
+    "tipo": "huracan",
+    "prioridad": [
+      { "categoria": "Alimentación básica", "nivel": "alta" },
+      { "categoria": "Agua", "nivel": "alta" },
+      { "categoria": "Artículos para refugio", "nivel": "alta" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "media" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "media" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "media" },
+      { "categoria": "Logística y almacenamiento", "nivel": "baja" }
+    ]
+  }
+]

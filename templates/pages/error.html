@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Error - EmergenLogistics{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/pages/error.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>Error en el Sistema</h1>
+        <p>Se ha producido un error inesperado</p>
+    </div>
+    
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-icon">⚠️</div>
+            <h2>Oops! Algo salió mal</h2>
+            <p class="error-message">{{ error }}</p>
+            
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">Volver al Inicio</a>
+                <button onclick="window.location.reload()" class="btn btn-secondary">Recargar Página</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
