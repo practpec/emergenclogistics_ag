@@ -1,0 +1,27 @@
+<div class="route-item" id="route-{{destinationIndex}}-{{routeIndex}}" 
+     data-destination="{{destinationIndex}}" data-route="{{routeIndex}}">
+    <div class="route-header">
+        <span class="route-type">{{tipo}}</span>
+        <div class="route-controls">
+            <button class="route-btn" onclick="highlightRoute({{destinationIndex}}, {{routeIndex}})" 
+                    title="Ver en mapa">
+                Ver
+            </button>
+        </div>
+    </div>
+    
+    <div class="route-details">
+        {{descripcion}}
+    </div>
+    
+    <div class="route-stats">
+        <div class="route-stat">
+            <span class="stat-icon">📏</span>
+            <span>{{distancia}}</span>
+        </div>
+        <div class="route-stat">
+            <span class="stat-icon">📍</span>
+            <span>{{puntos}} puntos</span>
+        </div>
+    </div>
+</div>

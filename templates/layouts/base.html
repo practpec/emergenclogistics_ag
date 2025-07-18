@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EmergenLogistics{% endblock %}</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        {% block header %}
+        <div class="header">
+            <h1>EmergenLogistics</h1>
+            <p>Sistema inteligente de distribución de ayuda humanitaria</p>
+        </div>
+        {% endblock %}
+        
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- JavaScript Core -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/core/config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/logger.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/base-module.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/template-loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/core/app.js') }}"></script>
+    
+    <!-- Services -->
+    <script src="{{ url_for('static', filename='js/services/api-client.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/services/event-bus.js') }}"></script>
+    
+    <!-- Modules -->
+    <script src="{{ url_for('static', filename='js/modules/maps/map-manager.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+    
+    <!-- Main App -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

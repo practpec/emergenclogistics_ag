@@ -1,0 +1,29 @@
+[
+  {
+    "tipo": "inundacion",
+    "prioridad": [
+      { "categoria": "Alimentación básica", "nivel": "alta" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "alta" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "media" },
+      { "categoria": "Artículos para refugio", "nivel": "media" }
+    ]
+  },
+  {
+    "tipo": "terremoto",
+    "prioridad": [
+      { "categoria": "Alimentación básica", "nivel": "alta" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "alta" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "media" },
+      { "categoria": "Higiene y cuidado personal", "nivel": "media" }
+    ]
+  },
+  {
+    "tipo": "incendio",
+    "prioridad": [
+      { "categoria": "Artículos para refugio", "nivel": "alta" },
+      { "categoria": "Equipamiento de emergencia", "nivel": "media" },
+      { "categoria": "Alimentación básica", "nivel": "media" },
+      { "categoria": "Medicamentos e insumos médicos", "nivel": "baja" }
+    ]
+  }
+]

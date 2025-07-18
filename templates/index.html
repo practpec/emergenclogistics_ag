@@ -1,0 +1,178 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}EmergenLogistics - Sistema Completo{% endblock %}
+
+{% block header %}
+{{ super() }}
+<!-- Navegación entre módulos -->
+<div class="module-nav">
+    <button class="btn active" onclick="showModule('mapas')" id="btn-mapas">
+        Generador de Mapas
+    </button>
+    <button class="btn" onclick="showModule('algoritmo')" id="btn-algoritmo">
+        Algoritmo Genético
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- MÓDULO DE MAPAS -->
+<div id="module-mapas" class="module active">
+    <div class="controls">
+        <h2>Generador de Rutas</h2>
+        
+        <div class="info-box">
+            <strong>¿Cómo funciona?</strong><br>
+            Selecciona un estado como punto de partida y el número de destinos. 
+            El sistema generará rutas optimizadas que servirán como base para el algoritmo genético.
+        </div>
+        
+        <div class="error" id="error-message"></div>
+        
+        <div class="form-row">
+            <div class="form-group" style="flex: 1;">
+                <label for="estado">Estado (Nodo Principal):</label>
+                <select id="estado">
+                    {% for estado in estados %}
+                        <option value="{{ estado }}" {% if estado == "Chiapas" %}selected{% endif %}>
+                            {{ estado }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+                <label for="n_nodos">Número de Destinos:</label>
+                <input type="number" id="n_nodos" min="1" max="15" value="5">
+                <small>Recomendado: 3-8 destinos para mejor optimización</small>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-primary" id="generar-btn" onclick="generarMapa()">
+                    Generar Mapa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="map-section">
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p><strong>Generando rutas...</strong></p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Calculando múltiples caminos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="routes-panel" id="routes-panel">
+            <div class="panel-header">
+                <h3>Opciones de Rutas</h3>
+                <button class="collapse-btn" onclick="togglePanel()">−</button>
+            </div>
+            
+            <div class="panel-content" id="panel-content">
+                <div class="no-routes" style="padding: 40px 20px; text-align: center; color: #718096;">
+                    <p>Genera un mapa para ver las opciones de rutas disponibles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MÓDULO DE ALGORITMO GENÉTICO -->
+<div id="module-algoritmo" class="module">
+    <div class="controls">
+        <h2>Algoritmo Genético</h2>
+        <div class="info-box">
+            <strong>Estado actual:</strong> El algoritmo genético está en desarrollo. 
+            Por ahora puedes generar escenarios basados en los mapas creados.
+        </div>
+        
+        <div id="ag-summary">
+            <h3>Datos del Mapa Base</h3>
+            <div id="summary-content">
+                <div style="text-align: center; padding: 40px; color: #718096;">
+                    <p><strong>No hay datos de mapa disponibles</strong></p>
+                    <p>Para usar el algoritmo genético, primero debes generar un mapa en la pestaña correspondiente.</p>
+                    <button onclick="showModule('mapas')" class="btn btn-primary">
+                        Ir a Generar Mapa
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="ag-placeholder" style="background: #1a1a1a; border: 1px solid #333; padding: 30px; border-radius: 8px; text-align: center; margin-top: 20px;">
+            <h3 style="color: #ffd700; margin-bottom: 15px;">Algoritmo Genético en Desarrollo</h3>
+            <p style="color: #a0aec0; margin-bottom: 20px;">
+                Esta funcionalidad está siendo desarrollada. Incluirá:
+            </p>
+            <ul style="color: #718096; text-align: left; max-width: 600px; margin: 0 auto 20px;">
+                <li>Configuración de escenarios de emergencia</li>
+                <li>Asignación inteligente de vehículos</li>
+                <li>Optimización de distribución de insumos</li>
+                <li>Análisis de resultados y métricas</li>
+            </ul>
+            <button class="btn btn-primary" disabled>
+                Próximamente Disponible
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Datos del backend
+    const ENTITIES_DATA = {
+        tipos_desastre: {{ tipos_desastre|tojson }},
+        tipos_vehiculos: {{ tipos_vehiculos|tojson }},
+        categorias_insumos: {{ categorias_insumos|tojson }}
+    };
+    
+    // Hacer datos disponibles globalmente
+    window.ENTITIES_DATA = ENTITIES_DATA;
+    
+    // Funciones específicas para esta página
+    function updateAGSummary(mapData) {
+        const summaryContent = document.getElementById('summary-content');
+        
+        if (mapData) {
+            let totalRutas = 0;
+            if (mapData.rutas_data) {
+                mapData.rutas_data.forEach(destino => {
+                    totalRutas += destino.rutas ? destino.rutas.length : 0;
+                });
+            }
+            
+            summaryContent.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Estado</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">Listo</span>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    // Escuchar eventos de datos actualizados
+    document.addEventListener('App:data:map-updated', function(event) {
+        updateAGSummary(event.detail.data);
+    });
+</script>
+{% endblock %} 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Punto de Inicio</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.punto_inicio || 'No definido'}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Destinos</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.nodos_secundarios ? mapData.nodos_secundarios.length : 0}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Rutas Generadas</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${totalRutas}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius:
