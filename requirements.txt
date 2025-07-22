@@ -10,3 +10,4 @@ black
 flake8
 colorlog
 colorama
+shapely
