@@ -115,10 +115,11 @@ async function generarMapa() {
         // Limpiar mapa anterior
         mapManager.clearMap();
         
-        // Generar rutas
+        // Generar rutas con municipio específico
         const data = await apiClient.generateCompleteRoutes(
             formData.estado, 
-            formData.nNodos
+            formData.nNodos,
+            formData.municipio  // Asegurar que se pase el municipio
         );
         
         // Actualizar datos en la aplicación

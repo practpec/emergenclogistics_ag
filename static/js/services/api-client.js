@@ -196,28 +196,15 @@ class ApiClient extends BaseModule {
      */
     async generateCompleteRoutes(estado, nNodos, claveMunicipio = null) {
         try {
-            console.log('=== API CLIENT DEBUG ===');
-            console.log('Parámetros recibidos:');
-            console.log('  estado:', estado);
-            console.log('  nNodos:', nNodos);
-            console.log('  claveMunicipio:', claveMunicipio);
-            console.log('  typeof claveMunicipio:', typeof claveMunicipio);
-            console.log('========================');
-            
             const requestData = {
                 estado: estado,
                 n_nodos: nNodos
             };
             
-            // Agregar municipio si se proporciona
-            if (claveMunicipio) {
+            // Validar y agregar municipio si se proporciona
+            if (claveMunicipio && claveMunicipio !== 'null' && claveMunicipio !== null) {
                 requestData.clave_municipio = claveMunicipio;
-                console.log('Municipio agregado a requestData');
-            } else {
-                console.log('NO se agregó municipio (valor falsy)');
             }
-            
-            console.log('API Client - Datos a enviar:', requestData);
             
             const data = await this.post(AppConfig.api.routes, requestData);
             

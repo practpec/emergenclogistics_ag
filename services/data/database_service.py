@@ -11,26 +11,7 @@ class DatabaseService(BaseService):
     def __init__(self, db_path: str = "data/localidades.db"):
         super().__init__()
         self.db_path = db_path
-        self._ensure_db_exists()
-    
-    def _ensure_db_exists(self):
-        """Verificar que la base de datos existe"""
-        if not os.path.exists(self.db_path):
-            raise DataLoadError(f"Base de datos no encontrada: {self.db_path}")
-        
-        try:
-            with self.get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute("""
-                    SELECT name FROM sqlite_master 
-                    WHERE type='table' AND name='localidades'
-                """)
-                if not cursor.fetchone():
-                    raise DataLoadError("Tabla 'localidades' no encontrada en la base de datos")
-        except Exception as e:
-            self.log_error("Error verificando base de datos", e)
-            raise DataLoadError(f"Error accediendo a la base de datos: {e}")
-    
+            
     @contextmanager
     def get_connection(self):
         """Context manager para conexiones a la base de datos"""
@@ -286,35 +267,3 @@ class DatabaseService(BaseService):
             self.log_error(f"Error buscando localidades con nombre '{nombre}'", e)
             raise DataLoadError(f"Error buscando localidades: {e}")
     
-    def get_table_info(self) -> Dict[str, Any]:
-        """Obtener información sobre la estructura de la tabla"""
-        try:
-            with self.get_connection() as conn:
-                cursor = conn.cursor()
-                
-                # Obtener información de columnas
-                cursor.execute("PRAGMA table_info(localidades)")
-                columns = cursor.fetchall()
-                
-                # Obtener conteo total
-                cursor.execute("SELECT COUNT(*) as total FROM localidades")
-                total_rows = cursor.fetchone()['total']
-                
-                # Obtener conteo por ámbito
-                cursor.execute("SELECT ambito, COUNT(*) as count FROM localidades GROUP BY ambito")
-                ambito_counts = cursor.fetchall()
-                
-                # Obtener muestra de datos
-                cursor.execute("SELECT * FROM localidades LIMIT 3")
-                sample_data = cursor.fetchall()
-                
-                return {
-                    'columns': [dict(col) for col in columns],
-                    'total_rows': total_rows,
-                    'ambito_counts': [dict(row) for row in ambito_counts],
-                    'sample_data': [dict(row) for row in sample_data]
-                }
-                
-        except Exception as e:
-            self.log_error("Error obteniendo información de tabla", e)
-            raise DataLoadError(f"Error obteniendo información de tabla: {e}")

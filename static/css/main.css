@@ -610,3 +610,47 @@ small {
         opacity: 0;
     }
 }
+
+.municipio-info {
+    background: #1a2332;
+    border: 1px solid #3182ce;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.municipio-info h3 {
+    color: #63b3ed;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.municipio-details-simple {
+    padding: 15px;
+    background: #2d3748;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.municipio-details-simple p {
+    margin: 0 0 5px 0;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+}
+
+.municipio-details-simple small {
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+#municipio:disabled {
+    background: #2d3748;
+    color: #718096;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
