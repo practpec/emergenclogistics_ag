@@ -97,7 +97,7 @@ class UIManager extends BaseModule {
         
         if (btn) {
             btn.disabled = false;
-            btn.innerHTML = 'Generar Mapa';
+            btn.innerHTML = 'Generar Rutas';
         }
     }
     
@@ -106,10 +106,16 @@ class UIManager extends BaseModule {
      */
     validateMapForm() {
         const estado = this.findElement('#estado');
+        const municipio = this.findElement('#municipio');
         const nNodos = this.findElement('#n_nodos');
         
         if (!estado || !estado.value) {
             this.showError('Por favor selecciona un estado');
+            return false;
+        }
+        
+        if (!municipio || !municipio.value) {
+            this.showError('Por favor selecciona un municipio');
             return false;
         }
         
@@ -128,12 +134,13 @@ class UIManager extends BaseModule {
     getMapFormData() {
         return {
             estado: this.findElement('#estado').value,
+            municipio: this.findElement('#municipio').value,
             nNodos: parseInt(this.findElement('#n_nodos').value)
         };
     }
     
     /**
-     * Actualizar panel de rutas
+     * Actualizar panel de rutas con nombres de localidades
      */
     async updateRoutesPanel(routesData) {
         const panelContent = this.findElement('#panel-content');
@@ -153,13 +160,16 @@ class UIManager extends BaseModule {
             const destinoData = routesData[i];
             const rutas = destinoData.rutas || [];
             
+            // Extraer nombre de la localidad del destino
+            const destinoNombre = this.extractLocalidadName(destinoData.destino);
+            
             html += `
                 <div class="destination-item">
                     <div class="destination-header" onclick="toggleDestination(${i})" data-destination="${i}">
                         <div class="destination-title">
-                            Destino ${i + 1}
-                            <div style="font-size: 0.8em; font-weight: normal; margin-top: 2px;">
-                                ${rutas.length} ruta${rutas.length !== 1 ? 's' : ''} disponible${rutas.length !== 1 ? 's' : ''}
+                            ${destinoNombre}
+                            <div style="font-size: 0.8em; font-weight: normal; margin-top: 2px; color: #a0aec0;">
+                                ${rutas.length} ruta${rutas.length !== 1 ? 's' : ''} • Población: ${this.formatPopulation(destinoData.destino)}
                             </div>
                         </div>
                         <div class="toggle-icon">▼</div>
@@ -172,6 +182,27 @@ class UIManager extends BaseModule {
         }
         
         panelContent.innerHTML = html;
+    }
+    
+    /**
+     * Extraer nombre de localidad de la cadena completa
+     */
+    extractLocalidadName(destinoCompleto) {
+        // El formato es: "NOMBRE_LOCALIDAD (Clave: XX-XXX-XXXX)"
+        const match = destinoCompleto.match(/^([^(]+)/);
+        if (match) {
+            return match[1].trim();
+        }
+        return destinoCompleto;
+    }
+    
+    /**
+     * Formatear población desde la cadena de destino
+     */
+    formatPopulation(destinoCompleto) {
+        // Intentar extraer población si está disponible en los datos
+        // Por ahora retornar un placeholder
+        return "N/A";
     }
     
     /**
@@ -197,14 +228,35 @@ class UIManager extends BaseModule {
             const ruta = rutas[routeIndex];
             const routeId = `route-${destinationIndex}-${routeIndex}`;
             
-            html += await templateLoader.render('components/route-item.html', {
-                destinationIndex,
-                routeIndex,
-                tipo: ruta.tipo || `Ruta ${routeIndex + 1}`,
-                descripcion: ruta.descripcion || 'Camino hacia el destino',
-                distancia: ruta.distancia.text,
-                puntos: ruta.puntos_ruta ? ruta.puntos_ruta.length : 0
-            });
+            html += `
+                <div class="route-item" id="${routeId}" 
+                     data-destination="${destinationIndex}" data-route="${routeIndex}">
+                    <div class="route-header">
+                        <span class="route-type">${ruta.tipo || `Ruta ${routeIndex + 1}`}</span>
+                        <div class="route-controls">
+                            <button class="route-btn" onclick="highlightRoute(${destinationIndex}, ${routeIndex})" 
+                                    title="Ver en mapa">
+                                Ver
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="route-details">
+                        ${ruta.descripcion || 'Camino hacia el destino'}
+                    </div>
+                    
+                    <div class="route-stats">
+                        <div class="route-stat">
+                            <span class="stat-icon">📏</span>
+                            <span>${ruta.distancia.text}</span>
+                        </div>
+                        <div class="route-stat">
+                            <span class="stat-icon">📍</span>
+                            <span>${ruta.puntos_ruta ? ruta.puntos_ruta.length : 0} puntos</span>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
         
         return html;

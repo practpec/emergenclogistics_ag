@@ -3,65 +3,88 @@ import math
 from typing import Dict, List, Tuple
 from core.base_service import BaseService
 from core.validators import BaseValidator
+from services.data.database_service import DatabaseService
 
 class GeoService(BaseService):
-    """Servicio para manejo de datos geográficos"""
+    """Servicio geográfico con flujo estado->municipio->localidades del mismo municipio"""
     
     def __init__(self):
         super().__init__()
-        self.estados_coords = {
-            "Chiapas": {"lat": 16.75, "lng": -93.1167, "nombre": "Chiapas"},
-            "CDMX": {"lat": 19.4326, "lng": -99.1332, "nombre": "Ciudad de México"},
-            "Jalisco": {"lat": 20.6597, "lng": -103.3496, "nombre": "Jalisco"},
-            "Nuevo León": {"lat": 25.6866, "lng": -100.3161, "nombre": "Nuevo León"},
-            "Yucatán": {"lat": 20.7099, "lng": -89.0943, "nombre": "Yucatán"},
-            "Oaxaca": {"lat": 17.0732, "lng": -96.7266, "nombre": "Oaxaca"},
-            "Puebla": {"lat": 19.0414, "lng": -98.2063, "nombre": "Puebla"},
-            "Veracruz": {"lat": 19.1738, "lng": -96.1342, "nombre": "Veracruz"},
-            "Guanajuato": {"lat": 21.0190, "lng": -101.2574, "nombre": "Guanajuato"},
-            "Michoacán": {"lat": 19.5665, "lng": -101.7068, "nombre": "Michoacán"},
-            "Guerrero": {"lat": 17.4392, "lng": -99.5451, "nombre": "Guerrero"},
-            "Sonora": {"lat": 29.2972, "lng": -110.3309, "nombre": "Sonora"},
-            "Tamaulipas": {"lat": 24.2669, "lng": -98.8363, "nombre": "Tamaulipas"},
-            "Sinaloa": {"lat": 25.1721, "lng": -107.4795, "nombre": "Sinaloa"},
-            "Coahuila": {"lat": 27.0587, "lng": -101.7068, "nombre": "Coahuila"},
-            "Quintana Roo": {"lat": 19.1817, "lng": -88.4791, "nombre": "Quintana Roo"},
-            "Baja California": {"lat": 30.8406, "lng": -115.2838, "nombre": "Baja California"},
-            "San Luis Potosí": {"lat": 22.1565, "lng": -100.9855, "nombre": "San Luis Potosí"}
-        }
-        
-        # Ciudades principales por estado para generación inteligente
-        self.ciudades_mexico = {
-            "Chiapas": [
-                (16.7569, -93.1292),  # Tuxtla Gutiérrez
-                (16.7409, -92.6375),  # San Cristóbal
-                (17.5569, -93.4016),  # Palenque
-                (16.2418, -93.7636),  # Tapachula
-            ],
-            "CDMX": [
-                (19.4326, -99.1332),  # Centro
-                (19.3629, -99.2837),  # Santa Fe
-                (19.5047, -99.1181),  # Satélite
-                (19.2911, -99.0940),  # Coyoacán
-            ],
-            "Jalisco": [
-                (20.6597, -103.3496), # Guadalajara
-                (20.5888, -103.4224), # Zapopan
-                (20.6668, -105.2064), # Puerto Vallarta
-                (20.5230, -103.4068), # Tlaquepaque
-            ]
-        }
+        self.db_service = DatabaseService()
     
     def get_estados(self) -> List[str]:
-        """Obtener lista de estados disponibles"""
-        return list(self.estados_coords.keys())
+        """Obtener lista de estados disponibles (nombres simples para compatibilidad)"""
+        try:
+            estados_data = self.db_service.get_estados()
+            return [estado['nombre'] for estado in estados_data]
+        except Exception as e:
+            self.log_error("Error obteniendo estados", e)
+            raise
     
-    def get_coordenadas_estado(self, estado: str) -> Dict[str, any]:
-        """Obtener coordenadas de un estado específico"""
-        coords = self.estados_coords.get(estado)
-        if not coords:
-            raise ValueError(f"Estado no encontrado: {estado}")
-        return coords
+    def get_estados_completos(self) -> List[Dict[str, str]]:
+        """Obtener lista completa de estados con claves"""
+        try:
+            return self.db_service.get_estados()
+        except Exception as e:
+            self.log_error("Error obteniendo estados completos", e)
+            raise
+    
+    def get_estado_by_nombre(self, nombre_estado: str) -> Dict[str, str]:
+        """Obtener datos de estado por nombre"""
+        try:
+            estados = self.db_service.get_estados()
+            for estado in estados:
+                if estado['nombre'].lower() == nombre_estado.lower():
+                    return estado
+            raise ValueError(f"Estado no encontrado: {nombre_estado}")
+        except Exception as e:
+            self.log_error(f"Error obteniendo estado por nombre: {nombre_estado}", e)
+            raise
+    
+    def get_municipios_por_estado(self, nombre_estado: str) -> List[Dict[str, str]]:
+        """Obtener municipios de un estado"""
+        try:
+            estado = self.get_estado_by_nombre(nombre_estado)
+            municipios = self.db_service.get_municipios_por_estado(estado['clave'])
+            
+            self.log_info(f"Municipios obtenidos para {nombre_estado}: {len(municipios)}")
+            return municipios
+            
+        except Exception as e:
+            self.log_error(f"Error obteniendo municipios para {nombre_estado}", e)
+            raise
+    
+    def get_coordenadas_estado(self, nombre_estado: str) -> Dict[str, any]:
+        """Obtener coordenadas principales de un estado (primer municipio disponible)"""
+        try:
+            estado = self.get_estado_by_nombre(nombre_estado)
+            municipios = self.db_service.get_municipios_por_estado(estado['clave'])
+            
+            if not municipios:
+                raise ValueError(f"No se encontraron municipios para el estado: {nombre_estado}")
+            
+            # Usar el primer municipio para obtener su localidad principal
+            primer_municipio = municipios[0]
+            nodo_inicial = self.db_service.get_nodo_inicial_municipio(
+                estado['clave'], 
+                primer_municipio['clave_municipio']
+            )
+            
+            if not nodo_inicial:
+                raise ValueError(f"No se encontró localidad principal para {nombre_estado}")
+            
+            return {
+                'lat': nodo_inicial['lat'],
+                'lng': nodo_inicial['lng'],
+                'nombre': nodo_inicial['nombre'],
+                'clave_estado': nodo_inicial['clave_estado'],
+                'clave_municipio': nodo_inicial['clave_municipio'],
+                'clave_localidad': nodo_inicial['clave_localidad'],
+                'poblacion': nodo_inicial['poblacion']
+            }
+        except Exception as e:
+            self.log_error(f"Error obteniendo coordenadas de estado: {nombre_estado}", e)
+            raise
     
     def calcular_distancia_haversine(self, lat1: float, lon1: float, 
                                    lat2: float, lon2: float) -> float:
@@ -82,149 +105,126 @@ class GeoService(BaseService):
         
         return R * c
     
-    def generar_nodos_secundarios(self, estado: str, cantidad_nodos: int) -> Dict[str, any]:
-        """Generar nodos secundarios para un estado específico"""
+    def generar_nodos_secundarios(self, nombre_estado: str, cantidad_nodos: int, 
+                                 clave_municipio: str = None) -> Dict[str, any]:
+        """Generar nodos secundarios del mismo municipio que el nodo principal"""
         try:
             # Validar parámetros
             BaseValidator.validate_integer_range(cantidad_nodos, 1, 15, "cantidad_nodos")
             
-            nodo_principal = self.get_coordenadas_estado(estado)
+            # Obtener datos del estado
+            estado = self.get_estado_by_nombre(nombre_estado)
             
-            # Generar coordenadas inteligentes
-            coordenadas_candidatas = self._generar_coordenadas_inteligentes(
-                estado, cantidad_nodos * 5
+            # Si no se especifica municipio, usar el primer municipio disponible
+            if not clave_municipio:
+                municipios = self.db_service.get_municipios_por_estado(estado['clave'])
+                if not municipios:
+                    raise ValueError(f"No se encontraron municipios para {nombre_estado}")
+                clave_municipio = municipios[0]['clave_municipio']
+            
+            # Obtener nodo principal (localidad principal del municipio)
+            nodo_principal = self.db_service.get_nodo_inicial_municipio(
+                estado['clave'], clave_municipio
             )
             
-            # Filtrar por distancia
-            nodos_filtrados = self._filtrar_por_distancia(
-                nodo_principal, coordenadas_candidatas, 100
+            if not nodo_principal:
+                raise ValueError(f"No se encontró nodo principal para el municipio {clave_municipio}")
+            
+            # Obtener nodos secundarios del mismo municipio
+            localidades_secundarias = self.db_service.get_localidades_municipio(
+                estado['clave'],
+                clave_municipio,
+                nodo_principal['clave_localidad'],
+                cantidad_nodos,
+                poblacion_minima=20
             )
             
-            # Completar con nodos aleatorios si es necesario
-            if len(nodos_filtrados) < cantidad_nodos:
-                nodos_extra = self._generar_nodos_aleatorios_cerca(
-                    nodo_principal, cantidad_nodos - len(nodos_filtrados)
+            # Calcular distancias y formatear nodos secundarios
+            nodos_secundarios = []
+            for localidad in localidades_secundarias:
+                distancia = self.calcular_distancia_haversine(
+                    nodo_principal['lat'], nodo_principal['lng'],
+                    localidad['lat'], localidad['lng']
                 )
-                nodos_filtrados.extend(nodos_extra)
-            
-            # Seleccionar cantidad solicitada
-            nodos_secundarios = random.sample(
-                nodos_filtrados, 
-                min(cantidad_nodos, len(nodos_filtrados))
-            )
+                
+                nodos_secundarios.append({
+                    'lat': localidad['lat'],
+                    'lng': localidad['lng'],
+                    'nombre': localidad['nombre'],
+                    'clave_estado': localidad['clave_estado'],
+                    'clave_municipio': localidad['clave_municipio'],
+                    'clave_localidad': localidad['clave_localidad'],
+                    'poblacion': localidad['poblacion'],
+                    'ambito': localidad['ambito'],
+                    'distancia_directa': round(distancia, 2)
+                })
             
             result = {
                 "nodo_principal": nodo_principal,
-                "nodos_secundarios": nodos_secundarios
+                "nodos_secundarios": nodos_secundarios,
+                "municipio_info": {
+                    "clave_municipio": clave_municipio,
+                    "nombre_municipio": nodo_principal['nombre_municipio'],
+                    "total_localidades": len(nodos_secundarios) + 1
+                }
             }
             
-            self.log_info("Nodos generados exitosamente", 
-                         estado=estado, 
+            self.log_info("Nodos generados del mismo municipio", 
+                         estado=nombre_estado,
+                         municipio=clave_municipio, 
                          cantidad=len(nodos_secundarios))
             
             return result
             
         except Exception as e:
-            self.log_error("Error generando nodos", e, estado=estado)
+            self.log_error("Error generando nodos del mismo municipio", e, estado=nombre_estado)
             raise
     
-    def _generar_coordenadas_inteligentes(self, estado_base: str, cantidad: int) -> List[Dict]:
-        """Generar coordenadas cerca de ciudades conocidas"""
-        coordenadas = []
-        base_coords = self.get_coordenadas_estado(estado_base)
-        ciudades_estado = self.ciudades_mexico.get(estado_base, [])
-        
-        # Si no hay ciudades definidas, usar el centro del estado
-        if not ciudades_estado:
-            ciudades_estado = [(base_coords['lat'], base_coords['lng'])]
-        
-        # Generar puntos alrededor de las ciudades
-        for ciudad_lat, ciudad_lng in ciudades_estado:
-            puntos_por_ciudad = cantidad // len(ciudades_estado)
+    def buscar_localidades(self, nombre: str, nombre_estado: str = None, limite: int = 10) -> List[Dict]:
+        """Buscar localidades por nombre"""
+        try:
+            clave_estado = None
+            if nombre_estado:
+                estado = self.get_estado_by_nombre(nombre_estado)
+                clave_estado = estado['clave']
             
-            for _ in range(puntos_por_ciudad):
-                angle = random.uniform(0, 2 * math.pi)
-                radius = random.uniform(5, 50)  # Entre 5 y 50 km
-                
-                # Convertir a grados
-                lat_offset = (radius / 111.32) * math.cos(angle)
-                lng_offset = (radius / (111.32 * math.cos(math.radians(ciudad_lat)))) * math.sin(angle)
-                
-                nueva_lat = ciudad_lat + lat_offset
-                nueva_lng = ciudad_lng + lng_offset
-                
-                # Verificar que esté dentro de México
-                if self._es_coordenada_valida_mexico(nueva_lat, nueva_lng):
-                    coordenadas.append({"lat": nueva_lat, "lng": nueva_lng})
-        
-        # Completar con puntos aleatorios si es necesario
-        while len(coordenadas) < cantidad:
-            lat = random.uniform(
-                max(14.5, base_coords['lat'] - 2),
-                min(32.7, base_coords['lat'] + 2)
-            )
-            lng = random.uniform(
-                max(-118.4, base_coords['lng'] - 2),
-                min(-86.7, base_coords['lng'] + 2)
-            )
+            localidades = self.db_service.search_localidades(nombre, clave_estado, limite)
             
-            if self._es_coordenada_valida_mexico(lat, lng):
-                coordenadas.append({"lat": lat, "lng": lng})
-        
-        return coordenadas[:cantidad]
+            # Calcular distancia directa si hay un estado de referencia
+            if clave_estado and localidades:
+                coord_estado = self.get_coordenadas_estado(nombre_estado)
+                for localidad in localidades:
+                    distancia = self.calcular_distancia_haversine(
+                        coord_estado['lat'], coord_estado['lng'],
+                        localidad['lat'], localidad['lng']
+                    )
+                    localidad['distancia_directa'] = round(distancia, 2)
+            
+            return localidades
+            
+        except Exception as e:
+            self.log_error(f"Error buscando localidades: {nombre}", e)
+            raise
     
-    def _filtrar_por_distancia(self, nodo_principal: Dict, candidatos: List[Dict], 
-                              radio_km: float) -> List[Dict]:
-        """Filtrar nodos dentro del radio especificado"""
-        nodos_filtrados = []
-        
-        for nodo in candidatos:
-            distancia = self.calcular_distancia_haversine(
-                nodo_principal["lat"], nodo_principal["lng"],
-                nodo["lat"], nodo["lng"]
+    def get_localidad_by_claves(self, clave_estado: str, clave_municipio: str, 
+                               clave_localidad: str) -> Dict:
+        """Obtener localidad específica por sus claves"""
+        try:
+            localidad = self.db_service.get_localidad_by_id(
+                clave_estado, clave_municipio, clave_localidad
             )
-            
-            if distancia <= radio_km:
-                nodos_filtrados.append({
-                    "lat": nodo["lat"],
-                    "lng": nodo["lng"],
-                    "distancia_directa": round(distancia, 2)
-                })
-        
-        return nodos_filtrados
+            if not localidad:
+                raise ValueError(f"Localidad no encontrada: {clave_estado}-{clave_municipio}-{clave_localidad}")
+            return localidad
+        except Exception as e:
+            self.log_error("Error obteniendo localidad por claves", e)
+            raise
     
-    def _generar_nodos_aleatorios_cerca(self, nodo_central: Dict, cantidad: int) -> List[Dict]:
-        """Generar nodos aleatorios cerca de un punto central"""
-        nodos = []
-        
-        for _ in range(cantidad * 3):  # Generar extra para filtrar
-            angle = random.uniform(0, 2 * math.pi)
-            radius = random.uniform(10, 100)  # Entre 10 y 100 km
-            
-            lat_offset = (radius / 111.32) * math.cos(angle)
-            lng_offset = (radius / (111.32 * math.cos(math.radians(nodo_central['lat'])))) * math.sin(angle)
-            
-            nueva_lat = nodo_central['lat'] + lat_offset
-            nueva_lng = nodo_central['lng'] + lng_offset
-            
-            if self._es_coordenada_valida_mexico(nueva_lat, nueva_lng):
-                distancia = self.calcular_distancia_haversine(
-                    nodo_central['lat'], nodo_central['lng'],
-                    nueva_lat, nueva_lng
-                )
-                
-                if distancia <= 100:
-                    nodos.append({
-                        "lat": nueva_lat,
-                        "lng": nueva_lng,
-                        "distancia_directa": round(distancia, 2)
-                    })
-                    
-                    if len(nodos) >= cantidad:
-                        break
-        
-        return nodos[:cantidad]
-    
-    def _es_coordenada_valida_mexico(self, lat: float, lng: float) -> bool:
+    def validar_ubicacion_mexico(self, lat: float, lng: float) -> bool:
         """Verificar que la coordenada esté dentro de México"""
         return (14.5 <= lat <= 32.7 and -118.4 <= lng <= -86.7)
+    
+    def generar_con_municipio_seleccionado(self, nombre_estado: str, clave_municipio: str, 
+                                          cantidad_nodos: int) -> Dict[str, any]:
+        """Generar nodos cuando el usuario ya seleccionó un municipio específico"""
+        return self.generar_nodos_secundarios(nombre_estado, cantidad_nodos, clave_municipio)

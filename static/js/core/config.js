@@ -8,6 +8,13 @@ const AppConfig = {
         routes: '/api/generate-complete-routes',
         entities: '/api/entities',
         status: '/api/status',
+        estados: '/api/estados',
+        municipios: '/api/municipios',
+        localidades: '/api/localidades',
+        searchLocalidades: '/api/search-localidades',
+        geoEstados: '/api/geo/estados',
+        coordenadas: '/api/geo/coordenadas',
+        databaseInfo: '/api/database/info',
         ag: {
             create: '/api/ag/create-scenario',
             execute: '/api/ag/execute',
@@ -29,14 +36,24 @@ const AppConfig = {
         maxDestinations: 15,
         minDestinations: 1,
         maxVehicles: 10,
-        minVehicles: 1
+        minVehicles: 1,
+        minSearchLength: 2,
+        maxSearchResults: 50
+    },
+    
+    // Configuración de base de datos
+    database: {
+        usingRealData: true,
+        minPopulation: 20,
+        searchMinLength: 2
     },
     
     // Configuración de UI
     ui: {
         loadingDelay: 300,
         animationDuration: 300,
-        toastDuration: 5000
+        toastDuration: 5000,
+        searchDelay: 500  // Delay para búsquedas en tiempo real
     },
     
     // Colores para rutas
@@ -57,21 +74,42 @@ const AppConfig = {
     // Mensajes del sistema
     messages: {
         loading: {
-            map: 'Generando rutas...',
+            map: 'Generando rutas con datos reales...',
+            estados: 'Cargando estados...',
+            municipios: 'Cargando municipios...',
+            localidades: 'Cargando localidades...',
             scenario: 'Creando escenario...',
             algorithm: 'Ejecutando algoritmo genético...'
         },
         success: {
-            map: 'Mapa generado correctamente',
+            map: 'Mapa generado con datos reales de México',
+            estados: 'Estados cargados desde base de datos',
+            municipios: 'Municipios obtenidos correctamente',
+            localidades: 'Localidades cargadas correctamente',
             scenario: 'Escenario creado exitosamente',
             algorithm: 'Algoritmo ejecutado exitosamente'
         },
         error: {
             map: 'Error generando mapa',
+            estados: 'Error cargando estados',
+            municipios: 'Error cargando municipios',
+            localidades: 'Error cargando localidades',
+            database: 'Error accediendo a base de datos',
             scenario: 'Error creando escenario',
             algorithm: 'Error ejecutando algoritmo',
             network: 'Error de conexión',
-            validation: 'Datos inválidos'
+            validation: 'Datos inválidos',
+            searchTooShort: 'Ingresa al menos 2 caracteres para buscar'
+        }
+    },
+    
+    // Configuración de formularios
+    forms: {
+        validation: {
+            estadoRequired: true,
+            nodosMin: 1,
+            nodosMax: 15,
+            searchMinLength: 2
         }
     }
 };

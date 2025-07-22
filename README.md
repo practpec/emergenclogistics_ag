@@ -73,6 +73,21 @@ emergenclogistics/
 
 ---
 
+## 📍 Base de Datos de Localidades
+
+El sistema utiliza una base de datos SQLite (`localidades.db`) generada a partir del catálogo oficial del INEGI (Instituto Nacional de Estadística y Geografía). Esta base contiene más de 170,000 registros de **localidades reales en México**, y es utilizada para generar nodos geográficos habitados (ciudades, pueblos, colonias), evitando zonas vacías como ríos o montañas.
+
+### 🗂️ Campos incluidos en la base de datos
+
+- `estado`: Nombre del estado
+- `municipio`: Nombre del municipio
+- `localidad`: Nombre de la localidad
+- `ambito`: Clasificación urbana o rural
+- `latitud`: Coordenadas geográficas (decimal)
+- `longitud`: Coordenadas geográficas (decimal)
+- `poblacion`: Número total de habitantes
+
+
 ## 🧩 Módulos Principales
 
 ### 1. 🌍 Generador de Mapas

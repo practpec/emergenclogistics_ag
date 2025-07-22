@@ -19,38 +19,58 @@
 <!-- MÓDULO DE MAPAS -->
 <div id="module-mapas" class="module active">
     <div class="controls">
-        <h2>Generador de Rutas</h2>
+        <h2>Generador de Rutas con Localidades del Mismo Municipio</h2>
         
         <div class="info-box">
             <strong>¿Cómo funciona?</strong><br>
-            Selecciona un estado como punto de partida y el número de destinos. 
-            El sistema generará rutas optimizadas que servirán como base para el algoritmo genético.
+            1. Selecciona un <strong>estado</strong> mexicano<br>
+            2. Selecciona un <strong>municipio</strong> del estado<br>
+            3. Elige el <strong>número de destinos</strong> (localidades del mismo municipio)<br>
+            El sistema generará rutas entre localidades reales del municipio seleccionado.
         </div>
         
         <div class="error" id="error-message"></div>
         
         <div class="form-row">
             <div class="form-group" style="flex: 1;">
-                <label for="estado">Estado (Nodo Principal):</label>
-                <select id="estado">
+                <label for="estado">Estado:</label>
+                <select id="estado" onchange="onEstadoChange()">
+                    <option value="">Selecciona un estado...</option>
                     {% for estado in estados %}
                         <option value="{{ estado }}" {% if estado == "Chiapas" %}selected{% endif %}>
                             {{ estado }}
                         </option>
                     {% endfor %}
                 </select>
+                <small>Estados de la República Mexicana</small>
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+                <label for="municipio">Municipio:</label>
+                <select id="municipio" onchange="onMunicipioChange()" disabled>
+                    <option value="">Selecciona un municipio...</option>
+                </select>
+                <small>Municipios del estado seleccionado</small>
             </div>
             
             <div class="form-group" style="flex: 1;">
                 <label for="n_nodos">Número de Destinos:</label>
                 <input type="number" id="n_nodos" min="1" max="15" value="5">
-                <small>Recomendado: 3-8 destinos para mejor optimización</small>
+                <small>Localidades del mismo municipio</small>
             </div>
             
             <div class="form-group">
-                <button class="btn btn-primary" id="generar-btn" onclick="generarMapa()">
-                    Generar Mapa
+                <button class="btn btn-primary" id="generar-btn" onclick="generarMapa()" disabled>
+                    Generar Rutas
                 </button>
+            </div>
+        </div>
+        
+        <!-- Información del municipio seleccionado -->
+        <div id="municipio-info" class="municipio-info" style="display: none;">
+            <h3>Municipio Seleccionado</h3>
+            <div id="municipio-details">
+                <!-- Se llenará dinámicamente -->
             </div>
         </div>
     </div>
@@ -61,21 +81,22 @@
                 <div id="map"></div>
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
-                    <p><strong>Generando rutas...</strong></p>
-                    <p style="font-size: 0.9em; margin-top: 5px;">Calculando múltiples caminos</p>
+                    <p><strong>Generando rutas entre localidades...</strong></p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Calculando rutas del mismo municipio</p>
                 </div>
             </div>
         </div>
 
         <div class="routes-panel" id="routes-panel">
             <div class="panel-header">
-                <h3>Opciones de Rutas</h3>
+                <h3>Rutas entre Localidades del Municipio</h3>
                 <button class="collapse-btn" onclick="togglePanel()">−</button>
             </div>
             
             <div class="panel-content" id="panel-content">
                 <div class="no-routes" style="padding: 40px 20px; text-align: center; color: #718096;">
-                    <p>Genera un mapa para ver las opciones de rutas disponibles</p>
+                    <p>Selecciona estado y municipio para generar rutas</p>
+                    <small>Las rutas se generarán entre localidades del mismo municipio</small>
                 </div>
             </div>
         </div>
@@ -85,10 +106,10 @@
 <!-- MÓDULO DE ALGORITMO GENÉTICO -->
 <div id="module-algoritmo" class="module">
     <div class="controls">
-        <h2>Algoritmo Genético</h2>
+        <h2>Algoritmo Genético con Localidades del Mismo Municipio</h2>
         <div class="info-box">
-            <strong>Estado actual:</strong> El algoritmo genético está en desarrollo. 
-            Por ahora puedes generar escenarios basados en los mapas creados.
+            <strong>Estado actual:</strong> El algoritmo genético procesará las localidades 
+            del mismo municipio para optimizar la distribución de ayuda humanitaria.
         </div>
         
         <div id="ag-summary">
@@ -96,7 +117,7 @@
             <div id="summary-content">
                 <div style="text-align: center; padding: 40px; color: #718096;">
                     <p><strong>No hay datos de mapa disponibles</strong></p>
-                    <p>Para usar el algoritmo genético, primero debes generar un mapa en la pestaña correspondiente.</p>
+                    <p>Para usar el algoritmo genético, primero debes generar un mapa con localidades del mismo municipio.</p>
                     <button onclick="showModule('mapas')" class="btn btn-primary">
                         Ir a Generar Mapa
                     </button>
@@ -105,15 +126,16 @@
         </div>
         
         <div id="ag-placeholder" style="background: #1a1a1a; border: 1px solid #333; padding: 30px; border-radius: 8px; text-align: center; margin-top: 20px;">
-            <h3 style="color: #ffd700; margin-bottom: 15px;">Algoritmo Genético en Desarrollo</h3>
+            <h3 style="color: #ffd700; margin-bottom: 15px;">Algoritmo Genético - Municipios</h3>
             <p style="color: #a0aec0; margin-bottom: 20px;">
-                Esta funcionalidad está siendo desarrollada. Incluirá:
+                Esta funcionalidad optimizará la distribución entre localidades del mismo municipio:
             </p>
             <ul style="color: #718096; text-align: left; max-width: 600px; margin: 0 auto 20px;">
-                <li>Configuración de escenarios de emergencia</li>
-                <li>Asignación inteligente de vehículos</li>
-                <li>Optimización de distribución de insumos</li>
-                <li>Análisis de resultados y métricas</li>
+                <li>Escenarios basados en localidades reales del municipio</li>
+                <li>Optimización considerando distancias cortas</li>
+                <li>Análisis de población por localidad</li>
+                <li>Rutas eficientes dentro del municipio</li>
+                <li>Reportes con datos oficiales INEGI</li>
             </ul>
             <button class="btn btn-primary" disabled>
                 Próximamente Disponible
@@ -132,38 +154,273 @@
         categorias_insumos: {{ categorias_insumos|tojson }}
     };
     
+    // Variables para manejo de estados y municipios
+    let estadosCompletos = [];
+    let municipiosDisponibles = [];
+    let estadoActual = null;
+    let municipioActual = null;
+    
     // Hacer datos disponibles globalmente
     window.ENTITIES_DATA = ENTITIES_DATA;
     
-    // Funciones específicas para esta página
+    // Funciones específicas para manejo de estados y municipios
+    async function onEstadoChange() {
+        const selectEstado = document.getElementById('estado');
+        const selectMunicipio = document.getElementById('municipio');
+        const municipioInfo = document.getElementById('municipio-info');
+        const generarBtn = document.getElementById('generar-btn');
+        
+        // Limpiar municipios
+        selectMunicipio.innerHTML = '<option value="">Selecciona un municipio...</option>';
+        selectMunicipio.disabled = true;
+        municipioInfo.style.display = 'none';
+        generarBtn.disabled = true;
+        municipioActual = null;
+        
+        if (selectEstado.value) {
+            try {
+                // Cargar municipios del estado seleccionado
+                const response = await fetch(`/api/municipios/${encodeURIComponent(selectEstado.value)}`);
+                const data = await response.json();
+                
+                if (data.success && data.data.length > 0) {
+                    municipiosDisponibles = data.data;
+                    
+                    // Llenar select de municipios
+                    data.data.forEach(municipio => {
+                        const option = document.createElement('option');
+                        option.value = municipio.clave_municipio;
+                        option.textContent = municipio.nombre_municipio;
+                        selectMunicipio.appendChild(option);
+                    });
+                    
+                    selectMunicipio.disabled = false;
+                    estadoActual = selectEstado.value;
+                    
+                } else {
+                    alert('No se encontraron municipios para este estado');
+                }
+                
+            } catch (error) {
+                console.error('Error cargando municipios:', error);
+                alert('Error cargando municipios');
+            }
+        } else {
+            estadoActual = null;
+        }
+    }
+    
+    async function onMunicipioChange() {
+        const selectMunicipio = document.getElementById('municipio');
+        const municipioInfo = document.getElementById('municipio-info');
+        const municipioDetails = document.getElementById('municipio-details');
+        const generarBtn = document.getElementById('generar-btn');
+        
+        console.log('=== DEBUG onMunicipioChange ===');
+        console.log('selectMunicipio.value:', selectMunicipio.value);
+        console.log('estadoActual:', estadoActual);
+        console.log('============================');
+        
+        if (selectMunicipio.value && estadoActual) {
+            try {
+                municipioActual = selectMunicipio.value; // Guardar ANTES de la petición
+                console.log('municipioActual asignado:', municipioActual);
+                
+                // Obtener información del nodo inicial del municipio
+                const url = `/api/nodo-inicial/${encodeURIComponent(estadoActual)}/${selectMunicipio.value}`;
+                console.log('URL a consultar:', url);
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                console.log('Respuesta nodo inicial:', data);
+                
+                if (data.success) {
+                    const nodoInicial = data.data;
+                    
+                    municipioDetails.innerHTML = `
+                        <div class="municipio-details-simple">
+                            <p><strong>${nodoInicial.nombre_municipio}</strong> - ${nodoInicial.poblacion.toLocaleString()} habitantes</p>
+                            <small>Nodo principal: ${nodoInicial.nombre_localidad}</small>
+                        </div>
+                    `;
+                    
+                    municipioInfo.style.display = 'block';
+                    generarBtn.disabled = false;
+                    
+                    console.log('municipioActual final:', municipioActual);
+                    console.log('Botón habilitado');
+                    
+                } else {
+                    console.error('Error en respuesta:', data);
+                    alert('Error obteniendo información del municipio: ' + data.message);
+                    municipioActual = null;
+                }
+                
+            } catch (error) {
+                console.error('Error obteniendo información del municipio:', error);
+                alert('Error obteniendo información del municipio');
+                municipioActual = null;
+            }
+        } else {
+            console.log('Condición no cumplida - ocultando info');
+            municipioInfo.style.display = 'none';
+            generarBtn.disabled = true;
+            municipioActual = null;
+            console.log('municipioActual limpiado:', municipioActual);
+        }
+    }
+    
+    // Función modificada para generar mapa con municipio
+    async function generarMapa() {
+        console.log('=== DEBUG GENERAR MAPA ===');
+        console.log('estadoActual:', estadoActual);
+        console.log('municipioActual:', municipioActual);
+        console.log('typeof municipioActual:', typeof municipioActual);
+        console.log('========================');
+        
+        // Verificación adicional
+        const selectMunicipio = document.getElementById('municipio');
+        console.log('Valor del select municipio:', selectMunicipio.value);
+        
+        // Intentar recuperar el valor si se perdió
+        if (!municipioActual && selectMunicipio.value) {
+            console.log('Recuperando municipioActual del select...');
+            municipioActual = selectMunicipio.value;
+            console.log('municipioActual recuperado:', municipioActual);
+        }
+        
+        if (!estadoActual || !municipioActual) {
+            console.log('Error: faltan estado o municipio');
+            console.log('estadoActual:', estadoActual);
+            console.log('municipioActual:', municipioActual);
+            alert('Por favor selecciona estado y municipio');
+            return;
+        }
+        
+        const nNodos = parseInt(document.getElementById('n_nodos').value);
+        
+        if (nNodos < 1 || nNodos > 15) {
+            alert('El número de destinos debe estar entre 1 y 15');
+            return;
+        }
+        
+        try {
+            // Mostrar loading
+            const loading = document.getElementById('loading');
+            const genBtn = document.getElementById('generar-btn');
+            
+            loading.classList.add('show');
+            genBtn.disabled = true;
+            genBtn.textContent = 'Generando...';
+            
+            // Limpiar mapa anterior
+            if (window.mapManager) {
+                mapManager.clearMap();
+            }
+            
+            // Generar rutas usando API client
+            console.log('=== ANTES DE LLAMAR API CLIENT ===');
+            console.log('estadoActual:', estadoActual);
+            console.log('nNodos:', nNodos);
+            console.log('municipioActual:', municipioActual);
+            console.log('typeof municipioActual:', typeof municipioActual);
+            console.log('================================');
+            
+            const data = await apiClient.generateCompleteRoutes(
+                estadoActual, 
+                nNodos, 
+                municipioActual  // Pasar el municipio como tercer parámetro
+            );
+            
+            console.log('Datos recibidos:', data);
+            
+            if (data) {
+                // Actualizar datos en la aplicación
+                app.setMapData(data);
+                
+                // Mostrar resultados en el mapa
+                await displayMapResults(data);
+                
+                // Actualizar panel de rutas
+                if (window.uiManager) {
+                    uiManager.updateRoutesPanel(data.rutas_data);
+                }
+                
+                // Ajustar vista del mapa
+                if (window.mapManager) {
+                    mapManager.fitToRoutes();
+                }
+                
+                // Mostrar mensaje de éxito
+                const municipioNombre = municipiosDisponibles.find(m => m.clave_municipio === municipioActual)?.nombre_municipio || 'Municipio';
+                console.log(`Rutas generadas exitosamente para ${nNodos} localidades del municipio ${municipioNombre}`);
+                
+            } else {
+                alert('Error: No se recibieron datos');
+            }
+            
+        } catch (error) {
+            console.error('Error generando mapa:', error);
+            alert('Error generando mapa: ' + error.message);
+        } finally {
+            // Ocultar loading
+            const loading = document.getElementById('loading');
+            const genBtn = document.getElementById('generar-btn');
+            
+            loading.classList.remove('show');
+            genBtn.disabled = false;
+            genBtn.textContent = 'Generar Rutas';
+        }
+    }
+    
     function updateAGSummary(mapData) {
         const summaryContent = document.getElementById('summary-content');
         
         if (mapData) {
             let totalRutas = 0;
+            let totalLocalidades = 0;
+            
             if (mapData.rutas_data) {
                 mapData.rutas_data.forEach(destino => {
                     totalRutas += destino.rutas ? destino.rutas.length : 0;
                 });
             }
             
+            if (mapData.nodos_secundarios) {
+                totalLocalidades = mapData.nodos_secundarios.length;
+            }
+            
+            const municipioInfo = mapData.municipio_info || {};
+            
             summaryContent.innerHTML = `
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
                     <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Punto de Inicio</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.punto_inicio || 'No definido'}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Destinos</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.nodos_secundarios ? mapData.nodos_secundarios.length : 0}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Rutas Generadas</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${totalRutas}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
                         <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Estado</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">Listo</span>
+                        <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${mapData.punto_inicio || 'No definido'}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Municipio</span>
+                        <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${municipioInfo.nombre_municipio || 'No definido'}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Localidades</span>
+                        <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${totalLocalidades}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Rutas</span>
+                        <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${totalRutas}</span>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; padding: 15px; background: #1a2332; border: 1px solid #3182ce; border-radius: 4px;">
+                    <h4 style="color: #63b3ed; margin-bottom: 10px;">Información del Municipio</h4>
+                    <div style="color: #a0aec0; font-size: 0.9rem;">
+                        ${mapData.nodo_principal ? `
+                            <p><strong>Nodo Principal:</strong> ${mapData.nodo_principal.nombre_localidad}</p>
+                            <p><strong>Población:</strong> ${mapData.nodo_principal.poblacion ? mapData.nodo_principal.poblacion.toLocaleString() : 'N/A'} habitantes</p>
+                        ` : ''}
+                        <p><strong>Tipo de análisis:</strong> Localidades del mismo municipio</p>
+                        <p><strong>Fuente de datos:</strong> Base de datos oficial INEGI</p>
                     </div>
                 </div>
             `;
@@ -174,5 +431,56 @@
     document.addEventListener('App:data:map-updated', function(event) {
         updateAGSummary(event.detail.data);
     });
+    
+    // Inicializar con estado por defecto
+    document.addEventListener('DOMContentLoaded', function() {
+        onEstadoChange();
+    });
 </script>
+
+<style>
+.municipio-info {
+    background: #1a2332;
+    border: 1px solid #3182ce;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.municipio-info h3 {
+    color: #63b3ed;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.municipio-details-simple {
+    padding: 15px;
+    background: #2d3748;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.municipio-details-simple p {
+    margin: 0 0 5px 0;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+}
+
+.municipio-details-simple small {
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+#municipio:disabled {
+    background: #2d3748;
+    color: #718096;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+</style>
 {% endblock %}

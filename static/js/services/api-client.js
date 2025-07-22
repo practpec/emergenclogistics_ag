@@ -1,5 +1,5 @@
 /**
- * Cliente para comunicación con la API backend
+ * Cliente para comunicación con la API backend con soporte para base de datos
  */
 class ApiClient extends BaseModule {
     constructor() {
@@ -87,14 +87,139 @@ class ApiClient extends BaseModule {
     }
     
     /**
-     * Generar rutas completas
+     * Obtener estados desde base de datos
      */
-    async generateCompleteRoutes(estado, nNodos) {
+    async getEstados() {
         try {
-            const data = await this.post(AppConfig.api.routes, {
+            const data = await this.get(AppConfig.api.estados);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error obteniendo estados');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en getEstados:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Obtener municipios de un estado
+     */
+    async getMunicipios(claveEstado) {
+        try {
+            const data = await this.get(`${AppConfig.api.municipios}/${claveEstado}`);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error obteniendo municipios');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en getMunicipios:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Obtener localidades de un municipio
+     */
+    async getLocalidades(claveEstado, claveMunicipio, options = {}) {
+        try {
+            let url = `${AppConfig.api.localidades}/${claveEstado}/${claveMunicipio}`;
+            
+            const params = new URLSearchParams();
+            if (options.excluirLocalidad) {
+                params.append('excluir_localidad', options.excluirLocalidad);
+            }
+            if (options.poblacionMinima) {
+                params.append('poblacion_minima', options.poblacionMinima);
+            }
+            
+            if (params.toString()) {
+                url += `?${params.toString()}`;
+            }
+            
+            const data = await this.get(url);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error obteniendo localidades');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en getLocalidades:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Buscar localidades por nombre
+     */
+    async searchLocalidades(nombre, options = {}) {
+        try {
+            if (!nombre || nombre.length < AppConfig.database.searchMinLength) {
+                throw new Error(AppConfig.messages.error.searchTooShort);
+            }
+            
+            const params = new URLSearchParams();
+            params.append('q', nombre);
+            
+            if (options.estado) {
+                params.append('estado', options.estado);
+            }
+            if (options.limite) {
+                params.append('limite', options.limite);
+            }
+            
+            const url = `${AppConfig.api.searchLocalidades}?${params.toString()}`;
+            const data = await this.get(url);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error buscando localidades');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en searchLocalidades:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Generar rutas completas con datos reales
+     */
+    async generateCompleteRoutes(estado, nNodos, claveMunicipio = null) {
+        try {
+            console.log('=== API CLIENT DEBUG ===');
+            console.log('Parámetros recibidos:');
+            console.log('  estado:', estado);
+            console.log('  nNodos:', nNodos);
+            console.log('  claveMunicipio:', claveMunicipio);
+            console.log('  typeof claveMunicipio:', typeof claveMunicipio);
+            console.log('========================');
+            
+            const requestData = {
                 estado: estado,
                 n_nodos: nNodos
-            });
+            };
+            
+            // Agregar municipio si se proporciona
+            if (claveMunicipio) {
+                requestData.clave_municipio = claveMunicipio;
+                console.log('Municipio agregado a requestData');
+            } else {
+                console.log('NO se agregó municipio (valor falsy)');
+            }
+            
+            console.log('API Client - Datos a enviar:', requestData);
+            
+            const data = await this.post(AppConfig.api.routes, requestData);
             
             if (!data.success) {
                 throw new Error(data.message || 'Error generando rutas');
@@ -104,6 +229,44 @@ class ApiClient extends BaseModule {
             
         } catch (error) {
             this.logger.error('Error en generateCompleteRoutes:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Obtener coordenadas de un estado
+     */
+    async getCoordenadastEstado(estado) {
+        try {
+            const data = await this.get(`${AppConfig.api.coordenadas}/${encodeURIComponent(estado)}`);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error obteniendo coordenadas');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en getCoordenadasEstado:', error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Obtener información de la base de datos
+     */
+    async getDatabaseInfo() {
+        try {
+            const data = await this.get(AppConfig.api.databaseInfo);
+            
+            if (!data.success) {
+                throw new Error(data.message || 'Error obteniendo información de BD');
+            }
+            
+            return data.data;
+            
+        } catch (error) {
+            this.logger.error('Error en getDatabaseInfo:', error);
             throw error;
         }
     }
@@ -183,7 +346,7 @@ class ApiClient extends BaseModule {
     }
     
     /**
-     * Verificar estado del servidor
+     * Verificar estado del servidor y base de datos
      */
     async getServerStatus() {
         try {
