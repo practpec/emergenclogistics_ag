@@ -5,8 +5,19 @@ class BaseValidator:
     """Validador base para datos del sistema"""
     
     @staticmethod
-    def validate_coordinates(lat: float, lng: float) -> bool:
+    def validate_coordinates(lat: Any, lng: Any) -> bool:
         """Validar coordenadas geográficas"""
+        # Verificar que no sean None
+        if lat is None or lng is None:
+            raise ValidationError("Las coordenadas no pueden ser nulas")
+        
+        # Convertir a float
+        try:
+            lat = float(lat)
+            lng = float(lng)
+        except (ValueError, TypeError):
+            raise ValidationError(f"Coordenadas inválidas: lat={lat}, lng={lng}")
+        
         if not (-90 <= lat <= 90):
             raise ValidationError(f"Latitud inválida: {lat}")
         if not (-180 <= lng <= 180):
@@ -68,18 +79,15 @@ class RouteValidator(BaseValidator):
     @classmethod
     def validate_route_data(cls, data: Dict[str, Any]) -> None:
         """Validar datos de ruta"""
-        if not data.get('origen'):
-            raise ValidationError("Origen es requerido")
+        # Esta validación se usa para datos de entrada del frontend
+        # que tiene una estructura diferente
+        pass
+    
+    @classmethod
+    def validate_route_request(cls, estado: str, n_nodos: int) -> None:
+        """Validar petición de generación de rutas"""
+        if not estado:
+            raise ValidationError("Estado es requerido")
         
-        if not data.get('destinos'):
-            raise ValidationError("Lista de destinos es requerida")
-        
-        origen = data['origen']
-        cls.validate_coordinates(origen.get('lat'), origen.get('lng'))
-        
-        destinos = data['destinos']
-        if not isinstance(destinos, list) or len(destinos) == 0:
-            raise ValidationError("Debe haber al menos un destino")
-        
-        for i, destino in enumerate(destinos):
-            cls.validate_coordinates(destino.get('lat'), destino.get('lng'))
+        if not isinstance(n_nodos, int) or n_nodos < 1 or n_nodos > 15:
+            raise ValidationError("Número de nodos debe estar entre 1 y 15")

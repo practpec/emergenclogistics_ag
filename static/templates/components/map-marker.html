@@ -1,0 +1,10 @@
+<div class="marker-pin {{#if type}}{{type}}-marker{{/if}}">
+    {{#if index}}
+        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); color: white; font-weight: bold; font-size: 12px;">
+            {{index}}
+        </span>
+    {{/if}}
+</div>
+{{#if pulseClass}}
+<div class="{{pulseClass}}"></div>
+{{/if}}

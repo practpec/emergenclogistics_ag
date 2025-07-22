@@ -49,7 +49,7 @@ def create_scenario():
         )), 500
         
     except Exception as e:
-        ag_bp.logger.error(f"Error creando escenario: {e}")
+        current_app.logger.error(f"Error creando escenario: {e}")
         return jsonify(ResponseFormatter.error(
             message="Error interno creando escenario",
             error_code="INTERNAL_ERROR"
@@ -92,7 +92,7 @@ def execute_algorithm():
         )), 500
         
     except Exception as e:
-        ag_bp.logger.error(f"Error ejecutando AG: {e}")
+        current_app.logger.error(f"Error ejecutando AG: {e}")
         return jsonify(ResponseFormatter.error(
             message="Error interno ejecutando algoritmo",
             error_code="INTERNAL_ERROR"
@@ -110,7 +110,7 @@ def get_algorithm_info():
         ))
         
     except Exception as e:
-        ag_bp.logger.error(f"Error obteniendo info del AG: {e}")
+        current_app.logger.error(f"Error obteniendo info del AG: {e}")
         return jsonify(ResponseFormatter.error(
             message="Error obteniendo información",
             error_code="INTERNAL_ERROR"
@@ -136,7 +136,7 @@ def validate_scenario():
         )), 400
         
     except Exception as e:
-        ag_bp.logger.error(f"Error validando escenario: {e}")
+        current_app.logger.error(f"Error validando escenario: {e}")
         return jsonify(ResponseFormatter.error(
             message="Error interno validando escenario",
             error_code="INTERNAL_ERROR"

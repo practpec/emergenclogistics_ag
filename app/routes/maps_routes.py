@@ -37,18 +37,12 @@ def generate_complete_routes():
     try:
         data = request.get_json()
         
-        # Validar datos de entrada
-        RouteValidator.validate_route_data({
-            'origen': {'lat': 0, 'lng': 0},  # Validación básica
-            'destinos': [{}] * data.get('n_nodos', 1)
-        })
-        
+        # Obtener parámetros
         estado = data.get('estado', 'Chiapas')
         n_nodos = data.get('n_nodos', 5)
         
         # Validar parámetros
-        if n_nodos < 1 or n_nodos > 15:
-            raise ValidationError("Número de nodos debe estar entre 1 y 15")
+        RouteValidator.validate_route_request(estado, n_nodos)
         
         # Generar nodos
         nodos_data = geo_service.generar_nodos_secundarios(estado, n_nodos)
@@ -78,19 +72,21 @@ def generate_complete_routes():
         ))
         
     except ValidationError as e:
+        current_app.logger.error(f"Error de validación: {e}")
         return jsonify(ResponseFormatter.error(
             message=str(e),
             error_code="VALIDATION_ERROR"
         )), 400
         
     except EmergencLogisticsException as e:
+        current_app.logger.error(f"Error de sistema: {e}")
         return jsonify(ResponseFormatter.error(
             message=str(e),
             error_code="ROUTE_GENERATION_ERROR"
         )), 500
         
     except Exception as e:
-        maps_bp.logger.error(f"Error generando rutas: {e}")
+        current_app.logger.error(f"Error generando rutas: {e}")
         return jsonify(ResponseFormatter.error(
             message="Error interno generando rutas",
             error_code="INTERNAL_ERROR"
@@ -103,7 +99,7 @@ def maps_page():
         estados = geo_service.get_estados()
         return render_template('pages/maps.html', estados=estados)
     except Exception as e:
-        maps_bp.logger.error(f"Error cargando página de mapas: {e}")
+        current_app.logger.error(f"Error cargando página de mapas: {e}")
         return render_template('pages/error.html', 
                              error="Error cargando mapas"), 500
 

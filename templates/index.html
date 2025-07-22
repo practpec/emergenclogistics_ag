@@ -150,6 +150,18 @@
             summaryContent.innerHTML = `
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
                     <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Punto de Inicio</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.punto_inicio || 'No definido'}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Destinos</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.nodos_secundarios ? mapData.nodos_secundarios.length : 0}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Rutas Generadas</span>
+                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${totalRutas}</span>
+                    </div>
+                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
                         <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Estado</span>
                         <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">Listo</span>
                     </div>
@@ -163,16 +175,4 @@
         updateAGSummary(event.detail.data);
     });
 </script>
-{% endblock %} 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Punto de Inicio</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.punto_inicio || 'No definido'}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Destinos</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${mapData.nodos_secundarios ? mapData.nodos_secundarios.length : 0}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Rutas Generadas</span>
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #ffd700;">${totalRutas}</span>
-                    </div>
-                    <div style="background: #2d3748; padding: 15px; border-radius:
+{% endblock %}

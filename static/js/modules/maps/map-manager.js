@@ -72,7 +72,7 @@ class MapManager extends BaseModule {
     /**
      * Agregar nodo principal
      */
-    addPrincipalNode(nodeData) {
+    async addPrincipalNode(nodeData) {
         const principalIcon = L.divIcon({
             className: 'custom-div-icon',
             html: await templateLoader.render('components/map-marker.html', {
@@ -104,7 +104,7 @@ class MapManager extends BaseModule {
     /**
      * Agregar nodo secundario
      */
-    addSecondaryNode(nodeData, index) {
+    async addSecondaryNode(nodeData, index) {
         const secondaryIcon = L.divIcon({
             className: 'custom-div-icon',
             html: await templateLoader.render('components/map-marker.html', {
@@ -137,7 +137,7 @@ class MapManager extends BaseModule {
     /**
      * Agregar ruta al mapa
      */
-    addRoute(routeData, destinationIndex, routeIndex) {
+    async addRoute(routeData, destinationIndex, routeIndex) {
         if (!routeData.puntos_ruta || routeData.puntos_ruta.length === 0) {
             this.logger.warn(`Ruta sin puntos: destino ${destinationIndex}, ruta ${routeIndex}`);
             return null;
