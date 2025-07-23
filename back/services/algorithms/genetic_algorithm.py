@@ -76,8 +76,8 @@ class LogisticsGeneticAlgorithm(BaseService):
     def _configure_ag_parameters(self, parametros_ag: Dict[str, Any] = None):
         """Configurar parámetros del algoritmo genético"""
         defaults = {
-            'poblacion_size': 50,
-            'generaciones': 100,
+            'poblacion_size': 100,
+            'generaciones': 1000,
             'prob_cruza': 0.8,
             'prob_mutacion': 0.15,
             'elitismo_rate': 0.1
@@ -85,7 +85,7 @@ class LogisticsGeneticAlgorithm(BaseService):
         
         limits = {
             'poblacion_size': {'min': 20, 'max': 100},
-            'generaciones': {'min': 50, 'max': 300},
+            'generaciones': {'min': 50, 'max': 1000},
             'prob_cruza': {'min': 0.5, 'max': 1.0},
             'prob_mutacion': {'min': 0.05, 'max': 0.3},
             'elitismo_rate': {'min': 0.05, 'max': 0.2}

@@ -1,3 +1,4 @@
+# algorithms/initialization.py
 import random
 from typing import List, Dict, Any
 from .models import Individual, VehicleAssignment
@@ -20,17 +21,53 @@ class PopulationInitializer:
         """Generar población inicial"""
         poblacion = []
         
+        # Ordenar vehículos por capacidad (de menor a mayor)
+        vehiculos_ordenados = sorted(self.vehiculos_disponibles, key=lambda v: v['capacidad_kg']) #
+        # Ordenar asignaciones de destino por población (de menor a mayor)
+        mapeo_asignaciones_ordenado = sorted(self.mapeo_asignaciones, key=lambda m: m['poblacion']) #
+
         for _ in range(poblacion_size):
             vehiculos_asignados = []
             vehiculos_disponibles_ids = list(range(self.num_vehiculos))
+            random.shuffle(vehiculos_disponibles_ids) # Mezclar para variar las asignaciones
             
-            for vehiculo_idx in vehiculos_disponibles_ids:
-                # Asignar destino-ruta aleatoriamente
-                asignacion = random.choice(self.mapeo_asignaciones)
-                id_destino_ruta = asignacion['id_asignacion_unica']
+            destinos_ya_asignados = set() # Para evitar destinos repetidos en la inicialización
+            rutas_disponibles_indices = list(range(len(mapeo_asignaciones_ordenado))) #
+            random.shuffle(rutas_disponibles_indices) # Mezclar para la selección
+            
+            for i, vehiculo_idx in enumerate(vehiculos_disponibles_ids):
+                vehiculo_info = vehiculos_ordenados[vehiculo_idx] # Usar vehículo ordenado
                 
-                # Generar cantidades de insumos aleatorias
-                vehiculo_info = self.vehiculos_disponibles[vehiculo_idx]
+                # Intentar asignar destino basado en capacidad y población, evitando repeticiones
+                asignacion_elegida = None
+                for idx_mapeo in rutas_disponibles_indices: # Iterar sobre destinos mezclados
+                    mapeo_info = mapeo_asignaciones_ordenado[idx_mapeo]
+                    id_destino_actual = mapeo_info['id_destino_perteneciente'] #
+
+                    if id_destino_actual not in destinos_ya_asignados: # Asegurarse que el destino no se repita
+                        # Estrategia de asignación: Emparejar capacidad con población
+                        # Si es un vehículo de baja capacidad y población baja, o alta capacidad y población alta
+                        if (vehiculo_info['capacidad_kg'] < 1000 and mapeo_info['poblacion'] < 50) or \
+                           (vehiculo_info['capacidad_kg'] > 1500 and mapeo_info['poblacion'] > 500) or \
+                           (1000 <= vehiculo_info['capacidad_kg'] <= 1500 and 50 <= mapeo_info['poblacion'] <= 500): # Rango medio
+                            asignacion_elegida = mapeo_info
+                            break # Encontró una buena coincidencia y no repetida
+                
+                if asignacion_elegida is None: # Si no se encontró una coincidencia "inteligente" no repetida
+                    # Fallback: Elegir cualquier destino no repetido restante
+                    for idx_mapeo in rutas_disponibles_indices:
+                        mapeo_info = mapeo_asignaciones_ordenado[idx_mapeo]
+                        id_destino_actual = mapeo_info['id_destino_perteneciente']
+                        if id_destino_actual not in destinos_ya_asignados:
+                            asignacion_elegida = mapeo_info
+                            break
+                    if asignacion_elegida is None: # Si todos los destinos están asignados, puede repetir
+                        asignacion_elegida = random.choice(self.mapeo_asignaciones) # Último recurso: aleatorio, puede repetir
+
+                id_destino_ruta = asignacion_elegida['id_asignacion_unica'] #
+                destinos_ya_asignados.add(asignacion_elegida['id_destino_perteneciente']) # Registrar el destino asignado
+
+                # Generar cantidades de insumos aleatorias (con la modificación del 90%)
                 capacidad_kg = vehiculo_info['capacidad_kg']
                 insumos = self._generar_insumos_aleatorios(capacidad_kg)
                 
@@ -61,7 +98,8 @@ class PopulationInitializer:
             if peso_unitario > 0 and peso_restante > peso_unitario:
                 max_cantidad = min(8, int(peso_restante / peso_unitario))
                 if max_cantidad > 0:
-                    cantidad = random.randint(0, max_cantidad)
+                    # Modificación para al menos 9/10 de capacidad
+                    cantidad = random.randint(int(max_cantidad * 0.9), max_cantidad) if max_cantidad > 0 else 0
                     insumos[insumo_id] = cantidad
                     peso_restante -= cantidad * peso_unitario
         
@@ -79,7 +117,8 @@ class PopulationInitializer:
             if peso_unitario > 0 and peso_restante > peso_unitario:
                 max_cantidad = min(4, int(peso_restante / peso_unitario))
                 if max_cantidad > 0:
-                    cantidad = random.randint(0, max_cantidad)
+                    # Modificación para al menos 9/10 de capacidad
+                    cantidad = random.randint(int(max_cantidad * 0.9), max_cantidad) if max_cantidad > 0 else 0
                     insumos[insumo_id] = cantidad
                     peso_restante -= cantidad * peso_unitario
         
