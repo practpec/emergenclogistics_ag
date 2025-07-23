@@ -13,7 +13,7 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
         const numRoutes = destinoData.rutas.length;
         let closedRouteIndex = -1;
 
-        if (Math.random() < 0.5) {
+        if (Math.random() < 0.3) { // Reducir probabilidad de rutas cerradas
           closedRouteIndex = Math.floor(Math.random() * numRoutes);
         }
 
@@ -21,10 +21,16 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
           const isClosed = routeIndex === closedRouteIndex;
           let permissions = [];
 
-          if (!isClosed && Math.random() < 0.6 && vehicleTypes.length > 0) {
-            permissions = vehicleTypes.filter(() => Math.random() > 0.5);
-            if (permissions.length === 0) {
-              permissions.push(vehicleTypes[Math.floor(Math.random() * vehicleTypes.length)]);
+          if (!isClosed) {
+            // Si la ruta está abierta, permitir todos los vehículos por defecto
+            // o seleccionar algunos aleatoriamente
+            if (Math.random() < 0.7 && vehicleTypes.length > 0) {
+              permissions = vehicleTypes.filter(() => Math.random() > 0.3);
+              if (permissions.length === 0) {
+                permissions = [...vehicleTypes]; // Si no se selecciona ninguno, permitir todos
+              }
+            } else {
+              permissions = [...vehicleTypes]; // Permitir todos por defecto
             }
           }
 
@@ -46,17 +52,27 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
   const handleStateChange = (destIndex, routeIndex, newState) => {
     setRouteStates(prevStates => {
       const newStates = { ...prevStates };
-      const allRoutesForDest = [...newStates[destIndex]];
+      if (!newStates[destIndex]) return prevStates;
       
-      allRoutesForDest.forEach((r, i) => {
-        r.estado = (i === routeIndex && newState === 'cerrada') ? 'cerrada' : 'abierta';
-      });
+      const updatedRoutes = [...newStates[destIndex]];
       
       if (newState === 'cerrada') {
-        allRoutesForDest[routeIndex].vehiculos_permitidos = [];
+        // Si se cierra esta ruta, limpiar permisos
+        updatedRoutes[routeIndex] = {
+          ...updatedRoutes[routeIndex],
+          estado: 'cerrada',
+          vehiculos_permitidos: []
+        };
+      } else {
+        // Si se abre esta ruta, restaurar permisos (todos por defecto)
+        updatedRoutes[routeIndex] = {
+          ...updatedRoutes[routeIndex],
+          estado: 'abierta',
+          vehiculos_permitidos: [...vehicleTypes]
+        };
       }
       
-      newStates[destIndex] = allRoutesForDest;
+      newStates[destIndex] = updatedRoutes;
       return newStates;
     });
   };
@@ -64,13 +80,24 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
   const handleVehiclePermissionChange = (destIndex, routeIndex, vehicleType) => {
     setRouteStates(prevStates => {
       const newStates = { ...prevStates };
-      const route = newStates[destIndex][routeIndex];
-      const currentPermissions = route.vehiculos_permitidos;
-      const newPermissions = currentPermissions.includes(vehicleType) 
-        ? currentPermissions.filter(vt => vt !== vehicleType) 
-        : [...currentPermissions, vehicleType];
+      if (!newStates[destIndex] || !newStates[destIndex][routeIndex]) return prevStates;
       
-      route.vehiculos_permitidos = newPermissions;
+      const route = { ...newStates[destIndex][routeIndex] };
+      const currentPermissions = [...route.vehiculos_permitidos];
+      
+      if (currentPermissions.includes(vehicleType)) {
+        // Remover vehículo de permisos
+        route.vehiculos_permitidos = currentPermissions.filter(vt => vt !== vehicleType);
+      } else {
+        // Añadir vehículo a permisos
+        route.vehiculos_permitidos = [...currentPermissions, vehicleType];
+      }
+      
+      // Actualizar el array de rutas
+      const updatedRoutes = [...newStates[destIndex]];
+      updatedRoutes[routeIndex] = route;
+      newStates[destIndex] = updatedRoutes;
+      
       return newStates;
     });
   };
@@ -106,7 +133,7 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
                               checked={routeState.estado === 'abierta'} 
                               onChange={() => handleStateChange(destIndex, routeIndex, 'abierta')} 
                             /> 
-                            Abierta
+                            <span className="text-green-400">Abierta</span>
                           </label>
                           <label className="flex items-center gap-1 cursor-pointer">
                             <input 
@@ -116,24 +143,30 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
                               checked={routeState.estado === 'cerrada'} 
                               onChange={() => handleStateChange(destIndex, routeIndex, 'cerrada')} 
                             /> 
-                            Cerrada
+                            <span className="text-red-400">Cerrada</span>
                           </label>
                         </div>
                       </div>
                       {routeState.estado === 'abierta' && (
                         <div className="mt-2 pt-2 pl-4 border-l-2 border-gray-600">
-                          <p className="text-sm text-gray-400 mb-1">
-                            Permitir tipos de vehículo (si no se selecciona, todos pasan):
+                          <p className="text-sm text-gray-400 mb-2">
+                            Vehículos permitidos (sin selección = todos permitidos):
                           </p>
-                          <div className="flex flex-wrap gap-x-4 gap-y-1">
+                          <div className="flex flex-wrap gap-x-4 gap-y-2">
                             {vehicleTypes.map(type => (
                               <Checkbox 
-                                key={type} 
+                                key={`${destIndex}-${routeIndex}-${type}`}
                                 label={type} 
                                 checked={routeState.vehiculos_permitidos.includes(type)} 
                                 onChange={() => handleVehiclePermissionChange(destIndex, routeIndex, type)} 
                               />
                             ))}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {routeState.vehiculos_permitidos.length === 0 
+                              ? "⚠️ Ningún vehículo seleccionado - ruta inaccesible" 
+                              : `✓ ${routeState.vehiculos_permitidos.length} tipo(s) de vehículo permitidos`
+                            }
                           </div>
                         </div>
                       )}
