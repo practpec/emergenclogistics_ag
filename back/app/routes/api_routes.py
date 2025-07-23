@@ -1,11 +1,9 @@
 from flask import Blueprint, jsonify, request
 from core.exceptions import EmergencLogisticsException
-from services.data.data_loader import DataLoader
 from services.geo.geo_service import GeoService
 from utils.helpers import ResponseFormatter
 
 api_bp = Blueprint('api', __name__)
-data_loader = DataLoader()
 geo_service = GeoService()
 
 @api_bp.route('/status')

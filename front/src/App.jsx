@@ -1,9 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
-import Layout from './components/Layout/Layout'
-import MapModule from './pages/MapModule'
-import AGModule from './pages/AGModule'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Layout from './components/Layout/Layout';
+import MapModule from './pages/MapModule';
+import './App.css';
 
 function App() {
   return (
@@ -11,9 +10,8 @@ function App() {
       <div className="App">
         <Layout>
           <Routes>
-            <Route path="/" element={<MapModule />} />
             <Route path="/mapas" element={<MapModule />} />
-            <Route path="/algoritmo" element={<AGModule />} />
+            <Route path="*" element={<Navigate to="/mapas" />} />
           </Routes>
         </Layout>
         
@@ -30,7 +28,7 @@ function App() {
         />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

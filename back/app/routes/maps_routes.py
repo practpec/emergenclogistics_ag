@@ -3,7 +3,6 @@ from core.exceptions import EmergencLogisticsException, ValidationError
 from core.validators import RouteValidator
 from services.geo.geo_service import GeoService
 from services.geo.maps_service import OSRMService
-from services.data.data_loader import DataLoader
 from utils.helpers import ResponseFormatter
 
 maps_bp = Blueprint('maps', __name__)
@@ -11,7 +10,6 @@ maps_bp = Blueprint('maps', __name__)
 # Servicios
 geo_service = GeoService()
 osrm_service = OSRMService()
-data_loader = DataLoader()
 
 @maps_bp.route('/estados')
 def get_estados():
