@@ -1,4 +1,5 @@
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner, Button, Select, Input } from '../components/UI';
 import RoutesPanel from '../components/Map/RoutesPanel';
 import MapMarkers from '../components/Map/MapMarkers';
@@ -6,6 +7,7 @@ import { useMap } from '../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 
 const MapModule = () => {
+  const navigate = useNavigate();
   const {
     mapData,
     isLoadingMap,
@@ -22,6 +24,12 @@ const MapModule = () => {
     getRouteColor,
     handleRouteHighlight,
   } = useMap();
+
+  const handleNavigateToAG = () => {
+    if (mapData) {
+      navigate('/ag', { state: { mapData } });
+    }
+  };
 
   const renderRoutes = () => {
     if (!mapData?.rutas_data) return null;
@@ -135,6 +143,14 @@ const MapModule = () => {
           </div>
         </form>
       </div>
+
+      {mapData && (
+        <div className="text-center mb-6">
+          <Button onClick={handleNavigateToAG} variant="success">
+            Ir a la página de AG
+          </Button>
+        </div>
+      )}
 
       {highlightedRoute && (
         <div className="mb-4 bg-blue-900 border border-blue-700 rounded-lg p-3">

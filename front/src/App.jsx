@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/Layout/Layout';
 import MapModule from './pages/MapModule';
+import AGPage from './pages/AGPage'; // Importar la nueva página
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/mapas" element={<MapModule />} />
+            <Route path="/ag" element={<AGPage />} /> {/* Añadir la nueva ruta */}
             <Route path="*" element={<Navigate to="/mapas" />} />
           </Routes>
         </Layout>

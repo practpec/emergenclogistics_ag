@@ -3,6 +3,7 @@ from core.exceptions import EmergencLogisticsException, ValidationError
 from core.validators import RouteValidator
 from services.geo.geo_service import GeoService
 from services.geo.maps_service import OSRMService
+
 from utils.helpers import ResponseFormatter
 
 maps_bp = Blueprint('maps', __name__)
@@ -45,7 +46,7 @@ def get_municipios_estado(nombre_estado):
             error_code="MUNICIPIOS_ERROR"
         )), 500
 
-@maps_bp.route('/maps/nodo-inicial/<nombre_estado>/<clave_municipio>')
+@maps_bp.route('/nodo-inicial/<nombre_estado>/<clave_municipio>')
 def get_nodo_inicial(nombre_estado, clave_municipio):
     """Obtener nodo inicial de un municipio (localidad principal por población)"""
     try:
@@ -188,6 +189,8 @@ def search_localidades():
             message="Error en búsqueda de localidades",
             error_code="SEARCH_ERROR"
         )), 500
+
+
 
 @maps_bp.errorhandler(404)
 def not_found(error):

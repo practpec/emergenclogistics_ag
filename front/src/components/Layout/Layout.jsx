@@ -8,6 +8,7 @@ const Layout = ({ children }) => {
   
   const navigation = [
     { name: 'Generador de Mapas', href: '/mapas' },
+    { name: 'AG', href: '/ag' },
   ];
   
   const isActive = (href) => location.pathname === href;

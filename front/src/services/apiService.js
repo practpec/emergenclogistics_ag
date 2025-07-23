@@ -26,6 +26,7 @@ class ApiService {
     const response = await api.get(`/api/nodo-inicial/${encodeURIComponent(estado)}/${claveMunicipio}`);
     return response.data;
   }
+
   
   // Mapas y rutas
   async generateCompleteRoutes(estado, nNodos, claveMunicipio) {
