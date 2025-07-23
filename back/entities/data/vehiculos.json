@@ -41,7 +41,7 @@
   },
   {
     "id": 6,
-    "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+    "modelo": "Mercedes-Benz Sprinter",
     "tipo": "van de carga",
     "velocidad_kmh": 75,
     "consumo_litros_km": 0.082,
@@ -49,7 +49,7 @@
   },
   {
     "id": 7,
-    "modelo": "Ford Transit Cargo Gasolina",
+    "modelo": "Ford Transit",
     "tipo": "van de carga",
     "velocidad_kmh": 75,
     "consumo_litros_km": 0.079,

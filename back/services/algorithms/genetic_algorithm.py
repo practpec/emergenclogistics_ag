@@ -47,7 +47,7 @@ class LogisticsGeneticAlgorithm(BaseService):
             self.num_insumos = len(self.insumos_data)
             self.tipos_desastre = self.static_data_service.get_all_disasters()
             
-            # Crear mapeo de categorías para evaluación
+
             self.categorias_map = {}
             for insumo in self.insumos_data:
                 categoria = insumo['categoria']
@@ -81,11 +81,11 @@ class LogisticsGeneticAlgorithm(BaseService):
     def _configure_ag_parameters(self, parametros_ag: Dict[str, Any] = None):
         """Configurar parámetros del algoritmo genético mejorado"""
         defaults = {
-            'poblacion_size': 80,  # Reducido para mejor convergencia
-            'generaciones': 500,   # Reducido para enfoque en calidad
-            'prob_cruza': 0.85,    # Aumentado para mejor exploración
-            'prob_mutacion': 0.20, # Aumentado para mejor diversidad
-            'elitismo_rate': 0.15  # Aumentado para conservar mejores soluciones
+            'poblacion_size': 80,
+            'generaciones': 500, 
+            'prob_cruza': 0.85, 
+            'prob_mutacion': 0.20, 
+            'elitismo_rate': 0.15  
         }
         
         limits = {
