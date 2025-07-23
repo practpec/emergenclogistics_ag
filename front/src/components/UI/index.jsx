@@ -42,6 +42,8 @@ export const Button = forwardRef(({
   )
 })
 
+Button.displayName = 'Button'
+
 // Input Component
 export const Input = forwardRef(({ 
   type = 'text',
@@ -67,6 +69,8 @@ export const Input = forwardRef(({
     </div>
   )
 })
+
+Input.displayName = 'Input'
 
 // Select Component
 export const Select = forwardRef(({ 
@@ -99,6 +103,8 @@ export const Select = forwardRef(({
   )
 })
 
+Select.displayName = 'Select'
+
 // Checkbox Component
 export const Checkbox = forwardRef(({ 
   label,
@@ -126,6 +132,8 @@ export const Checkbox = forwardRef(({
     </div>
   )
 })
+
+Checkbox.displayName = 'Checkbox'
 
 // Loading Spinner Component
 export const LoadingSpinner = ({ size = 'md', className = '' }) => {

@@ -4,10 +4,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import useAppStore from '../store/useAppStore'
 import apiService, { handleApiError } from '../services/apiService'
-import LoadingSpinner from '../components/UI/LoadingSpinner'
-import Button from '../components/UI/Button'
-import Select from '../components/UI/Select'
-import Input from '../components/UI/Input'
+import { LoadingSpinner, Button, Select, Input } from '../components/UI'
 import RoutesPanel from '../components/Map/RoutesPanel'
 import MapMarkers from '../components/Map/MapMarkers'
 import 'leaflet/dist/leaflet.css'
@@ -28,6 +25,7 @@ const MapModule = () => {
   } = useAppStore()
   
   const [estados, setEstados] = useState([])
+  const [highlightedRoute, setHighlightedRoute] = useState(null)
   const [routeColors] = useState([
     '#e74c3c', '#3498db', '#f39c12', '#27ae60', '#9b59b6',
     '#e67e22', '#1abc9c', '#34495e', '#f1c40f', '#95a5a6'
@@ -68,9 +66,11 @@ const MapModule = () => {
     try {
       const response = await apiService.getEstados()
       if (response.success) {
-        setEstados(response.data)
+        // Convertir objetos {clave, nombre} a strings simples
+        const estadosSimples = response.data.map(estado => estado.nombre)
+        setEstados(estadosSimples)
         // Auto-cargar municipios de Chiapas
-        if (response.data.length > 0) {
+        if (estadosSimples.length > 0) {
           loadMunicipios('Chiapas')
         }
       }
@@ -101,6 +101,7 @@ const MapModule = () => {
     
     setLoadingMap(true)
     clearMapData()
+    setHighlightedRoute(null) // Limpiar rutas resaltadas
     
     try {
       const response = await apiService.generateCompleteRoutes(
@@ -125,6 +126,10 @@ const MapModule = () => {
     return routeColors[index % routeColors.length]
   }
   
+  const handleRouteHighlight = (routeInfo) => {
+    setHighlightedRoute(routeInfo)
+  }
+  
   const renderRoutes = () => {
     if (!mapData?.rutas_data) return null
     
@@ -137,13 +142,24 @@ const MapModule = () => {
             const positions = ruta.puntos_ruta.map(punto => [punto.lat, punto.lng])
             const color = getRouteColor(destinoIndex * 3 + rutaIndex)
             
+            // Determinar si esta ruta está resaltada
+            const isHighlighted = highlightedRoute && 
+              highlightedRoute.destinationIndex === destinoIndex && 
+              highlightedRoute.routeIndex === rutaIndex
+            
+            // Determinar si otras rutas están resaltadas (para reducir opacidad)
+            const isOtherHighlighted = highlightedRoute && !isHighlighted
+            
             routes.push(
               <Polyline
                 key={`route-${destinoIndex}-${rutaIndex}`}
                 positions={positions}
-                color={color}
-                weight={4}
-                opacity={0.7}
+                pathOptions={{
+                  color: color,
+                  weight: isHighlighted ? 6 : 4,
+                  opacity: isOtherHighlighted ? 0.3 : (isHighlighted ? 1.0 : 0.7),
+                  dashArray: isHighlighted ? '10, 5' : undefined
+                }}
               />
             )
           }
@@ -239,6 +255,22 @@ const MapModule = () => {
         </form>
       </div>
       
+      {/* Indicador de ruta resaltada */}
+      {highlightedRoute && (
+        <div className="mb-4 bg-blue-900 border border-blue-700 rounded-lg p-3">
+          <p className="text-blue-300 text-sm">
+            📍 Mostrando: <strong>Destino {highlightedRoute.destinationIndex + 1}</strong> - 
+            Ruta {highlightedRoute.routeIndex + 1}
+          </p>
+          <button 
+            onClick={() => setHighlightedRoute(null)}
+            className="text-blue-400 hover:text-blue-300 text-xs underline mt-1"
+          >
+            Mostrar todas las rutas
+          </button>
+        </div>
+      )}
+      
       {/* Contenido principal */}
       <div className="flex gap-6 h-[700px]">
         {/* Mapa */}
@@ -285,6 +317,7 @@ const MapModule = () => {
           routesData={mapData?.rutas_data || []}
           municipioInfo={mapData?.municipio_info}
           getRouteColor={getRouteColor}
+          onRouteHighlight={handleRouteHighlight}
         />
       </div>
     </div>

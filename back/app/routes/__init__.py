@@ -9,10 +9,14 @@ def register_blueprints(app: Flask) -> None:
     # API general routes
     app.register_blueprint(api_bp, url_prefix='/api')
     
-    # Maps/Geo routes
-    app.register_blueprint(maps_bp, url_prefix='/api/maps')
+    # Maps/Geo routes - CORREGIDO: usar /api/maps en lugar de /api/maps
+    app.register_blueprint(maps_bp, url_prefix='/api')
     
     # Genetic Algorithm routes
     app.register_blueprint(ag_bp, url_prefix='/api/ag')
     
-    app.logger.info("API Blueprints registrados correctamente")
+    # Log de rutas registradas
+    app.logger.info("Blueprints registrados:")
+    app.logger.info("- API general: /api/*")
+    app.logger.info("- Maps: /api/estados, /api/municipios, /api/maps/*")
+    app.logger.info("- Genetic Algorithm: /api/ag/*")

@@ -8,13 +8,13 @@ import os
 import sys
 from flask import Flask
 from flask_cors import CORS
-from backend.app.config import Config
-from backend.app.routes import register_blueprints
-from backend.utils.logger import setup_logger
+from app.config import Config
+from app.routes import register_blueprints
+from utils.logger import setup_logger
 
 def validate_database():
     """Validar que la base de datos de localidades existe"""
-    from backend.utils.config_manager import config_manager
+    from utils.config_manager import config_manager
     
     db_path = config_manager.get_database_path()
     
@@ -23,7 +23,7 @@ def validate_database():
         return False
     
     try:
-        from backend.services.data.database_service import DatabaseService
+        from services.data.database_service import DatabaseService
         db_service = DatabaseService(db_path)
         estados = db_service.get_estados()
         
@@ -53,7 +53,7 @@ def create_app():
     app.config.from_object(Config)
     
     # Configurar CORS para permitir requests desde React
-    CORS(app, origins=["http://localhost:3000", "http://localhost:5173"])
+    CORS(app, origins=Config.CORS_ORIGINS)
     
     # Configurar logging
     setup_logger(app)

@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
-import Layout from '../../front/src/components/Layout/Layout'
-import MapModule from '../../front/src/pages/MapModule'
-import AGModule from '../../front/src/pages/AGModule'
+import Layout from './components/Layout/Layout'
+import MapModule from './pages/MapModule'
+import AGModule from './pages/AGModule'
 import './App.css'
 
 function App() {

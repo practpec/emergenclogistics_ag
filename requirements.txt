@@ -1,12 +1,10 @@
 Flask
+flask-cors
 python-dotenv
-folium
 geopy
 requests
 numpy
 pandas
-black
-flake8
 colorlog
 colorama
 shapely
