@@ -212,3 +212,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 MIT License — consulta el archivo `LICENSE` para más detalles.
 
 
+aclaro esto es el escenario no ag pro lo cual debe ser archivos direnetes al ag porque ese aun no
+primero trae todos los vehiculos
+luego el tipo de desastre sus datos
+luego se selecciona la acntiadad, los tipos vehiculos que se usaran, debe especificar cuantos de cada modelo, ademas si quiere geragar uno que exita uno de agregar y sera un form pero que se coulta

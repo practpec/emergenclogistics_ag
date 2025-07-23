@@ -42,7 +42,19 @@ class ApiService {
     const response = await api.post('/api/maps/generate-complete-routes', requestData);
     return response.data;
   }
+
+  async getVehicles() {
+    const response = await api.get('/api/scenario/vehicles');
+    return response.data;
+  }
+
+  async getDisasters() {
+    const response = await api.get('/api/scenario/disasters');
+    return response.data;
+  }
 }
+
+
 
 // Función helper para manejar errores de API
 export const handleApiError = (error) => {
