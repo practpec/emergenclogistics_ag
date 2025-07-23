@@ -211,17 +211,4 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 MIT License — consulta el archivo `LICENSE` para más detalles.
 
-Claro, aquí tienes la lista de archivos que necesitas para que funcionen los endpoints de mapas y rutas que mencionaste:
 
-  - `app/routes/maps_routes.py`
-  - `services/geo/maps_service.py`
-  - `services/geo/geo_service.py`
-  - `services/data/database_service.py`
-  - `entities/models/route.py`
-  - `core/validators.py`
-  - `app/routes/__init__.py`
-  - `app/config.py`
-  - `.env`
-  - `utils/config_manager.py`
-  - `utils/helpers.py`
-  - `main.py`

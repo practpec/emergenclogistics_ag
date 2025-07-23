@@ -1,26 +1,58 @@
 [
   {
     "id": 1,
-    "modelo": "Corolla",
-    "tipo": "auto",
-    "velocidad_kmh": 50,
-    "consumo_litros_km": 0.5,
-    "maximo_peso_ton": 1.5
+    "modelo": "Toyota Hilux Diesel 4x4",
+    "tipo": "camioneta pickup",
+    "velocidad_kmh": 65,
+    "consumo_litros_km": 0.073,
+    "maximo_peso_ton": 1.2
   },
   {
     "id": 2,
-    "modelo": "Hilux",
-    "tipo": "camion",
-    "velocidad_kmh": 60,
-    "consumo_litros_km": 0.7,
-    "maximo_peso_ton": 2.5
+    "modelo": "Ford F‑150 Triton 4x4",
+    "tipo": "camioneta pickup",
+    "velocidad_kmh": 65,
+    "consumo_litros_km": 0.095,
+    "maximo_peso_ton": 1.3
   },
   {
     "id": 3,
-    "modelo": "Sprinter",
-    "tipo": "van",
-    "velocidad_kmh": 55,
-    "consumo_litros_km": 0.6,
-    "maximo_peso_ton": 2.0
+    "modelo": "Dodge Dakota 4x4",
+    "tipo": "camioneta pickup",
+    "velocidad_kmh": 60,
+    "consumo_litros_km": 0.09,
+    "maximo_peso_ton": 1.0
+  },
+  {
+    "id": 4,
+    "modelo": "Isuzu ELF 300",
+    "tipo": "camión ligero",
+    "velocidad_kmh": 60,
+    "consumo_litros_km": 0.12,
+    "maximo_peso_ton": 3.0
+  },
+  {
+    "id": 5,
+    "modelo": "Hino Dutro 716",
+    "tipo": "camión ligero",
+    "velocidad_kmh": 60,
+    "consumo_litros_km": 0.115,
+    "maximo_peso_ton": 2.8
+  },
+  {
+    "id": 6,
+    "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+    "tipo": "van de carga",
+    "velocidad_kmh": 75,
+    "consumo_litros_km": 0.082,
+    "maximo_peso_ton": 1.8
+  },
+  {
+    "id": 7,
+    "modelo": "Ford Transit Cargo Gasolina",
+    "tipo": "van de carga",
+    "velocidad_kmh": 75,
+    "consumo_litros_km": 0.079,
+    "maximo_peso_ton": 1.9
   }
 ]
