@@ -52,6 +52,16 @@ class ApiService {
     const response = await api.get('/api/scenario/disasters');
     return response.data;
   }
+   /**
+   * NUEVO: Envía el escenario completo para su procesamiento.
+   * @param {object} scenarioData - El objeto completo del escenario.
+   */
+  async runAGScenario(scenarioData) {
+    const response = await api.post('/api/ag/run-scenario', scenarioData);
+    return response.data;
+  }
+
+  
 }
 
 

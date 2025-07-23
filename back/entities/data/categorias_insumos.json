@@ -1,62 +1,152 @@
 [
   {
+    "id_insumo": 0,
+    "nombre": "Granos y cereales",
     "categoria": "Alimentación básica",
-    "subcategorias": [
-      { "nombre": "Granos y cereales", "peso_kg": 4 },
-      { "nombre": "Proteínas enlatadas/secas", "peso_kg": 2.5 },
-      { "nombre": "Aceites y grasas", "peso_kg": 1 },
-      { "nombre": "Lácteos deshidratados", "peso_kg": 1.5 },
-      { "nombre": "Endulzantes y condimentos", "peso_kg": 1 }
-    ]
+    "peso_kg": 4
   },
   {
+    "id_insumo": 1,
+    "nombre": "Proteínas enlatadas/secas",
+    "categoria": "Alimentación básica",
+    "peso_kg": 2.5
+  },
+  {
+    "id_insumo": 2,
+    "nombre": "Aceites y grasas",
+    "categoria": "Alimentación básica",
+    "peso_kg": 1
+  },
+  {
+    "id_insumo": 3,
+    "nombre": "Lácteos deshidratados",
+    "categoria": "Alimentación básica",
+    "peso_kg": 1.5
+  },
+  {
+    "id_insumo": 4,
+    "nombre": "Endulzantes y condimentos",
+    "categoria": "Alimentación básica",
+    "peso_kg": 1
+  },
+  {
+    "id_insumo": 5,
+    "nombre": "Jabones y shampoo",
     "categoria": "Higiene y cuidado personal",
-    "subcategorias": [
-      { "nombre": "Jabones y shampoo", "peso_kg": 1.5 },
-      { "nombre": "Salud bucal", "peso_kg": 0.5 },
-      { "nombre": "Protección femenina e infantil", "peso_kg": 1.5 },
-      { "nombre": "Artículos de aseo personal", "peso_kg": 1.5 }
-    ]
+    "peso_kg": 1.5
   },
   {
+    "id_insumo": 6,
+    "nombre": "Salud bucal",
+    "categoria": "Higiene y cuidado personal",
+    "peso_kg": 0.5
+  },
+  {
+    "id_insumo": 7,
+    "nombre": "Protección femenina e infantil",
+    "categoria": "Higiene y cuidado personal",
+    "peso_kg": 1.5
+  },
+  {
+    "id_insumo": 8,
+    "nombre": "Artículos de aseo personal",
+    "categoria": "Higiene y cuidado personal",
+    "peso_kg": 1.5
+  },
+  {
+    "id_insumo": 9,
+    "nombre": "Analgésicos básicos",
     "categoria": "Medicamentos e insumos médicos",
-    "subcategorias": [
-      { "nombre": "Analgésicos básicos", "peso_kg": 0.2 },
-      { "nombre": "Antisépticos", "peso_kg": 0.5 },
-      { "nombre": "Material de curación", "peso_kg": 0.8 },
-      { "nombre": "Sueros y electrolitos", "peso_kg": 3 }
-    ]
+    "peso_kg": 0.2
   },
   {
+    "id_insumo": 10,
+    "nombre": "Antisépticos",
+    "categoria": "Medicamentos e insumos médicos",
+    "peso_kg": 0.5
+  },
+  {
+    "id_insumo": 11,
+    "nombre": "Material de curación",
+    "categoria": "Medicamentos e insumos médicos",
+    "peso_kg": 0.8
+  },
+  {
+    "id_insumo": 12,
+    "nombre": "Sueros y electrolitos",
+    "categoria": "Medicamentos e insumos médicos",
+    "peso_kg": 3
+  },
+  {
+    "id_insumo": 13,
+    "nombre": "Linternas y baterías",
     "categoria": "Equipamiento de emergencia",
-    "subcategorias": [
-      { "nombre": "Linternas y baterías", "peso_kg": 1 },
-      { "nombre": "Mantas térmicas", "peso_kg": 3 },
-      { "nombre": "Herramientas multipropósito", "peso_kg": 2 },
-      { "nombre": "Kits de purificación de agua", "peso_kg": 1.2 }
-    ]
+    "peso_kg": 1
   },
   {
+    "id_insumo": 14,
+    "nombre": "Mantas térmicas",
+    "categoria": "Equipamiento de emergencia",
+    "peso_kg": 3
+  },
+  {
+    "id_insumo": 15,
+    "nombre": "Herramientas multipropósito",
+    "categoria": "Equipamiento de emergencia",
+    "peso_kg": 2
+  },
+  {
+    "id_insumo": 16,
+    "nombre": "Kits de purificación de agua",
+    "categoria": "Equipamiento de emergencia",
+    "peso_kg": 1.2
+  },
+  {
+    "id_insumo": 17,
+    "nombre": "Carpas y toldos",
     "categoria": "Artículos para refugio",
-    "subcategorias": [
-      { "nombre": "Carpas y toldos", "peso_kg": 7 },
-      { "nombre": "Colchonetas", "peso_kg": 8 },
-      { "nombre": "Mosquiteros", "peso_kg": 2.4 }
-    ]
+    "peso_kg": 7
   },
   {
+    "id_insumo": 18,
+    "nombre": "Colchonetas",
+    "categoria": "Artículos para refugio",
+    "peso_kg": 8
+  },
+  {
+    "id_insumo": 19,
+    "nombre": "Mosquiteros",
+    "categoria": "Artículos para refugio",
+    "peso_kg": 2.4
+  },
+  {
+    "id_insumo": 20,
+    "nombre": "Contenedores herméticos",
     "categoria": "Logística y almacenamiento",
-    "subcategorias": [
-      { "nombre": "Contenedores herméticos", "peso_kg": 3 },
-      { "nombre": "Cubetas y recipientes", "peso_kg": 5 },
-      { "nombre": "Material de embalaje", "peso_kg": 2 }
-    ]
+    "peso_kg": 3
   },
   {
+    "id_insumo": 21,
+    "nombre": "Cubetas y recipientes",
+    "categoria": "Logística y almacenamiento",
+    "peso_kg": 5
+  },
+  {
+    "id_insumo": 22,
+    "nombre": "Material de embalaje",
+    "categoria": "Logística y almacenamiento",
+    "peso_kg": 2
+  },
+  {
+    "id_insumo": 23,
+    "nombre": "Botellas de agua potable",
     "categoria": "Agua",
-    "subcategorias": [
-      { "nombre": "Botellas de agua potable", "peso_kg": 18 },
-      { "nombre": "Garrafones y bidones", "peso_kg": 40 }
-    ]
+    "peso_kg": 18
+  },
+  {
+    "id_insumo": 24,
+    "nombre": "Garrafones y bidones",
+    "categoria": "Agua",
+    "peso_kg": 40
   }
 ]
