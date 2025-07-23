@@ -26,6 +26,8 @@ const MapModule = () => {
   
   const [estados, setEstados] = useState([])
   const [highlightedRoute, setHighlightedRoute] = useState(null)
+  const [municipioInfo, setMunicipioInfo] = useState(null)
+  const [maxNodos, setMaxNodos] = useState(15)
   const [routeColors] = useState([
     '#e74c3c', '#3498db', '#f39c12', '#27ae60', '#9b59b6',
     '#e67e22', '#1abc9c', '#34495e', '#f1c40f', '#95a5a6'
@@ -33,7 +35,7 @@ const MapModule = () => {
   
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
     defaultValues: {
-      estado: 'Chiapas',
+      estado: '',
       municipio: '',
       n_nodos: 5
     }
@@ -41,6 +43,7 @@ const MapModule = () => {
   
   const watchedEstado = watch('estado')
   const watchedMunicipio = watch('municipio')
+  const watchedNNodos = watch('n_nodos')
   
   // Cargar estados al montar
   useEffect(() => {
@@ -51,28 +54,44 @@ const MapModule = () => {
   useEffect(() => {
     if (watchedEstado && watchedEstado !== selectedEstado) {
       setSelectedEstado(watchedEstado)
-      loadMunicipios(watchedEstado)
+      setSelectedMunicipio('')
+      setValue('municipio', '')
+      setMunicipioInfo(null)
+      setMaxNodos(15)
+      setValue('n_nodos', 5)
+      if (watchedEstado) {
+        loadMunicipios(watchedEstado)
+      }
     }
   }, [watchedEstado])
   
-  // Actualizar municipio seleccionado
+  // Cargar info del municipio cuando cambia
   useEffect(() => {
-    if (watchedMunicipio !== selectedMunicipio) {
+    if (watchedMunicipio && watchedMunicipio !== selectedMunicipio) {
       setSelectedMunicipio(watchedMunicipio)
+      if (watchedMunicipio) {
+        loadMunicipioInfo(watchedEstado, watchedMunicipio)
+      }
     }
   }, [watchedMunicipio])
+  
+  // Validar número de nodos cuando cambia
+  useEffect(() => {
+    if (watchedNNodos && maxNodos > 0) {
+      const nNodos = parseInt(watchedNNodos)
+      if (nNodos > maxNodos) {
+        setValue('n_nodos', maxNodos)
+        toast.warning(`Máximo ${maxNodos} destinos para este municipio`)
+      }
+    }
+  }, [watchedNNodos, maxNodos])
   
   const loadEstados = async () => {
     try {
       const response = await apiService.getEstados()
       if (response.success) {
-        // Convertir objetos {clave, nombre} a strings simples
         const estadosSimples = response.data.map(estado => estado.nombre)
         setEstados(estadosSimples)
-        // Auto-cargar municipios de Chiapas
-        if (estadosSimples.length > 0) {
-          loadMunicipios('Chiapas')
-        }
       }
     } catch (error) {
       const apiError = handleApiError(error)
@@ -85,7 +104,6 @@ const MapModule = () => {
       const response = await apiService.getMunicipios(estado)
       if (response.success) {
         setMunicipios(response.data)
-        setValue('municipio', '')
       }
     } catch (error) {
       const apiError = handleApiError(error)
@@ -93,7 +111,38 @@ const MapModule = () => {
     }
   }
   
+  const loadMunicipioInfo = async (estado, claveMunicipio) => {
+    try {
+      const response = await apiService.getNodoInicialMunicipio(estado, claveMunicipio)
+      if (response.success && response.data.municipio_info) {
+        const info = response.data.municipio_info
+        setMunicipioInfo(info)
+        
+        // Establecer límite máximo de nodos basado en localidades disponibles
+        const localidadesDisponibles = info.total_localidades || 15
+        const maxPermitido = Math.min(localidadesDisponibles - 1, 15) // -1 porque una será el nodo principal
+        setMaxNodos(Math.max(1, maxPermitido))
+        
+        // Ajustar valor actual si excede el límite
+        const currentNNodos = parseInt(watchedNNodos)
+        if (currentNNodos > maxPermitido) {
+          setValue('n_nodos', Math.min(5, maxPermitido))
+        }
+        
+        toast.info(`${info.nombre_municipio}: ${localidadesDisponibles} localidades disponibles`)
+      }
+    } catch (error) {
+      console.warn('No se pudo obtener información del municipio:', error)
+      setMaxNodos(15)
+    }
+  }
+  
   const onSubmit = async (data) => {
+    if (!data.estado) {
+      toast.error('Por favor selecciona un estado')
+      return
+    }
+    
     if (!data.municipio) {
       toast.error('Por favor selecciona un municipio')
       return
@@ -101,7 +150,7 @@ const MapModule = () => {
     
     setLoadingMap(true)
     clearMapData()
-    setHighlightedRoute(null) // Limpiar rutas resaltadas
+    setHighlightedRoute(null)
     
     try {
       const response = await apiService.generateCompleteRoutes(
@@ -142,12 +191,10 @@ const MapModule = () => {
             const positions = ruta.puntos_ruta.map(punto => [punto.lat, punto.lng])
             const color = getRouteColor(destinoIndex * 3 + rutaIndex)
             
-            // Determinar si esta ruta está resaltada
             const isHighlighted = highlightedRoute && 
               highlightedRoute.destinationIndex === destinoIndex && 
               highlightedRoute.routeIndex === rutaIndex
             
-            // Determinar si otras rutas están resaltadas (para reducir opacidad)
             const isOtherHighlighted = highlightedRoute && !isHighlighted
             
             routes.push(
@@ -214,15 +261,20 @@ const MapModule = () => {
               <Select
                 {...register('municipio', { required: 'Municipio es requerido' })}
                 options={[
-                  { value: '', label: 'Selecciona un municipio...' },
+                  { value: '', label: watchedEstado ? 'Selecciona un municipio...' : 'Primero selecciona un estado' },
                   ...municipios.map(municipio => ({
                     value: municipio.clave_municipio,
                     label: municipio.nombre_municipio
                   }))
                 ]}
-                disabled={!selectedEstado || municipios.length === 0}
+                disabled={!watchedEstado || municipios.length === 0}
                 error={errors.municipio?.message}
               />
+              {municipioInfo && (
+                <div className="text-xs text-gray-400 mt-1">
+                  {municipioInfo.total_localidades} localidades disponibles
+                </div>
+              )}
             </div>
             
             <div>
@@ -232,20 +284,24 @@ const MapModule = () => {
               <Input
                 type="number"
                 min="1"
-                max="15"
+                max={maxNodos}
                 {...register('n_nodos', { 
                   required: 'Número de destinos es requerido',
                   min: { value: 1, message: 'Mínimo 1 destino' },
-                  max: { value: 15, message: 'Máximo 15 destinos' }
+                  max: { value: maxNodos, message: `Máximo ${maxNodos} destinos` }
                 })}
                 error={errors.n_nodos?.message}
+                disabled={!watchedMunicipio}
               />
+              <div className="text-xs text-gray-400 mt-1">
+                Máximo: {maxNodos} destinos
+              </div>
             </div>
             
             <div className="flex items-end">
               <Button
                 type="submit"
-                disabled={isLoadingMap || !selectedEstado || !selectedMunicipio}
+                disabled={isLoadingMap || !watchedEstado || !watchedMunicipio}
                 className="w-full"
               >
                 {isLoadingMap ? <LoadingSpinner size="sm" /> : 'Generar Rutas'}
