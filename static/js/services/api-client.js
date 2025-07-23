@@ -125,34 +125,21 @@ class ApiClient extends BaseModule {
     }
     
     /**
-     * Obtener localidades de un municipio
+     * Obtener nodo inicial de municipio con conteo de localidades
      */
-    async getLocalidades(claveEstado, claveMunicipio, options = {}) {
+    async getNodoInicialMunicipio(estado, claveMunicipio) {
         try {
-            let url = `${AppConfig.api.localidades}/${claveEstado}/${claveMunicipio}`;
-            
-            const params = new URLSearchParams();
-            if (options.excluirLocalidad) {
-                params.append('excluir_localidad', options.excluirLocalidad);
-            }
-            if (options.poblacionMinima) {
-                params.append('poblacion_minima', options.poblacionMinima);
-            }
-            
-            if (params.toString()) {
-                url += `?${params.toString()}`;
-            }
-            
+            const url = `/api/nodo-inicial/${encodeURIComponent(estado)}/${claveMunicipio}`;
             const data = await this.get(url);
             
             if (!data.success) {
-                throw new Error(data.message || 'Error obteniendo localidades');
+                throw new Error(data.message || 'Error obteniendo nodo inicial');
             }
             
             return data.data;
             
         } catch (error) {
-            this.logger.error('Error en getLocalidades:', error);
+            this.logger.error('Error en getNodoInicialMunicipio:', error);
             throw error;
         }
     }
@@ -192,7 +179,7 @@ class ApiClient extends BaseModule {
     }
     
     /**
-     * Generar rutas completas con datos reales
+     * Generar rutas completas con datos reales y validación de límites
      */
     async generateCompleteRoutes(estado, nNodos, claveMunicipio = null) {
         try {

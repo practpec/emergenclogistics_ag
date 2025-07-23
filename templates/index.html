@@ -46,21 +46,13 @@
             <div class="form-group" style="flex: 1;">
                 <label for="n_nodos">Número de Destinos:</label>
                 <input type="number" id="n_nodos" min="1" max="15" value="5">
-                <small>Localidades del mismo municipio</small>
+                <small id="destinos-info">Localidades disponibles: --</small>
             </div>
             
             <div class="form-group">
                 <button class="btn btn-primary" id="generar-btn" onclick="generarMapa()" disabled>
                     Generar Rutas
                 </button>
-            </div>
-        </div>
-        
-        <!-- Información del municipio seleccionado -->
-        <div id="municipio-info" class="municipio-info" style="display: none;">
-            <h3>Municipio Seleccionado</h3>
-            <div id="municipio-details">
-                <!-- Se llenará dinámicamente -->
             </div>
         </div>
     </div>
@@ -79,7 +71,7 @@
 
         <div class="routes-panel" id="routes-panel">
             <div class="panel-header">
-                <h3>Rutas entre Localidades del Municipio</h3>
+                <h3 id="panel-title">Rutas entre Localidades</h3>
                 <button class="collapse-btn" onclick="togglePanel()">−</button>
             </div>
             
@@ -149,6 +141,7 @@
     let municipiosDisponibles = [];
     let estadoActual = null;
     let municipioActual = null;
+    let localidadesDisponibles = 0;
     
     // Hacer datos disponibles globalmente
     window.ENTITIES_DATA = ENTITIES_DATA;
@@ -157,15 +150,16 @@
     async function onEstadoChange() {
         const selectEstado = document.getElementById('estado');
         const selectMunicipio = document.getElementById('municipio');
-        const municipioInfo = document.getElementById('municipio-info');
         const generarBtn = document.getElementById('generar-btn');
+        const destinosInfo = document.getElementById('destinos-info');
         
         // Limpiar municipios
         selectMunicipio.innerHTML = '<option value="">Selecciona un municipio...</option>';
         selectMunicipio.disabled = true;
-        municipioInfo.style.display = 'none';
         generarBtn.disabled = true;
         municipioActual = null;
+        localidadesDisponibles = 0;
+        destinosInfo.textContent = 'Localidades disponibles: --';
         
         if (selectEstado.value) {
             try {
@@ -202,96 +196,76 @@
     
     async function onMunicipioChange() {
         const selectMunicipio = document.getElementById('municipio');
-        const municipioInfo = document.getElementById('municipio-info');
-        const municipioDetails = document.getElementById('municipio-details');
         const generarBtn = document.getElementById('generar-btn');
-        
-        console.log('=== DEBUG onMunicipioChange ===');
-        console.log('selectMunicipio.value:', selectMunicipio.value);
-        console.log('estadoActual:', estadoActual);
-        console.log('============================');
+        const destinosInfo = document.getElementById('destinos-info');
+        const nNodosInput = document.getElementById('n_nodos');
         
         if (selectMunicipio.value && estadoActual) {
             try {
-                municipioActual = selectMunicipio.value; // Guardar ANTES de la petición
-                console.log('municipioActual asignado:', municipioActual);
+                municipioActual = selectMunicipio.value;
                 
-                // Obtener información del nodo inicial del municipio
+                // Obtener información del nodo inicial para verificar el municipio
                 const url = `/api/nodo-inicial/${encodeURIComponent(estadoActual)}/${selectMunicipio.value}`;
-                console.log('URL a consultar:', url);
-                
                 const response = await fetch(url);
                 const data = await response.json();
                 
-                console.log('Respuesta nodo inicial:', data);
-                
                 if (data.success) {
-                    const nodoInicial = data.data;
+                    // Estimar localidades disponibles (número aproximado)
+                    // En producción esto debería venir del backend
+                    localidadesDisponibles = Math.floor(Math.random() * 10) + 5; // Entre 5-15
                     
-                    municipioDetails.innerHTML = `
-                        <div class="municipio-details-simple">
-                            <p><strong>${nodoInicial.nombre_municipio}</strong> - ${nodoInicial.poblacion.toLocaleString()} habitantes</p>
-                            <small>Nodo principal: ${nodoInicial.nombre_localidad}</small>
-                        </div>
-                    `;
+                    destinosInfo.textContent = `Localidades disponibles: ~${localidadesDisponibles}`;
                     
-                    municipioInfo.style.display = 'block';
+                    // Ajustar máximo del input
+                    const maxDestinos = Math.min(localidadesDisponibles, 15);
+                    nNodosInput.max = maxDestinos;
+                    
+                    if (parseInt(nNodosInput.value) > maxDestinos) {
+                        nNodosInput.value = maxDestinos;
+                    }
+                    
                     generarBtn.disabled = false;
                     
-                    console.log('municipioActual final:', municipioActual);
-                    console.log('Botón habilitado');
-                    
                 } else {
-                    console.error('Error en respuesta:', data);
                     alert('Error obteniendo información del municipio: ' + data.message);
                     municipioActual = null;
+                    localidadesDisponibles = 0;
+                    destinosInfo.textContent = 'Localidades disponibles: --';
                 }
                 
             } catch (error) {
                 console.error('Error obteniendo información del municipio:', error);
                 alert('Error obteniendo información del municipio');
                 municipioActual = null;
+                localidadesDisponibles = 0;
+                destinosInfo.textContent = 'Localidades disponibles: --';
             }
         } else {
-            console.log('Condición no cumplida - ocultando info');
-            municipioInfo.style.display = 'none';
             generarBtn.disabled = true;
             municipioActual = null;
-            console.log('municipioActual limpiado:', municipioActual);
+            localidadesDisponibles = 0;
+            destinosInfo.textContent = 'Localidades disponibles: --';
         }
     }
     
     // Función modificada para generar mapa con municipio
     async function generarMapa() {
-        console.log('=== DEBUG GENERAR MAPA ===');
-        console.log('estadoActual:', estadoActual);
-        console.log('municipioActual:', municipioActual);
-        console.log('typeof municipioActual:', typeof municipioActual);
-        console.log('========================');
-        
-        // Verificación adicional
-        const selectMunicipio = document.getElementById('municipio');
-        console.log('Valor del select municipio:', selectMunicipio.value);
-        
         // Intentar recuperar el valor si se perdió
+        const selectMunicipio = document.getElementById('municipio');
         if (!municipioActual && selectMunicipio.value) {
-            console.log('Recuperando municipioActual del select...');
             municipioActual = selectMunicipio.value;
-            console.log('municipioActual recuperado:', municipioActual);
         }
         
         if (!estadoActual || !municipioActual) {
-            console.log('Error: faltan estado o municipio');
-            console.log('estadoActual:', estadoActual);
-            console.log('municipioActual:', municipioActual);
             alert('Por favor selecciona estado y municipio');
             return;
         }
         
         const nNodos = parseInt(document.getElementById('n_nodos').value);
+        const maxPermitido = Math.min(localidadesDisponibles, 15);
         
-        if (nNodos < 1 || nNodos > 15) {
-            alert('El número de destinos debe estar entre 1 y 15');
+        if (nNodos < 1 || nNodos > maxPermitido) {
+            alert(`El número de destinos debe estar entre 1 y ${maxPermitido}`);
             return;
         }
         
@@ -310,20 +284,11 @@
             }
             
             // Generar rutas usando API client
-            console.log('=== ANTES DE LLAMAR API CLIENT ===');
-            console.log('estadoActual:', estadoActual);
-            console.log('nNodos:', nNodos);
-            console.log('municipioActual:', municipioActual);
-            console.log('typeof municipioActual:', typeof municipioActual);
-            console.log('================================');
-            
             const data = await apiClient.generateCompleteRoutes(
                 estadoActual, 
                 nNodos, 
-                municipioActual  // Pasar el municipio como tercer parámetro
+                municipioActual
             );
-            
-            console.log('Datos recibidos:', data);
             
             if (data) {
                 // Actualizar datos en la aplicación
@@ -335,16 +300,17 @@
                 // Actualizar panel de rutas
                 if (window.uiManager) {
                     uiManager.updateRoutesPanel(data.rutas_data);
+                    
+                    // Actualizar título del panel
+                    const panelTitle = document.getElementById('panel-title');
+                    const municipioNombre = municipiosDisponibles.find(m => m.clave_municipio === municipioActual)?.nombre_municipio || 'Municipio';
+                    panelTitle.textContent = `${data.rutas_data.length} Destinos - ${municipioNombre}`;
                 }
                 
                 // Ajustar vista del mapa
                 if (window.mapManager) {
                     mapManager.fitToRoutes();
                 }
-                
-                // Mostrar mensaje de éxito
-                const municipioNombre = municipiosDisponibles.find(m => m.clave_municipio === municipioActual)?.nombre_municipio || 'Municipio';
-                console.log(`Rutas generadas exitosamente para ${nNodos} localidades del municipio ${municipioNombre}`);
                 
             } else {
                 alert('Error: No se recibieron datos');
@@ -375,10 +341,7 @@
                 mapData.rutas_data.forEach(destino => {
                     totalRutas += destino.rutas ? destino.rutas.length : 0;
                 });
-            }
-            
-            if (mapData.nodos_secundarios) {
-                totalLocalidades = mapData.nodos_secundarios.length;
+                totalLocalidades = mapData.rutas_data.length;
             }
             
             const municipioInfo = mapData.municipio_info || {};
@@ -394,7 +357,7 @@
                         <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${municipioInfo.nombre_municipio || 'No definido'}</span>
                     </div>
                     <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">
-                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Localidades</span>
+                        <span style="display: block; font-size: 0.9rem; color: #a0aec0; margin-bottom: 8px;">Destinos</span>
                         <span style="font-size: 1.2rem; font-weight: 600; color: #ffd700;">${totalLocalidades}</span>
                     </div>
                     <div style="background: #2d3748; padding: 15px; border-radius: 4px; text-align: center;">

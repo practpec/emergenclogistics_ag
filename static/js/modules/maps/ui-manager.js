@@ -140,7 +140,7 @@ class UIManager extends BaseModule {
     }
     
     /**
-     * Actualizar panel de rutas con nombres de localidades
+     * Actualizar panel de rutas con nombres de localidades reales
      */
     async updateRoutesPanel(routesData) {
         const panelContent = this.findElement('#panel-content');
@@ -160,7 +160,7 @@ class UIManager extends BaseModule {
             const destinoData = routesData[i];
             const rutas = destinoData.rutas || [];
             
-            // Extraer nombre de la localidad del destino
+            // Extraer nombre limpio de la localidad
             const destinoNombre = this.extractLocalidadName(destinoData.destino);
             
             html += `
@@ -169,7 +169,7 @@ class UIManager extends BaseModule {
                         <div class="destination-title">
                             ${destinoNombre}
                             <div style="font-size: 0.8em; font-weight: normal; margin-top: 2px; color: #a0aec0;">
-                                ${rutas.length} ruta${rutas.length !== 1 ? 's' : ''} • Población: ${this.formatPopulation(destinoData.destino)}
+                                ${rutas.length} ruta${rutas.length !== 1 ? 's' : ''}
                             </div>
                         </div>
                         <div class="toggle-icon">▼</div>
@@ -185,28 +185,26 @@ class UIManager extends BaseModule {
     }
     
     /**
-     * Extraer nombre de localidad de la cadena completa
+     * Extraer nombre limpio de localidad
      */
     extractLocalidadName(destinoCompleto) {
-        // El formato es: "NOMBRE_LOCALIDAD (Clave: XX-XXX-XXXX)"
-        const match = destinoCompleto.match(/^([^(]+)/);
-        if (match) {
-            return match[1].trim();
+        // Formato esperado: "NOMBRE_LOCALIDAD (Clave: XX-XXX-XXXX)"
+        if (typeof destinoCompleto === 'object' && destinoCompleto.nombre) {
+            return destinoCompleto.nombre;
         }
-        return destinoCompleto;
+        
+        if (typeof destinoCompleto === 'string') {
+            const match = destinoCompleto.match(/^([^(,]+)/);
+            if (match) {
+                return match[1].trim();
+            }
+        }
+        
+        return 'Destino';
     }
     
     /**
-     * Formatear población desde la cadena de destino
-     */
-    formatPopulation(destinoCompleto) {
-        // Intentar extraer población si está disponible en los datos
-        // Por ahora retornar un placeholder
-        return "N/A";
-    }
-    
-    /**
-     * Generar HTML para rutas
+     * Generar HTML para rutas sin etiquetas redundantes
      */
     async generateRoutesHTML(rutas, destinationIndex) {
         if (rutas.length === 0) {
@@ -227,12 +225,13 @@ class UIManager extends BaseModule {
         for (let routeIndex = 0; routeIndex < rutas.length; routeIndex++) {
             const ruta = rutas[routeIndex];
             const routeId = `route-${destinationIndex}-${routeIndex}`;
+            const routeNumber = routeIndex + 1;
             
             html += `
                 <div class="route-item" id="${routeId}" 
                      data-destination="${destinationIndex}" data-route="${routeIndex}">
                     <div class="route-header">
-                        <span class="route-type">${ruta.tipo || `Ruta ${routeIndex + 1}`}</span>
+                        <span class="route-type">Ruta ${routeNumber}</span>
                         <div class="route-controls">
                             <button class="route-btn" onclick="highlightRoute(${destinationIndex}, ${routeIndex})" 
                                     title="Ver en mapa">
@@ -242,13 +241,13 @@ class UIManager extends BaseModule {
                     </div>
                     
                     <div class="route-details">
-                        ${ruta.descripcion || 'Camino hacia el destino'}
+                        Camino hacia el destino
                     </div>
                     
                     <div class="route-stats">
                         <div class="route-stat">
                             <span class="stat-icon">📏</span>
-                            <span>${ruta.distancia.text}</span>
+                            <span>${ruta.distancia?.text || 'N/A'}</span>
                         </div>
                         <div class="route-stat">
                             <span class="stat-icon">📍</span>

@@ -126,6 +126,45 @@ class DatabaseService(BaseService):
             self.log_error(f"Error obteniendo nodo inicial para municipio {clave_municipio}", e)
             raise DataLoadError(f"Error obteniendo nodo inicial: {e}")
     
+    def count_localidades_municipio(self, clave_estado: str, clave_municipio: str, 
+                                   clave_localidad_excluir: str = None) -> int:
+        """Contar localidades disponibles en un municipio"""
+        try:
+            with self.get_connection() as conn:
+                cursor = conn.cursor()
+                
+                if clave_localidad_excluir:
+                    cursor.execute("""
+                        SELECT COUNT(*) as total
+                        FROM localidades
+                        WHERE clave_estado = ? 
+                          AND clave_municipio = ?
+                          AND clave_localidad != ?
+                          AND poblacion > 20
+                          AND latitud IS NOT NULL 
+                          AND longitud IS NOT NULL
+                    """, (clave_estado, clave_municipio, clave_localidad_excluir))
+                else:
+                    cursor.execute("""
+                        SELECT COUNT(*) as total
+                        FROM localidades
+                        WHERE clave_estado = ? 
+                          AND clave_municipio = ?
+                          AND poblacion > 20
+                          AND latitud IS NOT NULL 
+                          AND longitud IS NOT NULL
+                    """, (clave_estado, clave_municipio))
+                
+                row = cursor.fetchone()
+                total = row['total'] if row else 0
+                
+                self.log_info(f"Localidades contadas para municipio {clave_municipio}: {total}")
+                return total
+                
+        except Exception as e:
+            self.log_error(f"Error contando localidades para municipio {clave_municipio}", e)
+            raise DataLoadError(f"Error contando localidades: {e}")
+    
     def get_localidades_municipio(self, clave_estado: str, clave_municipio: str, 
                                  clave_localidad_excluir: str, cantidad: int,
                                  poblacion_minima: int = 20) -> List[Dict[str, Any]]:
@@ -266,4 +305,3 @@ class DatabaseService(BaseService):
         except Exception as e:
             self.log_error(f"Error buscando localidades con nombre '{nombre}'", e)
             raise DataLoadError(f"Error buscando localidades: {e}")
-    
