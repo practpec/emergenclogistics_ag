@@ -4,7 +4,8 @@ import { Checkbox } from '../UI';
 const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStates }) => {
 
   useEffect(() => {
-    if (Object.keys(routeStates).length > 0) return;
+    // FIX: Añadir verificación para evitar loop infinito
+    if (Object.keys(routeStates).length > 0 || !routesData || routesData.length === 0) return;
 
     const initialStates = {};
     routesData.forEach((destinoData, destIndex) => {
@@ -35,29 +36,46 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
         });
       }
     });
-    setRouteStates(initialStates);
-  }, [routesData, vehicleTypes, setRouteStates, routeStates]);
+    
+    // Solo actualizar si hay cambios reales
+    if (Object.keys(initialStates).length > 0) {
+      setRouteStates(initialStates);
+    }
+  }, [routesData, vehicleTypes.join(',')]); // FIX: Dependencias correctas
 
   const handleStateChange = (destIndex, routeIndex, newState) => {
-    const newStates = { ...routeStates };
-    const allRoutesForDest = newStates[destIndex];
-    allRoutesForDest.forEach((r, i) => r.estado = (i === routeIndex && newState === 'cerrada') ? 'cerrada' : 'abierta');
-    if (newState === 'cerrada') {
+    setRouteStates(prevStates => {
+      const newStates = { ...prevStates };
+      const allRoutesForDest = [...newStates[destIndex]];
+      
+      allRoutesForDest.forEach((r, i) => {
+        r.estado = (i === routeIndex && newState === 'cerrada') ? 'cerrada' : 'abierta';
+      });
+      
+      if (newState === 'cerrada') {
         allRoutesForDest[routeIndex].vehiculos_permitidos = [];
-    }
-    setRouteStates(newStates);
+      }
+      
+      newStates[destIndex] = allRoutesForDest;
+      return newStates;
+    });
   };
   
   const handleVehiclePermissionChange = (destIndex, routeIndex, vehicleType) => {
-    const newStates = { ...routeStates };
-    const route = newStates[destIndex][routeIndex];
-    const currentPermissions = route.vehiculos_permitidos;
-    const newPermissions = currentPermissions.includes(vehicleType) ? currentPermissions.filter(vt => vt !== vehicleType) : [...currentPermissions, vehicleType];
-    route.vehiculos_permitidos = newPermissions;
-    setRouteStates(newStates);
+    setRouteStates(prevStates => {
+      const newStates = { ...prevStates };
+      const route = newStates[destIndex][routeIndex];
+      const currentPermissions = route.vehiculos_permitidos;
+      const newPermissions = currentPermissions.includes(vehicleType) 
+        ? currentPermissions.filter(vt => vt !== vehicleType) 
+        : [...currentPermissions, vehicleType];
+      
+      route.vehiculos_permitidos = newPermissions;
+      return newStates;
+    });
   };
 
-  const destinationsToConfigure = routesData.filter(d => d.rutas && d.rutas.length > 1);
+  const destinationsToConfigure = routesData?.filter(d => d.rutas && d.rutas.length > 1) || [];
 
   if (destinationsToConfigure.length === 0) {
     return <p className="text-sm text-center text-gray-400">No hay destinos con rutas múltiples para configurar.</p>;
@@ -71,22 +89,51 @@ const RouteConfigurator = ({ routesData, vehicleTypes, routeStates, setRouteStat
           if (destinoData.rutas?.length > 1 && routeStates[destIndex]) {
             return (
               <div key={destIndex} className="p-4 bg-gray-700 rounded-md">
-                <h4 className="font-semibold text-yellow-400">Destino {destIndex + 1}: {destinoData.destino.nombre_localidad}</h4>
+                <h4 className="font-semibold text-yellow-400">
+                  Destino {destIndex + 1}: {destinoData.destino?.nombre_localidad || 'Sin nombre'}
+                </h4>
                 <div className="mt-3 space-y-3">
                   {routeStates[destIndex].map((routeState, routeIndex) => (
                     <div key={routeIndex} className="p-3 bg-gray-800 rounded">
                       <div className="flex justify-between items-center">
                         <span className="font-medium">Ruta {routeIndex + 1}</span>
                         <div className="flex gap-4">
-                          <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name={`route-${destIndex}-${routeIndex}`} value="abierta" checked={routeState.estado === 'abierta'} onChange={() => handleStateChange(destIndex, routeIndex, 'abierta')} /> Abierta</label>
-                          <label className="flex items-center gap-1 cursor-pointer"><input type="radio" name={`route-${destIndex}-${routeIndex}`} value="cerrada" checked={routeState.estado === 'cerrada'} onChange={() => handleStateChange(destIndex, routeIndex, 'cerrada')} /> Cerrada</label>
+                          <label className="flex items-center gap-1 cursor-pointer">
+                            <input 
+                              type="radio" 
+                              name={`route-${destIndex}-${routeIndex}`} 
+                              value="abierta" 
+                              checked={routeState.estado === 'abierta'} 
+                              onChange={() => handleStateChange(destIndex, routeIndex, 'abierta')} 
+                            /> 
+                            Abierta
+                          </label>
+                          <label className="flex items-center gap-1 cursor-pointer">
+                            <input 
+                              type="radio" 
+                              name={`route-${destIndex}-${routeIndex}`} 
+                              value="cerrada" 
+                              checked={routeState.estado === 'cerrada'} 
+                              onChange={() => handleStateChange(destIndex, routeIndex, 'cerrada')} 
+                            /> 
+                            Cerrada
+                          </label>
                         </div>
                       </div>
                       {routeState.estado === 'abierta' && (
                         <div className="mt-2 pt-2 pl-4 border-l-2 border-gray-600">
-                          <p className="text-sm text-gray-400 mb-1">Permitir tipos de vehículo (si no se selecciona, todos pasan):</p>
+                          <p className="text-sm text-gray-400 mb-1">
+                            Permitir tipos de vehículo (si no se selecciona, todos pasan):
+                          </p>
                           <div className="flex flex-wrap gap-x-4 gap-y-1">
-                            {vehicleTypes.map(type => <Checkbox key={type} label={type} checked={routeState.vehiculos_permitidos.includes(type)} onChange={() => handleVehiclePermissionChange(destIndex, routeIndex, type)} />)}
+                            {vehicleTypes.map(type => (
+                              <Checkbox 
+                                key={type} 
+                                label={type} 
+                                checked={routeState.vehiculos_permitidos.includes(type)} 
+                                onChange={() => handleVehiclePermissionChange(destIndex, routeIndex, type)} 
+                              />
+                            ))}
                           </div>
                         </div>
                       )}
