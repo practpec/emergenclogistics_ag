@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "EmergenLogistics API",
+    "description": "API para sistema de distribución de ayuda humanitaria con algoritmo genético",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "API Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "status"]
+            }
+          }
+        },
+        {
+          "name": "Get Config",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/config",
+              "host": ["{{base_url}}"],
+              "path": ["api", "config"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Geographic Data",
+      "item": [
+        {
+          "name": "Get Estados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/estados",
+              "host": ["{{base_url}}"],
+              "path": ["api", "estados"]
+            }
+          }
+        },
+        {
+          "name": "Get Municipios por Estado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/municipios/CHIHUAHUA",
+              "host": ["{{base_url}}"],
+              "path": ["api", "municipios", "CHIHUAHUA"]
+            }
+          }
+        },
+        {
+          "name": "Get Nodo Inicial",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/nodo-inicial/CHIHUAHUA/8",
+              "host": ["{{base_url}}"],
+              "path": ["api", "nodo-inicial", "CHIHUAHUA", "8"]
+            }
+          }
+        },
+        {
+          "name": "Generate Complete Routes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"CHIHUAHUA\",\n  \"clave_municipio\": \"8\",\n  \"n_nodos\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/maps/generate-complete-routes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "maps", "generate-complete-routes"]
+            }
+          }
+        },
+        {
+          "name": "Search Localidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/search-localidades?q=YOQUIVO&limite=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "search-localidades"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "YOQUIVO"
+                },
+                {
+                  "key": "limite",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scenario Data",
+      "item": [
+        {
+          "name": "Get Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/scenario/vehicles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "scenario", "vehicles"]
+            }
+          }
+        },
+        {
+          "name": "Get Disasters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/scenario/disasters",
+              "host": ["{{base_url}}"],
+              "path": ["api", "scenario", "disasters"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Genetic Algorithm",
+      "item": [
+        {
+          "name": "Get AG Parameters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ag/parametros",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ag", "parametros"]
+            }
+          }
+        },
+        {
+          "name": "Run Genetic Algorithm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"map_data\": {\n    \"nodo_principal\": {\n      \"ambito\": \"U\",\n      \"clave_estado\": 8,\n      \"clave_localidad\": 1,\n      \"clave_municipio\": 8,\n      \"lat\": 27.026652,\n      \"lng\": -107.73971,\n      \"nombre\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN, BATOPILAS DE MANUEL GÓMEZ MORÍN, CHIHUAHUA\",\n      \"nombre_estado\": \"CHIHUAHUA\",\n      \"nombre_localidad\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN\",\n      \"nombre_municipio\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN\",\n      \"poblacion\": \"932\"\n    },\n    \"nodos_secundarios\": [\n      {\n        \"ambito\": \"R\",\n        \"clave_estado\": 8,\n        \"clave_municipio\": 8,\n        \"clave_localidad\": 223,\n        \"distancia_directa\": 20.1,\n        \"lat\": 27.019171,\n        \"lng\": -107.536975,\n        \"nombre_localidad\": \"YOQUIVO\",\n        \"nombre_estado\": \"CHIHUAHUA\",\n        \"nombre_municipio\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN\",\n        \"poblacion\": \"524\"\n      },\n      {\n        \"ambito\": \"R\",\n        \"clave_estado\": 8,\n        \"clave_municipio\": 8,\n        \"clave_localidad\": 150,\n        \"distancia_directa\": 15.8,\n        \"lat\": 26.953888,\n        \"lng\": -107.824166,\n        \"nombre_localidad\": \"SAN JOSÉ DE GUIDAMOA\",\n        \"nombre_estado\": \"CHIHUAHUA\",\n        \"nombre_municipio\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN\",\n        \"poblacion\": \"350\"\n      }\n    ],\n    \"rutas_data\": [\n      {\n        \"destino\": {\n          \"nombre_localidad\": \"YOQUIVO\",\n          \"lat\": 27.019171,\n          \"lng\": -107.536975,\n          \"clave_localidad\": 223,\n          \"poblacion\": 524\n        },\n        \"indice\": 0,\n        \"rutas\": [\n          {\n            \"tipo\": \"Ruta 1\",\n            \"descripcion\": \"Ruta hacia el destino\",\n            \"distancia\": {\n              \"text\": \"47.6 km\",\n              \"value\": 47628.8\n            },\n            \"puntos_ruta\": [\n              { \"lat\": 27.026, \"lng\": -107.739 },\n              { \"lat\": 27.022, \"lng\": -107.720 },\n              { \"lat\": 27.019, \"lng\": -107.537 }\n            ]\n          },\n          {\n            \"tipo\": \"Ruta 2\",\n            \"descripcion\": \"Ruta alternativa\",\n            \"distancia\": {\n              \"text\": \"52.1 km\",\n              \"value\": 52100.0\n            },\n            \"puntos_ruta\": [\n              { \"lat\": 27.026, \"lng\": -107.739 },\n              { \"lat\": 27.028, \"lng\": -107.745 },\n              { \"lat\": 27.019, \"lng\": -107.537 }\n            ]\n          }\n        ]\n      },\n      {\n        \"destino\": {\n          \"nombre_localidad\": \"SAN JOSÉ DE GUIDAMOA\",\n          \"lat\": 26.953888,\n          \"lng\": -107.824166,\n          \"clave_localidad\": 150,\n          \"poblacion\": 350\n        },\n        \"indice\": 1,\n        \"rutas\": [\n          {\n            \"tipo\": \"Ruta 1\",\n            \"descripcion\": \"Ruta hacia el destino\",\n            \"distancia\": {\n              \"text\": \"35.2 km\",\n              \"value\": 35200.0\n            },\n            \"puntos_ruta\": [\n              { \"lat\": 27.026, \"lng\": -107.739 },\n              { \"lat\": 26.999, \"lng\": -107.781 },\n              { \"lat\": 26.954, \"lng\": -107.824 }\n            ]\n          }\n        ]\n      }\n    ],\n    \"municipio_info\": {\n      \"clave_municipio\": 8,\n      \"nombre_municipio\": \"BATOPILAS DE MANUEL GÓMEZ MORÍN\",\n      \"total_localidades\": 230\n    }\n  },\n  \"scenario_config\": {\n    \"tipo_desastre\": \"inundación\",\n    \"vehiculos_disponibles\": [\n      {\n        \"modelo\": \"Toyota Hilux Diesel 4x4\",\n        \"tipo\": \"camioneta pickup\",\n        \"velocidad_kmh\": 65,\n        \"consumo_litros_km\": 0.073,\n        \"maximo_peso_ton\": 1.2,\n        \"capacidad_kg\": 1200,\n        \"matricula\": \"TOYOTA-1-1\"\n      },\n      {\n        \"modelo\": \"Toyota Hilux Diesel 4x4\",\n        \"tipo\": \"camioneta pickup\",\n        \"velocidad_kmh\": 65,\n        \"consumo_litros_km\": 0.073,\n        \"maximo_peso_ton\": 1.2,\n        \"capacidad_kg\": 1200,\n        \"matricula\": \"TOYOTA-1-2\"\n      },\n      {\n        \"modelo\": \"Isuzu ELF 300\",\n        \"tipo\": \"camión ligero\",\n        \"velocidad_kmh\": 60,\n        \"consumo_litros_km\": 0.12,\n        \"maximo_peso_ton\": 3,\n        \"capacidad_kg\": 3000,\n        \"matricula\": \"ISUZUE-4-1\"\n      },\n      {\n        \"modelo\": \"Mercedes-Benz Sprinter Cargo Diesel\",\n        \"tipo\": \"van de carga\",\n        \"velocidad_kmh\": 75,\n        \"consumo_litros_km\": 0.082,\n        \"maximo_peso_ton\": 1.8,\n        \"capacidad_kg\": 1800,\n        \"matricula\": \"SPRINTER-6-1\"\n      }\n    ],\n    \"rutas_estado\": [\n      {\n        \"ruta_id\": \"Destino223-Ruta1\",\n        \"estado\": \"cerrada\",\n        \"vehiculos_permitidos\": [],\n        \"razon_bloqueo\": \"Carretera inundada\"\n      },\n      {\n        \"ruta_id\": \"Destino223-Ruta2\",\n        \"estado\": \"abierta\",\n        \"vehiculos_permitidos\": [\"camioneta pickup\", \"van de carga\"]\n      },\n      {\n        \"ruta_id\": \"Destino150-Ruta1\",\n        \"estado\": \"abierta\",\n        \"vehiculos_permitidos\": [\"camioneta pickup\", \"camión ligero\", \"van de carga\"]\n      }\n    ]\n  },\n  \"parametros_ag\": {\n    \"poblacion_size\": 40,\n    \"generaciones\": 75,\n    \"prob_cruza\": 0.85,\n    \"prob_mutacion\": 0.12,\n    \"elitismo_rate\": 0.15\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ag/run-scenario",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ag", "run-scenario"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Database Info",
+      "item": [
+        {
+          "name": "Get Database Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/database/info",
+              "host": ["{{base_url}}"],
+              "path": ["api", "database", "info"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

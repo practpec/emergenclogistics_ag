@@ -8,3 +8,11 @@ pandas
 colorlog
 colorama
 shapely
+
+# Algoritmo Genético
+scikit-learn
+matplotlib
+seaborn
+
+# Base de datos
+sqlite3

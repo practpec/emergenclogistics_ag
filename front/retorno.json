@@ -1,0 +1,4326 @@
+{
+    "data": {
+        "analisis_rendimiento": {
+            "comparacion_top_3": [
+                {
+                    "combustible_total_litros": 13.4833,
+                    "distancia_total_km": 157.70000000000002,
+                    "eficiencia_distancia": 64.43930469245402,
+                    "eficiencia_tiempo": 4235.828477298961,
+                    "fitness": 10162.07835,
+                    "individuo": 1,
+                    "nodos_visitados": 2,
+                    "tiempo_total_horas": 2.3990769230769233
+                },
+                {
+                    "combustible_total_litros": 14.8691,
+                    "distancia_total_km": 174.60000000000002,
+                    "eficiencia_distancia": 57.388862829324154,
+                    "eficiencia_tiempo": 3818.036995368922,
+                    "fitness": 10020.095449999999,
+                    "individuo": 2,
+                    "nodos_visitados": 2,
+                    "tiempo_total_horas": 2.6244102564102567
+                },
+                {
+                    "combustible_total_litros": 14.717,
+                    "distancia_total_km": 174.60000000000002,
+                    "eficiencia_distancia": 49.25487686139746,
+                    "eficiencia_tiempo": 3234.1680021985644,
+                    "fitness": 8599.901499999998,
+                    "individuo": 3,
+                    "nodos_visitados": 2,
+                    "tiempo_total_horas": 2.659076923076923
+                }
+            ],
+            "mejor_combustible": {
+                "combustible_total_litros": 13.4833,
+                "distancia_total_km": 157.70000000000002,
+                "eficiencia_distancia": 64.43930469245402,
+                "eficiencia_tiempo": 4235.828477298961,
+                "fitness": 10162.07835,
+                "individuo": 1,
+                "nodos_visitados": 2,
+                "tiempo_total_horas": 2.3990769230769233
+            },
+            "mejor_distancia": {
+                "combustible_total_litros": 13.4833,
+                "distancia_total_km": 157.70000000000002,
+                "eficiencia_distancia": 64.43930469245402,
+                "eficiencia_tiempo": 4235.828477298961,
+                "fitness": 10162.07835,
+                "individuo": 1,
+                "nodos_visitados": 2,
+                "tiempo_total_horas": 2.3990769230769233
+            },
+            "mejor_tiempo": {
+                "combustible_total_litros": 13.4833,
+                "distancia_total_km": 157.70000000000002,
+                "eficiencia_distancia": 64.43930469245402,
+                "eficiencia_tiempo": 4235.828477298961,
+                "fitness": 10162.07835,
+                "individuo": 1,
+                "nodos_visitados": 2,
+                "tiempo_total_horas": 2.3990769230769233
+            }
+        },
+        "configuracion_insumos": [
+            {
+                "categoria": "Alimentación básica",
+                "id_insumo": 0,
+                "nombre": "Granos y cereales",
+                "peso_kg": 4
+            },
+            {
+                "categoria": "Alimentación básica",
+                "id_insumo": 1,
+                "nombre": "Proteínas enlatadas/secas",
+                "peso_kg": 2.5
+            },
+            {
+                "categoria": "Alimentación básica",
+                "id_insumo": 2,
+                "nombre": "Aceites y grasas",
+                "peso_kg": 1
+            },
+            {
+                "categoria": "Alimentación básica",
+                "id_insumo": 3,
+                "nombre": "Lácteos deshidratados",
+                "peso_kg": 1.5
+            },
+            {
+                "categoria": "Alimentación básica",
+                "id_insumo": 4,
+                "nombre": "Endulzantes y condimentos",
+                "peso_kg": 1
+            },
+            {
+                "categoria": "Higiene y cuidado personal",
+                "id_insumo": 5,
+                "nombre": "Jabones y shampoo",
+                "peso_kg": 1.5
+            },
+            {
+                "categoria": "Higiene y cuidado personal",
+                "id_insumo": 6,
+                "nombre": "Salud bucal",
+                "peso_kg": 0.5
+            },
+            {
+                "categoria": "Higiene y cuidado personal",
+                "id_insumo": 7,
+                "nombre": "Protección femenina e infantil",
+                "peso_kg": 1.5
+            },
+            {
+                "categoria": "Higiene y cuidado personal",
+                "id_insumo": 8,
+                "nombre": "Artículos de aseo personal",
+                "peso_kg": 1.5
+            },
+            {
+                "categoria": "Medicamentos e insumos médicos",
+                "id_insumo": 9,
+                "nombre": "Analgésicos básicos",
+                "peso_kg": 0.2
+            },
+            {
+                "categoria": "Medicamentos e insumos médicos",
+                "id_insumo": 10,
+                "nombre": "Antisépticos",
+                "peso_kg": 0.5
+            },
+            {
+                "categoria": "Medicamentos e insumos médicos",
+                "id_insumo": 11,
+                "nombre": "Material de curación",
+                "peso_kg": 0.8
+            },
+            {
+                "categoria": "Medicamentos e insumos médicos",
+                "id_insumo": 12,
+                "nombre": "Sueros y electrolitos",
+                "peso_kg": 3
+            },
+            {
+                "categoria": "Equipamiento de emergencia",
+                "id_insumo": 13,
+                "nombre": "Linternas y baterías",
+                "peso_kg": 1
+            },
+            {
+                "categoria": "Equipamiento de emergencia",
+                "id_insumo": 14,
+                "nombre": "Mantas térmicas",
+                "peso_kg": 3
+            },
+            {
+                "categoria": "Equipamiento de emergencia",
+                "id_insumo": 15,
+                "nombre": "Herramientas multipropósito",
+                "peso_kg": 2
+            },
+            {
+                "categoria": "Equipamiento de emergencia",
+                "id_insumo": 16,
+                "nombre": "Kits de purificación de agua",
+                "peso_kg": 1.2
+            },
+            {
+                "categoria": "Artículos para refugio",
+                "id_insumo": 17,
+                "nombre": "Carpas y toldos",
+                "peso_kg": 7
+            },
+            {
+                "categoria": "Artículos para refugio",
+                "id_insumo": 18,
+                "nombre": "Colchonetas",
+                "peso_kg": 8
+            },
+            {
+                "categoria": "Artículos para refugio",
+                "id_insumo": 19,
+                "nombre": "Mosquiteros",
+                "peso_kg": 2.4
+            },
+            {
+                "categoria": "Logística y almacenamiento",
+                "id_insumo": 20,
+                "nombre": "Contenedores herméticos",
+                "peso_kg": 3
+            },
+            {
+                "categoria": "Logística y almacenamiento",
+                "id_insumo": 21,
+                "nombre": "Cubetas y recipientes",
+                "peso_kg": 5
+            },
+            {
+                "categoria": "Logística y almacenamiento",
+                "id_insumo": 22,
+                "nombre": "Material de embalaje",
+                "peso_kg": 2
+            },
+            {
+                "categoria": "Agua",
+                "id_insumo": 23,
+                "nombre": "Botellas de agua potable",
+                "peso_kg": 18
+            },
+            {
+                "categoria": "Agua",
+                "id_insumo": 24,
+                "nombre": "Garrafones y bidones",
+                "peso_kg": 40
+            }
+        ],
+        "distribucion_carga": {
+            "resumen_global": {
+                "capacidad_total_kg": 7200,
+                "espacio_desperdiciado_kg": 5063.0,
+                "peso_total_utilizado_kg": 2137.0,
+                "utilizacion_global_porcentual": 29.680555555555554
+            },
+            "vehiculos": [
+                {
+                    "capacidad_kg": 1200,
+                    "carga_por_categoria": {
+                        "Agua": {
+                            "items": 10,
+                            "peso_kg": 334
+                        },
+                        "Alimentación básica": {
+                            "items": 35,
+                            "peso_kg": 65.5
+                        },
+                        "Artículos para refugio": {
+                            "items": 8,
+                            "peso_kg": 59
+                        },
+                        "Equipamiento de emergencia": {
+                            "items": 14,
+                            "peso_kg": 21.8
+                        },
+                        "Higiene y cuidado personal": {
+                            "items": 18,
+                            "peso_kg": 20.0
+                        },
+                        "Logística y almacenamiento": {
+                            "items": 9,
+                            "peso_kg": 35
+                        },
+                        "Medicamentos e insumos médicos": {
+                            "items": 21,
+                            "peso_kg": 27.3
+                        }
+                    },
+                    "eficiencia_carga": "BAJA",
+                    "espacio_libre_kg": 637.4,
+                    "modelo": "Toyota Hilux Diesel 4x4",
+                    "peso_utilizado_kg": 562.6,
+                    "tipo": "camioneta pickup",
+                    "utilizacion_porcentual": 46.88333333333334,
+                    "vehiculo_id": 0
+                },
+                {
+                    "capacidad_kg": 1200,
+                    "carga_por_categoria": {
+                        "Agua": {
+                            "items": 10,
+                            "peso_kg": 312
+                        },
+                        "Alimentación básica": {
+                            "items": 32,
+                            "peso_kg": 59.0
+                        },
+                        "Artículos para refugio": {
+                            "items": 16,
+                            "peso_kg": 88.4
+                        },
+                        "Equipamiento de emergencia": {
+                            "items": 5,
+                            "peso_kg": 8.2
+                        },
+                        "Higiene y cuidado personal": {
+                            "items": 21,
+                            "peso_kg": 25.5
+                        },
+                        "Logística y almacenamiento": {
+                            "items": 11,
+                            "peso_kg": 38
+                        },
+                        "Medicamentos e insumos médicos": {
+                            "items": 10,
+                            "peso_kg": 6.2
+                        }
+                    },
+                    "eficiencia_carga": "BAJA",
+                    "espacio_libre_kg": 662.7,
+                    "modelo": "Toyota Hilux Diesel 4x4",
+                    "peso_utilizado_kg": 537.3,
+                    "tipo": "camioneta pickup",
+                    "utilizacion_porcentual": 44.775,
+                    "vehiculo_id": 1
+                },
+                {
+                    "capacidad_kg": 3000,
+                    "carga_por_categoria": {
+                        "Agua": {
+                            "items": 8,
+                            "peso_kg": 276
+                        },
+                        "Alimentación básica": {
+                            "items": 29,
+                            "peso_kg": 64.0
+                        },
+                        "Artículos para refugio": {
+                            "items": 19,
+                            "peso_kg": 122.6
+                        },
+                        "Equipamiento de emergencia": {
+                            "items": 7,
+                            "peso_kg": 14
+                        },
+                        "Higiene y cuidado personal": {
+                            "items": 14,
+                            "peso_kg": 17.0
+                        },
+                        "Logística y almacenamiento": {
+                            "items": 5,
+                            "peso_kg": 22
+                        },
+                        "Medicamentos e insumos médicos": {
+                            "items": 13,
+                            "peso_kg": 25.9
+                        }
+                    },
+                    "eficiencia_carga": "BAJA",
+                    "espacio_libre_kg": 2458.5,
+                    "modelo": "Isuzu ELF 300",
+                    "peso_utilizado_kg": 541.5,
+                    "tipo": "camión ligero",
+                    "utilizacion_porcentual": 18.05,
+                    "vehiculo_id": 2
+                },
+                {
+                    "capacidad_kg": 1800,
+                    "carga_por_categoria": {
+                        "Agua": {
+                            "items": 12,
+                            "peso_kg": 304
+                        },
+                        "Alimentación básica": {
+                            "items": 29,
+                            "peso_kg": 49.0
+                        },
+                        "Artículos para refugio": {
+                            "items": 8,
+                            "peso_kg": 41.6
+                        },
+                        "Equipamiento de emergencia": {
+                            "items": 17,
+                            "peso_kg": 33.8
+                        },
+                        "Higiene y cuidado personal": {
+                            "items": 20,
+                            "peso_kg": 25.0
+                        },
+                        "Logística y almacenamiento": {
+                            "items": 12,
+                            "peso_kg": 28
+                        },
+                        "Medicamentos e insumos médicos": {
+                            "items": 21,
+                            "peso_kg": 14.2
+                        }
+                    },
+                    "eficiencia_carga": "BAJA",
+                    "espacio_libre_kg": 1304.4,
+                    "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+                    "peso_utilizado_kg": 495.6,
+                    "tipo": "van de carga",
+                    "utilizacion_porcentual": 27.53333333333333,
+                    "vehiculo_id": 3
+                }
+            ]
+        },
+        "evolucion_fitness": [
+            {
+                "generacion": 1,
+                "mejor": 9367.145449999998,
+                "peor": 0,
+                "promedio": 3772.2847775
+            },
+            {
+                "generacion": 2,
+                "mejor": 9367.145449999998,
+                "peor": 0,
+                "promedio": 3842.6953187499994
+            },
+            {
+                "generacion": 3,
+                "mejor": 9367.145449999998,
+                "peor": 0,
+                "promedio": 4026.7193125
+            },
+            {
+                "generacion": 4,
+                "mejor": 9367.145449999998,
+                "peor": 0,
+                "promedio": 4038.77759125
+            },
+            {
+                "generacion": 5,
+                "mejor": 9367.145449999998,
+                "peor": 0,
+                "promedio": 4125.0776675
+            },
+            {
+                "generacion": 6,
+                "mejor": 9692.618349999999,
+                "peor": 0,
+                "promedio": 4139.16763
+            },
+            {
+                "generacion": 7,
+                "mejor": 9692.618349999999,
+                "peor": 0,
+                "promedio": 4282.96262375
+            },
+            {
+                "generacion": 8,
+                "mejor": 9692.618349999999,
+                "peor": 0,
+                "promedio": 4168.315122499999
+            },
+            {
+                "generacion": 9,
+                "mejor": 9692.618349999999,
+                "peor": 0,
+                "promedio": 4177.1437587499995
+            },
+            {
+                "generacion": 10,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4157.97106875
+            },
+            {
+                "generacion": 11,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4192.47619375
+            },
+            {
+                "generacion": 12,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4192.99044375
+            },
+            {
+                "generacion": 13,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4139.96981875
+            },
+            {
+                "generacion": 14,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4070.7249524999997
+            },
+            {
+                "generacion": 15,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4076.8063325000003
+            },
+            {
+                "generacion": 16,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4055.434025
+            },
+            {
+                "generacion": 17,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4205.58287375
+            },
+            {
+                "generacion": 18,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4285.9550875
+            },
+            {
+                "generacion": 19,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4271.26654
+            },
+            {
+                "generacion": 20,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4232.686715
+            },
+            {
+                "generacion": 21,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4226.2770900000005
+            },
+            {
+                "generacion": 22,
+                "mejor": 9723.6402,
+                "peor": 0,
+                "promedio": 4166.8329925
+            },
+            {
+                "generacion": 23,
+                "mejor": 9745.0023,
+                "peor": 0,
+                "promedio": 4098.17515875
+            },
+            {
+                "generacion": 24,
+                "mejor": 9745.0023,
+                "peor": 0,
+                "promedio": 4107.59423875
+            },
+            {
+                "generacion": 25,
+                "mejor": 10022.03545,
+                "peor": 0,
+                "promedio": 4032.13360875
+            },
+            {
+                "generacion": 26,
+                "mejor": 10022.03545,
+                "peor": 0,
+                "promedio": 4123.07960875
+            },
+            {
+                "generacion": 27,
+                "mejor": 10022.03545,
+                "peor": 0,
+                "promedio": 4097.68822375
+            },
+            {
+                "generacion": 28,
+                "mejor": 10022.03545,
+                "peor": 0,
+                "promedio": 4107.84505375
+            },
+            {
+                "generacion": 29,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4117.3876
+            },
+            {
+                "generacion": 30,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4128.8531
+            },
+            {
+                "generacion": 31,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4154.43464
+            },
+            {
+                "generacion": 32,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4192.423515
+            },
+            {
+                "generacion": 33,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4180.86289
+            },
+            {
+                "generacion": 34,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4166.36239
+            },
+            {
+                "generacion": 35,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4155.93389
+            },
+            {
+                "generacion": 36,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4182.56533625
+            },
+            {
+                "generacion": 37,
+                "mejor": 10127.4673,
+                "peor": 0,
+                "promedio": 4202.849211250001
+            },
+            {
+                "generacion": 38,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4234.28601125
+            },
+            {
+                "generacion": 39,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4102.02189375
+            },
+            {
+                "generacion": 40,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4101.74173875
+            },
+            {
+                "generacion": 41,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4090.1417387499996
+            },
+            {
+                "generacion": 42,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4013.3593212499995
+            },
+            {
+                "generacion": 43,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4110.19098625
+            },
+            {
+                "generacion": 44,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4122.1917324999995
+            },
+            {
+                "generacion": 45,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4084.5546612499993
+            },
+            {
+                "generacion": 46,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3960.1266937499995
+            },
+            {
+                "generacion": 47,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4004.9830725
+            },
+            {
+                "generacion": 48,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4033.1289425000004
+            },
+            {
+                "generacion": 49,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 4003.5728637499997
+            },
+            {
+                "generacion": 50,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3982.8105674999997
+            },
+            {
+                "generacion": 51,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3920.0515387500004
+            },
+            {
+                "generacion": 52,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3930.6520912499996
+            },
+            {
+                "generacion": 53,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3893.2445125
+            },
+            {
+                "generacion": 54,
+                "mejor": 10340.6615,
+                "peor": 0,
+                "promedio": 3906.6593412499997
+            },
+            {
+                "generacion": 55,
+                "mejor": 10407.715449999998,
+                "peor": 0,
+                "promedio": 4009.26147625
+            },
+            {
+                "generacion": 56,
+                "mejor": 10407.715449999998,
+                "peor": 0,
+                "promedio": 3949.43923
+            },
+            {
+                "generacion": 57,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3987.2273962500003
+            },
+            {
+                "generacion": 58,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3961.50035
+            },
+            {
+                "generacion": 59,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3953.32485
+            },
+            {
+                "generacion": 60,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3894.82419375
+            },
+            {
+                "generacion": 61,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3858.5680687500003
+            },
+            {
+                "generacion": 62,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3702.81471625
+            },
+            {
+                "generacion": 63,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3716.35151625
+            },
+            {
+                "generacion": 64,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3643.1581912499996
+            },
+            {
+                "generacion": 65,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3630.2763475
+            },
+            {
+                "generacion": 66,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3670.4006074999998
+            },
+            {
+                "generacion": 67,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3552.5823975
+            },
+            {
+                "generacion": 68,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3610.6528549999994
+            },
+            {
+                "generacion": 69,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3608.6132762499997
+            },
+            {
+                "generacion": 70,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3605.20053625
+            },
+            {
+                "generacion": 71,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3590.65116125
+            },
+            {
+                "generacion": 72,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3599.74174
+            },
+            {
+                "generacion": 73,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3527.12781375
+            },
+            {
+                "generacion": 74,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3534.2168924999996
+            },
+            {
+                "generacion": 75,
+                "mejor": 10472.498599999999,
+                "peor": 0,
+                "promedio": 3599.81452125
+            }
+        ],
+        "mapeo_asignaciones": [
+            {
+                "destino_nombre": "YOQUIVO",
+                "distancia_km": 47.628800000000005,
+                "id_asignacion_unica": 0,
+                "id_destino_perteneciente": 223,
+                "id_ruta_en_destino": 0,
+                "poblacion": 524
+            },
+            {
+                "destino_nombre": "YOQUIVO",
+                "distancia_km": 52.1,
+                "id_asignacion_unica": 1,
+                "id_destino_perteneciente": 223,
+                "id_ruta_en_destino": 1,
+                "poblacion": 524
+            },
+            {
+                "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                "distancia_km": 35.2,
+                "id_asignacion_unica": 2,
+                "id_destino_perteneciente": 150,
+                "id_ruta_en_destino": 0,
+                "poblacion": 350
+            }
+        ],
+        "mejores_soluciones": [
+            {
+                "fitness": 10162.07835,
+                "posicion": 1,
+                "resumen": {
+                    "combustible_total": 13.4833,
+                    "distancia_total": 157.70000000000002,
+                    "eficiencia_global": 152.69259009292978,
+                    "insumos_totales": [
+                        24,
+                        17,
+                        31,
+                        15,
+                        28,
+                        23,
+                        22,
+                        12,
+                        19,
+                        8,
+                        20,
+                        18,
+                        16,
+                        12,
+                        16,
+                        14,
+                        14,
+                        11,
+                        21,
+                        15,
+                        13,
+                        8,
+                        11,
+                        17,
+                        22
+                    ],
+                    "localidades_atendidas": 2,
+                    "peso_total": 2058.8,
+                    "utilizacion_promedio": 0.28594444444444445
+                },
+                "vehiculos": [
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 2.5696,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 208.86519302615196,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            5,
+                            5,
+                            7,
+                            1,
+                            7,
+                            6,
+                            7,
+                            3,
+                            2,
+                            2,
+                            5,
+                            8,
+                            6,
+                            5,
+                            1,
+                            5,
+                            4,
+                            0,
+                            5,
+                            4,
+                            5,
+                            4,
+                            0,
+                            3,
+                            7
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 12.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 7,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 7,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.4,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 6.4,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 10,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 4.8,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 40,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 15,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 54,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 280,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-1",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 536.7,
+                        "tiempo_viaje_horas": 0.5415384615384616,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.44725000000000004,
+                        "vehiculo_id": 0
+                    },
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 3.8032999999999997,
+                        "destino_nombre": "YOQUIVO",
+                        "destino_poblacion": 524,
+                        "distancia_km": 52.1,
+                        "eficiencia_kg_por_litro": 136.90742250151186,
+                        "id_destino_ruta": 1,
+                        "insumos_array": [
+                            6,
+                            4,
+                            8,
+                            6,
+                            8,
+                            5,
+                            6,
+                            6,
+                            4,
+                            0,
+                            6,
+                            1,
+                            1,
+                            1,
+                            6,
+                            4,
+                            6,
+                            4,
+                            4,
+                            3,
+                            4,
+                            0,
+                            2,
+                            4,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 6,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 10.0,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 6.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 0.8,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 1,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 7.199999999999999,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 28,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 7.199999999999999,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 72,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-2",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 520.7,
+                        "tiempo_viaje_horas": 0.8015384615384615,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.43391666666666673,
+                        "vehiculo_id": 1
+                    },
+                    {
+                        "capacidad_kg": 3000,
+                        "combustible_litros": 4.224,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 128.19602272727272,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            8,
+                            7,
+                            8,
+                            1,
+                            5,
+                            5,
+                            4,
+                            0,
+                            5,
+                            3,
+                            1,
+                            1,
+                            8,
+                            3,
+                            3,
+                            1,
+                            0,
+                            7,
+                            8,
+                            4,
+                            0,
+                            4,
+                            1,
+                            2,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 17.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 2.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.6000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 0.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 0.8,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 9,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 2,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 49,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 64,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 2,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 36,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "ISUZUE-4-1",
+                        "modelo": "Isuzu ELF 300",
+                        "peso_total_kg": 541.5,
+                        "tiempo_viaje_horas": 0.5866666666666667,
+                        "tipo": "camión ligero",
+                        "utilizacion_capacidad": 0.1805,
+                        "vehiculo_id": 2
+                    },
+                    {
+                        "capacidad_kg": 1800,
+                        "combustible_litros": 2.8864000000000005,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 159.3334257206208,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            5,
+                            1,
+                            8,
+                            7,
+                            8,
+                            7,
+                            5,
+                            3,
+                            8,
+                            3,
+                            8,
+                            8,
+                            1,
+                            3,
+                            6,
+                            4,
+                            4,
+                            0,
+                            4,
+                            4,
+                            4,
+                            0,
+                            8,
+                            8,
+                            3
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 12.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.6000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 4.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 6.4,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 4.8,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 16,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 144,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 120,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "SPRINTER-6-1",
+                        "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+                        "peso_total_kg": 459.9,
+                        "tiempo_viaje_horas": 0.4693333333333334,
+                        "tipo": "van de carga",
+                        "utilizacion_capacidad": 0.2555,
+                        "vehiculo_id": 3
+                    }
+                ]
+            },
+            {
+                "fitness": 10020.095449999999,
+                "posicion": 2,
+                "resumen": {
+                    "combustible_total": 14.8691,
+                    "distancia_total": 174.60000000000002,
+                    "eficiencia_global": 137.8832612599283,
+                    "insumos_totales": [
+                        20,
+                        13,
+                        29,
+                        21,
+                        28,
+                        23,
+                        22,
+                        12,
+                        19,
+                        8,
+                        20,
+                        18,
+                        16,
+                        11,
+                        16,
+                        14,
+                        14,
+                        16,
+                        19,
+                        11,
+                        13,
+                        8,
+                        12,
+                        17,
+                        22
+                    ],
+                    "localidades_atendidas": 2,
+                    "peso_total": 2050.2,
+                    "utilizacion_promedio": 0.28474999999999995
+                },
+                "vehiculos": [
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 3.8032999999999997,
+                        "destino_nombre": "YOQUIVO",
+                        "destino_poblacion": 524,
+                        "distancia_km": 52.1,
+                        "eficiencia_kg_por_litro": 141.48239686587965,
+                        "id_destino_ruta": 1,
+                        "insumos_array": [
+                            4,
+                            1,
+                            5,
+                            7,
+                            7,
+                            6,
+                            7,
+                            3,
+                            2,
+                            2,
+                            5,
+                            8,
+                            6,
+                            4,
+                            1,
+                            5,
+                            4,
+                            5,
+                            3,
+                            0,
+                            5,
+                            4,
+                            0,
+                            3,
+                            7
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 4,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 16,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 7,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.4,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 6.4,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 10,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 4.8,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 35,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 15,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 54,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 280,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-1",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 538.1,
+                        "tiempo_viaje_horas": 0.8015384615384615,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.4484166666666667,
+                        "vehiculo_id": 0
+                    },
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 2.5696,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 198.74688667496886,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            3,
+                            4,
+                            8,
+                            6,
+                            8,
+                            5,
+                            6,
+                            6,
+                            4,
+                            0,
+                            6,
+                            1,
+                            1,
+                            1,
+                            6,
+                            4,
+                            6,
+                            4,
+                            4,
+                            3,
+                            4,
+                            0,
+                            3,
+                            4,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 3,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 10.0,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 6.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 0.8,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 1,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 7.199999999999999,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 28,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 7.199999999999999,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 72,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-2",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 510.7,
+                        "tiempo_viaje_horas": 0.5415384615384616,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.4255833333333333,
+                        "vehiculo_id": 1
+                    },
+                    {
+                        "capacidad_kg": 3000,
+                        "combustible_litros": 4.224,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 125.35511363636363,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            5,
+                            7,
+                            8,
+                            1,
+                            5,
+                            5,
+                            4,
+                            0,
+                            5,
+                            3,
+                            1,
+                            1,
+                            8,
+                            3,
+                            3,
+                            1,
+                            0,
+                            7,
+                            8,
+                            4,
+                            0,
+                            4,
+                            1,
+                            2,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 17.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 2.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 7.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.6000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 0.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 0.8,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 9,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 2,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 49,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 64,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 20,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 2,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 36,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "ISUZUE-4-1",
+                        "modelo": "Isuzu ELF 300",
+                        "peso_total_kg": 529.5,
+                        "tiempo_viaje_horas": 0.5866666666666667,
+                        "tipo": "camión ligero",
+                        "utilizacion_capacidad": 0.1765,
+                        "vehiculo_id": 2
+                    },
+                    {
+                        "capacidad_kg": 1800,
+                        "combustible_litros": 4.272200000000001,
+                        "destino_nombre": "YOQUIVO",
+                        "destino_poblacion": 524,
+                        "distancia_km": 52.1,
+                        "eficiencia_kg_por_litro": 110.45831187678478,
+                        "id_destino_ruta": 1,
+                        "insumos_array": [
+                            8,
+                            1,
+                            8,
+                            7,
+                            8,
+                            7,
+                            5,
+                            3,
+                            8,
+                            3,
+                            8,
+                            8,
+                            1,
+                            3,
+                            6,
+                            4,
+                            4,
+                            0,
+                            4,
+                            4,
+                            4,
+                            0,
+                            8,
+                            8,
+                            3
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 12.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.6000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 4.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 6.4,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 4.8,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 16,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 144,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 120,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "SPRINTER-6-1",
+                        "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+                        "peso_total_kg": 471.9,
+                        "tiempo_viaje_horas": 0.6946666666666667,
+                        "tipo": "van de carga",
+                        "utilizacion_capacidad": 0.26216666666666666,
+                        "vehiculo_id": 3
+                    }
+                ]
+            },
+            {
+                "fitness": 8599.901499999998,
+                "posicion": 3,
+                "resumen": {
+                    "combustible_total": 14.717,
+                    "distancia_total": 174.60000000000002,
+                    "eficiencia_global": 112.00652306856017,
+                    "insumos_totales": [
+                        18,
+                        13,
+                        24,
+                        23,
+                        17,
+                        23,
+                        19,
+                        13,
+                        17,
+                        11,
+                        14,
+                        17,
+                        12,
+                        18,
+                        7,
+                        9,
+                        13,
+                        4,
+                        13,
+                        10,
+                        8,
+                        10,
+                        16,
+                        17,
+                        17
+                    ],
+                    "localidades_atendidas": 2,
+                    "peso_total": 1648.4,
+                    "utilizacion_promedio": 0.22894444444444445
+                },
+                "vehiculos": [
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 3.8032999999999997,
+                        "destino_nombre": "YOQUIVO",
+                        "destino_poblacion": 524,
+                        "distancia_km": 52.1,
+                        "eficiencia_kg_por_litro": 81.00859779665029,
+                        "id_destino_ruta": 1,
+                        "insumos_array": [
+                            6,
+                            1,
+                            8,
+                            7,
+                            5,
+                            1,
+                            7,
+                            4,
+                            0,
+                            3,
+                            1,
+                            2,
+                            2,
+                            4,
+                            2,
+                            3,
+                            2,
+                            0,
+                            3,
+                            0,
+                            0,
+                            0,
+                            6,
+                            8,
+                            1
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 6,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 2.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 6.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.6000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 0.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 1.6,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 2.4,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 24,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 144,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 40,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-1",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 308.1,
+                        "tiempo_viaje_horas": 0.8015384615384615,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.25675000000000003,
+                        "vehiculo_id": 0
+                    },
+                    {
+                        "capacidad_kg": 1200,
+                        "combustible_litros": 3.8032999999999997,
+                        "destino_nombre": "YOQUIVO",
+                        "destino_poblacion": 524,
+                        "distancia_km": 52.1,
+                        "eficiencia_kg_por_litro": 114.74246049483344,
+                        "id_destino_ruta": 1,
+                        "insumos_array": [
+                            4,
+                            5,
+                            3,
+                            1,
+                            1,
+                            7,
+                            6,
+                            3,
+                            6,
+                            0,
+                            6,
+                            1,
+                            4,
+                            4,
+                            1,
+                            0,
+                            6,
+                            0,
+                            0,
+                            6,
+                            0,
+                            3,
+                            2,
+                            4,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 4,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 16,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 12.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 1,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 0.8,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 7.199999999999999,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 14.399999999999999,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 15,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 72,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "TOYOTA-1-2",
+                        "modelo": "Toyota Hilux Diesel 4x4",
+                        "peso_total_kg": 436.4,
+                        "tiempo_viaje_horas": 0.8015384615384615,
+                        "tipo": "camioneta pickup",
+                        "utilizacion_capacidad": 0.36366666666666664,
+                        "vehiculo_id": 1
+                    },
+                    {
+                        "capacidad_kg": 3000,
+                        "combustible_litros": 4.224,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 109.2092803030303,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            1,
+                            2,
+                            5,
+                            8,
+                            3,
+                            8,
+                            3,
+                            0,
+                            3,
+                            1,
+                            1,
+                            8,
+                            2,
+                            3,
+                            1,
+                            3,
+                            1,
+                            1,
+                            6,
+                            0,
+                            4,
+                            1,
+                            2,
+                            4,
+                            6
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 1,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 5.0,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 12.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 12.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 4.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 0.2,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 0.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 6.4,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 3,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 1.2,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 7,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 48,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 5,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 2,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 4,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 72,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 240,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "ISUZUE-4-1",
+                        "modelo": "Isuzu ELF 300",
+                        "peso_total_kg": 461.3,
+                        "tiempo_viaje_horas": 0.5866666666666667,
+                        "tipo": "camión ligero",
+                        "utilizacion_capacidad": 0.15376666666666666,
+                        "vehiculo_id": 2
+                    },
+                    {
+                        "capacidad_kg": 1800,
+                        "combustible_litros": 2.8864000000000005,
+                        "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                        "destino_poblacion": 350,
+                        "distancia_km": 35.2,
+                        "eficiencia_kg_por_litro": 153.33980044345896,
+                        "id_destino_ruta": 2,
+                        "insumos_array": [
+                            7,
+                            5,
+                            8,
+                            7,
+                            8,
+                            7,
+                            3,
+                            6,
+                            8,
+                            7,
+                            6,
+                            6,
+                            4,
+                            7,
+                            3,
+                            3,
+                            4,
+                            3,
+                            4,
+                            4,
+                            4,
+                            6,
+                            6,
+                            1,
+                            4
+                        ],
+                        "insumos_detalle": [
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 0,
+                                "nombre": "Granos y cereales",
+                                "peso_total_kg": 28,
+                                "peso_unitario": 4
+                            },
+                            {
+                                "cantidad": 5,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 1,
+                                "nombre": "Proteínas enlatadas/secas",
+                                "peso_total_kg": 12.5,
+                                "peso_unitario": 2.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 2,
+                                "nombre": "Aceites y grasas",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 3,
+                                "nombre": "Lácteos deshidratados",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Alimentación básica",
+                                "id_insumo": 4,
+                                "nombre": "Endulzantes y condimentos",
+                                "peso_total_kg": 8,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 5,
+                                "nombre": "Jabones y shampoo",
+                                "peso_total_kg": 10.5,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 6,
+                                "nombre": "Salud bucal",
+                                "peso_total_kg": 1.5,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 7,
+                                "nombre": "Protección femenina e infantil",
+                                "peso_total_kg": 9.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 8,
+                                "categoria": "Higiene y cuidado personal",
+                                "id_insumo": 8,
+                                "nombre": "Artículos de aseo personal",
+                                "peso_total_kg": 12.0,
+                                "peso_unitario": 1.5
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 9,
+                                "nombre": "Analgésicos básicos",
+                                "peso_total_kg": 1.4000000000000001,
+                                "peso_unitario": 0.2
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 10,
+                                "nombre": "Antisépticos",
+                                "peso_total_kg": 3.0,
+                                "peso_unitario": 0.5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 11,
+                                "nombre": "Material de curación",
+                                "peso_total_kg": 4.800000000000001,
+                                "peso_unitario": 0.8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Medicamentos e insumos médicos",
+                                "id_insumo": 12,
+                                "nombre": "Sueros y electrolitos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 7,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 13,
+                                "nombre": "Linternas y baterías",
+                                "peso_total_kg": 7,
+                                "peso_unitario": 1
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 14,
+                                "nombre": "Mantas térmicas",
+                                "peso_total_kg": 9,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 15,
+                                "nombre": "Herramientas multipropósito",
+                                "peso_total_kg": 6,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Equipamiento de emergencia",
+                                "id_insumo": 16,
+                                "nombre": "Kits de purificación de agua",
+                                "peso_total_kg": 4.8,
+                                "peso_unitario": 1.2
+                            },
+                            {
+                                "cantidad": 3,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 17,
+                                "nombre": "Carpas y toldos",
+                                "peso_total_kg": 21,
+                                "peso_unitario": 7
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 18,
+                                "nombre": "Colchonetas",
+                                "peso_total_kg": 32,
+                                "peso_unitario": 8
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Artículos para refugio",
+                                "id_insumo": 19,
+                                "nombre": "Mosquiteros",
+                                "peso_total_kg": 9.6,
+                                "peso_unitario": 2.4
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 20,
+                                "nombre": "Contenedores herméticos",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 3
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 21,
+                                "nombre": "Cubetas y recipientes",
+                                "peso_total_kg": 30,
+                                "peso_unitario": 5
+                            },
+                            {
+                                "cantidad": 6,
+                                "categoria": "Logística y almacenamiento",
+                                "id_insumo": 22,
+                                "nombre": "Material de embalaje",
+                                "peso_total_kg": 12,
+                                "peso_unitario": 2
+                            },
+                            {
+                                "cantidad": 1,
+                                "categoria": "Agua",
+                                "id_insumo": 23,
+                                "nombre": "Botellas de agua potable",
+                                "peso_total_kg": 18,
+                                "peso_unitario": 18
+                            },
+                            {
+                                "cantidad": 4,
+                                "categoria": "Agua",
+                                "id_insumo": 24,
+                                "nombre": "Garrafones y bidones",
+                                "peso_total_kg": 160,
+                                "peso_unitario": 40
+                            }
+                        ],
+                        "matricula": "SPRINTER-6-1",
+                        "modelo": "Mercedes-Benz Sprinter Cargo Diesel",
+                        "peso_total_kg": 442.6,
+                        "tiempo_viaje_horas": 0.4693333333333334,
+                        "tipo": "van de carga",
+                        "utilizacion_capacidad": 0.2458888888888889,
+                        "vehiculo_id": 3
+                    }
+                ]
+            }
+        ],
+        "panel_control": {
+            "cronologia_entregas": [
+                {
+                    "destino": "SAN JOSÉ DE GUIDAMOA",
+                    "estado": "COMPLETADA",
+                    "peso_entregado_kg": 541.5,
+                    "poblacion_beneficiada": 350,
+                    "razon_falla": null,
+                    "tiempo_estimado_horas": 0.5866666666666667,
+                    "vehiculo_id": 2
+                },
+                {
+                    "destino": "YOQUIVO",
+                    "estado": "COMPLETADA",
+                    "peso_entregado_kg": 495.6,
+                    "poblacion_beneficiada": 524,
+                    "razon_falla": null,
+                    "tiempo_estimado_horas": 0.6946666666666667,
+                    "vehiculo_id": 3
+                },
+                {
+                    "destino": "YOQUIVO",
+                    "estado": "COMPLETADA",
+                    "peso_entregado_kg": 562.6,
+                    "poblacion_beneficiada": 524,
+                    "razon_falla": null,
+                    "tiempo_estimado_horas": 0.8015384615384615,
+                    "vehiculo_id": 0
+                },
+                {
+                    "destino": "YOQUIVO",
+                    "estado": "COMPLETADA",
+                    "peso_entregado_kg": 537.3,
+                    "poblacion_beneficiada": 524,
+                    "razon_falla": null,
+                    "tiempo_estimado_horas": 0.8015384615384615,
+                    "vehiculo_id": 1
+                }
+            ],
+            "estados_destinos": [
+                {
+                    "entregas_exitosas": 3,
+                    "entregas_fallidas": 0,
+                    "nombre": "YOQUIVO",
+                    "peso_total_kg": 1595.5,
+                    "poblacion": 524,
+                    "vehiculos_asignados": 3
+                },
+                {
+                    "entregas_exitosas": 1,
+                    "entregas_fallidas": 0,
+                    "nombre": "SAN JOSÉ DE GUIDAMOA",
+                    "peso_total_kg": 541.5,
+                    "poblacion": 350,
+                    "vehiculos_asignados": 1
+                }
+            ],
+            "metricas_eficiencia": {
+                "entregas_completadas": 4,
+                "entregas_fallidas": 0,
+                "peso_total_entregado_kg": 2137.0,
+                "poblacion_total_beneficiada": 1922,
+                "promedio_kg_por_persona": 1.1118626430801248,
+                "tasa_exito_porcentual": 100.0
+            }
+        },
+        "parametros_ag": {
+            "elitismo_rate": 0.15,
+            "generaciones": 75,
+            "poblacion_size": 40,
+            "prob_cruza": 0.85,
+            "prob_mutacion": 0.12
+        },
+        "reportes_optimizacion": {
+            "analisis_evolucion": {
+                "convergencia": {
+                    "estabilidad_porcentual": 100.0,
+                    "estado": "CONVERGIDO",
+                    "variacion_ultimas_10": 0.0
+                },
+                "fitness_final": 10472.498599999999,
+                "fitness_inicial": 9367.145449999998,
+                "generaciones_totales": 75,
+                "mejora_absoluta": 1105.3531500000008,
+                "mejora_porcentual": 11.80032012847629
+            },
+            "configuraciones_comparadas": [
+                {
+                    "configuracion_id": 1,
+                    "diversidad_vehiculos": 3,
+                    "estrategia_poblacional": "ALTA_POBLACION",
+                    "fitness": 10162.07835,
+                    "tipos_vehiculos_usados": [
+                        "van de carga",
+                        "camión ligero",
+                        "camioneta pickup"
+                    ]
+                },
+                {
+                    "configuracion_id": 2,
+                    "diversidad_vehiculos": 3,
+                    "estrategia_poblacional": "ALTA_POBLACION",
+                    "fitness": 10020.095449999999,
+                    "tipos_vehiculos_usados": [
+                        "van de carga",
+                        "camión ligero",
+                        "camioneta pickup"
+                    ]
+                },
+                {
+                    "configuracion_id": 3,
+                    "diversidad_vehiculos": 3,
+                    "estrategia_poblacional": "ALTA_POBLACION",
+                    "fitness": 8599.901499999998,
+                    "tipos_vehiculos_usados": [
+                        "van de carga",
+                        "camión ligero",
+                        "camioneta pickup"
+                    ]
+                }
+            ],
+            "evolucion_fitness": [
+                {
+                    "generacion": 1,
+                    "mejor": 9367.145449999998,
+                    "peor": 0,
+                    "promedio": 3772.2847775
+                },
+                {
+                    "generacion": 2,
+                    "mejor": 9367.145449999998,
+                    "peor": 0,
+                    "promedio": 3842.6953187499994
+                },
+                {
+                    "generacion": 3,
+                    "mejor": 9367.145449999998,
+                    "peor": 0,
+                    "promedio": 4026.7193125
+                },
+                {
+                    "generacion": 4,
+                    "mejor": 9367.145449999998,
+                    "peor": 0,
+                    "promedio": 4038.77759125
+                },
+                {
+                    "generacion": 5,
+                    "mejor": 9367.145449999998,
+                    "peor": 0,
+                    "promedio": 4125.0776675
+                },
+                {
+                    "generacion": 6,
+                    "mejor": 9692.618349999999,
+                    "peor": 0,
+                    "promedio": 4139.16763
+                },
+                {
+                    "generacion": 7,
+                    "mejor": 9692.618349999999,
+                    "peor": 0,
+                    "promedio": 4282.96262375
+                },
+                {
+                    "generacion": 8,
+                    "mejor": 9692.618349999999,
+                    "peor": 0,
+                    "promedio": 4168.315122499999
+                },
+                {
+                    "generacion": 9,
+                    "mejor": 9692.618349999999,
+                    "peor": 0,
+                    "promedio": 4177.1437587499995
+                },
+                {
+                    "generacion": 10,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4157.97106875
+                },
+                {
+                    "generacion": 11,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4192.47619375
+                },
+                {
+                    "generacion": 12,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4192.99044375
+                },
+                {
+                    "generacion": 13,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4139.96981875
+                },
+                {
+                    "generacion": 14,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4070.7249524999997
+                },
+                {
+                    "generacion": 15,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4076.8063325000003
+                },
+                {
+                    "generacion": 16,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4055.434025
+                },
+                {
+                    "generacion": 17,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4205.58287375
+                },
+                {
+                    "generacion": 18,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4285.9550875
+                },
+                {
+                    "generacion": 19,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4271.26654
+                },
+                {
+                    "generacion": 20,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4232.686715
+                },
+                {
+                    "generacion": 21,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4226.2770900000005
+                },
+                {
+                    "generacion": 22,
+                    "mejor": 9723.6402,
+                    "peor": 0,
+                    "promedio": 4166.8329925
+                },
+                {
+                    "generacion": 23,
+                    "mejor": 9745.0023,
+                    "peor": 0,
+                    "promedio": 4098.17515875
+                },
+                {
+                    "generacion": 24,
+                    "mejor": 9745.0023,
+                    "peor": 0,
+                    "promedio": 4107.59423875
+                },
+                {
+                    "generacion": 25,
+                    "mejor": 10022.03545,
+                    "peor": 0,
+                    "promedio": 4032.13360875
+                },
+                {
+                    "generacion": 26,
+                    "mejor": 10022.03545,
+                    "peor": 0,
+                    "promedio": 4123.07960875
+                },
+                {
+                    "generacion": 27,
+                    "mejor": 10022.03545,
+                    "peor": 0,
+                    "promedio": 4097.68822375
+                },
+                {
+                    "generacion": 28,
+                    "mejor": 10022.03545,
+                    "peor": 0,
+                    "promedio": 4107.84505375
+                },
+                {
+                    "generacion": 29,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4117.3876
+                },
+                {
+                    "generacion": 30,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4128.8531
+                },
+                {
+                    "generacion": 31,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4154.43464
+                },
+                {
+                    "generacion": 32,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4192.423515
+                },
+                {
+                    "generacion": 33,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4180.86289
+                },
+                {
+                    "generacion": 34,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4166.36239
+                },
+                {
+                    "generacion": 35,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4155.93389
+                },
+                {
+                    "generacion": 36,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4182.56533625
+                },
+                {
+                    "generacion": 37,
+                    "mejor": 10127.4673,
+                    "peor": 0,
+                    "promedio": 4202.849211250001
+                },
+                {
+                    "generacion": 38,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4234.28601125
+                },
+                {
+                    "generacion": 39,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4102.02189375
+                },
+                {
+                    "generacion": 40,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4101.74173875
+                },
+                {
+                    "generacion": 41,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4090.1417387499996
+                },
+                {
+                    "generacion": 42,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4013.3593212499995
+                },
+                {
+                    "generacion": 43,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4110.19098625
+                },
+                {
+                    "generacion": 44,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4122.1917324999995
+                },
+                {
+                    "generacion": 45,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4084.5546612499993
+                },
+                {
+                    "generacion": 46,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3960.1266937499995
+                },
+                {
+                    "generacion": 47,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4004.9830725
+                },
+                {
+                    "generacion": 48,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4033.1289425000004
+                },
+                {
+                    "generacion": 49,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 4003.5728637499997
+                },
+                {
+                    "generacion": 50,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3982.8105674999997
+                },
+                {
+                    "generacion": 51,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3920.0515387500004
+                },
+                {
+                    "generacion": 52,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3930.6520912499996
+                },
+                {
+                    "generacion": 53,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3893.2445125
+                },
+                {
+                    "generacion": 54,
+                    "mejor": 10340.6615,
+                    "peor": 0,
+                    "promedio": 3906.6593412499997
+                },
+                {
+                    "generacion": 55,
+                    "mejor": 10407.715449999998,
+                    "peor": 0,
+                    "promedio": 4009.26147625
+                },
+                {
+                    "generacion": 56,
+                    "mejor": 10407.715449999998,
+                    "peor": 0,
+                    "promedio": 3949.43923
+                },
+                {
+                    "generacion": 57,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3987.2273962500003
+                },
+                {
+                    "generacion": 58,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3961.50035
+                },
+                {
+                    "generacion": 59,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3953.32485
+                },
+                {
+                    "generacion": 60,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3894.82419375
+                },
+                {
+                    "generacion": 61,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3858.5680687500003
+                },
+                {
+                    "generacion": 62,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3702.81471625
+                },
+                {
+                    "generacion": 63,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3716.35151625
+                },
+                {
+                    "generacion": 64,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3643.1581912499996
+                },
+                {
+                    "generacion": 65,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3630.2763475
+                },
+                {
+                    "generacion": 66,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3670.4006074999998
+                },
+                {
+                    "generacion": 67,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3552.5823975
+                },
+                {
+                    "generacion": 68,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3610.6528549999994
+                },
+                {
+                    "generacion": 69,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3608.6132762499997
+                },
+                {
+                    "generacion": 70,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3605.20053625
+                },
+                {
+                    "generacion": 71,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3590.65116125
+                },
+                {
+                    "generacion": 72,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3599.74174
+                },
+                {
+                    "generacion": 73,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3527.12781375
+                },
+                {
+                    "generacion": 74,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3534.2168924999996
+                },
+                {
+                    "generacion": 75,
+                    "mejor": 10472.498599999999,
+                    "peor": 0,
+                    "promedio": 3599.81452125
+                }
+            ],
+            "tabla_top_3": [
+                {
+                    "combustible_total_litros": 13.4833,
+                    "eficiencia_peso_combustible": 152.69259009292978,
+                    "fitness": 10162.07835,
+                    "localidades_atendidas": 2,
+                    "peso_total_kg": 2058.8,
+                    "posicion": 1,
+                    "vehiculos_utilizados": 4
+                },
+                {
+                    "combustible_total_litros": 14.8691,
+                    "eficiencia_peso_combustible": 137.8832612599283,
+                    "fitness": 10020.095449999999,
+                    "localidades_atendidas": 2,
+                    "peso_total_kg": 2050.2,
+                    "posicion": 2,
+                    "vehiculos_utilizados": 4
+                },
+                {
+                    "combustible_total_litros": 14.717,
+                    "eficiencia_peso_combustible": 112.00652306856017,
+                    "fitness": 8599.901499999998,
+                    "localidades_atendidas": 2,
+                    "peso_total_kg": 1648.4,
+                    "posicion": 3,
+                    "vehiculos_utilizados": 4
+                }
+            ]
+        },
+        "rutas_optimizadas": {
+            "optimizacion_global": {
+                "ahorro_distancia_total": -4.471199999999996,
+                "destinos_con_multiples_rutas": 1
+            },
+            "rutas_por_destino": {
+                "150": {
+                    "alternativas": [],
+                    "destino_nombre": "SAN JOSÉ DE GUIDAMOA",
+                    "distancia_seleccionada": 35.2,
+                    "ruta_seleccionada": 0,
+                    "rutas_disponibles": 1
+                },
+                "223": {
+                    "alternativas": [
+                        {
+                            "diferencia_km": -4.471199999999996,
+                            "distancia_km": 47.628800000000005,
+                            "ruta_id": 0
+                        }
+                    ],
+                    "destino_nombre": "YOQUIVO",
+                    "distancia_seleccionada": 52.1,
+                    "ruta_seleccionada": 1,
+                    "rutas_disponibles": 2
+                }
+            }
+        }
+    },
+    "message": "Algoritmo genético ejecutado exitosamente",
+    "success": true
+}
