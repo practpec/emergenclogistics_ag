@@ -9,24 +9,20 @@ import VehicleSelector from '../components/AG/VehicleSelector';
 import DisasterSelector from '../components/AG/DisasterSelector';
 import RouteConfigurator from '../components/AG/RouteConfigurator';
 import ScenarioPreview from '../components/AG/ScenarioPreview';
+import AGResultsPage from '../components/AG/AGResultsPage';
 
 const AGPage = () => {
-  // Obtener mapData desde location.state en tu archivo real
   const location = useLocation();
   const { mapData } = location.state || {};
   
-  // // Para este ejemplo, asumo que mapData se pasa como prop o está disponible
-  // const mapData = window.location.state?.mapData || null;
   const { vehicles, disasters, isLoading: isLoadingInitialData } = useAG();
 
-  // Estados para la configuración
   const [selectedVehicles, setSelectedVehicles] = useState({});
   const [customVehicles, setCustomVehicles] = useState([]);
   const [selectedDisaster, setSelectedDisaster] = useState('');
   const [routeStates, setRouteStates] = useState({});
   
-  // Estados para el flujo de la aplicación
-  const [currentView, setCurrentView] = useState('config'); // 'config' | 'results'
+  const [currentView, setCurrentView] = useState('config');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [scenarioResult, setScenarioResult] = useState(null);
 
@@ -43,11 +39,44 @@ const AGPage = () => {
       for (let i = 1; i <= quantity; i++) {
         const modelPrefix = (vehicleInfo.modelo || 'VEHICULO').replace(/[^A-Z0-9]/ig, '').substring(0, 6).toUpperCase();
         const uniqueMatricula = `${modelPrefix}-${vehicleInfo.vehiculo_id}-${i}`;
-        vehiclesList.push({ ...vehicleInfo, matricula: uniqueMatricula });
+        vehiclesList.push({ 
+          ...vehicleInfo, 
+          matricula: uniqueMatricula,
+          velocidad_kmh: parseFloat(vehicleInfo.velocidad_kmh) || 60,
+          consumo_litros_km: parseFloat(vehicleInfo.consumo_litros_km) || 0.1,
+          maximo_peso_ton: parseFloat(vehicleInfo.maximo_peso_ton) || 1,
+          capacidad_kg: parseFloat(vehicleInfo.capacidad_kg) || parseFloat(vehicleInfo.maximo_peso_ton) * 1000 || 1000
+        });
       }
       return vehiclesList;
     });
   }, [selectedVehicles, allVehicles]);
+
+  const normalizeMapData = (mapData) => {
+    if (!mapData || !mapData.rutas_data) return mapData;
+
+    return {
+      ...mapData,
+      rutas_data: mapData.rutas_data.map((destino, index) => ({
+        ...destino,
+        indice: index,
+        destino: {
+          ...destino.destino,
+          poblacion: parseInt(destino.destino.poblacion) || 100,
+          clave_localidad: parseInt(destino.destino.clave_localidad) || index + 1,
+          lat: parseFloat(destino.destino.lat) || 0,
+          lng: parseFloat(destino.destino.lng) || 0
+        },
+        rutas: (destino.rutas || []).map(ruta => ({
+          ...ruta,
+          distancia: {
+            ...ruta.distancia,
+            value: parseFloat(ruta.distancia?.value) || 0
+          }
+        }))
+      }))
+    };
+  };
 
   const handleRunScenario = async () => {
     if (!mapData) {
@@ -55,16 +84,35 @@ const AGPage = () => {
         return;
     }
 
+    const normalizedMapData = normalizeMapData(mapData);
+
     const scenarioData = {
       map_data: {
-        nodo_principal: mapData.nodo_principal,
-        nodos_secundarios: mapData.nodos_secundarios,
-        rutas_data: mapData.rutas_data,
-        municipio_info: mapData.municipio_info,
+        nodo_principal: {
+          ...normalizedMapData.nodo_principal,
+          lat: parseFloat(normalizedMapData.nodo_principal.lat) || 0,
+          lng: parseFloat(normalizedMapData.nodo_principal.lng) || 0,
+          poblacion: parseInt(normalizedMapData.nodo_principal.poblacion) || 100
+        },
+        nodos_secundarios: (normalizedMapData.nodos_secundarios || []).map(nodo => ({
+          ...nodo,
+          lat: parseFloat(nodo.lat) || 0,
+          lng: parseFloat(nodo.lng) || 0,
+          poblacion: parseInt(nodo.poblacion) || 100,
+          distancia_directa: parseFloat(nodo.distancia_directa) || 0
+        })),
+        rutas_data: normalizedMapData.rutas_data,
+        municipio_info: normalizedMapData.municipio_info,
       },
       scenario_config: {
         tipo_desastre: selectedDisaster,
-        vehiculos_disponibles: expandedFleet.map(({ vehiculo_id, ...rest }) => rest),
+        vehiculos_disponibles: expandedFleet.map(({ vehiculo_id, ...rest }) => ({
+          ...rest,
+          velocidad_kmh: parseFloat(rest.velocidad_kmh) || 60,
+          consumo_litros_km: parseFloat(rest.consumo_litros_km) || 0.1,
+          maximo_peso_ton: parseFloat(rest.maximo_peso_ton) || 1,
+          capacidad_kg: parseFloat(rest.capacidad_kg) || 1000
+        })),
         rutas_estado: Object.values(routeStates).flat(),
       }
     };
@@ -87,10 +135,6 @@ const AGPage = () => {
       toast.dismiss();
       const apiError = handleApiError(error);
       toast.error(`Error de API: ${apiError.message}`);
-      
-      // Log para debug (temporal)
-      console.error('Error completo:', error);
-      console.error('Datos enviados:', scenarioData);
     } finally {
       setIsSubmitting(false);
     }
@@ -101,7 +145,6 @@ const AGPage = () => {
   };
 
   const handleNavigateToMap = () => {
-    // Esto se manejaría con React Router en una implementación completa
     window.location.href = '/mapas';
   };
 
@@ -113,39 +156,18 @@ const AGPage = () => {
     );
   }
 
-  // Mostrar resultados si están disponibles y la vista está en 'results'
+  // Mostrar página de resultados completa
   if (currentView === 'results' && scenarioResult) {
     return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-yellow-400 mb-2">Resultados del Algoritmo Genético</h1>
-          <p className="text-gray-300">Análisis completo de la optimización logística</p>
-        </div>
-
-        {/* Mostrar datos del resultado */}
-        <Card>
-          <h2 className="text-xl font-semibold text-green-400 mb-4">✅ Escenario Procesado</h2>
-          <div className="bg-gray-900 p-4 rounded-md">
-            <pre className="text-gray-200 text-sm overflow-x-auto whitespace-pre-wrap">
-              {JSON.stringify(scenarioResult, null, 2)}
-            </pre>
-          </div>
-        </Card>
-
-        {/* Botones de navegación */}
-        <div className="flex justify-between">
-          <Button onClick={handleBackToConfig} variant="secondary">
-            ← Volver a Configuración
-          </Button>
-          <Button onClick={handleNavigateToMap} variant="secondary">
-            Generar Nuevo Mapa →
-          </Button>
-        </div>
-      </div>
+      <AGResultsPage 
+        scenarioResult={scenarioResult}
+        mapData={mapData}
+        onNavigateBack={handleBackToConfig}
+        onNavigateToMap={handleNavigateToMap}
+      />
     );
   }
 
-  // Mostrar configuración
   return (
     <div className="space-y-8">
       <div className="text-center">
@@ -216,7 +238,6 @@ const AGPage = () => {
         </div>
       </div>
 
-      {/* Información del mapa actual */}
       {mapData && (
         <Card>
           <h3 className="text-xl font-semibold text-green-400 mb-3">📍 Datos del Mapa Cargado</h3>
@@ -239,7 +260,6 @@ const AGPage = () => {
         </Card>
       )}
 
-      {/* Vista previa y ejecución */}
       {isVehicleSelected && selectedDisaster && mapData && (
         <ScenarioPreview 
           expandedFleet={expandedFleet}
@@ -250,7 +270,6 @@ const AGPage = () => {
         />
       )}
 
-      {/* Botón para ver resultados anteriores si existen */}
       {scenarioResult && currentView === 'config' && (
         <Card>
           <div className="text-center">
