@@ -1,6 +1,6 @@
 # algorithms/evaluation.py
 from typing import List, Dict, Any
-from .models import Individual
+from ..models import Individual
 
 class FitnessEvaluator:
     """Evaluador de fitness mejorado con penalizaciones más estrictas"""

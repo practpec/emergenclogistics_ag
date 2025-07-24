@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, current_app
 from core.exceptions import EmergencLogisticsException, ValidationError, GeneticAlgorithmError
 from core.validators import BaseValidator
-from services.algorithms.genetic_algorithm import LogisticsGeneticAlgorithm
+from services.algorithms.main.genetic_algorithm import LogisticsGeneticAlgorithm
 from utils.helpers import ResponseFormatter
 
 ag_bp = Blueprint('ag', __name__)

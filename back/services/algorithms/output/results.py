@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from .models import Individual
+from ..models import Individual
 
 class ResultGenerator:
     """Generador de resultados y análisis del AG"""

@@ -1,7 +1,6 @@
-# algorithms/initialization.py
 import random
 from typing import List, Dict, Any
-from .models import Individual, VehicleAssignment
+from ..models import Individual, VehicleAssignment
 
 class PopulationInitializer:
     """Inicializador de población mejorado con estrategias inteligentes"""

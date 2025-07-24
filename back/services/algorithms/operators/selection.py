@@ -1,5 +1,5 @@
 from typing import List, Tuple
-from .models import Individual
+from ..models import Individual
 
 class ParentSelector:
     """Paso 3: Selección de padres"""

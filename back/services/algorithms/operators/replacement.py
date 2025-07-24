@@ -1,6 +1,6 @@
 import random
 from typing import List
-from .models import Individual
+from ..models import Individual
 
 class ReplacementOperator:
     """Paso 6: Sustitución (poda)"""
