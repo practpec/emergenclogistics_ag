@@ -1,85 +1,46 @@
 import { Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 
-// Configurar iconos de Leaflet
-delete L.Icon.Default.prototype._getIconUrl
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-})
+});
 
-// Icono para nodo principal
-const principalIcon = new L.DivIcon({
-  className: 'custom-div-icon',
-  html: `
-    <div class="marker-pin principal-marker">
-      <div class="pulse"></div>
-    </div>
-  `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-})
+const createCustomIcon = (iconConfig) => {
+  return new L.DivIcon({
+    className: 'custom-div-icon',
+    html: `
+      <div class="marker-pin" style="background-color: ${iconConfig.color};">
+        ${iconConfig.pulse ? '<div class="pulse"></div>' : ''}
+        ${iconConfig.label ? `<span class="marker-number">${iconConfig.label}</span>` : ''}
+      </div>
+    `,
+    iconSize: [30, 42],
+    iconAnchor: [15, 42],
+    popupAnchor: [0, -45]
+  });
+};
 
-// Función para crear icono de nodo secundario
-const createSecondaryIcon = (index) => new L.DivIcon({
-  className: 'custom-div-icon',
-  html: `
-    <div class="marker-pin secondary-marker">
-      <span class="marker-number">${index + 1}</span>
-    </div>
-  `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-})
-
-const MapMarkers = ({ nodoPrincipal, nodosSecundarios = [] }) => {
+const MapMarkers = ({ markers = [] }) => {
   return (
     <>
-      {/* Nodo Principal */}
-      {nodoPrincipal && (
+      {markers.map((markerInfo, index) => (
         <Marker
-          position={[nodoPrincipal.lat, nodoPrincipal.lng]}
-          icon={principalIcon}
+          key={index}
+          position={markerInfo.position}
+          icon={createCustomIcon(markerInfo.iconConfig)}
         >
           <Popup>
-            <div className="text-center min-w-[150px]">
-              <h4 className="font-semibold text-yellow-400 mb-2">
-                {nodoPrincipal.nombre_localidad || nodoPrincipal.nombre}
+            <div className="min-w-[200px] text-sm text-gray-200">
+              <h4 className="font-bold text-base mb-2" style={{ color: markerInfo.iconConfig.color }}>
+                {markerInfo.popup.title}
               </h4>
-              <div className="text-sm text-gray-600">
-                <p><strong>Tipo:</strong> Nodo Principal</p>
-                <p><strong>Coordenadas:</strong><br/>{nodoPrincipal.lat.toFixed(4)}, {nodoPrincipal.lng.toFixed(4)}</p>
-                {nodoPrincipal.poblacion && (
-                  <p><strong>Población:</strong> {nodoPrincipal.poblacion.toLocaleString()}</p>
-                )}
-              </div>
-            </div>
-          </Popup>
-        </Marker>
-      )}
-      
-      {/* Nodos Secundarios */}
-      {nodosSecundarios.map((nodo, index) => (
-        <Marker
-          key={`secondary-${index}`}
-          position={[nodo.lat, nodo.lng]}
-          icon={createSecondaryIcon(index)}
-        >
-          <Popup>
-            <div className="text-center min-w-[150px]">
-              <h4 className="font-semibold text-blue-400 mb-2">
-                Destino {index + 1}
-              </h4>
-              <div className="text-sm text-gray-600">
-                <p><strong>Localidad:</strong> {nodo.nombre_localidad || nodo.nombre}</p>
-                <p><strong>Coordenadas:</strong><br/>{nodo.lat.toFixed(4)}, {nodo.lng.toFixed(4)}</p>
-                {nodo.poblacion && (
-                  <p><strong>Población:</strong> {nodo.poblacion.toLocaleString()}</p>
-                )}
-                {nodo.distancia_directa && (
-                  <p><strong>Distancia directa:</strong> {nodo.distancia_directa} km</p>
-                )}
+              <div className="space-y-1 text-gray-400">
+                {markerInfo.popup.content.map((line, i) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: line }} />
+                ))}
               </div>
             </div>
           </Popup>
@@ -89,4 +50,4 @@ const MapMarkers = ({ nodoPrincipal, nodosSecundarios = [] }) => {
   )
 }
 
-export default MapMarkers
+export default MapMarkers;

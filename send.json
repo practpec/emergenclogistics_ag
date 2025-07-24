@@ -1,0 +1,25 @@
+{
+  "destinos": ["clave_localidad1", "clave_localidad2"],
+  "rutas": [
+    {"ruta_id": "1", "destino": "clave_localidad1", "distancia": 15.5},
+    {"ruta_id": "2", "destino": "clave_localidad1", "distancia": 18.2}
+  ],
+  "vehiculos": [
+    {"vehiculo_id": "1", "modelo": "Toyota Hilux", "matricula": "ABC123"}
+  ],
+  "rutas_estado": [
+    {
+      "ruta_id": "1", 
+      "estado": "abierta", 
+      "vehiculos_permitidos": ["camioneta pickup", "van de carga"]
+    }
+  ],
+  "tipo_desastre": "inundacion",
+  "parametros_ag": {
+    "poblacion_size": "number",
+    "generaciones": "number",
+    "prob_cruza": "number",
+    "prob_mutacion": "number",
+    "elitismo_rate": "number"
+  }
+}

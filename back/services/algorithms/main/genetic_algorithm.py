@@ -1,4 +1,3 @@
-# algorithms/genetic_algorithm_refactored.py
 from typing import List, Dict, Any
 from core.base_service import BaseService
 from core.exceptions import GeneticAlgorithmError
@@ -19,13 +18,8 @@ class LogisticsGeneticAlgorithm(BaseService):
     def __init__(self, scenario_data: Dict[str, Any], parametros_ag: Dict[str, Any] = None):
         super().__init__()
         
-        # Gestor centralizado de datos
         self.data_manager = AlgorithmDataManager(scenario_data)
-        
-        # Configurar parámetros del AG
         self._configure_parameters(parametros_ag)
-        
-        # Inicializar operadores simplificados
         self._initialize_operators()
 
     def _configure_parameters(self, parametros_ag: Dict[str, Any] = None):
@@ -139,20 +133,16 @@ class LogisticsGeneticAlgorithm(BaseService):
                     'peor': fitness_peor
                 })
                 
-                # Log periódico
                 if generacion % 50 == 0:
                     self.log_info(f"Generación {generacion}: Mejor={fitness_mejor:.2f}, Promedio={fitness_promedio:.2f}")
                 
-                # Criterio de parada temprana
                 if generaciones_sin_mejora > 100:
                     self.log_info(f"Convergencia en generación {generacion}")
                     break
                 
-                # Evolución (si no es la última generación)
                 if generacion < self.generaciones - 1:
                     poblacion = self._evolve_population(poblacion, generaciones_sin_mejora)
-            
-            # Generar resultado final
+
             parametros_utilizados = {
                 'poblacion_size': self.poblacion_size,
                 'generaciones': self.generaciones,

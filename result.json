@@ -1,0 +1,123 @@
+{
+ "mejores_soluciones": [
+   {
+     "posicion": 1,
+     "fitness": 1247.8,
+     "asignaciones": [
+       {
+         "vehiculo_id": "1",
+         "ruta_id": "3", 
+         "insumos": [5, 3, 2, 0, 4, 1, 0, 2, 3, 1, 0, 2, 1, 2, 1, 0, 3, 2, 0, 1, 0, 2, 0, 4, 2],
+         "peso_total_kg": 847.5,
+         "combustible_litros": 12.4,
+         "tiempo_horas": 1.8,
+         "estado_entrega": "exitosa"
+       },
+       {
+         "vehiculo_id": "2",
+         "ruta_id": "7",
+         "insumos": [3, 2, 1, 2, 0, 2, 1, 1, 2, 0, 1, 1, 2, 1, 0, 1, 2, 1, 1, 0, 2, 1, 1, 3, 1],
+         "peso_total_kg": 623.2,
+         "combustible_litros": 18.7,
+         "tiempo_horas": 2.3,
+         "estado_entrega": "exitosa"
+       }
+     ],
+     "resumen": {
+       "entregas_exitosas": 2,
+       "entregas_fallidas": 0,
+       "destinos_atendidos": 2,
+       "peso_total_entregado": 1470.7,
+       "combustible_total": 31.1,
+       "poblacion_beneficiada": 2840,
+       "utilizacion_promedio": 0.78
+     }
+   },
+   {
+     "posicion": 2,
+     "fitness": 1198.3,
+     "asignaciones": [
+       {
+         "vehiculo_id": "1",
+         "ruta_id": "2",
+         "insumos": [4, 2, 3, 1, 3, 0, 1, 1, 2, 2, 0, 1, 0, 3, 0, 2, 1, 3, 1, 0, 1, 2, 0, 5, 1],
+         "peso_total_kg": 892.1,
+         "combustible_litros": 10.8,
+         "tiempo_horas": 1.5,
+         "estado_entrega": "exitosa"
+       },
+       {
+         "vehiculo_id": "2",
+         "ruta_id": "8",
+         "insumos": [2, 3, 1, 2, 1, 1, 2, 0, 3, 1, 1, 0, 1, 2, 1, 0, 2, 2, 0, 1, 1, 0, 2, 2, 3],
+         "peso_total_kg": 567.8,
+         "combustible_litros": 21.5,
+         "tiempo_horas": 2.7,
+         "estado_entrega": "exitosa"
+       }
+     ],
+     "resumen": {
+       "entregas_exitosas": 2,
+       "entregas_fallidas": 0,
+       "destinos_atendidos": 2,
+       "peso_total_entregado": 1459.9,
+       "combustible_total": 32.3,
+       "poblacion_beneficiada": 2650,
+       "utilizacion_promedio": 0.73
+     }
+   },
+   {
+     "posicion": 3,
+     "fitness": 1156.7,
+     "asignaciones": [
+       {
+         "vehiculo_id": "1",
+         "ruta_id": "1",
+         "insumos": [6, 1, 2, 0, 2, 2, 0, 3, 1, 1, 2, 0, 2, 1, 2, 1, 0, 4, 0, 2, 0, 1, 1, 3, 2],
+         "peso_total_kg": 798.4,
+         "combustible_litros": 9.2,
+         "tiempo_horas": 1.2,
+         "estado_entrega": "exitosa"
+       },
+       {
+         "vehiculo_id": "2",
+         "ruta_id": "6",
+         "insumos": [1, 4, 0, 3, 1, 0, 3, 1, 2, 0, 2, 2, 0, 3, 0, 2, 1, 1, 2, 0, 3, 0, 1, 4, 0],
+         "peso_total_kg": 634.7,
+         "combustible_litros": 16.9,
+         "tiempo_horas": 2.1,
+         "estado_entrega": "exitosa"
+       }
+     ],
+     "resumen": {
+       "destinos_atendidos": 2,
+       "peso_total_entregado": 1433.1,
+       "combustible_total": 26.1,
+       "poblacion_beneficiada": 2490,
+       "utilizacion_promedio": 0.69
+     }
+   }
+ ],
+ "metricas_globales": {
+   "mejor_tiempo": 2.7,
+   "mejor_distancia": 45.8,
+   "mejor_combustible": 26.1
+ },
+ "convergencia": {
+   "generaciones_ejecutadas": 127,
+   "mejora_porcentual": 18.4,
+   "estado": "convergido"
+ },
+ "evolucion_fitness": [
+   {"generacion": 1, "mejor": 856.2, "promedio": 423.1, "peor": 124.7},
+   {"generacion": 2, "mejor": 891.5, "promedio": 467.8, "peor": 156.3},
+   {"generacion": 3, "mejor": 923.7, "promedio": 512.4, "peor": 189.1},
+   {"generacion": 25, "mejor": 1124.6, "promedio": 789.2, "peor": 445.8},
+   {"generacion": 50, "mejor": 1198.3, "promedio": 923.7, "peor": 612.5},
+   {"generacion": 75, "mejor": 1231.4, "promedio": 987.6, "peor": 698.3},
+   {"generacion": 100, "mejor": 1245.2, "promedio": 1034.8, "peor": 756.9},
+   {"generacion": 125, "mejor": 1247.8, "promedio": 1041.2, "peor": 768.4},
+   {"generacion": 127, "mejor": 1247.8, "promedio": 1041.6, "peor": 771.2}
+ ]
+ 
+}

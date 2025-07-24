@@ -1,4 +1,4 @@
-import { Select } from '../UI';
+import { Select } from '../common/Select';
 
 const DisasterSelector = ({ disasters, selectedDisaster, setSelectedDisaster }) => {
   return (
@@ -8,7 +8,7 @@ const DisasterSelector = ({ disasters, selectedDisaster, setSelectedDisaster }) 
         value={selectedDisaster}
         onChange={(e) => setSelectedDisaster(e.target.value)}
         options={[
-          { value: '', label: 'Selecciona un desastre...' },
+          { value: '', label: 'Selecciona un tipo de desastre...' },
           ...disasters.map(d => ({ value: d.tipo, label: d.tipo.charAt(0).toUpperCase() + d.tipo.slice(1) }))
         ]}
       />

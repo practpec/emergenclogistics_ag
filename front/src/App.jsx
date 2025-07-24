@@ -1,34 +1,29 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Layout from './components/Layout/Layout';
-import MapModule from './pages/MapModule';
-import AGPage from './pages/AGPage'; // Importar la nueva página
-import './App.css';
+import MapGeneratorPage from './pages/MapGeneratorPage';
+import AGPage from './pages/AGPage';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Layout>
-          <Routes>
-            <Route path="/mapas" element={<MapModule />} />
-            <Route path="/ag" element={<AGPage />} /> {/* Añadir la nueva ruta */}
-            <Route path="*" element={<Navigate to="/mapas" />} />
-          </Routes>
-        </Layout>
-        
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 5000,
-            style: {
-              background: '#1a1a1a',
-              color: '#e2e8f0',
-              border: '1px solid #333',
-            },
-          }}
-        />
+      <div className="bg-gray-900 text-gray-100 min-h-screen">
+        <Routes>
+          <Route path="/map-generator" element={<MapGeneratorPage />} />
+          <Route path="*" element={<Navigate to="/map-generator" />} />
+           <Route path="/ag-scenario" element={<AGPage />} />
+        </Routes>
       </div>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 5000,
+          style: {
+            background: '#1f2937',
+            color: '#e5e7eb',
+            border: '1px solid #374151',
+          },
+        }}
+      />
     </Router>
   );
 }

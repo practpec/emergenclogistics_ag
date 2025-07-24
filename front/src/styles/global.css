@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #111827; /* bg-gray-900 */
+}
+
+/* Estilos para que Leaflet se vea bien en tema oscuro */
+.leaflet-container {
+  background: #1a1a1a !important;
+  outline: none;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
+/* Marcadores personalizados */
+.custom-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.marker-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  position: relative;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marker-number {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  transform: rotate(45deg);
+  line-height: 1;
+}
+
+/* Animación de pulso para el nodo principal */
+.pulse {
+  background: rgba(251, 191, 36, 0.3);
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -7px 0 0 -7px;
+  transform: rotateX(55deg);
+  z-index: -2;
+}
+
+.pulse:after {
+  content: "";
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  margin: -13px 0 0 -13px;
+  animation: pulsate 1.2s ease-out infinite;
+  opacity: 0;
+  box-shadow: 0 0 1px 2px #fbbf24;
+}
+
+@keyframes pulsate {
+  0% { transform: scale(0.1); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
