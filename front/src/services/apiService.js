@@ -193,6 +193,16 @@ class ApiService {
       throw new Error(handleApiError(error));
     }
   }
+
+  async runAGScenario(scenarioData) {
+    try {
+      // Esta es la llamada real al endpoint que procesará el escenario
+      const response = await api.post('/api/ag/run-scenario', scenarioData);
+      return response.data;
+    } catch (error) {
+      throw new Error(handleApiError(error));
+    }
+  }
 }
 
 export default new ApiService();

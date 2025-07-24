@@ -11,10 +11,13 @@ import RouteConfigurator from '../components/ag/RouteConfigurator.jsx';
 import ScenarioPreview from '../components/ag/ScenarioPreview.jsx';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { Button } from '../components/common/Button';
+import AGSettingsForm from '../components/ag/AGSettingsForm.jsx';
 
 const AGPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  // --- CORRECCIÓN CLAVE ---
+  // Se extrae el estado de forma más segura para evitar el error.
   const { mapData } = location.state || {};
   
   const { vehicles, disasters, isLoading: isLoadingInitialData } = useAG();
@@ -24,7 +27,6 @@ const AGPage = () => {
   const [routeStates, setRouteStates] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // --- NUEVO ESTADO PARA PARÁMETROS DEL AG ---
   const [agParams, setAgParams] = useState({
     poblacion_size: 80,
     generaciones: 200, 
@@ -49,10 +51,8 @@ const AGPage = () => {
     return [...new Set(activeVehicles.map(v => v.tipo))];
   }, [selectedVehicles, vehicles]);
 
-  // --- LÓGICA DE ESTADO CORREGIDA Y SIMPLIFICADA ---
   useEffect(() => {
     if (!mapData || vehicles.length === 0) return;
-
     const newRouteStates = {};
     mapData.rutas_data.forEach((destinoData, destIndex) => {
       if (destinoData.rutas) {
@@ -63,35 +63,38 @@ const AGPage = () => {
       }
     });
     setRouteStates(newRouteStates);
-    
   }, [mapData, activeVehicleTypes, vehicles]);
 
   const isReadyForPreview = useMemo(() => {
-    return selectedDisaster !== '' && expandedFleet.length > 0;
-  }, [selectedDisaster, expandedFleet]);
+    const hasOpenRoute = Object.values(routeStates).flat().some(r => r.estado === 'abierta');
+    return selectedDisaster !== '' && expandedFleet.length > 0 && hasOpenRoute;
+  }, [selectedDisaster, expandedFleet, routeStates]);
 
   const handleRunScenario = async () => {
     setIsSubmitting(true);
-    toast.loading('Procesando escenario... Esto puede tardar varios minutos.');
-
+    toast.loading('Procesando escenario...');
     const scenarioData = {
         map_data: mapData,
         scenario_config: {
             tipo_desastre: selectedDisaster,
             vehiculos_disponibles: expandedFleet,
             rutas_estado: Object.values(routeStates).flat(),
-            ag_params: agParams // Se añaden los nuevos parámetros
+            ag_params: agParams 
         }
     };
-
-    console.log("Enviando al backend:", scenarioData);
 
     try {
       const result = await apiService.runAGScenario(scenarioData);
       toast.dismiss();
       if (result.success) {
         toast.success('Escenario procesado con éxito!');
-        console.log("Resultados del AG:", result.data);
+        navigate('/ag-results', { 
+            state: { 
+                results: result.data, 
+                mapData: mapData,
+                vehicleData: vehicles
+            } 
+        });
       } else {
         toast.error(result.message || 'Error al procesar el escenario.');
       }

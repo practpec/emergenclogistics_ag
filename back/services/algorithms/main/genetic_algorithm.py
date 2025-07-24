@@ -13,7 +13,7 @@ from ..operators.replacement import ReplacementOperator
 from ..output.results import ResultGenerator
 
 class LogisticsGeneticAlgorithm(BaseService):
-    """Algoritmo genético refactorizado para optimización logística"""
+    """Algoritmo genético optimizado para logística de emergencia"""
     
     def __init__(self, scenario_data: Dict[str, Any], parametros_ag: Dict[str, Any] = None):
         super().__init__()
@@ -23,7 +23,7 @@ class LogisticsGeneticAlgorithm(BaseService):
         self._initialize_operators()
 
     def _configure_parameters(self, parametros_ag: Dict[str, Any] = None):
-        """Configurar parámetros del algoritmo genético"""
+        """Configurar parámetros del algoritmo genético con validación"""
         defaults = {
             'poblacion_size': 80,
             'generaciones': 500, 
@@ -32,74 +32,31 @@ class LogisticsGeneticAlgorithm(BaseService):
             'elitismo_rate': 0.15  
         }
         
-        limits = {
-            'poblacion_size': {'min': 20, 'max': 100},
-            'generaciones': {'min': 50, 'max': 1000},
-            'prob_cruza': {'min': 0.5, 'max': 1.0},
-            'prob_mutacion': {'min': 0.05, 'max': 0.4},
-            'elitismo_rate': {'min': 0.05, 'max': 0.3}
-        }
-        
+        # El frontend ya valida, solo aplicar
         if parametros_ag:
             for param, value in parametros_ag.items():
                 if param in defaults:
-                    min_val = limits[param]['min']
-                    max_val = limits[param]['max']
-                    
-                    if min_val <= value <= max_val:
-                        setattr(self, param, value)
-                    else:
-                        setattr(self, param, defaults[param])
-                        self.log_warning(f"Parámetro {param} fuera de rango, usando default: {defaults[param]}")
+                    setattr(self, param, value)
                 else:
-                    self.log_warning(f"Parámetro desconocido: {param}")
+                    setattr(self, param, defaults[param])
         else:
             for param, value in defaults.items():
                 setattr(self, param, value)
-        
-        # Log de configuración
-        stats = self.data_manager.get_summary_stats()
-        self.log_info(f"AG configurado - Población: {self.poblacion_size}, Generaciones: {self.generaciones}")
-        self.log_info(f"Datos: {stats['num_vehiculos']} vehículos, {stats['num_destinos_unicos']} destinos únicos")
 
     def _initialize_operators(self):
-        """Inicializar operadores simplificados con data_manager"""
-        self.initializer = PopulationInitializer(
-            self.data_manager.num_vehiculos, 
-            self.data_manager.mapeo_asignaciones, 
-            self.data_manager.vehiculos_disponibles,
-            self.data_manager.insumos_data, 
-            self.data_manager.num_insumos, 
-            self.data_manager.categorias_map, 
-            self.data_manager.desastre_info
-        )
-        
-        self.evaluator = FitnessEvaluator(
-            self.data_manager.vehiculos_disponibles, 
-            self.data_manager.mapeo_asignaciones, 
-            self.data_manager.insumos_data, 
-            self.data_manager.rutas_estado, 
-            self.data_manager.desastre_info
-        )
-        
+        """Inicializar operadores optimizados"""
+        self.initializer = PopulationInitializer(self.data_manager)
+        self.evaluator = FitnessEvaluator(self.data_manager)
         self.selector = ParentSelector()
         self.crossover = CrossoverOperator(self.data_manager)
         self.mutation = MutationOperator(self.data_manager)
         self.replacement = ReplacementOperator()
-        
-        self.result_generator = ResultGenerator(
-            self.data_manager.vehiculos_disponibles, 
-            self.data_manager.mapeo_asignaciones,
-            self.data_manager.insumos_data, 
-            self.data_manager.rutas_estado
-        )
+        self.result_generator = ResultGenerator(self.data_manager)
 
     def ejecutar(self) -> Dict[str, Any]:
-        """Ejecutar algoritmo genético con operadores simplificados"""
+        """Ejecutar algoritmo genético optimizado"""
         try:
-            self.log_info("Iniciando ejecución del algoritmo genético")
-            
-            # Inicialización mejorada
+            # Inicialización inteligente
             poblacion = self._initialize_smart_population()
             
             # Variables de control
@@ -122,27 +79,23 @@ class LogisticsGeneticAlgorithm(BaseService):
                     generaciones_sin_mejora += 1
                 
                 # Registrar estadísticas
-                fitness_promedio = sum(ind.fitness for ind in poblacion) / len(poblacion)
-                fitness_mejor = mejor_historico.fitness
-                fitness_peor = min(ind.fitness for ind in poblacion)
-                
+                fitness_values = [ind.fitness for ind in poblacion]
                 historial_fitness.append({
                     'generacion': generacion + 1,
-                    'mejor': fitness_mejor,
-                    'promedio': fitness_promedio,
-                    'peor': fitness_peor
+                    'mejor': max(fitness_values),
+                    'promedio': sum(fitness_values) / len(fitness_values),
+                    'peor': min(fitness_values)
                 })
                 
-                if generacion % 50 == 0:
-                    self.log_info(f"Generación {generacion}: Mejor={fitness_mejor:.2f}, Promedio={fitness_promedio:.2f}")
-                
-                if generaciones_sin_mejora > 100:
-                    self.log_info(f"Convergencia en generación {generacion}")
+                # Criterio de convergencia
+                if generaciones_sin_mejora > 80:
                     break
                 
+                # Evolución de la población
                 if generacion < self.generaciones - 1:
                     poblacion = self._evolve_population(poblacion, generaciones_sin_mejora)
 
+            # Generar resultado final
             parametros_utilizados = {
                 'poblacion_size': self.poblacion_size,
                 'generaciones': self.generaciones,
@@ -150,39 +103,37 @@ class LogisticsGeneticAlgorithm(BaseService):
                 'prob_mutacion': self.prob_mutacion,
                 'elitismo_rate': self.elitismo_rate,
                 'generaciones_ejecutadas': generacion + 1,
-                'convergencia': generaciones_sin_mejora > 100
+                'convergencia': generaciones_sin_mejora > 80
             }
             
             resultado = self.result_generator.generar_resultado_final(
                 mejor_historico, historial_fitness, poblacion, parametros_utilizados
             )
             
-            self.log_info(f"AG completado: {generacion + 1} generaciones, fitness: {mejor_historico.fitness:.2f}")
             return resultado
             
         except Exception as e:
-            self.log_error("Error ejecutando algoritmo genético", e)
             raise GeneticAlgorithmError(f"Error en ejecución del AG: {e}")
 
     def _initialize_smart_population(self) -> List[Individual]:
         """Inicializar población con estrategias inteligentes"""
         poblacion = []
         
-        # 30% soluciones inteligentes usando data_manager
-        num_inteligentes = int(self.poblacion_size * 0.3)
+        # 40% soluciones inteligentes
+        num_inteligentes = int(self.poblacion_size * 0.4)
         for _ in range(num_inteligentes):
             poblacion.append(self._generate_intelligent_solution())
         
-        # 70% población aleatoria
-        poblacion_aleatoria = self.initializer.inicializar_poblacion(
+        # 60% población diversa
+        poblacion_diversa = self.initializer.inicializar_poblacion(
             self.poblacion_size - num_inteligentes
         )
-        poblacion.extend(poblacion_aleatoria)
+        poblacion.extend(poblacion_diversa)
         
         return poblacion
 
     def _generate_intelligent_solution(self) -> Individual:
-        """Generar solución inteligente usando data_manager"""
+        """Generar solución inteligente usando gestores optimizados"""
         from ..core.capacity_manager import CapacityManager
         from ..core.assignment_validator import AssignmentValidator
         
@@ -192,19 +143,18 @@ class LogisticsGeneticAlgorithm(BaseService):
         vehiculos_asignados = []
         destinos_asignados = set()
         
-        # Ordenar vehículos por capacidad
+        # Ordenar vehículos por capacidad (mayor a menor)
         vehiculos_ordenados = sorted(
             enumerate(self.data_manager.vehiculos_disponibles), 
             key=lambda x: x[1]['capacidad_kg'], 
             reverse=True
         )
         
-        # Asignar vehículos a destinos únicos
+        # Asignar vehículos evitando duplicados
         for vehiculo_idx, vehiculo_info in vehiculos_ordenados:
             # Buscar destino disponible
             destinos_compatibles = self.data_manager.get_destinos_disponibles_para_vehiculo(vehiculo_idx)
             
-            # Encontrar destino no usado
             destino_elegido = None
             for destino_info in destinos_compatibles:
                 destino_id = destino_info['id_destino_perteneciente']
@@ -213,37 +163,41 @@ class LogisticsGeneticAlgorithm(BaseService):
                     destinos_asignados.add(destino_id)
                     break
             
-            # Si no encuentra, usar destino libre
+            # Fallback si no encuentra destino único
             if destino_elegido is None:
                 destino_elegido = validator.find_free_destination(destinos_asignados, vehiculo_idx)
                 if destino_elegido:
                     destinos_asignados.add(destino_elegido['id_destino_perteneciente'])
             
             # Generar insumos optimizados
-            insumos = capacity_mgr.generate_optimized_supplies(vehiculo_info['capacidad_kg'])
-            
-            vehiculos_asignados.append(VehicleAssignment(
-                vehiculo_id=vehiculo_idx,
-                id_destino_ruta=destino_elegido['id_asignacion_unica'] if destino_elegido else 0,
-                insumos=insumos
-            ))
+            if destino_elegido:
+                poblacion_destino = destino_elegido.get('poblacion', 500)
+                insumos = capacity_mgr.adjust_supplies_for_population(
+                    vehiculo_info['capacidad_kg'], poblacion_destino
+                )
+                
+                vehiculos_asignados.append(VehicleAssignment(
+                    vehiculo_id=vehiculo_idx,
+                    id_destino_ruta=destino_elegido['id_asignacion_unica'],
+                    insumos=insumos
+                ))
         
         return Individual(vehiculos=vehiculos_asignados)
 
     def _evolve_population(self, poblacion: List[Individual], generaciones_sin_mejora: int) -> List[Individual]:
-        """Evolucionar población usando operadores simplificados"""
-        # Selección
+        """Evolucionar población con operadores optimizados"""
+        # Selección de padres
         parejas = self.selector.seleccion_por_orden(poblacion)
         
-        # Cruza con operadores refactorizados
+        # Cruza
         descendencia = self.crossover.crossover_population(parejas, self.prob_cruza)
         
-        # Mutación adaptativa con operadores refactorizados
-        prob_mutacion_adaptativa = self.prob_mutacion * (1 + generaciones_sin_mejora * 0.01)
-        descendencia = self.mutation.mutate_population(
-            descendencia, 
-            min(prob_mutacion_adaptativa, 0.4)
+        # Mutación adaptativa
+        prob_mutacion_adaptativa = min(
+            self.prob_mutacion * (1 + generaciones_sin_mejora * 0.01), 
+            0.4
         )
+        descendencia = self.mutation.mutate_population(descendencia, prob_mutacion_adaptativa)
         
         # Sustitución con elitismo
         nueva_poblacion = self.replacement.poda_aleatoria_conservando_mejor(

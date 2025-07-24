@@ -3,11 +3,11 @@ from typing import List
 from ..models import Individual
 
 class ReplacementOperator:
-    """Paso 6: Sustitución (poda)"""
+    """Operador de reemplazo con elitismo"""
     
     def poda_aleatoria_conservando_mejor(self, poblacion: List[Individual], 
                                        poblacion_size: int, elitismo_rate: float) -> List[Individual]:
-        """Poda eliminando aleatoriamente pero conservando al mejor"""
+        """Poda eliminando aleatoriamente pero conservando élite"""
         if len(poblacion) <= poblacion_size:
             return poblacion
         

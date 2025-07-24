@@ -1,21 +1,19 @@
-# algorithms/evaluation.py
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Set
 from ..models import Individual
 
 class FitnessEvaluator:
-    """Evaluador de fitness mejorado con penalizaciones más estrictas"""
+    """Evaluador de fitness optimizado con penalizaciones estrictas"""
     
-    def __init__(self, vehiculos_disponibles: List[Dict], mapeo_asignaciones: List[Dict],
-                 insumos_data: List[Dict], rutas_estado: Dict, desastre_info: Any = None):
-        self.vehiculos_disponibles = vehiculos_disponibles
-        self.mapeo_asignaciones = mapeo_asignaciones
-        self.insumos_data = insumos_data
-        self.rutas_estado = rutas_estado
-        self.desastre_info = desastre_info
-        self.num_insumos = len(insumos_data)
+    def __init__(self, data_manager):
+        self.data_manager = data_manager
+        self.vehiculos_disponibles = data_manager.vehiculos_disponibles
+        self.mapeo_asignaciones = data_manager.mapeo_asignaciones
+        self.insumos_data = data_manager.insumos_data
+        self.rutas_estado = data_manager.rutas_estado
+        self.num_insumos = data_manager.num_insumos
 
     def evaluar_fitness(self, individuo: Individual) -> float:
-        """Evaluar fitness con penalizaciones mejoradas para evitar duplicados"""
+        """Evaluar fitness con análisis optimizado de duplicados"""
         fitness_total = 0.0
         peso_total_utilizado = 0.0
         combustible_total = 0.0
@@ -23,239 +21,236 @@ class FitnessEvaluator:
         penalizaciones = 0.0
         
         # Análisis de destinos asignados
-        destinos_asignados = {}  # {destino_id: [vehiculo_indices]}
-        asignaciones_validas = []
+        destinos_asignados = self._analizar_destinos_asignados(individuo)
+        duplicados = {dest_id: vehiculos for dest_id, vehiculos in destinos_asignados.items() 
+                     if len(vehiculos) > 1}
         
-        # Primera pasada: analizar asignaciones y detectar duplicados
-        for i, asignacion in enumerate(individuo.vehiculos):
-            vehiculo = self.vehiculos_disponibles[asignacion.vehiculo_id]
-            mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
-            destino_id = mapeo_info['id_destino_perteneciente']
-            
-            # Registrar destino asignado
-            if destino_id not in destinos_asignados:
-                destinos_asignados[destino_id] = []
-            destinos_asignados[destino_id].append(i)
-            
-            # Verificar validez de la asignación
-            es_valida = self._validar_asignacion(vehiculo, mapeo_info, asignacion.insumos)
-            asignaciones_validas.append(es_valida)
+        # Penalización masiva por duplicados
+        for destino_id, vehiculos_indices in duplicados.items():
+            penalizaciones += len(vehiculos_indices) * 1500
         
-        # Penalizar destinos duplicados FUERTEMENTE
-        for destino_id, vehiculos_indices in destinos_asignados.items():
-            if len(vehiculos_indices) > 1:
-                # Penalización masiva por duplicación
-                penalizaciones += len(vehiculos_indices) * 2000
-                
-                # Solo el primer vehículo asignado al destino es válido
-                for i, vehiculo_idx in enumerate(vehiculos_indices):
-                    if i > 0:  # Todos excepto el primero son inválidos
-                        asignaciones_validas[vehiculo_idx] = False
+        # Marcar asignaciones válidas (solo primera de cada destino)
+        asignaciones_validas = self._marcar_asignaciones_validas(individuo, duplicados)
         
-        # Segunda pasada: calcular fitness solo para asignaciones válidas
+        # Evaluar solo asignaciones válidas
         for i, asignacion in enumerate(individuo.vehiculos):
             if not asignaciones_validas[i]:
-                continue  # Saltar asignaciones inválidas
-                
-            vehiculo = self.vehiculos_disponibles[asignacion.vehiculo_id]
-            mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
-            
-            # Calcular peso de insumos
-            peso_insumos = sum(
-                asignacion.insumos[j] * self.insumos_data[j]['peso_kg']
-                for j in range(self.num_insumos)
-            )
-            
-            # Penalización MASIVA por sobrecarga - esto NO debe pasar
-            if peso_insumos > vehiculo['capacidad_kg']:
-                exceso = peso_insumos - vehiculo['capacidad_kg']
-                penalizaciones += exceso * 1000  # Penalización masiva
-                penalizaciones += 5000  # Penalización adicional por violar restricción
-                # NO limitar el peso aquí - debe ser penalizado fuertemente
-                continue  # Saltar esta asignación completamente
-            
-            # Verificar compatibilidad de ruta
-            destino_id = mapeo_info['id_destino_perteneciente']
-            ruta_id = f"Destino{destino_id}-Ruta{mapeo_info['id_ruta_en_destino'] + 1}"
-            estado_ruta = self.rutas_estado.get(ruta_id, {
-                'estado': 'abierta', 
-                'vehiculos_permitidos': [vehiculo['tipo']]
-            })
-            
-            if estado_ruta['estado'] == 'cerrada' or vehiculo['tipo'] not in estado_ruta['vehiculos_permitidos']:
-                penalizaciones += 1500  # Penalización por ruta inválida
                 continue
             
-            # Calcular combustible
-            distancia_km = mapeo_info['distancia_km']
-            combustible = distancia_km * vehiculo['consumo_litros_km']
-            combustible_total += combustible
+            vehiculo = self.vehiculos_disponibles[asignacion.vehiculo_id]
             
-            # Evaluar relevancia de insumos (MEJORADO)
-            relevancia_insumos = self._evaluar_relevancia_insumos_mejorada(asignacion.insumos)
+            if asignacion.id_destino_ruta >= len(self.mapeo_asignaciones):
+                penalizaciones += 2000
+                continue
+                
+            mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
             
-            # Evaluar eficiencia poblacional (MEJORADO)
-            poblacion_destino = mapeo_info['poblacion']
-            eficiencia_poblacional = self._evaluar_eficiencia_poblacional_mejorada(
-                peso_insumos, poblacion_destino, vehiculo
+            # Calcular métricas del vehículo
+            peso_vehiculo = self._calcular_peso_insumos(asignacion.insumos)
+            
+            # Penalización severa por sobrecarga
+            if peso_vehiculo > vehiculo['capacidad_kg']:
+                exceso = peso_vehiculo - vehiculo['capacidad_kg']
+                penalizaciones += exceso * 800 + 3000
+                continue
+            
+            # Verificar compatibilidad de ruta
+            if not self._verificar_compatibilidad_ruta(vehiculo, mapeo_info):
+                penalizaciones += 1200
+                continue
+            
+            # Calcular métricas positivas
+            combustible_vehiculo = self._calcular_combustible(mapeo_info, vehiculo)
+            relevancia_insumos = self._evaluar_relevancia_insumos(asignacion.insumos)
+            eficiencia_poblacional = self._evaluar_eficiencia_poblacional(
+                peso_vehiculo, mapeo_info['poblacion'], vehiculo
             )
             
-            # Bonificar utilización alta de capacidad
-            utilizacion_capacidad = peso_insumos / vehiculo['capacidad_kg']
-            bonificacion_capacidad = 0
-            if utilizacion_capacidad >= 0.9:
-                bonificacion_capacidad = 200  # Bonificación por uso > 90%
-            elif utilizacion_capacidad >= 0.7:
-                bonificacion_capacidad = 100  # Bonificación por uso > 70%
-            elif utilizacion_capacidad >= 0.5:
-                bonificacion_capacidad = 50   # Bonificación por uso > 50%
+            # Bonificaciones por utilización
+            utilizacion = peso_vehiculo / vehiculo['capacidad_kg']
+            bonificacion_utilizacion = self._calcular_bonificacion_utilizacion(utilizacion)
             
-            # Contribución positiva al fitness
-            fitness_total += relevancia_insumos * 15      # Aumentado
-            fitness_total += eficiencia_poblacional * 12  # Aumentado
-            fitness_total += bonificacion_capacidad       # Nuevo
-            fitness_total += peso_insumos * 0.8           # Aumentado
+            # Contribuciones positivas
+            fitness_total += relevancia_insumos * 18
+            fitness_total += eficiencia_poblacional * 15
+            fitness_total += bonificacion_utilizacion
+            fitness_total += peso_vehiculo * 0.9
             
-            peso_total_utilizado += peso_insumos
-            localidades_atendidas.add(destino_id)
+            # Actualizar totales
+            peso_total_utilizado += peso_vehiculo
+            combustible_total += combustible_vehiculo
+            localidades_atendidas.add(mapeo_info['id_destino_perteneciente'])
         
-        # Bonificaciones globales mejoradas
-        num_destinos_unicos = len(set(
-            self.mapeo_asignaciones[asig.id_destino_ruta]['id_destino_perteneciente']
-            for asig in individuo.vehiculos
-        ))
-        max_destinos_posibles = len(set(
-            m['id_destino_perteneciente'] for m in self.mapeo_asignaciones
-        ))
-        
-        # Bonificación por cobertura de destinos únicos
-        cobertura_destinos = len(localidades_atendidas) / max_destinos_posibles
-        fitness_total += cobertura_destinos * 300  # Aumentado significativamente
-        
-        # Bonificación extra por cobertura completa
-        if len(localidades_atendidas) == max_destinos_posibles:
-            fitness_total += 500  # Bonificación por cobertura total
+        # Bonificaciones globales
+        fitness_total += self._calcular_bonificaciones_globales(localidades_atendidas)
         
         # Penalizaciones de eficiencia
-        fitness_total -= combustible_total * 0.3  # Reducido para no penalizar tanto
+        fitness_total -= combustible_total * 0.25
+        fitness_total -= self._penalizar_subutilizacion(peso_total_utilizado)
+        fitness_total -= self._penalizar_vehiculos_vacios(individuo)
         
-        # Penalizar subutilización grave
-        if peso_total_utilizado > 0:
-            utilizacion_promedio = peso_total_utilizado / sum(v['capacidad_kg'] for v in self.vehiculos_disponibles)
-            if utilizacion_promedio < 0.3:
-                penalizaciones += 400  # Penalización por muy baja utilización
-            elif utilizacion_promedio < 0.5:
-                penalizaciones += 200  # Penalización moderada
-        
-        # Penalizar vehículos sin carga
-        vehiculos_sin_carga = sum(1 for asig in individuo.vehiculos 
-                                if sum(asig.insumos) == 0)
-        penalizaciones += vehiculos_sin_carga * 300
-        
-        # Aplicar penalizaciones
+        # Aplicar penalizaciones totales
         fitness_total -= penalizaciones
         
-        # Asegurar fitness no negativo
         individuo.fitness = max(0, fitness_total)
         return individuo.fitness
 
-    def _validar_asignacion(self, vehiculo: Dict, mapeo_info: Dict, insumos: List[int]) -> bool:
-        """Validar si una asignación es técnicamente válida"""
-        # Verificar peso
-        peso_total = sum(insumos[i] * self.insumos_data[i]['peso_kg'] 
-                        for i in range(len(insumos)))
-        if peso_total > vehiculo['capacidad_kg'] * 1.1:  # Permitir 10% de tolerancia
-            return False
+    def _analizar_destinos_asignados(self, individuo: Individual) -> Dict[str, List[int]]:
+        """Analizar destinos asignados y detectar duplicados"""
+        destinos_asignados = {}
         
-        # Verificar ruta
+        for i, asignacion in enumerate(individuo.vehiculos):
+            if asignacion.id_destino_ruta < len(self.mapeo_asignaciones):
+                mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
+                destino_id = mapeo_info['id_destino_perteneciente']
+                
+                if destino_id not in destinos_asignados:
+                    destinos_asignados[destino_id] = []
+                destinos_asignados[destino_id].append(i)
+        
+        return destinos_asignados
+
+    def _marcar_asignaciones_validas(self, individuo: Individual, duplicados: Dict) -> List[bool]:
+        """Marcar qué asignaciones son válidas (sin duplicados)"""
+        asignaciones_validas = [True] * len(individuo.vehiculos)
+        
+        # Marcar duplicados como inválidos (excepto el primero)
+        for destino_id, vehiculos_indices in duplicados.items():
+            for i, vehiculo_idx in enumerate(vehiculos_indices):
+                if i > 0:
+                    asignaciones_validas[vehiculo_idx] = False
+        
+        return asignaciones_validas
+
+    def _calcular_peso_insumos(self, insumos: List[int]) -> float:
+        """Calcular peso total de insumos"""
+        return sum(
+            insumos[i] * self.data_manager.get_peso_insumo(i)
+            for i in range(len(insumos))
+        )
+
+    def _verificar_compatibilidad_ruta(self, vehiculo: Dict, mapeo_info: Dict) -> bool:
+        """Verificar si vehículo es compatible con la ruta"""
         destino_id = mapeo_info['id_destino_perteneciente']
-        ruta_id = f"Destino{destino_id}-Ruta{mapeo_info['id_ruta_en_destino'] + 1}"
+        ruta_id = f"{destino_id}-ruta-{mapeo_info['id_ruta_en_destino']}"
+        
         estado_ruta = self.rutas_estado.get(ruta_id, {
-            'estado': 'abierta', 
+            'estado': 'abierta',
             'vehiculos_permitidos': [vehiculo['tipo']]
         })
         
-        if estado_ruta['estado'] == 'cerrada':
-            return False
-        if vehiculo['tipo'] not in estado_ruta['vehiculos_permitidos']:
-            return False
-        
-        return True
+        return (estado_ruta['estado'] == 'abierta' and 
+                vehiculo['tipo'] in estado_ruta['vehiculos_permitidos'])
 
-    def _evaluar_relevancia_insumos_mejorada(self, insumos: List[int]) -> float:
-        """Evaluar relevancia de insumos con mejor distribución"""
-        if not self.desastre_info:
-            return sum(insumos) * 1.0
-        
+    def _calcular_combustible(self, mapeo_info: Dict, vehiculo: Dict) -> float:
+        """Calcular combustible necesario"""
+        return mapeo_info['distancia_km'] * vehiculo.get('consumo_litros_km', 0.15)
+
+    def _evaluar_relevancia_insumos(self, insumos: List[int]) -> float:
+        """Evaluar relevancia de insumos según prioridades del desastre"""
         relevancia_total = 0.0
-        peso_total_insumos = 0.0
+        insumos_prioritarios = self.data_manager.get_insumos_prioritarios()
         
+        # Calcular relevancia ponderada
         for i, cantidad in enumerate(insumos):
             if cantidad > 0:
-                insumo_info = self.insumos_data[i]
-                categoria = insumo_info['categoria']
-                prioridad = self.desastre_info.get_priority_weight(categoria)
-                peso_insumo = cantidad * insumo_info['peso_kg']
+                peso_base = cantidad * 1.0
                 
-                # Calcular relevancia ponderada
-                relevancia_item = cantidad * prioridad * 2.0  # Factor aumentado
-                relevancia_total += relevancia_item
-                peso_total_insumos += peso_insumo
+                # Bonificar insumos prioritarios
+                if i in insumos_prioritarios:
+                    peso_base *= 2.5
+                
+                relevancia_total += peso_base
         
         # Bonificar diversidad de categorías
         categorias_presentes = set()
         for i, cantidad in enumerate(insumos):
-            if cantidad > 0:
+            if cantidad > 0 and i < len(self.insumos_data):
                 categoria = self.insumos_data[i]['categoria']
                 categorias_presentes.add(categoria)
         
-        bonificacion_diversidad = len(categorias_presentes) * 20
+        bonificacion_diversidad = len(categorias_presentes) * 25
         
         return relevancia_total + bonificacion_diversidad
 
-    def _evaluar_eficiencia_poblacional_mejorada(self, peso_insumos: float, poblacion: int, vehiculo: Dict) -> float:
-        """Evaluar eficiencia con criterios mejorados"""
+    def _evaluar_eficiencia_poblacional(self, peso_insumos: float, poblacion: int, vehiculo: Dict) -> float:
+        """Evaluar eficiencia poblacional mejorada"""
         if peso_insumos == 0:
-            return -100  # Penalizar vehículos vacíos
+            return -80
         
         capacidad_vehiculo = vehiculo['capacidad_kg']
         utilizacion = peso_insumos / capacidad_vehiculo
         
-        # Score base proporcional al peso y población
-        eficiencia_score = (peso_insumos / 100) * (poblacion / 1000)
+        # Score base
+        eficiencia_score = (peso_insumos / 50) * (poblacion / 500)
         
-        # Bonificaciones por buena utilización
-        if utilizacion >= 0.9:
-            eficiencia_score += 150  # Excelente utilización
-        elif utilizacion >= 0.7:
-            eficiencia_score += 100  # Buena utilización
-        elif utilizacion >= 0.5:
-            eficiencia_score += 50   # Utilización aceptable
+        # Bonificaciones por utilización
+        if utilizacion >= 0.85:
+            eficiencia_score += 120
+        elif utilizacion >= 0.65:
+            eficiencia_score += 80
+        elif utilizacion >= 0.45:
+            eficiencia_score += 40
         else:
-            eficiencia_score -= 50   # Penalizar baja utilización
+            eficiencia_score -= 40
         
-        # Ajustar por tamaño de población vs capacidad del vehículo
-        ratio_poblacion_capacidad = poblacion / capacidad_vehiculo
+        # Ajuste por ratio población/capacidad
+        if poblacion < 200 and capacidad_vehiculo < 1500:
+            eficiencia_score += 60
+        elif poblacion > 800 and capacidad_vehiculo > 2000:
+            eficiencia_score += 80
+        elif poblacion > 800 and capacidad_vehiculo < 1500:
+            eficiencia_score -= 60
         
-        if poblacion < 100:  # Población muy pequeña
-            if capacidad_vehiculo < 1500:  # Vehículo pequeño
-                eficiencia_score += 80  # Buena coincidencia
-            else:  # Vehículo grande para población pequeña
-                eficiencia_score -= 60  # Ineficiente
-                
-        elif poblacion > 1000:  # Población grande
-            if capacidad_vehiculo > 2000:  # Vehículo grande
-                eficiencia_score += 100  # Excelente coincidencia
-            elif capacidad_vehiculo < 1500:  # Vehículo pequeño para población grande
-                eficiencia_score -= 80  # Muy ineficiente
-        
-        # Bonificar ratio óptimo de kg por persona
+        # Bonificar ratio óptimo kg/persona
         kg_per_persona = peso_insumos / max(poblacion, 1)
-        if 0.5 <= kg_per_persona <= 2.0:  # Rango óptimo
-            eficiencia_score += 50
-        elif kg_per_persona < 0.2:  # Muy poco por persona
-            eficiencia_score -= 30
-        elif kg_per_persona > 5.0:  # Demasiado por persona
-            eficiencia_score -= 20
+        if 0.4 <= kg_per_persona <= 1.8:
+            eficiencia_score += 40
+        elif kg_per_persona < 0.15:
+            eficiencia_score -= 25
         
         return eficiencia_score
+
+    def _calcular_bonificacion_utilizacion(self, utilizacion: float) -> float:
+        """Calcular bonificación por utilización de capacidad"""
+        if utilizacion >= 0.9:
+            return 180
+        elif utilizacion >= 0.75:
+            return 120
+        elif utilizacion >= 0.6:
+            return 80
+        elif utilizacion >= 0.4:
+            return 40
+        else:
+            return 0
+
+    def _calcular_bonificaciones_globales(self, localidades_atendidas: Set) -> float:
+        """Calcular bonificaciones globales por cobertura"""
+        max_destinos_posibles = len(self.data_manager.destinos_unicos)
+        cobertura_destinos = len(localidades_atendidas) / max_destinos_posibles
+        
+        bonificacion_cobertura = cobertura_destinos * 400
+        
+        # Bonificación extra por cobertura completa
+        if len(localidades_atendidas) == max_destinos_posibles:
+            bonificacion_cobertura += 300
+        
+        return bonificacion_cobertura
+
+    def _penalizar_subutilizacion(self, peso_total_utilizado: float) -> float:
+        """Penalizar subutilización grave"""
+        capacidad_total = sum(v['capacidad_kg'] for v in self.vehiculos_disponibles)
+        utilizacion_promedio = peso_total_utilizado / capacidad_total
+        
+        if utilizacion_promedio < 0.25:
+            return 350
+        elif utilizacion_promedio < 0.4:
+            return 180
+        else:
+            return 0
+
+    def _penalizar_vehiculos_vacios(self, individuo: Individual) -> float:
+        """Penalizar vehículos sin carga"""
+        vehiculos_sin_carga = sum(1 for asig in individuo.vehiculos 
+                                if sum(asig.insumos) == 0)
+        return vehiculos_sin_carga * 250

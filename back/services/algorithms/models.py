@@ -3,10 +3,10 @@ from typing import List
 
 @dataclass
 class VehicleAssignment:
-    """Asignación individual de vehículo"""
+    """Asignación individual de vehículo optimizada"""
     vehiculo_id: int
     id_destino_ruta: int
-    insumos: List[int]  # Cantidades de cada tipo de insumo
+    insumos: List[int]
 
 @dataclass
 class Individual:

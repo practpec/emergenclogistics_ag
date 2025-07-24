@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Toaster } from 'react-hot-toast';
 import MapGeneratorPage from './pages/MapGeneratorPage';
 import AGPage from './pages/AGPage';
+import AGResultsPage from './pages/AGResultsPage';
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
       <div className="bg-gray-900 text-gray-100 min-h-screen">
         <Routes>
           <Route path="/map-generator" element={<MapGeneratorPage />} />
+          <Route path="/ag-scenario" element={<AGPage />} />
+          <Route path="/ag-results" element={<AGResultsPage />} />
           <Route path="*" element={<Navigate to="/map-generator" />} />
-           <Route path="/ag-scenario" element={<AGPage />} />
         </Routes>
       </div>
       <Toaster

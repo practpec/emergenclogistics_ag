@@ -1,49 +1,49 @@
 import random
 from typing import List
 from ..models import Individual
-from ..core.capacity_manager import CapacityManager
-from ..core.assignment_validator import AssignmentValidator
 
 class MutationOperator:
-    """Operador de mutación refactorizado y simplificado"""
+    """Operador de mutación optimizado"""
     
     def __init__(self, data_manager):
         self.data_manager = data_manager
-        self.capacity_manager = CapacityManager(data_manager)
-        self.validator = AssignmentValidator(data_manager)
 
     def mutate_population(self, poblacion: List[Individual], prob_mutacion: float) -> List[Individual]:
         """Aplicar mutación a la población con reparación automática"""
         for individuo in poblacion:
             if random.random() < prob_mutacion:
-                self._apply_random_mutation(individuo)
+                self._apply_mutation_strategy(individuo)
             
-            # Reparación automática OBLIGATORIA
+            # Reparación automática obligatoria
             self._repair_individual(individuo)
         
         return poblacion
 
-    def _apply_random_mutation(self, individuo: Individual):
-        """Aplicar mutación aleatoria según estrategia"""
-        tipo_mutacion = random.choice([
-            'reassign_duplicates',  # 30%
-            'swap_destinations',    # 25%
-            'optimize_supplies',    # 25%
-            'rebalance_loads'      # 20%
-        ])
+    def _apply_mutation_strategy(self, individuo: Individual):
+        """Aplicar estrategia de mutación aleatoria"""
+        estrategias = [
+            'reassign_duplicates',
+            'swap_destinations', 
+            'optimize_supplies',
+            'rebalance_loads'
+        ]
         
-        if tipo_mutacion == 'reassign_duplicates':
+        estrategia = random.choice(estrategias)
+        
+        if estrategia == 'reassign_duplicates':
             self._mutation_reassign_duplicates(individuo)
-        elif tipo_mutacion == 'swap_destinations':
+        elif estrategia == 'swap_destinations':
             self._mutation_swap_destinations(individuo)
-        elif tipo_mutacion == 'optimize_supplies':
+        elif estrategia == 'optimize_supplies':
             self._mutation_optimize_supplies(individuo)
-        elif tipo_mutacion == 'rebalance_loads':
+        elif estrategia == 'rebalance_loads':
             self._mutation_rebalance_loads(individuo)
 
     def _mutation_reassign_duplicates(self, individuo: Individual):
         """Mutación específica para eliminar duplicados"""
-        self.validator.reassign_duplicates(individuo)
+        from ..core.assignment_validator import AssignmentValidator
+        validator = AssignmentValidator(self.data_manager)
+        validator.reassign_duplicates(individuo)
 
     def _mutation_swap_destinations(self, individuo: Individual):
         """Intercambiar destinos entre dos vehículos"""
@@ -59,20 +59,26 @@ class MutationOperator:
 
     def _mutation_optimize_supplies(self, individuo: Individual):
         """Optimizar carga de un vehículo aleatorio"""
+        if not individuo.vehiculos:
+            return
+            
         vehiculo_idx = random.randint(0, len(individuo.vehiculos) - 1)
         asignacion = individuo.vehiculos[vehiculo_idx]
         
-        capacidad = self.data_manager.get_capacidad_vehiculo(asignacion.vehiculo_id)
-        utilizacion = self.capacity_manager.get_utilization_rate(asignacion)
+        from ..core.capacity_manager import CapacityManager
+        capacity_mgr = CapacityManager(self.data_manager)
         
-        if utilizacion < 0.6:
-            # Incrementar insumos
+        utilizacion = capacity_mgr.get_utilization_rate(asignacion)
+        capacidad = self.data_manager.get_capacidad_vehiculo(asignacion.vehiculo_id)
+        
+        if utilizacion < 0.5:
+            # Incrementar insumos si hay capacidad
             self._increment_supplies(asignacion, capacidad)
         elif utilizacion > 0.95:
             # Redistribuir para optimizar
             self._redistribute_supplies(asignacion, capacidad)
         else:
-            # Mutación normal
+            # Mutación normal de insumos
             self._normal_supply_mutation(asignacion)
 
     def _mutation_rebalance_loads(self, individuo: Individual):
@@ -80,34 +86,28 @@ class MutationOperator:
         if len(individuo.vehiculos) < 2:
             return
         
+        from ..core.capacity_manager import CapacityManager
+        capacity_mgr = CapacityManager(self.data_manager)
+        
         # Calcular utilizaciones
         utilizaciones = []
         for i, asignacion in enumerate(individuo.vehiculos):
-            utilizacion = self.capacity_manager.get_utilization_rate(asignacion)
-            capacidad = self.data_manager.get_capacidad_vehiculo(asignacion.vehiculo_id)
-            utilizaciones.append((i, utilizacion, capacidad))
+            utilizacion = capacity_mgr.get_utilization_rate(asignacion)
+            utilizaciones.append((i, utilizacion))
         
         # Ordenar por utilización
         utilizaciones.sort(key=lambda x: x[1])
         
         # Transferir del más usado al menos usado
-        menos_util_idx = utilizaciones[0][0]
-        mas_util_idx = utilizaciones[-1][0]
-        
-        if utilizaciones[-1][1] - utilizaciones[0][1] > 0.3:
-            self._transfer_supplies(
-                individuo.vehiculos[mas_util_idx],
-                individuo.vehiculos[menos_util_idx]
-            )
-
-    def _repair_individual(self, individuo: Individual):
-        """Reparar individuo completamente"""
-        # Reparar capacidades
-        for asignacion in individuo.vehiculos:
-            self.capacity_manager.repair_capacity_violation(asignacion)
-        
-        # Reparar duplicados
-        self.validator.reassign_duplicates(individuo)
+        if len(utilizaciones) >= 2:
+            menos_util_idx = utilizaciones[0][0]
+            mas_util_idx = utilizaciones[-1][0]
+            
+            if utilizaciones[-1][1] - utilizaciones[0][1] > 0.3:
+                self._transfer_supplies(
+                    individuo.vehiculos[mas_util_idx],
+                    individuo.vehiculos[menos_util_idx]
+                )
 
     def _increment_supplies(self, asignacion, capacidad: float):
         """Incrementar insumos respetando capacidad"""
@@ -115,57 +115,57 @@ class MutationOperator:
             asignacion.insumos[i] * self.data_manager.get_peso_insumo(i)
             for i in range(len(asignacion.insumos))
         )
-        peso_disponible = capacidad * 0.9 - peso_actual
+        peso_disponible = capacidad * 0.85 - peso_actual
         
         if peso_disponible <= 0:
             return
         
-        # Encontrar insumos incrementables
-        for i, cantidad_actual in enumerate(asignacion.insumos):
-            if cantidad_actual > 0:
-                peso_unitario = self.data_manager.get_peso_insumo(i)
-                if peso_unitario > 0 and peso_disponible >= peso_unitario:
-                    incremento = min(3, int(peso_disponible / peso_unitario))
-                    if incremento > 0:
-                        asignacion.insumos[i] += random.randint(1, incremento)
-                        peso_disponible -= incremento * peso_unitario
-                        if peso_disponible <= 0:
-                            break
+        # Incrementar insumos prioritarios
+        insumos_prioritarios = self.data_manager.get_insumos_prioritarios()
+        
+        for insumo_id in random.sample(insumos_prioritarios, min(len(insumos_prioritarios), 3)):
+            if peso_disponible <= 0:
+                break
+                
+            peso_unitario = self.data_manager.get_peso_insumo(insumo_id)
+            if peso_unitario > 0 and peso_disponible >= peso_unitario:
+                incremento_max = int(peso_disponible / peso_unitario)
+                incremento = min(incremento_max, 3)
+                
+                if incremento > 0:
+                    asignacion.insumos[insumo_id] += incremento
+                    peso_disponible -= incremento * peso_unitario
 
     def _redistribute_supplies(self, asignacion, capacidad: float):
         """Redistribuir insumos para peso objetivo"""
-        peso_objetivo = capacidad * 0.85
-        insumos_originales = asignacion.insumos.copy()
-        asignacion.insumos = [0] * len(asignacion.insumos)
+        peso_objetivo = capacidad * 0.80
         
-        peso_restante = peso_objetivo
-        total_original = sum(insumos_originales)
+        # Calcular total actual
+        total_actual = sum(asignacion.insumos)
+        if total_actual == 0:
+            return
         
-        if total_original > 0:
-            for i, cantidad_original in enumerate(insumos_originales):
-                if cantidad_original > 0 and peso_restante > 0:
-                    peso_unitario = self.data_manager.get_peso_insumo(i)
-                    if peso_unitario > 0:
-                        proporcion = cantidad_original / total_original
-                        cantidad_objetivo = int((peso_objetivo / peso_unitario) * proporcion)
-                        cantidad_real = min(cantidad_objetivo, int(peso_restante / peso_unitario))
-                        
-                        if cantidad_real > 0:
-                            asignacion.insumos[i] = cantidad_real
-                            peso_restante -= cantidad_real * peso_unitario
+        # Redistribuir proporcionalmente
+        factor_reduccion = 0.85
+        for i in range(len(asignacion.insumos)):
+            if asignacion.insumos[i] > 0:
+                nueva_cantidad = int(asignacion.insumos[i] * factor_reduccion)
+                asignacion.insumos[i] = max(1, nueva_cantidad)
 
     def _normal_supply_mutation(self, asignacion):
         """Mutación normal de insumos"""
-        indices_a_mutar = random.sample(
-            range(len(asignacion.insumos)), 
-            random.randint(1, min(5, len(asignacion.insumos)))
-        )
+        num_mutaciones = random.randint(1, min(4, len(asignacion.insumos)))
+        indices_mutar = random.sample(range(len(asignacion.insumos)), num_mutaciones)
         
-        for idx in indices_a_mutar:
-            if random.random() < 0.5:
-                asignacion.insumos[idx] += random.randint(1, 3)
+        for idx in indices_mutar:
+            if random.random() < 0.6:
+                # Incrementar
+                incremento = random.randint(1, 2)
+                asignacion.insumos[idx] += incremento
             else:
-                asignacion.insumos[idx] = max(0, asignacion.insumos[idx] - random.randint(1, 2))
+                # Decrementar
+                decremento = random.randint(1, 2)
+                asignacion.insumos[idx] = max(0, asignacion.insumos[idx] - decremento)
 
     def _transfer_supplies(self, asignacion_origen, asignacion_destino):
         """Transferir insumos entre vehículos"""
@@ -174,12 +174,12 @@ class MutationOperator:
             asignacion_destino.insumos[i] * self.data_manager.get_peso_insumo(i)
             for i in range(len(asignacion_destino.insumos))
         )
-        capacidad_disponible = capacidad_destino * 0.9 - peso_actual_destino
+        capacidad_disponible = capacidad_destino * 0.85 - peso_actual_destino
         
         if capacidad_disponible <= 0:
             return
         
-        # Encontrar insumos transferibles
+        # Transferir algunos insumos
         for i, cantidad in enumerate(asignacion_origen.insumos):
             if cantidad > 1 and capacidad_disponible > 0:
                 peso_unitario = self.data_manager.get_peso_insumo(i)
@@ -192,3 +192,20 @@ class MutationOperator:
                         asignacion_origen.insumos[i] -= cantidad_transferir
                         asignacion_destino.insumos[i] += cantidad_transferir
                         capacidad_disponible -= cantidad_transferir * peso_unitario
+                        
+                        break
+
+    def _repair_individual(self, individuo: Individual):
+        """Reparar individuo después de mutación"""
+        from ..core.capacity_manager import CapacityManager
+        from ..core.assignment_validator import AssignmentValidator
+        
+        capacity_mgr = CapacityManager(self.data_manager)
+        validator = AssignmentValidator(self.data_manager)
+        
+        # Reparar capacidades
+        for asignacion in individuo.vehiculos:
+            capacity_mgr.repair_capacity_violation(asignacion)
+        
+        # Reparar duplicados
+        validator.reassign_duplicates(individuo)
