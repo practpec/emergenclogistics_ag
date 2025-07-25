@@ -1,3 +1,4 @@
+// src/pages/AGPage.jsx
 import { useState, useMemo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAG } from '../features/ag_scenario/hooks/useAG.js';
@@ -34,19 +35,16 @@ const AGPage = () => {
 
   const expandedFleet = useMemo(() => {
     return Object.entries(selectedVehicles).flatMap(([vehicleId, quantity]) => {
-      // --- CORRECCIÓN CLAVE: Usar 'v.id' en lugar de 'v.vehiculo_id' ---
       const vehicleInfo = vehicles.find(v => String(v.id) === vehicleId);
       if (!vehicleInfo || !quantity || quantity <= 0) return [];
       return Array.from({ length: quantity }, (_, i) => ({
         ...vehicleInfo,
-        // Se genera una matrícula única para cada instancia de vehículo
         matricula: `${vehicleInfo.modelo.substring(0, 3).toUpperCase()}${vehicleId}-${i + 1}`
       }));
     });
   }, [selectedVehicles, vehicles]);
   
   const activeVehicleTypes = useMemo(() => {
-    // --- CORRECCIÓN CLAVE: Usar 'v.id' ---
     const activeVehicleIds = Object.keys(selectedVehicles).filter(id => selectedVehicles[id] > 0);
     const activeVehicles = vehicles.filter(v => activeVehicleIds.includes(String(v.id)));
     return [...new Set(activeVehicles.map(v => v.tipo))];
@@ -68,7 +66,7 @@ const AGPage = () => {
       }
     });
     setRouteStates(newRouteStates);
-  }, [mapData, activeVehicleTypes]); // Eliminamos 'vehicles' porque ya está en la dependencia de activeVehicleTypes
+  }, [mapData, activeVehicleTypes]);
 
   const isReadyForPreview = useMemo(() => {
     const hasOpenRoute = Object.values(routeStates).flat().some(r => r.estado === 'abierta');
@@ -97,7 +95,9 @@ const AGPage = () => {
             state: { 
                 results: result.data, 
                 mapData: mapData,
-                vehicleData: vehicles
+                vehicleData: vehicles,
+                scenarioConfig: scenarioData.scenario_config,
+                selectedDisaster: selectedDisasterObject // <-- DATO AÑADIDO
             } 
         });
       } else {

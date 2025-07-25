@@ -1,3 +1,4 @@
+// src/pages/AGResultsPage.jsx
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
@@ -7,6 +8,8 @@ import EvolutionChart from '../components/ag/results/EvolutionChart';
 import TopSolutionsAnalysis from '../components/ag/results/TopSolutionsAnalysis';
 import AGMapVisualization from '../components/ag/results/AGMapVisualization';
 import PerformanceAnalysis from '../components/ag/results/PerformanceAnalysis';
+import ScenarioSummary from '../components/ag/results/ScenarioSummary';
+import VehicleFleetMap from '../components/ag/results/VehicleFleetMap'; // <-- NUEVO COMPONENTE
 
 const MetricCard = ({ title, value, subtext }) => (
   <div className="bg-gray-800 p-3 rounded-lg text-center border border-gray-700">
@@ -19,13 +22,12 @@ const MetricCard = ({ title, value, subtext }) => (
 const AGResultsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { results, mapData, vehicleData } = location.state || {};
+  const { results, mapData, vehicleData, scenarioConfig, selectedDisaster } = location.state || {};
   
   const [activeTab, setActiveTab] = useState('overview');
+  const [selectedSolutionForMap, setSelectedSolutionForMap] = useState(0);
 
-  // --- VALIDACIÓN CORREGIDA ---
-  // Ahora también comprueba que el array de mejores soluciones no esté vacío.
-  if (!results || !results.mejores_soluciones || results.mejores_soluciones.length === 0 || !mapData || !vehicleData) {
+  if (!results || !results.mejores_soluciones || results.mejores_soluciones.length === 0 || !mapData || !vehicleData || !scenarioConfig || !selectedDisaster) {
     return (
       <div className="h-screen flex flex-col justify-center items-center text-center p-4">
         <h2 className="text-2xl font-bold text-red-400">Error: Datos de resultados inválidos o incompletos</h2>
@@ -41,6 +43,7 @@ const AGResultsPage = () => {
     { id: 'overview', label: 'Resumen General' },
     { id: 'solutions', label: 'Análisis de Soluciones' },
     { id: 'map', label: 'Mapa de Distribución' },
+    { id: 'fleetMap', label: 'Mapa de Flota' }, // <-- NUEVA PESTAÑA
     { id: 'performance', label: 'Análisis de Rendimiento' },
   ];
 
@@ -50,6 +53,26 @@ const AGResultsPage = () => {
         return <TopSolutionsAnalysis solutions={mejores_soluciones} mapData={mapData} vehicleData={vehicleData} />;
       case 'map':
         return <AGMapVisualization solutions={mejores_soluciones} mapData={mapData} />;
+      case 'fleetMap': // <-- RENDERIZADO DE LA NUEVA VISTA
+        return (
+            <div>
+                <div className="mb-4 flex items-center gap-4 bg-gray-800 p-3 rounded-lg border border-gray-700">
+                    <label className="text-gray-300 font-semibold">Selecciona una solución para explorar:</label>
+                    <div className="flex gap-2">
+                        {mejores_soluciones.map((_, index) => (
+                            <Button key={index} size="sm" variant={selectedSolutionForMap === index ? 'primary' : 'secondary'} onClick={() => setSelectedSolutionForMap(index)}>
+                                Solución #{index + 1}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+                <VehicleFleetMap 
+                    solution={mejores_soluciones[selectedSolutionForMap]} 
+                    mapData={mapData} 
+                    vehicleData={vehicleData} 
+                />
+            </div>
+        );
       case 'performance':
         return <PerformanceAnalysis solutions={mejores_soluciones} vehicleData={vehicleData} />;
       case 'overview':
@@ -78,15 +101,21 @@ const AGResultsPage = () => {
         <p className="text-gray-300">Análisis de las soluciones encontradas por el Algoritmo Genético.</p>
       </div>
       
-      <div className="flex gap-2 border-b border-gray-700">
+      <ScenarioSummary 
+        mapData={mapData} 
+        scenarioConfig={scenarioConfig} 
+        selectedDisaster={selectedDisaster}
+      />
+
+      <div className="flex gap-2 border-b border-gray-700 mt-6 overflow-x-auto pb-px">
         {tabs.map(tab => (
-          <Button key={tab.id} onClick={() => setActiveTab(tab.id)} variant={activeTab === tab.id ? 'primary' : 'secondary'} size="sm" className="rounded-b-none">
+          <Button key={tab.id} onClick={() => setActiveTab(tab.id)} variant={activeTab === tab.id ? 'primary' : 'secondary'} size="sm" className="rounded-b-none flex-shrink-0">
             {tab.label}
           </Button>
         ))}
       </div>
 
-      <div className="fade-in">{renderContent()}</div>
+      <div className="fade-in mt-4">{renderContent()}</div>
 
       <div className="text-center mt-4">
         <Button onClick={() => navigate('/map-generator')} variant="secondary">
