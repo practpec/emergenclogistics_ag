@@ -1,218 +1,167 @@
+# EmergenLogistics
 
-# 🚨 EmergenLogistics
+Sistema inteligente de distribución de ayuda humanitaria utilizando algoritmos genéticos para optimización logística y datos geográficos del INEGI.
 
-**Sistema inteligente de distribución de ayuda humanitaria** utilizando algoritmos genéticos para optimización logística.
+## Características
 
----
+- Generación automática de mapas y rutas usando OpenStreetMap + OSRM
+- Sistema de creación de escenarios de emergencia configurable
+- Base de datos de localidades reales mexicanas (INEGI)
+- Interfaz web moderna con visualización de mapas
+- Arquitectura modular backend/frontend
 
-## 🔍 Características
+## Instalación
 
-- 🗺️ Generación automática de rutas usando OpenStreetMap + OSRM
-- 🧬 Algoritmo genético para optimizar distribución de ayuda
-- 💻 Interfaz web moderna con Leaflet y JS modular
-- 🧱 Arquitectura limpia y modular para fácil mantenimiento y escalabilidad
-
----
-
-## ⚙️ Instalación
-
-### ✅ Requisitos
+### Requisitos
 
 - Python 3.8+
 - pip
-- (opcional) Node.js si compilas assets personalizados
 
-### 🔒 Crear entorno virtual
-
-> Se recomienda usar un entorno virtual para evitar conflictos de dependencias globales:
+### Configuración del entorno
 
 ```bash
+# Crear entorno virtual
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
-````
 
-### 📦 Instalar dependencias
-
-```bash
+# Instalar dependencias
 pip install -r requirements.txt
-```
 
-### ⚙️ Configurar variables de entorno
-
-```bash
+# Configurar variables de entorno
 cp .env.example .env
-# Edita el archivo .env con tus valores personalizados
+# Editar .env con valores personalizados
 ```
 
-### 🚀 Ejecutar aplicación en modo desarrollo
+### Ejecutar aplicación
 
 ```bash
 python main.py
 ```
 
-La aplicación estará disponible en:
-👉 [http://localhost:5000](http://localhost:5000)
+La aplicación estará disponible en: http://localhost:5000
 
----
-
-## 🧱 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 emergenclogistics/
-├── app/                # Configuración y creación de la app Flask
-├── core/               # Núcleo del sistema (AG, validaciones, excepciones)
-├── services/           # Lógica de negocio (escenarios, distribución, rutas)
-├── entities/           # Modelos de datos (vehículos, insumos, destinos)
-├── utils/              # Helpers compartidos (formato, cálculos, config)
-├── static/             # Archivos frontend: JS, CSS, imágenes
-├── templates/          # HTML templates renderizados por Flask
-├── logs/               # Archivos de log del sistema
-└── main.py             # Entry point de la aplicación
+├── back/                   # Backend Flask
+│   ├── app/               # Configuración Flask
+│   ├── core/              # Núcleo del sistema (validaciones, excepciones)
+|   ├── data/                  # Base de datos de localidades INEGI
+│   ├── services/          # Lógica de negocio (escenarios, distribución, rutas)
+│   ├── entities/          # Modelos de datos y entidades
+│   ├── utils/             # Helpers y configuración
+│   └── main.py           # Entry point
+├── front/                 # Frontend React + Vite
+├── docs/                  # Documentación técnica
+└── logs/                  # Archivos de log
 ```
 
----
+## Módulos Principales
 
-## 📍 Base de Datos de Localidades
+### 1. Generador de Mapas
+- Selección de nodo base (estado/municipio)
+- Generación automática de destinos usando datos INEGI
+- Cálculo de rutas con OpenStreetMap/OSRM
+- Visualización interactiva con Leaflet
 
-El sistema utiliza una base de datos SQLite (`localidades.db`) generada a partir del catálogo oficial del INEGI (Instituto Nacional de Estadística y Geografía). Esta base contiene más de 170,000 registros de **localidades reales en México**, y es utilizada para generar nodos geográficos habitados (ciudades, pueblos, colonias), evitando zonas vacías como ríos o montañas.
+### 2. Sistema de Escenarios
+- Configuración de tipos de desastre
+- Selección de vehículos disponibles
+- Definición de insumos necesarios
+- Gestión de rutas y estados
 
-### 🗂️ Campos incluidos en la base de datos
+### 3. Frontend (En desarrollo)
+- Visualización de mapas y rutas
+- Interfaz de configuración de escenarios
+- Panel de resultados y estadísticas
 
-- `estado`: Nombre del estado
-- `municipio`: Nombre del municipio
-- `localidad`: Nombre de la localidad
-- `ambito`: Clasificación urbana o rural
-- `latitud`: Coordenadas geográficas (decimal)
-- `longitud`: Coordenadas geográficas (decimal)
-- `poblacion`: Número total de habitantes
+## Base de Datos de Localidades
 
+El sistema utiliza la base de datos oficial del INEGI con más de 170,000 localidades mexicanas. Para información detallada, consulta la [documentación de datos INEGI](./docs/datos-inegi.md).
 
-## 🧩 Módulos Principales
+## API REST
 
-### 1. 🌍 Generador de Mapas
+| Método | Endpoint                        | Descripción                           |
+|--------|---------------------------------|---------------------------------------|
+| POST   | `/api/generate-complete-routes` | Generar mapa y rutas                 |
+| POST   | `/api/ag/create-scenario`       | Crear escenario de emergencia        |
+| GET    | `/api/entities/{type}`          | Obtener datos de entidades           |
+| GET    | `/api/status`                   | Estado del servidor                  |
 
-* Selección de nodo base (estado o ciudad)
-* Generación automática de destinos
-* Cálculo de rutas con restricciones por tipo de vehículo
-* Visualización en mapa (Leaflet + OpenStreetMap)
-
-### 2. 🧬 Algoritmo Genético
-
-* Configuración de escenarios (tipo de desastre, insumos, flota)
-* Asignación y optimización de recursos
-* Respeto a restricciones logísticas (peso, distancia, tipo de vehículo)
-* Exportación de resultados (PDF, JSON)
-
----
-
-## 📡 API REST
-
-| Método | Endpoint                        | Descripción                                               |
-| ------ | ------------------------------- | --------------------------------------------------------- |
-| POST   | `/api/generate-complete-routes` | Generar rutas para todos los destinos                     |
-| POST   | `/api/ag/create-scenario`       | Crear escenario de emergencia                             |
-| POST   | `/api/ag/execute`               | Ejecutar algoritmo genético                               |
-| GET    | `/api/entities/{type}`          | Obtener datos de entidades (`vehicles`, `supplies`, etc.) |
-| GET    | `/api/status`                   | Verificar estado del servidor                             |
-
----
-
-## 🧠 Arquitectura
+## Arquitectura
 
 ### Backend (Python + Flask)
+- Patrón factory para configuración Flask
+- Servicios modulares para lógica de negocio
+- Modelos de datos con dataclasses
+- Sistema de logging estructurado
 
-* `app/`: Factory pattern, configuración y blueprints
-* `core/`: Motor AG, validaciones y excepciones personalizadas
-* `services/`: Lógica de negocio modular y casos de uso
-* `utils/`: Funciones utilitarias, helpers y configuración global
+### Frontend (React + Vite)
+- Componentes modulares
+- Hooks personalizados para lógica
+- Gestión de estado con Context API
+- Comunicación con API REST
 
-### Frontend (JavaScript + HTML + CSS)
+## Desarrollo
 
-* Código modular por componente
-* Carga dinámica de templates
-* Comunicación entre módulos con EventBus
-* Cache local de respuestas y plantillas
-* Estilos reutilizables y diseño responsive
+### Logs
+Los logs se almacenan en `logs/app.log` con rotación automática.
 
----
-
-## 🧪 Desarrollo y Testing
-
-### 📋 Logs
-
-Los logs se almacenan en:
-
-```
-logs/app.log
-```
-
-Se rota automáticamente por tamaño.
-
-### 🚦 Ejecutar pruebas
-
+### Testing
 ```bash
 pytest tests/
 ```
 
-### 🎨 Lint y Formato
-
+### Formato de código
 ```bash
 black . && flake8 .
 ```
 
----
+## Despliegue en Producción
 
-## 🚀 Despliegue en Producción
-
-1. Configurar `.env`:
-
+1. Configurar variables de entorno:
 ```env
 DEBUG=False
 LOG_LEVEL=ERROR
-SECRET_KEY=una-clave-segura
+SECRET_KEY=clave-segura-produccion
 ```
 
 2. Ejecutar con Gunicorn:
-
 ```bash
 gunicorn -w 4 -b 0.0.0.0:5000 main:app
 ```
 
-3. (Opcional) Usar `systemd`, `supervisor` o `docker` para producción persistente.
+## Documentación Técnica
 
----
+Para información detallada sobre:
+- [Datos del INEGI](./docs/datos-inegi.md)
+- [Algoritmos y fórmulas](./docs/algoritmos.md)
+- [Estructura de entidades](./docs/entidades.md)
+- [API y endpoints](./docs/api.md)
 
-## 🤝 Contribuciones
+## Estado del Proyecto
 
-¡Son bienvenidas! Sigue estos pasos:
+### Completo
+- Generación de mapas y rutas
+- Creación de escenarios de emergencia
+- Base de datos de localidades INEGI
+- API REST backend
 
-1. Haz un fork del repositorio
-2. Crea una nueva rama:
+### En desarrollo
+- Algoritmo genético de optimización
+- Visualización completa de resultados frontend
+- Sistema de reportes
 
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
-   ```
-3. Haz tus cambios y commitea:
+## Contribuciones
 
-   ```bash
-   git commit -am "Agregar nueva funcionalidad"
-   ```
-4. Haz push a tu rama:
+1. Fork del repositorio
+2. Crear rama: `git checkout -b feature/nueva-funcionalidad`
+3. Commit: `git commit -am "Agregar nueva funcionalidad"`
+4. Push: `git push origin feature/nueva-funcionalidad`
+5. Crear Pull Request
 
-   ```bash
-   git push origin feature/nueva-funcionalidad
-   ```
-5. Abre un Pull Request describiendo tu cambio
+## Licencia
 
----
-
-## 📄 Licencia
-
-MIT License — consulta el archivo `LICENSE` para más detalles.
-
-
-aclaro esto es el escenario no ag pro lo cual debe ser archivos direnetes al ag porque ese aun no
-primero trae todos los vehiculos
-luego el tipo de desastre sus datos
-luego se selecciona la acntiadad, los tipos vehiculos que se usaran, debe especificar cuantos de cada modelo, ademas si quiere geragar uno que exita uno de agregar y sera un form pero que se coulta
+MIT License - consulta el archivo `LICENSE` para más detalles.
