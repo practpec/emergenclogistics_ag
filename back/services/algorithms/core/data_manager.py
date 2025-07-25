@@ -1,16 +1,16 @@
 from typing import List, Dict, Any, Set
-import json
-import os
+from services.data.data_loader import data_loader
+from services.data.database_service import DatabaseService
 
 class AlgorithmDataManager:
     """Gestor centralizado de datos para el algoritmo genético"""
     
     def __init__(self, scenario_data: Dict[str, Any]):
         self.scenario_data = scenario_data
+        self.db_service = DatabaseService()
         
         self.vehiculos_disponibles = []
         self.mapeo_asignaciones = []
-        self.rutas_estado = {}
         self.tipo_desastre = ""
         self.desastre_info = None
         
@@ -26,50 +26,109 @@ class AlgorithmDataManager:
         self._build_optimization_maps()
     
     def _process_scenario_data(self):
-        """Procesar datos del escenario de entrada"""
+        """Procesar datos del escenario según nueva estructura"""
         vehiculos_raw = self.scenario_data['scenario_config']['vehiculos_disponibles']
         
-        # Procesar vehículos y agregar capacidad_kg si no existe
         self.vehiculos_disponibles = []
         for vehiculo in vehiculos_raw:
             vehiculo_procesado = vehiculo.copy()
             
-            # Asegurar que tenga capacidad_kg
-            if 'capacidad_kg' not in vehiculo_procesado and 'maximo_peso_ton' in vehiculo_procesado:
-                vehiculo_procesado['capacidad_kg'] = vehiculo_procesado['maximo_peso_ton'] * 1000
-            
-            # Asegurar campos requeridos
             if 'capacidad_kg' not in vehiculo_procesado:
-                vehiculo_procesado['capacidad_kg'] = 1000.0  # Valor por defecto
+                if 'maximo_peso_ton' in vehiculo_procesado:
+                    vehiculo_procesado['capacidad_kg'] = vehiculo_procesado['maximo_peso_ton'] * 1000
+                else:
+                    vehiculo_procesado['capacidad_kg'] = 1000.0
             
             self.vehiculos_disponibles.append(vehiculo_procesado)
         
         self.num_vehiculos = len(self.vehiculos_disponibles)
-        
         self.tipo_desastre = self.scenario_data['scenario_config']['tipo_desastre']
         
         self.mapeo_asignaciones = self._create_route_mapping()
+    
+    def _create_route_mapping(self) -> List[Dict[str, Any]]:
+        """Crear mapeo de asignaciones según nueva estructura del JSON"""
+        mapeo = []
+        asignacion_id = 0
         
-        rutas_estado_list = self.scenario_data['scenario_config'].get('rutas_estado', [])
-        self.rutas_estado = {f"ruta-{i}": r for i, r in enumerate(rutas_estado_list)}
+        map_data = self.scenario_data['map_data']
+        
+        # Verificar si hay datos reales de localidades
+        if 'nodos_secundarios' in map_data and map_data.get('nodos_secundarios'):
+            # Usar datos reales de la BD
+            mapeo = self._create_mapping_from_real_data(map_data)
+        else:
+            # Usar estructura simplificada del JSON
+            rutas_data = map_data.get('rutas_data', [])
+            for ruta_info in rutas_data:
+                destino_clave = ruta_info.get('claves_localiada_destinos', f'LOC{asignacion_id:03d}')
+                
+                mapeo.append({
+                    'id_asignacion_unica': asignacion_id,
+                    'id_destino_perteneciente': destino_clave,
+                    'id_ruta_en_destino': ruta_info.get('id_ruta', asignacion_id),
+                    'distancia_km': ruta_info.get('distancia_km', 10),
+                    'destino_nombre': f'Destino {destino_clave}',
+                    'poblacion': self._estimate_population_from_distance(ruta_info.get('distancia_km', 10)),
+                    'estado': ruta_info.get('estado', 'abierta'),
+                    'vehiculos_permitidos': ruta_info.get('vehiculos_permitidos', ['camioneta', 'van'])
+                })
+                asignacion_id += 1
+        
+        return mapeo
+    
+    def _create_mapping_from_real_data(self, map_data: Dict) -> List[Dict[str, Any]]:
+        """Crear mapeo usando datos reales de localidades de la BD"""
+        mapeo = []
+        asignacion_id = 0
+        
+        nodos_secundarios = map_data['nodos_secundarios']
+        rutas_data = map_data.get('rutas_data', [])
+        
+        for i, nodo in enumerate(nodos_secundarios):
+            ruta_info = {}
+            if i < len(rutas_data):
+                ruta_info = rutas_data[i]
+            
+            mapeo.append({
+                'id_asignacion_unica': asignacion_id,
+                'id_destino_perteneciente': nodo['clave_localidad'],
+                'id_ruta_en_destino': i,
+                'distancia_km': nodo.get('distancia_directa', ruta_info.get('distancia_km', 10)),
+                'destino_nombre': nodo['nombre'],
+                'poblacion': int(nodo.get('poblacion', 500)),
+                'estado': ruta_info.get('estado', 'abierta'),
+                'vehiculos_permitidos': ruta_info.get('vehiculos_permitidos', ['camioneta', 'van']),
+                'coordenadas': {
+                    'lat': nodo.get('lat'),
+                    'lng': nodo.get('lng')
+                },
+                'clave_estado': nodo.get('clave_estado'),
+                'clave_municipio': nodo.get('clave_municipio')
+            })
+            asignacion_id += 1
+        
+        return mapeo
+    
+    def _estimate_population_from_distance(self, distancia_km: float) -> int:
+        """Estimar población basada en distancia"""
+        if distancia_km <= 10:
+            return 800
+        elif distancia_km <= 15:
+            return 600
+        elif distancia_km <= 20:
+            return 400
+        else:
+            return 200
     
     def _load_static_data(self):
-        """Cargar datos estáticos desde archivos JSON directamente"""
+        """Cargar datos estáticos usando servicios especializados"""
         try:
-            # Cargar insumos directamente
-            with open("entities/data/categorias_insumos.json", 'r', encoding='utf-8') as f:
-                self.insumos_data = json.load(f)
+            self.insumos_data = data_loader.get_categorias_insumos()
             self.num_insumos = len(self.insumos_data)
             
-            # Cargar información de desastres directamente
-            with open("entities/data/desastres.json", 'r', encoding='utf-8') as f:
-                tipos_desastre = json.load(f)
-                self.desastre_info = next(
-                    (d for d in tipos_desastre if d['tipo'] == self.tipo_desastre), 
-                    None
-                )
+            self.desastre_info = data_loader.get_desastre_by_tipo(self.tipo_desastre)
             
-            # Crear mapa de categorías
             for insumo in self.insumos_data:
                 categoria = insumo['categoria']
                 if categoria not in self.categorias_map:
@@ -78,31 +137,6 @@ class AlgorithmDataManager:
                 
         except Exception as e:
             raise Exception(f"Error cargando datos estáticos: {e}")
-    
-    def _create_route_mapping(self) -> List[Dict[str, Any]]:
-        """Crear mapeo optimizado de asignaciones destino-ruta"""
-        mapeo = []
-        asignacion_id = 0
-        
-        map_data = self.scenario_data['map_data']
-        rutas_data = map_data['rutas_data']
-        
-        for destino_data in rutas_data:
-            destino_info = destino_data['destino']
-            destino_clave = destino_info['clave_localidad']
-            
-            for ruta_idx, ruta in enumerate(destino_data['rutas']):
-                mapeo.append({
-                    'id_asignacion_unica': asignacion_id,
-                    'id_destino_perteneciente': destino_clave,
-                    'id_ruta_en_destino': ruta_idx,
-                    'distancia_km': ruta['distancia']['value'] / 1000,
-                    'destino_nombre': destino_info['nombre'],
-                    'poblacion': int(destino_info['poblacion'])
-                })
-                asignacion_id += 1
-        
-        return mapeo
     
     def _build_optimization_maps(self):
         """Construir mapas de optimización para consultas rápidas"""
@@ -150,20 +184,13 @@ class AlgorithmDataManager:
         vehiculo_info = self.vehiculos_disponibles[vehiculo_id]
         destinos_compatibles = []
         
-        for destino_id in self.destinos_unicos:
-            asignaciones_destino = self.destinos_a_asignaciones[destino_id]
+        for asignacion in self.mapeo_asignaciones:
+            vehiculos_permitidos = asignacion.get('vehiculos_permitidos', [])
+            estado_ruta = asignacion.get('estado', 'abierta')
             
-            for asignacion in asignaciones_destino:
-                ruta_id = f"{destino_id}-ruta-{asignacion['id_ruta_en_destino']}"
-                estado_ruta = self.rutas_estado.get(ruta_id, {
-                    'estado': 'abierta',
-                    'vehiculos_permitidos': [vehiculo_info['tipo']]
-                })
-                
-                if (estado_ruta['estado'] == 'abierta' and 
-                    vehiculo_info['tipo'] in estado_ruta['vehiculos_permitidos']):
-                    destinos_compatibles.append(asignacion)
-                    break
+            if (estado_ruta == 'abierta' and 
+                vehiculo_info.get('tipo', 'camioneta') in vehiculos_permitidos):
+                destinos_compatibles.append(asignacion)
         
         return destinos_compatibles
     
@@ -179,40 +206,46 @@ class AlgorithmDataManager:
         if peso_total > vehiculo['capacidad_kg'] * 1.05:
             return False
         
-        destino_id = mapeo_info['id_destino_perteneciente']
-        ruta_id = f"{destino_id}-ruta-{mapeo_info['id_ruta_en_destino']}"
-        estado_ruta = self.rutas_estado.get(ruta_id, {
-            'estado': 'abierta',
-            'vehiculos_permitidos': [vehiculo['tipo']]
-        })
+        vehiculos_permitidos = mapeo_info.get('vehiculos_permitidos', [])
+        estado_ruta = mapeo_info.get('estado', 'abierta')
         
-        return (estado_ruta['estado'] == 'abierta' and 
-                vehiculo['tipo'] in estado_ruta['vehiculos_permitidos'])
-    
-    def _load_static_data(self):
-        """Cargar datos estáticos desde archivos JSON"""
+    def get_localidad_info_by_clave(self, clave_localidad: str, clave_estado: str = None, clave_municipio: str = None) -> Dict:
+        """Obtener información completa de localidad usando DatabaseService"""
         try:
-            import json
+            if clave_estado and clave_municipio:
+                # Usar DatabaseService para obtener datos completos
+                nodo = self.db_service.get_nodo_inicial_municipio(clave_estado, clave_municipio)
+                if nodo and nodo['clave_localidad'] == clave_localidad:
+                    return nodo
             
-            # Cargar insumos
-            with open("entities/data/categorias_insumos.json", 'r', encoding='utf-8') as f:
-                self.insumos_data = json.load(f)
-            self.num_insumos = len(self.insumos_data)
+            # Fallback: buscar en mapeo existente
+            for mapeo in self.mapeo_asignaciones:
+                if mapeo['id_destino_perteneciente'] == clave_localidad:
+                    return {
+                        'clave_localidad': clave_localidad,
+                        'nombre': mapeo['destino_nombre'],
+                        'poblacion': mapeo['poblacion'],
+                        'coordenadas': mapeo.get('coordenadas', {})
+                    }
             
-            # Cargar información de desastres
-            with open("entities/data/desastres.json", 'r', encoding='utf-8') as f:
-                tipos_desastre = json.load(f)
-                self.desastre_info = next(
-                    (d for d in tipos_desastre if d['tipo'] == self.tipo_desastre), 
-                    None
-                )
+            return {}
+        except Exception:
+            return {}
+    
+    def get_localidades_by_municipio(self, clave_estado: str, clave_municipio: str, cantidad: int = 5) -> List[Dict]:
+        """Obtener localidades de un municipio usando DatabaseService"""
+        try:
+            # Obtener nodo principal
+            nodo_principal = self.db_service.get_nodo_inicial_municipio(clave_estado, clave_municipio)
+            if not nodo_principal:
+                return []
             
-            # Crear mapa de categorías
-            for insumo in self.insumos_data:
-                categoria = insumo['categoria']
-                if categoria not in self.categorias_map:
-                    self.categorias_map[categoria] = []
-                self.categorias_map[categoria].append(insumo['id_insumo'])
-                
-        except FileNotFoundError as e:
-            raise Exception(f"Archivo de datos estáticos no encontrado: {e}")
+            # Obtener localidades secundarias
+            localidades = self.db_service.get_localidades_municipio(
+                clave_estado, clave_municipio, 
+                nodo_principal['clave_localidad'], cantidad
+            )
+            
+            return localidades
+        except Exception:
+            return []

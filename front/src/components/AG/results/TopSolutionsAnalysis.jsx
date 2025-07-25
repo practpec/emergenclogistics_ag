@@ -1,4 +1,3 @@
-// src/components/ag/results/TopSolutionsAnalysis.jsx
 import { useState } from 'react';
 import { Card } from '../../common/Card';
 import { Button } from '../../common/Button';
@@ -18,14 +17,12 @@ const TopSolutionsAnalysis = ({ solutions, mapData, vehicleData }) => {
   const currentSol = solutions[selected];
 
   const getAssignmentDetails = (assignment) => {
-    // La clave primaria en `vehicleData` es 'id', no 'vehiculo_id'
     const vehicle = vehicleData.find(v => v.id == assignment.vehiculo_id) || {};
     
     let destinationName = 'Desconocido';
     let routeName = 'N/A';
     let distance = '0 km';
     
-    // Búsqueda corregida de la ruta y el destino
     for (const destData of mapData.rutas_data) {
         const route = (destData.rutas || []).find(r => r.id == assignment.ruta_id);
         if (route) {
@@ -36,7 +33,6 @@ const TopSolutionsAnalysis = ({ solutions, mapData, vehicleData }) => {
         }
     }
     
-    // Cálculo correcto del aprovechamiento
     const capacityKg = (vehicle.maximo_peso_ton || 0) * 1000;
     const utilization = capacityKg > 0 ? (assignment.peso_total_kg / capacityKg) * 100 : 0;
 

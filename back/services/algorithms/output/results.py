@@ -9,32 +9,27 @@ class ResultGenerator:
         self.vehiculos_disponibles = data_manager.vehiculos_disponibles
         self.mapeo_asignaciones = data_manager.mapeo_asignaciones
         self.insumos_data = data_manager.insumos_data
-        self.rutas_estado = data_manager.rutas_estado
         self.num_insumos = data_manager.num_insumos
 
     def generar_resultado_final(self, mejor_individuo: Individual, historial: List[Dict], 
                                poblacion_final: List[Individual], parametros_ag: Dict) -> Dict[str, Any]:
         """Generar resultado final según formato requerido"""
-        # Obtener top 3 individuos
         top_3_individuos = sorted(poblacion_final, key=lambda x: x.fitness, reverse=True)[:3]
         
-        # Procesar mejores soluciones
         mejores_soluciones = []
         for i, individuo in enumerate(top_3_individuos):
             solucion_data = self._procesar_individuo_para_resultado(individuo, i + 1)
             mejores_soluciones.append(solucion_data)
         
-        # Métricas globales
         metricas_globales = self._calcular_metricas_globales(top_3_individuos)
-        
-        # Análisis de convergencia
         convergencia_info = self._analizar_convergencia(historial, parametros_ag)
         
         return {
             'mejores_soluciones': mejores_soluciones,
             'metricas_globales': metricas_globales,
             'convergencia': convergencia_info,
-            'evolucion_fitness': historial
+            'evolucion_fitness': historial,
+            'parametros_utilizados': parametros_ag
         }
 
     def _procesar_individuo_para_resultado(self, individuo: Individual, posicion: int) -> Dict[str, Any]:
@@ -50,36 +45,39 @@ class ResultGenerator:
             'utilizacion_total': 0.0
         }
         
-        for asignacion in individuo.vehiculos:
+        for i, asignacion in enumerate(individuo.vehiculos):
             vehiculo_info = self.vehiculos_disponibles[asignacion.vehiculo_id]
             
             if asignacion.id_destino_ruta < len(self.mapeo_asignaciones):
                 mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
                 
-                # Calcular métricas del vehículo
                 peso_vehiculo = self._calcular_peso_insumos(asignacion.insumos)
-                combustible = mapeo_info['distancia_km'] * vehiculo_info.get('consumo_litros_km', 0.15)
+                combustible = mapeo_info['distancia_km'] * vehiculo_info.get('consumo_litros_km', 0.10)
                 tiempo_viaje = mapeo_info['distancia_km'] / vehiculo_info.get('velocidad_kmh', 60)
                 
-                # Determinar estado de entrega
                 estado_entrega = self._determinar_estado_entrega(
                     vehiculo_info, mapeo_info, peso_vehiculo
                 )
                 
-                # Crear asignación para resultado
                 asignacion_resultado = {
-                    'vehiculo_id': str(asignacion.vehiculo_id + 1),
-                    'ruta_id': str(mapeo_info['id_ruta_en_destino'] + 1),
-                    'insumos': asignacion.insumos,
-                    'peso_total_kg': peso_vehiculo,
-                    'combustible_litros': combustible,
-                    'tiempo_horas': tiempo_viaje,
+                    'vehiculo_id': i + 1,
+                    'vehiculo_modelo': vehiculo_info.get('modelo', f'Vehículo {i + 1}'),
+                    'vehiculo_tipo': vehiculo_info.get('tipo', 'camioneta'),
+                    'destino_clave': mapeo_info['id_destino_perteneciente'],
+                    'destino_nombre': mapeo_info['destino_nombre'],
+                    'ruta_id': mapeo_info['id_ruta_en_destino'],
+                    'distancia_km': mapeo_info['distancia_km'],
+                    'poblacion_destino': mapeo_info['poblacion'],
+                    'insumos_asignados': self._formatear_insumos(asignacion.insumos),
+                    'peso_total_kg': round(peso_vehiculo, 2),
+                    'combustible_litros': round(combustible, 2),
+                    'tiempo_horas': round(tiempo_viaje, 2),
+                    'utilizacion_capacidad': round(peso_vehiculo / vehiculo_info['capacidad_kg'] * 100, 1),
                     'estado_entrega': estado_entrega
                 }
                 
                 asignaciones.append(asignacion_resultado)
                 
-                # Actualizar totales del resumen
                 if estado_entrega == 'exitosa':
                     resumen_totales['entregas_exitosas'] += 1
                     resumen_totales['peso_total_entregado'] += peso_vehiculo
@@ -92,24 +90,26 @@ class ResultGenerator:
                 utilizacion = peso_vehiculo / vehiculo_info['capacidad_kg']
                 resumen_totales['utilizacion_total'] += utilizacion
         
-        # Calcular utilización promedio
         utilizacion_promedio = (resumen_totales['utilizacion_total'] / 
                                len(individuo.vehiculos) if individuo.vehiculos else 0)
         
-        # Crear resumen final
+        eficiencia_entrega = (resumen_totales['entregas_exitosas'] / 
+                             len(individuo.vehiculos) if individuo.vehiculos else 0)
+        
         resumen = {
             'entregas_exitosas': resumen_totales['entregas_exitosas'],
             'entregas_fallidas': resumen_totales['entregas_fallidas'],
             'destinos_atendidos': len(resumen_totales['destinos_atendidos']),
-            'peso_total_entregado': resumen_totales['peso_total_entregado'],
-            'combustible_total': resumen_totales['combustible_total'],
+            'peso_total_entregado': round(resumen_totales['peso_total_entregado'], 2),
+            'combustible_total': round(resumen_totales['combustible_total'], 2),
             'poblacion_beneficiada': resumen_totales['poblacion_beneficiada'],
-            'utilizacion_promedio': utilizacion_promedio
+            'utilizacion_promedio': round(utilizacion_promedio * 100, 1),
+            'eficiencia_entrega': round(eficiencia_entrega * 100, 1)
         }
         
         return {
             'posicion': posicion,
-            'fitness': individuo.fitness,
+            'fitness': round(individuo.fitness, 2),
             'asignaciones': asignaciones,
             'resumen': resumen
         }
@@ -123,24 +123,33 @@ class ResultGenerator:
 
     def _determinar_estado_entrega(self, vehiculo_info: Dict, mapeo_info: Dict, peso_vehiculo: float) -> str:
         """Determinar estado de entrega basado en restricciones"""
-        # Verificar capacidad
         if peso_vehiculo > vehiculo_info['capacidad_kg']:
             return 'fallida'
         
-        # Verificar compatibilidad de ruta
-        destino_id = mapeo_info['id_destino_perteneciente']
-        ruta_id = f"{destino_id}-ruta-{mapeo_info['id_ruta_en_destino']}"
+        vehiculos_permitidos = mapeo_info.get('vehiculos_permitidos', [])
+        estado_ruta = mapeo_info.get('estado', 'abierta')
         
-        estado_ruta = self.rutas_estado.get(ruta_id, {
-            'estado': 'abierta',
-            'vehiculos_permitidos': [vehiculo_info['tipo']]
-        })
-        
-        if (estado_ruta['estado'] == 'abierta' and 
-            vehiculo_info['tipo'] in estado_ruta['vehiculos_permitidos']):
+        if (estado_ruta == 'abierta' and 
+            vehiculo_info.get('tipo', 'camioneta') in vehiculos_permitidos):
             return 'exitosa'
         else:
             return 'fallida'
+
+    def _formatear_insumos(self, insumos: List[int]) -> List[Dict[str, Any]]:
+        """Formatear insumos para resultado"""
+        insumos_formateados = []
+        for i, cantidad in enumerate(insumos):
+            if cantidad > 0 and i < len(self.insumos_data):
+                insumo_info = self.insumos_data[i]
+                insumos_formateados.append({
+                    'id': i,
+                    'nombre': insumo_info['nombre'],
+                    'categoria': insumo_info['categoria'],
+                    'cantidad': cantidad,
+                    'peso_unitario': insumo_info['peso_kg'],
+                    'peso_total': round(cantidad * insumo_info['peso_kg'], 2)
+                })
+        return insumos_formateados
 
     def _calcular_metricas_globales(self, top_3_individuos: List[Individual]) -> Dict[str, Any]:
         """Calcular métricas globales de los mejores individuos"""
@@ -191,7 +200,6 @@ class ResultGenerator:
         if fitness_inicial > 0:
             mejora_porcentual = ((fitness_final - fitness_inicial) / fitness_inicial) * 100
         
-        # Determinar estado de convergencia
         estado_convergencia = 'convergido' if parametros_ag.get('convergencia', False) else 'completado'
         
         return {

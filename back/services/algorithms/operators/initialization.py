@@ -12,19 +12,16 @@ class PopulationInitializer:
         """Generar población inicial con estrategias diversificadas"""
         poblacion = []
         
-        # 50% - Asignación por capacidad (sin duplicados)
         num_capacidad = int(poblacion_size * 0.5)
         for _ in range(num_capacidad):
             individuo = self._generar_por_capacidad()
             poblacion.append(individuo)
         
-        # 30% - Asignación por población de destinos
         num_poblacion = int(poblacion_size * 0.3)
         for _ in range(num_poblacion):
             individuo = self._generar_por_poblacion()
             poblacion.append(individuo)
         
-        # 20% - Completamente aleatoria pero válida
         num_restante = poblacion_size - len(poblacion)
         for _ in range(num_restante):
             individuo = self._generar_aleatoria_valida()
@@ -37,7 +34,6 @@ class PopulationInitializer:
         vehiculos_asignados = []
         destinos_usados = set()
         
-        # Ordenar vehículos por capacidad
         vehiculos_ordenados = sorted(
             enumerate(self.data_manager.vehiculos_disponibles), 
             key=lambda x: x[1]['capacidad_kg'], 
@@ -45,7 +41,6 @@ class PopulationInitializer:
         )
         
         for vehiculo_idx, vehiculo_info in vehiculos_ordenados:
-            # Buscar destino disponible
             destinos_compatibles = self.data_manager.get_destinos_disponibles_para_vehiculo(vehiculo_idx)
             
             destino_elegido = None
@@ -56,11 +51,9 @@ class PopulationInitializer:
                     destinos_usados.add(destino_id)
                     break
             
-            # Fallback si no encuentra destino único
             if destino_elegido is None and destinos_compatibles:
                 destino_elegido = random.choice(destinos_compatibles)
             
-            # Generar insumos respetando capacidad
             if destino_elegido:
                 insumos = self._generar_insumos_por_capacidad(vehiculo_info['capacidad_kg'])
                 
@@ -77,7 +70,6 @@ class PopulationInitializer:
         vehiculos_asignados = []
         destinos_usados = set()
         
-        # Ordenar destinos por población
         destinos_por_poblacion = sorted(
             self.data_manager.destinos_unicos,
             key=lambda dest_id: self._get_poblacion_maxima_destino(dest_id),
@@ -90,7 +82,6 @@ class PopulationInitializer:
         for vehiculo_idx, vehiculo_info in vehiculos_mezclados:
             destino_elegido = None
             
-            # Priorizar destinos de alta población
             for destino_id in destinos_por_poblacion:
                 if destino_id not in destinos_usados:
                     asignaciones_destino = self.data_manager.destinos_a_asignaciones[destino_id]
@@ -101,13 +92,11 @@ class PopulationInitializer:
                         destinos_usados.add(destino_id)
                         break
             
-            # Fallback
             if destino_elegido is None:
                 destinos_compatibles = self.data_manager.get_destinos_disponibles_para_vehiculo(vehiculo_idx)
                 if destinos_compatibles:
                     destino_elegido = random.choice(destinos_compatibles)
             
-            # Generar insumos apropiados
             if destino_elegido:
                 poblacion_destino = destino_elegido.get('poblacion', 500)
                 insumos = self._generar_insumos_por_poblacion(
@@ -133,7 +122,6 @@ class PopulationInitializer:
         for vehiculo_idx in vehiculos_indices:
             vehiculo_info = self.data_manager.vehiculos_disponibles[vehiculo_idx]
             
-            # Intentar asignar destino único
             destino_elegido = None
             intentos = 0
             
@@ -148,11 +136,9 @@ class PopulationInitializer:
                 
                 intentos += 1
             
-            # Si no encuentra destino único, usar cualquiera
             if destino_elegido is None:
                 destino_elegido = random.choice(self.data_manager.mapeo_asignaciones)
             
-            # Generar insumos aleatorios válidos
             insumos = self._generar_insumos_aleatorios(vehiculo_info['capacidad_kg'])
             
             vehiculos_asignados.append(VehicleAssignment(
@@ -175,16 +161,11 @@ class PopulationInitializer:
         asignaciones_compatibles = []
         
         for asignacion in asignaciones_destino:
-            destino_id = asignacion['id_destino_perteneciente']
-            ruta_id = f"{destino_id}-ruta-{asignacion['id_ruta_en_destino']}"
+            vehiculos_permitidos = asignacion.get('vehiculos_permitidos', [])
+            estado_ruta = asignacion.get('estado', 'abierta')
             
-            estado_ruta = self.data_manager.rutas_estado.get(ruta_id, {
-                'estado': 'abierta',
-                'vehiculos_permitidos': [vehiculo_info['tipo']]
-            })
-            
-            if (estado_ruta['estado'] == 'abierta' and 
-                vehiculo_info['tipo'] in estado_ruta['vehiculos_permitidos']):
+            if (estado_ruta == 'abierta' and 
+                vehiculo_info.get('tipo', 'camioneta') in vehiculos_permitidos):
                 asignaciones_compatibles.append(asignacion)
         
         return random.choice(asignaciones_compatibles) if asignaciones_compatibles else None
@@ -197,7 +178,6 @@ class PopulationInitializer:
         
         insumos_prioritarios = self.data_manager.get_insumos_prioritarios()
         
-        # Llenar con insumos prioritarios
         for insumo_id in random.sample(insumos_prioritarios, min(len(insumos_prioritarios), 8)):
             if peso_restante <= 0:
                 break
@@ -212,7 +192,6 @@ class PopulationInitializer:
                     insumos[insumo_id] = cantidad
                     peso_restante -= peso_asignado
         
-        # Completar con otros insumos
         otros_insumos = [i for i in range(self.data_manager.num_insumos) 
                         if i not in insumos_prioritarios]
         

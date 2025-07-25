@@ -9,7 +9,6 @@ class FitnessEvaluator:
         self.vehiculos_disponibles = data_manager.vehiculos_disponibles
         self.mapeo_asignaciones = data_manager.mapeo_asignaciones
         self.insumos_data = data_manager.insumos_data
-        self.rutas_estado = data_manager.rutas_estado
         self.num_insumos = data_manager.num_insumos
 
     def evaluar_fitness(self, individuo: Individual) -> float:
@@ -20,19 +19,15 @@ class FitnessEvaluator:
         localidades_atendidas = set()
         penalizaciones = 0.0
         
-        # Análisis de destinos asignados
         destinos_asignados = self._analizar_destinos_asignados(individuo)
         duplicados = {dest_id: vehiculos for dest_id, vehiculos in destinos_asignados.items() 
                      if len(vehiculos) > 1}
         
-        # Penalización masiva por duplicados
         for destino_id, vehiculos_indices in duplicados.items():
             penalizaciones += len(vehiculos_indices) * 1500
         
-        # Marcar asignaciones válidas (solo primera de cada destino)
         asignaciones_validas = self._marcar_asignaciones_validas(individuo, duplicados)
         
-        # Evaluar solo asignaciones válidas
         for i, asignacion in enumerate(individuo.vehiculos):
             if not asignaciones_validas[i]:
                 continue
@@ -45,51 +40,41 @@ class FitnessEvaluator:
                 
             mapeo_info = self.mapeo_asignaciones[asignacion.id_destino_ruta]
             
-            # Calcular métricas del vehículo
             peso_vehiculo = self._calcular_peso_insumos(asignacion.insumos)
             
-            # Penalización severa por sobrecarga
             if peso_vehiculo > vehiculo['capacidad_kg']:
                 exceso = peso_vehiculo - vehiculo['capacidad_kg']
                 penalizaciones += exceso * 800 + 3000
                 continue
             
-            # Verificar compatibilidad de ruta
             if not self._verificar_compatibilidad_ruta(vehiculo, mapeo_info):
                 penalizaciones += 1200
                 continue
             
-            # Calcular métricas positivas
             combustible_vehiculo = self._calcular_combustible(mapeo_info, vehiculo)
             relevancia_insumos = self._evaluar_relevancia_insumos(asignacion.insumos)
             eficiencia_poblacional = self._evaluar_eficiencia_poblacional(
                 peso_vehiculo, mapeo_info['poblacion'], vehiculo
             )
             
-            # Bonificaciones por utilización
             utilizacion = peso_vehiculo / vehiculo['capacidad_kg']
             bonificacion_utilizacion = self._calcular_bonificacion_utilizacion(utilizacion)
             
-            # Contribuciones positivas
             fitness_total += relevancia_insumos * 18
             fitness_total += eficiencia_poblacional * 15
             fitness_total += bonificacion_utilizacion
             fitness_total += peso_vehiculo * 0.9
             
-            # Actualizar totales
             peso_total_utilizado += peso_vehiculo
             combustible_total += combustible_vehiculo
             localidades_atendidas.add(mapeo_info['id_destino_perteneciente'])
         
-        # Bonificaciones globales
         fitness_total += self._calcular_bonificaciones_globales(localidades_atendidas)
         
-        # Penalizaciones de eficiencia
         fitness_total -= combustible_total * 0.25
         fitness_total -= self._penalizar_subutilizacion(peso_total_utilizado)
         fitness_total -= self._penalizar_vehiculos_vacios(individuo)
         
-        # Aplicar penalizaciones totales
         fitness_total -= penalizaciones
         
         individuo.fitness = max(0, fitness_total)
@@ -114,7 +99,6 @@ class FitnessEvaluator:
         """Marcar qué asignaciones son válidas (sin duplicados)"""
         asignaciones_validas = [True] * len(individuo.vehiculos)
         
-        # Marcar duplicados como inválidos (excepto el primero)
         for destino_id, vehiculos_indices in duplicados.items():
             for i, vehiculo_idx in enumerate(vehiculos_indices):
                 if i > 0:
@@ -131,16 +115,11 @@ class FitnessEvaluator:
 
     def _verificar_compatibilidad_ruta(self, vehiculo: Dict, mapeo_info: Dict) -> bool:
         """Verificar si vehículo es compatible con la ruta"""
-        destino_id = mapeo_info['id_destino_perteneciente']
-        ruta_id = f"{destino_id}-ruta-{mapeo_info['id_ruta_en_destino']}"
+        vehiculos_permitidos = mapeo_info.get('vehiculos_permitidos', [])
+        estado_ruta = mapeo_info.get('estado', 'abierta')
         
-        estado_ruta = self.rutas_estado.get(ruta_id, {
-            'estado': 'abierta',
-            'vehiculos_permitidos': [vehiculo['tipo']]
-        })
-        
-        return (estado_ruta['estado'] == 'abierta' and 
-                vehiculo['tipo'] in estado_ruta['vehiculos_permitidos'])
+        return (estado_ruta == 'abierta' and 
+                vehiculo.get('tipo', 'camioneta') in vehiculos_permitidos)
 
     def _calcular_combustible(self, mapeo_info: Dict, vehiculo: Dict) -> float:
         """Calcular combustible necesario"""
@@ -151,18 +130,15 @@ class FitnessEvaluator:
         relevancia_total = 0.0
         insumos_prioritarios = self.data_manager.get_insumos_prioritarios()
         
-        # Calcular relevancia ponderada
         for i, cantidad in enumerate(insumos):
             if cantidad > 0:
                 peso_base = cantidad * 1.0
                 
-                # Bonificar insumos prioritarios
                 if i in insumos_prioritarios:
                     peso_base *= 2.5
                 
                 relevancia_total += peso_base
         
-        # Bonificar diversidad de categorías
         categorias_presentes = set()
         for i, cantidad in enumerate(insumos):
             if cantidad > 0 and i < len(self.insumos_data):
@@ -181,10 +157,8 @@ class FitnessEvaluator:
         capacidad_vehiculo = vehiculo['capacidad_kg']
         utilizacion = peso_insumos / capacidad_vehiculo
         
-        # Score base
         eficiencia_score = (peso_insumos / 50) * (poblacion / 500)
         
-        # Bonificaciones por utilización
         if utilizacion >= 0.85:
             eficiencia_score += 120
         elif utilizacion >= 0.65:
@@ -194,7 +168,6 @@ class FitnessEvaluator:
         else:
             eficiencia_score -= 40
         
-        # Ajuste por ratio población/capacidad
         if poblacion < 200 and capacidad_vehiculo < 1500:
             eficiencia_score += 60
         elif poblacion > 800 and capacidad_vehiculo > 2000:
@@ -202,7 +175,6 @@ class FitnessEvaluator:
         elif poblacion > 800 and capacidad_vehiculo < 1500:
             eficiencia_score -= 60
         
-        # Bonificar ratio óptimo kg/persona
         kg_per_persona = peso_insumos / max(poblacion, 1)
         if 0.4 <= kg_per_persona <= 1.8:
             eficiencia_score += 40
@@ -231,7 +203,6 @@ class FitnessEvaluator:
         
         bonificacion_cobertura = cobertura_destinos * 400
         
-        # Bonificación extra por cobertura completa
         if len(localidades_atendidas) == max_destinos_posibles:
             bonificacion_cobertura += 300
         

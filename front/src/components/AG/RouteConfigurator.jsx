@@ -2,8 +2,6 @@ import { Checkbox } from '../common/Checkbox.jsx';
 
 const RouteConfigurator = ({ routesData = [], activeVehicleTypes = [], routeStates, setRouteStates }) => {
 
-  // SE HA ELIMINADO EL useEffect DE ESTE COMPONENTE PARA CENTRALIZAR LA LÓGICA
-
   const handleStateChange = (destIndex, routeIndex, newState) => {
     setRouteStates(prev => {
       const newRoutesArray = [...(prev[destIndex] || [])];
@@ -29,7 +27,6 @@ const RouteConfigurator = ({ routesData = [], activeVehicleTypes = [], routeStat
       const newRouteState = { 
         ...prevRouteState, 
         vehiculos_permitidos: newPermissions,
-        // Si no quedan vehículos permitidos, cierra la ruta automáticamente
         estado: newPermissions.length === 0 ? 'cerrada' : 'abierta'
       };
       
@@ -52,7 +49,7 @@ const RouteConfigurator = ({ routesData = [], activeVehicleTypes = [], routeStat
               {(routeStates[destIndex] || []).map((routeState, routeIndex) => (
                 <div key={routeIndex} className="p-2 bg-gray-900/40 rounded">
                   <div className="flex justify-between items-center">
-                    <span className="font-medium text-xs text-gray-300">{destinoData.rutas[routeIndex].tipo || `Ruta ${routeIndex + 1}`}</span>
+                    <span className="font-medium text-xs text-gray-300">{destinoData.rutas[routeIndex]?.tipo || `Ruta ${routeIndex + 1}`}</span>
                     <div className="flex gap-3">
                       <label className="flex items-center gap-1 cursor-pointer">
                         <input type="radio" name={`route-${destIndex}-${routeIndex}`} value="abierta" checked={routeState.estado === 'abierta'} onChange={() => handleStateChange(destIndex, routeIndex, 'abierta')} />

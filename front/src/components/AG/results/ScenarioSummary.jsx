@@ -1,4 +1,3 @@
-// src/components/ag/results/ScenarioSummary.jsx
 import { Card } from '../../common/Card';
 
 const Column = ({ title, children }) => (
@@ -19,7 +18,7 @@ const ScenarioSummary = ({ mapData, scenarioConfig, selectedDisaster }) => {
     if (!mapData || !scenarioConfig || !selectedDisaster) return null;
 
     const { municipio_info, rutas_data } = mapData;
-    const { vehiculos_disponibles, ag_params, rutas_estado } = scenarioConfig;
+    const { vehiculos_disponibles, configuracion } = scenarioConfig;
     const { tipo, prioridades } = selectedDisaster;
 
     const getOriginName = () => {
@@ -29,21 +28,10 @@ const ScenarioSummary = ({ mapData, scenarioConfig, selectedDisaster }) => {
         return `${municipio_info.nombre_municipio}, ${state}`;
     };
 
-    const structuredRouteStates = (() => {
-        const states = [];
-        let currentIndex = 0;
-        rutas_data.forEach(destino => {
-            const routesForDest = (destino.rutas || []).map(() => rutas_estado[currentIndex++]);
-            states.push(routesForDest);
-        });
-        return states;
-    })();
-
     return (
         <Card>
             <h2 className="text-xl font-semibold text-yellow-400 mb-3 text-center">Resumen de la Configuración</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {/* --- Columna 1: Configuración General --- */}
                 <Column title="General y Flota">
                     <InfoPair label="Origen" value={getOriginName()} />
                     <InfoPair label="Total Vehículos" value={vehiculos_disponibles.length} />
@@ -57,7 +45,6 @@ const ScenarioSummary = ({ mapData, scenarioConfig, selectedDisaster }) => {
                     </div>
                 </Column>
 
-                {/* --- Columna 2: Condiciones del Desastre --- */}
                 <Column title="Condiciones del Desastre">
                     <InfoPair label="Tipo de Desastre" value={<span className="capitalize">{tipo.replace('_', ' ')}</span>} />
                     <div className="pt-1">
@@ -70,33 +57,24 @@ const ScenarioSummary = ({ mapData, scenarioConfig, selectedDisaster }) => {
                     </div>
                 </Column>
 
-                {/* --- Columna 3: Parámetros del Algoritmo --- */}
                 <Column title="Parámetros del AG">
-                    <InfoPair label="Tamaño Población" value={ag_params.poblacion_size} />
-                    <InfoPair label="Generaciones" value={ag_params.generaciones} />
-                    <InfoPair label="Prob. de Cruza" value={ag_params.prob_cruza} />
-                    <InfoPair label="Prob. de Mutación" value={ag_params.prob_mutacion} />
-                    <InfoPair label="Tasa de Elitismo" value={ag_params.elitismo_rate} />
+                    <InfoPair label="Tamaño Población" value={configuracion.poblacion_size} />
+                    <InfoPair label="Generaciones" value={configuracion.generaciones} />
+                    <InfoPair label="Prob. de Cruza" value={configuracion.prob_cruza} />
+                    <InfoPair label="Prob. de Mutación" value={configuracion.prob_mutacion} />
+                    <InfoPair label="Tasa de Elitismo" value={configuracion.elitismo_rate} />
                 </Column>
                 
-                {/* --- Columna 4: Estado de Rutas del Mapa --- */}
                 <Column title="Estado de Rutas">
                     <div className="max-h-48 overflow-y-auto pr-2 space-y-2">
                         {rutas_data.map((destinoData, dIndex) => (
                             <div key={dIndex}>
                                 <p className="font-semibold text-gray-200 text-sm">Destino {dIndex + 1}:</p>
                                 <div className="pl-2 border-l border-gray-600 space-y-1 mt-1">
-                                    {structuredRouteStates[dIndex]?.map((routeState, rIndex) => (
+                                    {destinoData.rutas?.map((ruta, rIndex) => (
                                         <div key={rIndex}>
                                             <span className="font-medium text-gray-400">Ruta {rIndex+1}: </span>
-                                            {routeState.estado === 'abierta' ? (
-                                                <span className="text-green-400">Abierta</span>
-                                            ) : (
-                                                <span className="text-red-400">Cerrada</span>
-                                            )}
-                                            {routeState.estado === 'abierta' && (
-                                                <p className="text-gray-500 pl-2">↳ Permitidos: <span className="text-gray-300">{routeState.vehiculos_permitidos.join(', ') || 'Ninguno'}</span></p>
-                                            )}
+                                            <span className="text-green-400">Configurada</span>
                                         </div>
                                     ))}
                                 </div>

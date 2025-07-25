@@ -20,7 +20,6 @@ class AssignmentValidator:
                     destinos_asignados[destino_id] = []
                 destinos_asignados[destino_id].append(i)
         
-        # Retornar solo destinos con duplicados
         return {destino_id: vehiculos_indices 
                 for destino_id, vehiculos_indices in destinos_asignados.items()
                 if len(vehiculos_indices) > 1}
@@ -30,13 +29,11 @@ class AssignmentValidator:
         asignaciones_validas = [True] * len(individuo.vehiculos)
         duplicados = self.find_duplicate_destinations(individuo)
         
-        # Marcar duplicados como inválidos (mantener solo el primero)
         for destino_id, vehiculos_indices in duplicados.items():
             for i, vehiculo_idx in enumerate(vehiculos_indices):
                 if i > 0:
                     asignaciones_validas[vehiculo_idx] = False
         
-        # Verificar validez técnica de asignaciones restantes
         for i, asignacion in enumerate(individuo.vehiculos):
             if asignaciones_validas[i]:
                 if not self._is_technically_valid(asignacion):
@@ -56,18 +53,15 @@ class AssignmentValidator:
         """Encontrar destino libre para reasignar vehículo"""
         destinos_compatibles = self.data_manager.get_destinos_disponibles_para_vehiculo(vehiculo_idx)
         
-        # Buscar destinos no usados
         for destino_info in destinos_compatibles:
             destino_id = destino_info['id_destino_perteneciente']
             if destino_id not in destinos_usados:
                 return destino_info
         
-        # Si no hay destinos libres, retornar uno aleatorio compatible
         if destinos_compatibles:
             import random
             return random.choice(destinos_compatibles)
         
-        # Último recurso: cualquier asignación válida
         if self.data_manager.mapeo_asignaciones:
             import random
             return random.choice(self.data_manager.mapeo_asignaciones)
@@ -83,7 +77,6 @@ class AssignmentValidator:
         
         destinos_usados = set()
         
-        # Primero, marcar destinos únicos como usados
         for asignacion in individuo.vehiculos:
             if asignacion.id_destino_ruta < len(self.data_manager.mapeo_asignaciones):
                 mapeo_info = self.data_manager.mapeo_asignaciones[asignacion.id_destino_ruta]
@@ -91,15 +84,12 @@ class AssignmentValidator:
                 if destino_id not in duplicados:
                     destinos_usados.add(destino_id)
         
-        # Reasignar vehículos duplicados
         for destino_id, vehiculos_indices in duplicados.items():
-            # Mantener primer vehículo, reasignar resto
             for i, vehiculo_idx in enumerate(vehiculos_indices):
                 if i == 0:
                     destinos_usados.add(destino_id)
                     continue
                 
-                # Encontrar nuevo destino
                 nuevo_destino = self.find_free_destination(destinos_usados, vehiculo_idx)
                 if nuevo_destino:
                     individuo.vehiculos[vehiculo_idx].id_destino_ruta = nuevo_destino['id_asignacion_unica']
@@ -127,7 +117,6 @@ class AssignmentValidator:
         duplicados = self.find_duplicate_destinations(individuo)
         asignaciones_validas = self.mark_invalid_assignments(individuo)
         
-        # Estadísticas de capacidad
         sobrecargas = 0
         utilizacion_total = 0
         
@@ -155,11 +144,9 @@ class AssignmentValidator:
         from .capacity_manager import CapacityManager
         capacity_mgr = CapacityManager(self.data_manager)
         
-        # Reparar capacidades
         for asignacion in individuo.vehiculos:
             capacity_mgr.repair_capacity_violation(asignacion)
         
-        # Reparar duplicados
         self.reassign_duplicates(individuo)
     
     def optimize_destination_distribution(self, individuo: Individual):
@@ -169,11 +156,9 @@ class AssignmentValidator:
         if not duplicados:
             return
         
-        # Estrategia: redistribuir para maximizar destinos únicos
         destinos_disponibles = set(self.data_manager.destinos_unicos)
         destinos_asignados = set()
         
-        # Marcar destinos ya asignados (sin duplicados)
         for asignacion in individuo.vehiculos:
             if asignacion.id_destino_ruta < len(self.data_manager.mapeo_asignaciones):
                 mapeo_info = self.data_manager.mapeo_asignaciones[asignacion.id_destino_ruta]
@@ -183,9 +168,8 @@ class AssignmentValidator:
         
         destinos_libres = destinos_disponibles - destinos_asignados
         
-        # Reasignar duplicados a destinos libres
         for destino_id, vehiculos_indices in duplicados.items():
-            destinos_asignados.add(destino_id)  # Mantener el primero
+            destinos_asignados.add(destino_id)
             
             for i, vehiculo_idx in enumerate(vehiculos_indices):
                 if i == 0:
@@ -193,7 +177,6 @@ class AssignmentValidator:
                 
                 if destinos_libres:
                     nuevo_destino_id = destinos_libres.pop()
-                    # Encontrar asignación para este destino
                     asignaciones_destino = self.data_manager.destinos_a_asignaciones.get(nuevo_destino_id, [])
                     if asignaciones_destino:
                         nueva_asignacion = asignaciones_destino[0]

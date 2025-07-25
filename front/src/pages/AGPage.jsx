@@ -1,4 +1,3 @@
-// src/pages/AGPage.jsx
 import { useState, useMemo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAG } from '../features/ag_scenario/hooks/useAG.js';
@@ -39,7 +38,12 @@ const AGPage = () => {
       if (!vehicleInfo || !quantity || quantity <= 0) return [];
       return Array.from({ length: quantity }, (_, i) => ({
         ...vehicleInfo,
-        matricula: `${vehicleInfo.modelo.substring(0, 3).toUpperCase()}${vehicleId}-${i + 1}`
+        modelo: vehicleInfo.modelo,
+        tipo: vehicleInfo.tipo,
+        cantidad: 1,
+        maximo_peso_ton: vehicleInfo.maximo_peso_ton,
+        velocidad_kmh: vehicleInfo.velocidad_kmh,
+        consumo_litros_km: vehicleInfo.consumo_litros_km
       }));
     });
   }, [selectedVehicles, vehicles]);
@@ -59,9 +63,12 @@ const AGPage = () => {
     const newRouteStates = {};
     mapData.rutas_data.forEach((destinoData, destIndex) => {
       if (destinoData.rutas) {
-        newRouteStates[destIndex] = destinoData.rutas.map(() => ({
+        newRouteStates[destIndex] = destinoData.rutas.map((_, routeIndex) => ({
+          id_ruta: routeIndex + 1,
+          distancia_km: destinoData.rutas[routeIndex]?.distancia?.value / 1000 || 10,
+          claves_localiada_destinos: destinoData.destino?.clave_localidad || `LOC${destIndex + 1}`,
           estado: 'abierta',
-          vehiculos_permitidos: [...activeVehicleTypes],
+          vehiculos_permitidos: [...activeVehicleTypes]
         }));
       }
     });
@@ -76,13 +83,22 @@ const AGPage = () => {
   const handleRunScenario = async () => {
     setIsSubmitting(true);
     toast.loading('Procesando escenario...');
+    
+    const rutasDataFlat = Object.values(routeStates).flat();
+    
     const scenarioData = {
-        map_data: mapData,
-        scenario_config: {
-            tipo_desastre: selectedDisaster,
-            vehiculos_disponibles: expandedFleet,
-            rutas_estado: Object.values(routeStates).flat(),
-            ag_params: agParams 
+        datos_actuales_frontend_a_backend: {
+            map_data: {
+                clave_localidad_nodo_principal: mapData.nodo_principal?.clave_localidad || "ORIG001",
+                claves_localiada_destinos: mapData.nodos_secundarios?.map(n => n.clave_localidad) || [],
+                rutas_data: rutasDataFlat,
+                nodos_secundarios: mapData.nodos_secundarios || []
+            },
+            scenario_config: {
+                tipo_desastre: selectedDisaster,
+                vehiculos_disponibles: expandedFleet,
+                configuracion: agParams
+            }
         }
     };
 
@@ -96,8 +112,8 @@ const AGPage = () => {
                 results: result.data, 
                 mapData: mapData,
                 vehicleData: vehicles,
-                scenarioConfig: scenarioData.scenario_config,
-                selectedDisaster: selectedDisasterObject // <-- DATO AÑADIDO
+                scenarioConfig: scenarioData.datos_actuales_frontend_a_backend.scenario_config,
+                selectedDisaster: selectedDisasterObject
             } 
         });
       } else {

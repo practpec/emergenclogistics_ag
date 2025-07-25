@@ -89,7 +89,6 @@ class ApiService {
   }
 
   async runAGScenario(scenarioData) {
-    console.log("Enviando datos del escenario:", scenarioData);
     try {
       const response = await api.post('/api/ag/run-scenario', scenarioData);
       return response.data;
