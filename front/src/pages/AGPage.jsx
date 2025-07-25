@@ -11,13 +11,10 @@ import RouteConfigurator from '../components/ag/RouteConfigurator.jsx';
 import ScenarioPreview from '../components/ag/ScenarioPreview.jsx';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { Button } from '../components/common/Button';
-import AGSettingsForm from '../components/ag/AGSettingsForm.jsx';
 
 const AGPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // --- CORRECCIÓN CLAVE ---
-  // Se extrae el estado de forma más segura para evitar el error.
   const { mapData } = location.state || {};
   
   const { vehicles, disasters, isLoading: isLoadingInitialData } = useAG();
@@ -36,23 +33,31 @@ const AGPage = () => {
   });
 
   const expandedFleet = useMemo(() => {
-    return Object.entries(selectedVehicles).flatMap(([id, quantity]) => {
-      const vehicleInfo = vehicles.find(v => String(v.vehiculo_id) === id);
+    return Object.entries(selectedVehicles).flatMap(([vehicleId, quantity]) => {
+      // --- CORRECCIÓN CLAVE: Usar 'v.id' en lugar de 'v.vehiculo_id' ---
+      const vehicleInfo = vehicles.find(v => String(v.id) === vehicleId);
       if (!vehicleInfo || !quantity || quantity <= 0) return [];
       return Array.from({ length: quantity }, (_, i) => ({
         ...vehicleInfo,
-        matricula: `${vehicleInfo.modelo.substring(0, 3).toUpperCase()}${id}-${i + 1}`
+        // Se genera una matrícula única para cada instancia de vehículo
+        matricula: `${vehicleInfo.modelo.substring(0, 3).toUpperCase()}${vehicleId}-${i + 1}`
       }));
     });
   }, [selectedVehicles, vehicles]);
   
   const activeVehicleTypes = useMemo(() => {
-    const activeVehicles = vehicles.filter(v => (selectedVehicles[v.vehiculo_id] || 0) > 0);
+    // --- CORRECCIÓN CLAVE: Usar 'v.id' ---
+    const activeVehicleIds = Object.keys(selectedVehicles).filter(id => selectedVehicles[id] > 0);
+    const activeVehicles = vehicles.filter(v => activeVehicleIds.includes(String(v.id)));
     return [...new Set(activeVehicles.map(v => v.tipo))];
   }, [selectedVehicles, vehicles]);
+  
+  const selectedDisasterObject = useMemo(() => {
+    return disasters.find(d => d.tipo === selectedDisaster);
+  }, [selectedDisaster, disasters]);
 
   useEffect(() => {
-    if (!mapData || vehicles.length === 0) return;
+    if (!mapData) return;
     const newRouteStates = {};
     mapData.rutas_data.forEach((destinoData, destIndex) => {
       if (destinoData.rutas) {
@@ -63,7 +68,7 @@ const AGPage = () => {
       }
     });
     setRouteStates(newRouteStates);
-  }, [mapData, activeVehicleTypes, vehicles]);
+  }, [mapData, activeVehicleTypes]); // Eliminamos 'vehicles' porque ya está en la dependencia de activeVehicleTypes
 
   const isReadyForPreview = useMemo(() => {
     const hasOpenRoute = Object.values(routeStates).flat().some(r => r.estado === 'abierta');
@@ -147,7 +152,7 @@ const AGPage = () => {
       {isReadyForPreview && (
           <ScenarioPreview
             expandedFleet={expandedFleet}
-            selectedDisaster={selectedDisaster}
+            selectedDisaster={selectedDisasterObject}
             routeStates={routeStates}
             activeVehicleTypes={activeVehicleTypes}
             onGenerate={handleRunScenario}

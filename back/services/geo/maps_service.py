@@ -1,9 +1,8 @@
 import requests
 import time
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Optional
 from geopy.distance import geodesic
 from core.base_service import CacheableService
-from core.exceptions import ExternalAPIError, RouteCalculationError
 
 class OSRMService(CacheableService):
     """Servicio para obtener rutas usando OSRM"""
@@ -20,35 +19,29 @@ class OSRMService(CacheableService):
         
         for i, destino in enumerate(destinos):
             try:
-                rutas_destino = self._obtener_rutas_multiples_destino(origen, destino, i)
-                
+                rutas_destino = self._obtener_rutas_destino(origen, destino, i)
                 rutas_data.append({
                     'indice': i,
                     'destino': destino,
                     'rutas': rutas_destino
                 })
-                
-                # Delay para evitar sobrecarga de la API
                 time.sleep(self.delay_between_requests)
                 
             except Exception as e:
-                self.log_warning(f"Error obteniendo rutas para destino {i+1}", error=str(e))
-                # Agregar ruta directa como fallback
+                self.log_error(f"Error obteniendo rutas para destino {i+1}", e)
                 rutas_data.append({
                     'indice': i,
                     'destino': destino,
                     'rutas': [self._calcular_ruta_directa(origen, destino)]
                 })
         
-        self.log_info(f"Rutas obtenidas para {len(destinos)} destinos")
         return rutas_data
     
-    def _obtener_rutas_multiples_destino(self, origen: Dict, destino: Dict, index: int) -> List[Dict]:
-        """Obtener múltiples rutas para un destino específico"""
+    def _obtener_rutas_destino(self, origen: Dict, destino: Dict, index: int) -> List[Dict]:
+        """Obtener rutas para un destino específico"""
         rutas = []
         
         try:
-            # Ruta principal
             ruta_principal = self._obtener_ruta_simple(origen, destino)
             if ruta_principal:
                 ruta_principal['tipo'] = 'Ruta 1'
@@ -57,22 +50,14 @@ class OSRMService(CacheableService):
             
             distancia_km = self._calcular_distancia_directa(origen, destino)
             
-            # Rutas alternativas solo para distancias mayores
-            if distancia_km > 10:
-                ruta_norte = self._obtener_ruta_variante(origen, destino, 'norte')
-                if ruta_norte and not self._son_rutas_similares(ruta_principal, ruta_norte):
-                    ruta_norte['tipo'] = 'Ruta 2'
-                    ruta_norte['descripcion'] = 'Ruta alternativa'
-                    rutas.append(ruta_norte)
-                
-                if distancia_km > 30:
-                    ruta_sur = self._obtener_ruta_variante(origen, destino, 'sur')
-                    if ruta_sur and not self._es_ruta_similar_a_lista(ruta_sur, rutas):
-                        ruta_sur['tipo'] = 'Ruta 3'
-                        ruta_sur['descripcion'] = 'Ruta alternativa'
-                        rutas.append(ruta_sur)
+            # Solo agregar ruta alternativa para distancias mayores
+            if distancia_km > 15:
+                ruta_alt = self._obtener_ruta_alternativa(origen, destino)
+                if ruta_alt and not self._son_rutas_similares(ruta_principal, ruta_alt):
+                    ruta_alt['tipo'] = 'Ruta 2'
+                    ruta_alt['descripcion'] = 'Ruta alternativa'
+                    rutas.append(ruta_alt)
             
-            # Si no hay rutas, usar ruta directa
             if not rutas:
                 rutas.append(self._calcular_ruta_directa(origen, destino))
                 
@@ -86,7 +71,6 @@ class OSRMService(CacheableService):
         """Obtener ruta simple entre dos puntos"""
         cache_key = f"route_{origen['lat']},{origen['lng']}_{destino['lat']},{destino['lng']}"
         
-        # Verificar cache
         cached_route = self.get_from_cache(cache_key)
         if cached_route:
             return cached_route
@@ -96,10 +80,7 @@ class OSRMService(CacheableService):
             destino_str = f"{destino['lng']},{destino['lat']}"
             
             url = f"{self.base_url}/route/v1/driving/{origen_str};{destino_str}"
-            params = {
-                'overview': 'simplified',
-                'geometries': 'geojson'
-            }
+            params = {'overview': 'simplified', 'geometries': 'geojson'}
             
             response = requests.get(url, params=params, timeout=self.timeout)
             
@@ -121,50 +102,37 @@ class OSRMService(CacheableService):
                 'puntos_ruta': self._extraer_puntos_geojson(route['geometry'])
             }
             
-            # Guardar en cache
             self.set_cache(cache_key, result)
-            
             return result
             
-        except requests.RequestException as e:
-            self.log_warning("Error en solicitud OSRM", error=str(e))
-            return self._calcular_ruta_directa(origen, destino)
         except Exception as e:
-            self.log_error("Error procesando respuesta OSRM", e)
+            self.log_error("Error en solicitud OSRM", e)
             return self._calcular_ruta_directa(origen, destino)
     
-    def _obtener_ruta_variante(self, origen: Dict, destino: Dict, direccion: str) -> Optional[Dict]:
+    def _obtener_ruta_alternativa(self, origen: Dict, destino: Dict) -> Optional[Dict]:
         """Obtener ruta alternativa usando waypoint"""
         try:
             mid_lat = (origen['lat'] + destino['lat']) / 2
             mid_lng = (origen['lng'] + destino['lng']) / 2
             
-            offset = 0.01 if direccion == 'norte' else -0.01
-            waypoint = {
-                'lat': mid_lat + offset,
-                'lng': mid_lng
-            }
+            waypoint = {'lat': mid_lat + 0.01, 'lng': mid_lng}
             
             ruta1 = self._obtener_ruta_simple(origen, waypoint)
             ruta2 = self._obtener_ruta_simple(waypoint, destino)
             
             if ruta1 and ruta2:
-                return self._combinar_rutas(ruta1, ruta2)
+                return {
+                    'distancia': {
+                        'text': f"{(ruta1['distancia']['value'] + ruta2['distancia']['value'])/1000:.1f} km",
+                        'value': ruta1['distancia']['value'] + ruta2['distancia']['value']
+                    },
+                    'puntos_ruta': ruta1['puntos_ruta'] + ruta2['puntos_ruta']
+                }
                 
         except Exception as e:
-            self.log_warning("Error obteniendo ruta variante", error=str(e))
+            self.log_error("Error obteniendo ruta alternativa", e)
         
         return None
-    
-    def _combinar_rutas(self, ruta1: Dict, ruta2: Dict) -> Dict:
-        """Combinar dos rutas en una sola"""
-        return {
-            'distancia': {
-                'text': f"{(ruta1['distancia']['value'] + ruta2['distancia']['value'])/1000:.1f} km",
-                'value': ruta1['distancia']['value'] + ruta2['distancia']['value']
-            },
-            'puntos_ruta': ruta1['puntos_ruta'] + ruta2['puntos_ruta']
-        }
     
     def _calcular_ruta_directa(self, origen: Dict, destino: Dict) -> Dict:
         """Calcular ruta directa entre dos puntos"""
@@ -189,26 +157,17 @@ class OSRMService(CacheableService):
     def _extraer_puntos_geojson(self, geometry: Dict) -> List[Dict]:
         """Extraer puntos de geometría GeoJSON"""
         if geometry['type'] == 'LineString':
-            puntos = []
             coords = geometry['coordinates']
-            
-            # Simplificar la ruta tomando cada N puntos
             step = max(1, len(coords) // 20)
             
+            puntos = []
             for i in range(0, len(coords), step):
                 coord = coords[i]
-                puntos.append({
-                    'lat': coord[1],
-                    'lng': coord[0]
-                })
+                puntos.append({'lat': coord[1], 'lng': coord[0]})
             
-            # Asegurar que incluimos el último punto
             if len(coords) > 0 and coords[-1] != coords[step * (len(coords) // step - 1)]:
                 coord = coords[-1]
-                puntos.append({
-                    'lat': coord[1],
-                    'lng': coord[0]
-                })
+                puntos.append({'lat': coord[1], 'lng': coord[0]})
             
             return puntos
         return []
@@ -227,9 +186,3 @@ class OSRMService(CacheableService):
         
         diff = abs(ruta1['distancia']['value'] - ruta2['distancia']['value']) / ruta1['distancia']['value']
         return diff < threshold
-    
-    def _es_ruta_similar_a_lista(self, nueva_ruta: Dict, rutas_existentes: List[Dict], 
-                                threshold: float = 0.15) -> bool:
-        """Verificar si una ruta es similar a alguna de una lista"""
-        return any(self._son_rutas_similares(nueva_ruta, ruta, threshold) 
-                  for ruta in rutas_existentes)

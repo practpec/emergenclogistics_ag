@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, current_app
 from core.exceptions import ValidationError, GeneticAlgorithmError
+from core.helpers import ResponseFormatter
 from services.algorithms.main.genetic_algorithm import LogisticsGeneticAlgorithm
-from utils.helpers import ResponseFormatter
 
 ag_bp = Blueprint('ag', __name__)
 
@@ -11,7 +11,6 @@ def run_genetic_algorithm():
     try:
         data = request.get_json()
         
-        # Debug: Mostrar qué se está recibiendo
         current_app.logger.info("=== DATOS RECIBIDOS EN AG ===")
         current_app.logger.info(f"Tipo de datos: {type(data)}")
         current_app.logger.info(f"Es None: {data is None}")

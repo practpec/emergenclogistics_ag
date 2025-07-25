@@ -3,8 +3,26 @@ import { Input } from '../common/Input.jsx';
 
 const VehicleSelector = ({ vehicles, selectedVehicles, setSelectedVehicles }) => {
   const handleQuantityChange = (id, quantity) => {
-    const numQuantity = Math.max(0, parseInt(quantity, 10) || 0);
-    setSelectedVehicles(prev => ({ ...prev, [id]: numQuantity }));
+    if (quantity === '' || isNaN(parseInt(quantity, 10))) {
+      setSelectedVehicles(prev => {
+        const newState = { ...prev };
+        delete newState[id];
+        return newState;
+      });
+    } else {
+      const numQuantity = Math.max(0, parseInt(quantity, 10));
+      setSelectedVehicles(prev => ({ ...prev, [id]: numQuantity }));
+    }
+  };
+
+  const formatCapacity = (capacityInTons) => {
+    const tons = parseFloat(capacityInTons);
+    if (isNaN(tons)) {
+      return 'N/A';
+    }
+    // Convertir toneladas a kilogramos
+    const kilograms = tons * 1000;
+    return `${kilograms.toLocaleString()} kg`;
   };
 
   return (
@@ -14,7 +32,7 @@ const VehicleSelector = ({ vehicles, selectedVehicles, setSelectedVehicles }) =>
       </h2>
       <div className="flex-grow overflow-y-auto pr-2 space-y-2">
         {vehicles.map(vehicle => (
-            <div key={vehicle.vehiculo_id} className="bg-gray-700/50 p-2.5 rounded-lg border border-gray-600">
+            <div key={vehicle.vehiculo_id || vehicle.id} className="bg-gray-700/50 p-2.5 rounded-lg border border-gray-600">
                 <div className="flex justify-between items-center">
                     <div>
                         <p className="font-semibold text-base text-gray-100">{vehicle.modelo}</p>
@@ -25,14 +43,15 @@ const VehicleSelector = ({ vehicles, selectedVehicles, setSelectedVehicles }) =>
                         min="0"
                         className="w-16 text-center text-base"
                         placeholder="0"
-                        value={selectedVehicles[vehicle.vehiculo_id] || ''}
-                        onChange={(e) => handleQuantityChange(vehicle.vehiculo_id, e.target.value)}
+                        value={selectedVehicles[vehicle.vehiculo_id || vehicle.id] || ''}
+                        onChange={(e) => handleQuantityChange(vehicle.vehiculo_id || vehicle.id, e.target.value)}
                     />
                 </div>
                 <div className="mt-2 grid grid-cols-3 gap-x-2 text-xs border-t border-gray-600 pt-1.5">
                     <div className="text-gray-300 text-center">
                         <span className="text-gray-500 block text-[10px]">CAPACIDAD</span>
-                        {parseFloat(vehicle.capacidad_kg).toLocaleString()} kg
+                        {/* --- CORRECCIÓN CLAVE --- */}
+                        {formatCapacity(vehicle.maximo_peso_ton)}
                     </div>
                     <div className="text-gray-300 text-center">
                         <span className="text-gray-500 block text-[10px]">VELOCIDAD</span>

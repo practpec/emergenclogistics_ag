@@ -1,12 +1,11 @@
 import sqlite3
-import os
 from typing import List, Dict, Any, Optional
 from contextlib import contextmanager
 from core.base_service import BaseService
 from core.exceptions import DataLoadError
 
 class DatabaseService(BaseService):
-    """Servicio para manejo de base de datos de localidades con flujo estado->municipio->localidades"""
+    """Servicio para manejo de base de datos de localidades"""
     
     def __init__(self, db_path: str = "data/localidades.db"):
         super().__init__()
@@ -40,15 +39,8 @@ class DatabaseService(BaseService):
                     ORDER BY estado
                 """)
                 
-                estados = []
-                for row in cursor.fetchall():
-                    estados.append({
-                        'clave': row['clave_estado'],
-                        'nombre': row['estado']
-                    })
-                
-                self.log_info(f"Estados obtenidos: {len(estados)}")
-                return estados
+                return [{'clave': row['clave_estado'], 'nombre': row['estado']} 
+                       for row in cursor.fetchall()]
                 
         except Exception as e:
             self.log_error("Error obteniendo estados", e)
@@ -66,16 +58,11 @@ class DatabaseService(BaseService):
                     ORDER BY l.municipio
                 """, (clave_estado,))
                 
-                municipios = []
-                for row in cursor.fetchall():
-                    municipios.append({
-                        'clave_municipio': row['clave_municipio'],
-                        'nombre_municipio': row['municipio'],
-                        'nombre_estado': row['estado']
-                    })
-                
-                self.log_info(f"Municipios obtenidos para estado {clave_estado}: {len(municipios)}")
-                return municipios
+                return [{
+                    'clave_municipio': row['clave_municipio'],
+                    'nombre_municipio': row['municipio'],
+                    'nombre_estado': row['estado']
+                } for row in cursor.fetchall()]
                 
         except Exception as e:
             self.log_error(f"Error obteniendo municipios para estado {clave_estado}", e)
@@ -92,10 +79,8 @@ class DatabaseService(BaseService):
                            clave_localidad, localidad,
                            poblacion, latitud, longitud, ambito
                     FROM localidades
-                    WHERE clave_estado = ? 
-                      AND clave_municipio = ?
-                      AND latitud IS NOT NULL 
-                      AND longitud IS NOT NULL
+                    WHERE clave_estado = ? AND clave_municipio = ?
+                      AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
                     ORDER BY CAST(poblacion AS INTEGER) DESC
                     LIMIT 1
@@ -103,7 +88,7 @@ class DatabaseService(BaseService):
                 
                 row = cursor.fetchone()
                 if row:
-                    nodo_inicial = {
+                    return {
                         'clave_estado': row['clave_estado'],
                         'nombre_estado': row['estado'],
                         'clave_municipio': row['clave_municipio'],
@@ -116,9 +101,6 @@ class DatabaseService(BaseService):
                         'ambito': row['ambito'],
                         'nombre': f"{row['localidad']}, {row['municipio']}, {row['estado']}"
                     }
-                    
-                    self.log_info(f"Nodo inicial obtenido: {nodo_inicial['nombre']}")
-                    return nodo_inicial
                 
                 return None
                 
@@ -126,40 +108,21 @@ class DatabaseService(BaseService):
             self.log_error(f"Error obteniendo nodo inicial para municipio {clave_municipio}", e)
             raise DataLoadError(f"Error obteniendo nodo inicial: {e}")
     
-    def count_localidades_municipio(self, clave_estado: str, clave_municipio: str, 
-                                   clave_localidad_excluir: str = None) -> int:
-        """Contar localidades disponibles en un municipio"""
+    def count_localidades_municipio(self, clave_estado: str, clave_municipio: str) -> int:
+        """Contar total de localidades en un municipio"""
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
-                
-                if clave_localidad_excluir:
-                    cursor.execute("""
-                        SELECT COUNT(*) as total
-                        FROM localidades
-                        WHERE clave_estado = ? 
-                          AND clave_municipio = ?
-                          AND clave_localidad != ?
-                          AND poblacion > 20
-                          AND latitud IS NOT NULL 
-                          AND longitud IS NOT NULL
-                    """, (clave_estado, clave_municipio, clave_localidad_excluir))
-                else:
-                    cursor.execute("""
-                        SELECT COUNT(*) as total
-                        FROM localidades
-                        WHERE clave_estado = ? 
-                          AND clave_municipio = ?
-                          AND poblacion > 20
-                          AND latitud IS NOT NULL 
-                          AND longitud IS NOT NULL
-                    """, (clave_estado, clave_municipio))
+                cursor.execute("""
+                    SELECT COUNT(*) as total
+                    FROM localidades
+                    WHERE clave_estado = ? AND clave_municipio = ?
+                      AND latitud IS NOT NULL AND longitud IS NOT NULL
+                      AND poblacion IS NOT NULL
+                """, (clave_estado, clave_municipio))
                 
                 row = cursor.fetchone()
-                total = row['total'] if row else 0
-                
-                self.log_info(f"Localidades contadas para municipio {clave_municipio}: {total}")
-                return total
+                return row['total'] if row else 0
                 
         except Exception as e:
             self.log_error(f"Error contando localidades para municipio {clave_municipio}", e)
@@ -178,130 +141,29 @@ class DatabaseService(BaseService):
                            clave_localidad, localidad,
                            poblacion, latitud, longitud, ambito
                     FROM localidades
-                    WHERE clave_estado = ? 
-                      AND clave_municipio = ?
+                    WHERE clave_estado = ? AND clave_municipio = ?
                       AND clave_localidad != ?
                       AND poblacion > ?
-                      AND latitud IS NOT NULL 
-                      AND longitud IS NOT NULL
+                      AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
                     ORDER BY CAST(poblacion AS INTEGER) DESC
                     LIMIT ?
                 """, (clave_estado, clave_municipio, clave_localidad_excluir, poblacion_minima, cantidad))
                 
-                localidades = []
-                for row in cursor.fetchall():
-                    localidades.append({
-                        'clave_estado': row['clave_estado'],
-                        'nombre_estado': row['estado'],
-                        'clave_municipio': row['clave_municipio'],
-                        'nombre_municipio': row['municipio'],
-                        'clave_localidad': row['clave_localidad'],
-                        'nombre_localidad': row['localidad'],
-                        'poblacion': row['poblacion'],
-                        'lat': float(row['latitud']),
-                        'lng': float(row['longitud']),
-                        'ambito': row['ambito'],
-                        'nombre': f"{row['localidad']}, {row['municipio']}, {row['estado']}"
-                    })
-                
-                self.log_info(f"Localidades secundarias obtenidas para municipio {clave_municipio}: {len(localidades)}")
-                return localidades
+                return [{
+                    'clave_estado': row['clave_estado'],
+                    'nombre_estado': row['estado'],
+                    'clave_municipio': row['clave_municipio'],
+                    'nombre_municipio': row['municipio'],
+                    'clave_localidad': row['clave_localidad'],
+                    'nombre_localidad': row['localidad'],
+                    'poblacion': row['poblacion'],
+                    'lat': float(row['latitud']),
+                    'lng': float(row['longitud']),
+                    'ambito': row['ambito'],
+                    'nombre': f"{row['localidad']}, {row['municipio']}, {row['estado']}"
+                } for row in cursor.fetchall()]
                 
         except Exception as e:
             self.log_error(f"Error obteniendo localidades para municipio {clave_municipio}", e)
             raise DataLoadError(f"Error obteniendo localidades: {e}")
-    
-    def get_localidad_by_id(self, clave_estado: str, clave_municipio: str, 
-                           clave_localidad: str) -> Optional[Dict[str, Any]]:
-        """Obtener una localidad específica por sus claves"""
-        try:
-            with self.get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute("""
-                    SELECT clave_estado, estado,
-                           clave_municipio, municipio,
-                           clave_localidad, localidad,
-                           poblacion, latitud, longitud, ambito
-                    FROM localidades
-                    WHERE clave_estado = ? AND clave_municipio = ? AND clave_localidad = ?
-                """, (clave_estado, clave_municipio, clave_localidad))
-                
-                row = cursor.fetchone()
-                if row and row['latitud'] and row['longitud']:
-                    return {
-                        'clave_estado': row['clave_estado'],
-                        'nombre_estado': row['estado'],
-                        'clave_municipio': row['clave_municipio'],
-                        'nombre_municipio': row['municipio'],
-                        'clave_localidad': row['clave_localidad'],
-                        'nombre_localidad': row['localidad'],
-                        'poblacion': row['poblacion'],
-                        'lat': float(row['latitud']),
-                        'lng': float(row['longitud']),
-                        'ambito': row['ambito'],
-                        'nombre': f"{row['localidad']}, {row['municipio']}, {row['estado']}"
-                    }
-                
-                return None
-                
-        except Exception as e:
-            self.log_error(f"Error obteniendo localidad {clave_localidad}", e)
-            raise DataLoadError(f"Error obteniendo localidad: {e}")
-    
-    def search_localidades(self, nombre: str, clave_estado: str = None, 
-                          limite: int = 50) -> List[Dict[str, Any]]:
-        """Buscar localidades por nombre"""
-        try:
-            with self.get_connection() as conn:
-                cursor = conn.cursor()
-                
-                if clave_estado:
-                    cursor.execute("""
-                        SELECT clave_estado, estado,
-                               clave_municipio, municipio,
-                               clave_localidad, localidad,
-                               poblacion, latitud, longitud, ambito
-                        FROM localidades
-                        WHERE clave_estado = ?
-                          AND (localidad LIKE ? OR municipio LIKE ?)
-                          AND latitud IS NOT NULL 
-                          AND longitud IS NOT NULL
-                        ORDER BY poblacion DESC
-                        LIMIT ?
-                    """, (clave_estado, f"%{nombre}%", f"%{nombre}%", limite))
-                else:
-                    cursor.execute("""
-                        SELECT clave_estado, estado,
-                               clave_municipio, municipio,
-                               clave_localidad, localidad,
-                               poblacion, latitud, longitud, ambito
-                        FROM localidades
-                        WHERE (localidad LIKE ? OR municipio LIKE ?)
-                          AND latitud IS NOT NULL 
-                          AND longitud IS NOT NULL
-                        ORDER BY poblacion DESC
-                        LIMIT ?
-                    """, (f"%{nombre}%", f"%{nombre}%", limite))
-                
-                localidades = []
-                for row in cursor.fetchall():
-                    localidades.append({
-                        'clave_estado': row['clave_estado'],
-                        'nombre_estado': row['estado'],
-                        'clave_municipio': row['clave_municipio'],
-                        'nombre_municipio': row['municipio'],
-                        'clave_localidad': row['clave_localidad'],
-                        'nombre_localidad': row['localidad'],
-                        'poblacion': row['poblacion'],
-                        'lat': float(row['latitud']),
-                        'lng': float(row['longitud']),
-                        'ambito': row['ambito'],
-                        'nombre': f"{row['localidad']}, {row['municipio']}, {row['estado']}"
-                    })
-                
-                return localidades
-                
-        except Exception as e:
-            self.log_error(f"Error buscando localidades con nombre '{nombre}'", e)
-            raise DataLoadError(f"Error buscando localidades: {e}")

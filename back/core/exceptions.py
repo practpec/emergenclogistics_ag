@@ -17,7 +17,3 @@ class GeneticAlgorithmError(EmergencLogisticsException):
 class DataLoadError(EmergencLogisticsException):
     """Error al cargar datos"""
     pass
-
-class ExternalAPIError(EmergencLogisticsException):
-    """Error en API externa"""
-    pass

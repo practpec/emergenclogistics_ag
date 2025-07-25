@@ -1,10 +1,10 @@
-import { Button,  } from '../common/Button';
+import { Button } from '../common/Button';
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import AGSettingsForm from './AGSettingsForm';
 
 const ScenarioPreview = ({ 
   expandedFleet, 
-  selectedDisaster, 
+  selectedDisaster,
   routeStates, 
   activeVehicleTypes, 
   onGenerate, 
@@ -31,8 +31,6 @@ const ScenarioPreview = ({
     elitismo_rate: { min: 0.05, max: 0.3 }
   };
 
-  // --- LÓGICA DE RENDERIZADO CORREGIDA ---
-  // Se extrae la lista de rutas a una variable para simplificar el JSX
   const routesSummary = routeEntries.length > 0 
     ? routeEntries.flatMap(([destIndex, routes]) =>
         (routes || []).map((route, routeIndex) => (
@@ -60,10 +58,22 @@ const ScenarioPreview = ({
           </ul>
         </div>
 
-        {/* Columna 2: Condiciones */}
+        {/* Columna 2: Condiciones (CORREGIDA) */}
         <div>
           <h3 className="font-bold text-blue-400">Condiciones Generales</h3>
-          <p className="text-gray-300"><strong>Desastre:</strong> <span className="capitalize">{selectedDisaster.replace('_', ' ')}</span></p>
+          <p className="text-gray-300">
+            <strong>Desastre:</strong> <span className="capitalize">{selectedDisaster?.tipo?.replace('_', ' ') || 'N/A'}</span>
+          </p>
+          {selectedDisaster?.prioridades && (
+            <div className="mt-1 text-xs text-gray-400">
+                <p className="font-semibold text-gray-300">Prioridades de Insumos:</p>
+                <ul className="list-disc list-inside pl-2">
+                    {selectedDisaster.prioridades.map((p, i) => (
+                        <li key={i}>{p.categoria}: <strong className="capitalize">{p.nivel}</strong></li>
+                    ))}
+                </ul>
+            </div>
+          )}
         </div>
 
         {/* Columna 3: Rutas */}
