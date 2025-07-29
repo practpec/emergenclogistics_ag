@@ -7,7 +7,7 @@ class AssignmentValidator:
     
     def __init__(self, rutas: List[Ruta], vehiculos_expandidos: List[tuple]):
         self.rutas = {r.id: r for r in rutas}
-        self.vehiculos_expandidos = {v_id: vehiculo for v_id, vehiculo in vehiculos_expandidos}
+        self.vehiculos_expandidos = {v['id']: v for v in vehiculos_expandidos}
     
     def validar_individuo(self, individuo: Individual) -> Dict[str, any]:
         """Validar un individuo completo"""

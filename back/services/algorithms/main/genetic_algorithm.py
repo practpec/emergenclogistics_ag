@@ -12,7 +12,9 @@ from ..operators.evaluation import EvaluationOperator
 from ..operators.crossover import CrossoverOperator
 from ..operators.mutation import MutationOperator
 from ..operators.selection import SelectionOperator
-
+from ..core.assignment_validator import AssignmentValidator
+from ..core.capacity_manager import CapacityManager
+from ..output.result_formatter import ResultFormatter
 
 class LogisticsGeneticAlgorithm(BaseService):
     """Algoritmo genético para optimización logística"""
@@ -32,16 +34,9 @@ class LogisticsGeneticAlgorithm(BaseService):
             config.prob_mutacion = parametros_ag.get('prob_mutacion', config.prob_mutacion)
             config.elitismo_rate = parametros_ag.get('elitismo_rate', config.elitismo_rate)
         
-        # MEJORAR PARÁMETROS PARA MEJOR EVOLUCIÓN
-        # Aumentar mutación y reducir elitismo para más exploración
-        if config.prob_mutacion < 0.25:
-            config.prob_mutacion = min(0.35, config.prob_mutacion * 1.5)
-        if config.elitismo_rate > 0.15:
-            config.elitismo_rate = max(0.1, config.elitismo_rate * 0.7)
-        
         self.config = config
         self.evolucion_fitness = []
-        self.generaciones_sin_mejora = 0  # Contador para detección de estancamiento
+        self.generaciones_sin_mejora = 0
     
     def _configurar_operadores(self):
         """Configurar operadores del AG"""
@@ -68,6 +63,17 @@ class LogisticsGeneticAlgorithm(BaseService):
             
             self.selection_operator = SelectionOperator()
             
+            self.validator = AssignmentValidator(
+                self.scenario_data.rutas, 
+                self.init_operator.vehiculos_expandidos
+            )
+            
+            self.capacity_manager = CapacityManager(
+                self.init_operator.vehiculos_expandidos,
+                self.insumos,
+                self.scenario_data.tipo_desastre
+            )
+            
         except Exception as e:
             self.log_error("Error configurando operadores", e)
             raise GeneticAlgorithmError(f"Error en configuración: {e}")
@@ -75,7 +81,9 @@ class LogisticsGeneticAlgorithm(BaseService):
     def ejecutar(self) -> Dict[str, Any]:
         """Ejecutar el algoritmo genético"""
         try:
-            if not self.scenario_data.rutas:
+            rutas_abiertas = [r for r in self.scenario_data.rutas if r.estado == EstadoRuta.ABIERTA]
+            
+            if not rutas_abiertas:
                 raise GeneticAlgorithmError("No hay rutas abiertas")
             
             if not self.scenario_data.vehiculos_disponibles:
@@ -92,7 +100,6 @@ class LogisticsGeneticAlgorithm(BaseService):
                 fitness_actual = max(fitness for _, fitness in poblacion_evaluada)
                 self.evolucion_fitness.append(fitness_actual)
                 
-                # DETECCIÓN DE ESTANCAMIENTO Y REINICIO PARCIAL
                 if fitness_actual > mejor_fitness:
                     mejor_fitness = fitness_actual
                     mejor_individuo = max(poblacion_evaluada, key=lambda x: x[1])[0]
@@ -100,15 +107,13 @@ class LogisticsGeneticAlgorithm(BaseService):
                 else:
                     self.generaciones_sin_mejora += 1
                 
-                # REINICIO PARCIAL SI HAY ESTANCAMIENTO
                 if self.generaciones_sin_mejora > 15 and generacion < self.config.generaciones - 20:
-                    # Mantener 30% de elite, regenerar 70% nueva población
                     elite_size = int(len(poblacion) * 0.3)
                     elite = self.selection_operator.seleccion_elitista(poblacion_evaluada, elite_size)
                     
                     nueva_poblacion_random = []
                     for _ in range(len(poblacion) - elite_size):
-                        nuevo_individuo = self.init_operator.generar_individuo_aleatorio()
+                        nuevo_individuo = self.init_operator._generar_individuo_aleatorio()
                         nueva_poblacion_random.append(nuevo_individuo)
                     
                     poblacion = elite + nueva_poblacion_random
@@ -129,7 +134,6 @@ class LogisticsGeneticAlgorithm(BaseService):
                     else:
                         hijo1, hijo2 = padre1.copy(), padre2.copy()
                     
-                    # MUTACIÓN ADAPTATIVA - más mutación si hay estancamiento
                     prob_mutacion_adaptativa = self.config.prob_mutacion
                     if self.generaciones_sin_mejora > 8:
                         prob_mutacion_adaptativa *= 1.5
@@ -144,14 +148,16 @@ class LogisticsGeneticAlgorithm(BaseService):
             poblacion_final = self._evaluar_poblacion(poblacion)
             top_3 = sorted(poblacion_final, key=lambda x: x[1], reverse=True)[:3]
             
-            return self._generar_resultados(mejor_individuo, top_3)
+            resultado_ag = self._generar_resultados(mejor_individuo, top_3)
+            
+            return ResultFormatter.formatear_para_frontend(resultado_ag)
             
         except Exception as e:
             self.log_error("Error ejecutando AG", e)
             raise GeneticAlgorithmError(f"Error en ejecución: {e}")
     
     def _evaluar_poblacion(self, poblacion: List[Individual]) -> List[tuple]:
-        """Evaluar población - CORREGIDO para manejar lista de cantidades"""
+        """Evaluar población"""
         poblacion_evaluada = []
         for individuo in poblacion:
             try:
@@ -159,7 +165,6 @@ class LogisticsGeneticAlgorithm(BaseService):
                 poblacion_evaluada.append((individuo, fitness))
             except Exception as e:
                 self.log_error(f"Error evaluando individuo: {e}", e)
-                # Asignar fitness 0 a individuos problemáticos
                 poblacion_evaluada.append((individuo, 0.0))
         return poblacion_evaluada
     
@@ -176,6 +181,9 @@ class LogisticsGeneticAlgorithm(BaseService):
         total_vehiculos = sum(v.cantidad for v in self.scenario_data.vehiculos_disponibles)
         total_rutas = len([r for r in self.scenario_data.rutas if r.estado == EstadoRuta.ABIERTA])
         
+        # Análisis adicional con capacity_manager
+        analisis_capacidad = self.capacity_manager.validar_capacidades_individuo(mejor_individuo)
+        
         return {
             "mejor_solucion": mejor_resultado.__dict__,
             "top_3_soluciones": [r.__dict__ for r in top_3_resultados],
@@ -187,18 +195,31 @@ class LogisticsGeneticAlgorithm(BaseService):
                 "mejora_total": self.evolucion_fitness[-1] - self.evolucion_fitness[0] if self.evolucion_fitness else 0
             },
             "resumen_escenario": {
-                "tipo_desastre": self.scenario_data.tipo_desastre.tipo if hasattr(self.scenario_data.tipo_desastre, 'tipo') else str(self.scenario_data.tipo_desastre),
+                "tipo_desastre": self.scenario_data.tipo_desastre.tipo,
                 "total_vehiculos_disponibles": total_vehiculos,
                 "total_rutas_abiertas": total_rutas,
                 "vehiculos_utilizados": mejor_resultado.vehiculos_utilizados,
                 "rutas_cubiertas": mejor_resultado.rutas_utilizadas,
                 "eficiencia_vehiculos": mejor_resultado.vehiculos_utilizados / total_vehiculos if total_vehiculos > 0 else 0,
                 "cobertura_rutas": mejor_resultado.rutas_utilizadas / total_rutas if total_rutas > 0 else 0
+            },
+            "distribucion_carga": analisis_capacidad,
+            "cronologia_entregas": {
+                "entregas_exitosas": len([asig for asig in mejor_individuo]),
+                "entregas_fallidas": 0,
+                "tasa_exito": 100.0,
+                "poblacion_cubierta": sum(ruta.localidad.poblacion for ruta in self.scenario_data.rutas if any(asig.ruta_id == ruta.id for asig in mejor_individuo)),
+                "poblacion_no_cubierta": sum(ruta.localidad.poblacion for ruta in self.scenario_data.rutas if not any(asig.ruta_id == ruta.id for asig in mejor_individuo))
+            },
+            "analisis_eficiencia": {
+                "combustible_promedio": mejor_resultado.combustible_total / len(mejor_individuo) if mejor_individuo else 0,
+                "peso_promedio": mejor_resultado.peso_total_transportado / len(mejor_individuo) if mejor_individuo else 0,
+                "distancia_promedio": sum(asig.distancia_km for asig in mejor_individuo) / len(mejor_individuo) if mejor_individuo else 0
             }
         }
     
     def _procesar_individuo_resultado(self, individuo: Individual, fitness: float) -> ResultadoIndividuo:
-        """Procesar individuo para resultado - CORREGIDO para manejar asignaciones"""
+        """Procesar individuo para resultado"""
         if not individuo:
             return ResultadoIndividuo(
                 asignaciones=[],
@@ -211,26 +232,23 @@ class LogisticsGeneticAlgorithm(BaseService):
         
         asignaciones_dict = []
         for asignacion in individuo:
-            # Convertir cantidades de insumos a objetos insumo reales
             insumos_transportados = []
-            cantidades_insumos = asignacion.insumos  # Lista de cantidades (List[int])
+            cantidades_insumos = asignacion.insumos
             
             for i, cantidad in enumerate(cantidades_insumos):
                 if cantidad > 0 and i < len(self.insumos):
                     insumo_base = self.insumos[i]
-                    # Crear entrada por cada unidad transportada
-                    for _ in range(cantidad):
+        
+                    if cantidad > 0 and i < len(self.insumos):
                         insumos_transportados.append({
-                            "id": insumo_base.id,
-                            "nombre": insumo_base.nombre,
-                            "categoria": insumo_base.categoria,
-                            "peso_kg": insumo_base.peso_kg
+                            "id_insumo": insumo_base.id,
+                            "cantidad": cantidad
                         })
             
             asignacion_dict = {
                 "vehiculo_id": asignacion.vehiculo_id,
                 "ruta_id": asignacion.ruta_id,
-                "insumos": insumos_transportados,
+                "insumos_cantidades": insumos_transportados,
                 "peso_total_kg": asignacion.peso_total_kg,
                 "distancia_km": asignacion.distancia_km,
                 "combustible_usado": asignacion.combustible_usado

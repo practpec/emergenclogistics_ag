@@ -1,389 +1,2998 @@
 {
-  "mejor_solucion": {
-    "asignaciones": [
-      {
-        "vehiculo_id": 0,
-        "ruta_id": 1,
-        "insumos": [
-          {
-            "id": 23,
-            "nombre": "Botellas de agua potable",
-            "categoria": "Agua",
-            "peso_kg": 18.0
-          },
-          {
-            "id": 9,
-            "nombre": "Analgésicos básicos",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.2
-          },
-          {
-            "id": 17,
-            "nombre": "Carpas y toldos",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 7.0
-          },
-          {
-            "id": 0,
-            "nombre": "Granos y cereales",
-            "categoria": "Alimentación básica",
-            "peso_kg": 4.0
-          }
-        ],
-        "peso_total_kg": 29.2,
-        "distancia_km": 10.5,
-        "combustible_usado": 0.7665
+  "alternativas": [
+    {
+      "asignaciones": [
+        {
+          "combustible_usado": 0.7311388,
+          "distancia_km": 7.983899999999999,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 1,
+          "vehiculo_id": 1
+        },
+        {
+          "combustible_usado": 0.7584704999999999,
+          "distancia_km": 15.9681,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 2,
+          "vehiculo_id": 0
+        },
+        {
+          "combustible_usado": 1.049959,
+          "distancia_km": 10.015600000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 3,
+          "vehiculo_id": 3
+        },
+        {
+          "combustible_usado": 1.4371289999999999,
+          "distancia_km": 11.052200000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 5,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 15
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 20
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 995,
+          "ruta_id": 4,
+          "vehiculo_id": 2
+        }
+      ],
+      "fitness": 0.8844100698790155,
+      "posicion": 1,
+      "resumen": {
+        "peso": 3995,
+        "rutas": 4,
+        "vehiculos": 4
       }
-    ],
-    "fitness": 0.26475523809523815,
-    "rutas_utilizadas": 1,
-    "vehiculos_utilizados": 1,
-    "peso_total_transportado": 29.2,
-    "combustible_total": 0.7665
-  },
-  "top_3_soluciones": [
-    {
-      "asignaciones": [
-        {
-          "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            }
-          ],
-          "peso_total_kg": 29.2,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
-        }
-      ],
-      "fitness": 0.26475523809523815,
-      "rutas_utilizadas": 1,
-      "vehiculos_utilizados": 1,
-      "peso_total_transportado": 29.2,
-      "combustible_total": 0.7665
     },
     {
       "asignaciones": [
         {
-          "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
+          "combustible_usado": 0.7311388,
+          "distancia_km": 7.983899999999999,
+          "insumos_cantidades": [
             {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
+              "cantidad": 10,
+              "id_insumo": 0
             },
             {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
+              "cantidad": 10,
+              "id_insumo": 1
             },
             {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
+              "cantidad": 9,
+              "id_insumo": 2
             },
             {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
             }
           ],
-          "peso_total_kg": 29.2,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
+          "peso_total_kg": 1000,
+          "ruta_id": 1,
+          "vehiculo_id": 1
+        },
+        {
+          "combustible_usado": 0.7584704999999999,
+          "distancia_km": 15.9681,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 2,
+          "vehiculo_id": 0
+        },
+        {
+          "combustible_usado": 1.049959,
+          "distancia_km": 10.015600000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 3,
+          "vehiculo_id": 3
+        },
+        {
+          "combustible_usado": 1.4371289999999999,
+          "distancia_km": 11.052200000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 5,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 15
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 20
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 995,
+          "ruta_id": 4,
+          "vehiculo_id": 2
         }
       ],
-      "fitness": 0.26475523809523815,
-      "rutas_utilizadas": 1,
-      "vehiculos_utilizados": 1,
-      "peso_total_transportado": 29.2,
-      "combustible_total": 0.7665
+      "fitness": 0.8844100698790155,
+      "posicion": 2,
+      "resumen": {
+        "peso": 3995,
+        "rutas": 4,
+        "vehiculos": 4
+      }
     },
     {
       "asignaciones": [
         {
-          "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
+          "combustible_usado": 0.7311388,
+          "distancia_km": 7.983899999999999,
+          "insumos_cantidades": [
             {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
+              "cantidad": 10,
+              "id_insumo": 0
             },
             {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
+              "cantidad": 10,
+              "id_insumo": 1
             },
             {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
+              "cantidad": 9,
+              "id_insumo": 2
             },
             {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
             }
           ],
-          "peso_total_kg": 29.2,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
+          "peso_total_kg": 1000,
+          "ruta_id": 1,
+          "vehiculo_id": 1
+        },
+        {
+          "combustible_usado": 0.7584704999999999,
+          "distancia_km": 15.9681,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 2,
+          "vehiculo_id": 0
+        },
+        {
+          "combustible_usado": 1.049959,
+          "distancia_km": 10.015600000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 16
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 6,
+              "id_insumo": 21
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 1000,
+          "ruta_id": 3,
+          "vehiculo_id": 3
+        },
+        {
+          "combustible_usado": 1.4371289999999999,
+          "distancia_km": 11.052200000000001,
+          "insumos_cantidades": [
+            {
+              "cantidad": 10,
+              "id_insumo": 0
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 1
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 2
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 3
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 4
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 5
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 6
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 7
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 8
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 9
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 10
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 11
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 12
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 13
+            },
+            {
+              "cantidad": 5,
+              "id_insumo": 14
+            },
+            {
+              "cantidad": 1,
+              "id_insumo": 15
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 17
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 18
+            },
+            {
+              "cantidad": 10,
+              "id_insumo": 19
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 20
+            },
+            {
+              "cantidad": 9,
+              "id_insumo": 22
+            },
+            {
+              "cantidad": 8,
+              "id_insumo": 23
+            },
+            {
+              "cantidad": 7,
+              "id_insumo": 24
+            }
+          ],
+          "peso_total_kg": 995,
+          "ruta_id": 4,
+          "vehiculo_id": 2
         }
       ],
-      "fitness": 0.26475523809523815,
-      "rutas_utilizadas": 1,
-      "vehiculos_utilizados": 1,
-      "peso_total_transportado": 29.2,
-      "combustible_total": 0.7665
+      "fitness": 0.8844100698790155,
+      "posicion": 3,
+      "resumen": {
+        "peso": 3995,
+        "rutas": 4,
+        "vehiculos": 4
+      }
     }
   ],
-  "evolucion_fitness": [
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815,
-    0.26475523809523815
-  ],
-  "metricas_optimizacion": {
-    "generaciones_ejecutadas": 200,
-    "poblacion_size": 100,
-    "fitness_final": 0.26475523809523815,
-    "mejora_total": 0.0
+  "reportes": {
+    "eficiencia": {
+      "combustible_promedio": 0.9941743249999999,
+      "distancia_promedio": 11.254950000000001,
+      "peso_promedio": 998.75
+    },
+    "escenario": {
+      "cobertura_rutas": 0.8,
+      "eficiencia_vehiculos": 1,
+      "rutas_cubiertas": 4,
+      "tipo_desastre": "inundación",
+      "total_rutas_abiertas": 5,
+      "total_vehiculos_disponibles": 4,
+      "vehiculos_utilizados": 4
+    },
+    "optimizacion": {
+      "fitness_final": 0.8844100698790155,
+      "generaciones_ejecutadas": 200,
+      "mejora_total": 0.1397299416738873,
+      "poblacion_size": 80
+    }
   },
-  "resumen_escenario": {
-    "tipo_desastre": "terremoto",
-    "total_vehiculos_disponibles": 2,
-    "total_rutas_abiertas": 2,
-    "vehiculos_utilizados": 1,
-    "rutas_cubiertas": 1,
-    "eficiencia_vehiculos": 0.5,
-    "cobertura_rutas": 0.5
+  "solucion_optima": {
+    "asignaciones": [
+      {
+        "combustible_usado": 0.7311388,
+        "distancia_km": 7.983899999999999,
+        "insumos_cantidades": [
+          {
+            "cantidad": 10,
+            "id_insumo": 0
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 1
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 2
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 3
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 4
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 5
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 6
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 7
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 8
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 9
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 10
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 11
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 12
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 13
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 14
+          },
+          {
+            "cantidad": 1,
+            "id_insumo": 16
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 17
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 18
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 19
+          },
+          {
+            "cantidad": 6,
+            "id_insumo": 21
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 22
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 23
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 24
+          }
+        ],
+        "peso_total_kg": 1000,
+        "ruta_id": 1,
+        "vehiculo_id": 1
+      },
+      {
+        "combustible_usado": 0.7584704999999999,
+        "distancia_km": 15.9681,
+        "insumos_cantidades": [
+          {
+            "cantidad": 10,
+            "id_insumo": 0
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 1
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 2
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 3
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 4
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 5
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 6
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 7
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 8
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 9
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 10
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 11
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 12
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 13
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 14
+          },
+          {
+            "cantidad": 1,
+            "id_insumo": 16
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 17
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 18
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 19
+          },
+          {
+            "cantidad": 6,
+            "id_insumo": 21
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 22
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 23
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 24
+          }
+        ],
+        "peso_total_kg": 1000,
+        "ruta_id": 2,
+        "vehiculo_id": 0
+      },
+      {
+        "combustible_usado": 1.049959,
+        "distancia_km": 10.015600000000001,
+        "insumos_cantidades": [
+          {
+            "cantidad": 10,
+            "id_insumo": 0
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 1
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 2
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 3
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 4
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 5
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 6
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 7
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 8
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 9
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 10
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 11
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 12
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 13
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 14
+          },
+          {
+            "cantidad": 1,
+            "id_insumo": 16
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 17
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 18
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 19
+          },
+          {
+            "cantidad": 6,
+            "id_insumo": 21
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 22
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 23
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 24
+          }
+        ],
+        "peso_total_kg": 1000,
+        "ruta_id": 3,
+        "vehiculo_id": 3
+      },
+      {
+        "combustible_usado": 1.4371289999999999,
+        "distancia_km": 11.052200000000001,
+        "insumos_cantidades": [
+          {
+            "cantidad": 10,
+            "id_insumo": 0
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 1
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 2
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 3
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 4
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 5
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 6
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 7
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 8
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 9
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 10
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 11
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 12
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 13
+          },
+          {
+            "cantidad": 5,
+            "id_insumo": 14
+          },
+          {
+            "cantidad": 1,
+            "id_insumo": 15
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 17
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 18
+          },
+          {
+            "cantidad": 10,
+            "id_insumo": 19
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 20
+          },
+          {
+            "cantidad": 9,
+            "id_insumo": 22
+          },
+          {
+            "cantidad": 8,
+            "id_insumo": 23
+          },
+          {
+            "cantidad": 7,
+            "id_insumo": 24
+          }
+        ],
+        "peso_total_kg": 995,
+        "ruta_id": 4,
+        "vehiculo_id": 2
+      }
+    ],
+    "fitness": 0.8844100698790155,
+    "metricas": {
+      "combustible_total": 3.9766972999999997,
+      "peso_total": 3995,
+      "rutas_utilizadas": 4,
+      "vehiculos_utilizados": 4
+    }
+  },
+  "visualizaciones": {
+    "distribucion_carga": {
+      "capacidad_total_disponible": 4800,
+      "peso_total_transportado": 3995,
+      "total_vehiculos": 4,
+      "utilizacion_promedio": 84.19871794871796,
+      "utilizacion_total": 83.22916666666667,
+      "vehiculos_optimos": 3,
+      "vehiculos_sobrecargados": 1,
+      "vehiculos_subutilizados": 0
+    },
+    "evolucion_fitness": {
+      "datos": [
+        0.7446801282051282,
+        0.7446801282051282,
+        0.7446801282051282,
+        0.7446801282051282,
+        0.7526902173913043,
+        0.7547329132606722,
+        0.7572095189701897,
+        0.7602844656992084,
+        0.7703750492513791,
+        0.7720281862745098,
+        0.7753698165869218,
+        0.7815890659955257,
+        0.783586373390558,
+        0.7934195328542095,
+        0.7937584812108559,
+        0.7996222684279191,
+        0.802386288180611,
+        0.8071869491385024,
+        0.814238882398754,
+        0.8150389688249401,
+        0.8176136363636363,
+        0.82054198392555,
+        0.8236111111111111,
+        0.8236111111111111,
+        0.827711038961039,
+        0.8281551759410801,
+        0.8330634171907756,
+        0.8330634171907756,
+        0.8370731707317073,
+        0.8400430764411027,
+        0.8432578163926259,
+        0.8457048918387414,
+        0.847918941048035,
+        0.8515195725264169,
+        0.8518401789947843,
+        0.8580758426966293,
+        0.8600568181818182,
+        0.8632744565217391,
+        0.8643114214350591,
+        0.8682133507853402,
+        0.8684768184796855,
+        0.8697593295904887,
+        0.8727245670995671,
+        0.8731971360895779,
+        0.8750274547803618,
+        0.8756711328626443,
+        0.8774876905972047,
+        0.8795607682619647,
+        0.8795607682619647,
+        0.8796296296296297,
+        0.8797372903563941,
+        0.8805422948073701,
+        0.8805422948073701,
+        0.8812415046005855,
+        0.8812415046005855,
+        0.8812415046005855,
+        0.8815551808866582,
+        0.8815551808866582,
+        0.8815891959798995,
+        0.8818697523089841,
+        0.8820433700209644,
+        0.88232202680067,
+        0.88232202680067,
+        0.88232202680067,
+        0.88232202680067,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832628024614101,
+        0.8832642378559463,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.8838194444444445,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.883992881727159,
+        0.8840645911752405,
+        0.8840645911752405,
+        0.8840645911752405,
+        0.8840645911752405,
+        0.8842371553884713,
+        0.8842371553884713,
+        0.8842371553884713,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155,
+        0.8844100698790155
+      ],
+      "generaciones": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200
+      ],
+      "mejora_total": 0.1397299416738873
+    },
+    "mapa_entregas": {
+      "exitosas": 4,
+      "fallidas": 0,
+      "tasa_exito": 100
+    }
   }
 }
+
+
+
+{
+  "metadata": {
+    "estado_origen": "AGUASCALIENTES",
+    "mismo_municipio": true,
+    "municipio_origen": "1",
+    "total_destinos": 5,
+    "total_rutas": 5,
+    "usando_datos_reales": true
+  },
+  "municipio_info": {
+    "clave_municipio": "1",
+    "nombre_municipio": "AGUASCALIENTES",
+    "total_localidades": 6
+  },
+  "nodo_principal": {
+    "ambito": "U",
+    "clave_estado": 1,
+    "clave_localidad": 1,
+    "clave_municipio": 1,
+    "lat": 21.879822,
+    "lng": -102.296046,
+    "nombre": "AGUASCALIENTES, AGUASCALIENTES, AGUASCALIENTES",
+    "nombre_estado": "AGUASCALIENTES",
+    "nombre_localidad": "AGUASCALIENTES",
+    "nombre_municipio": "AGUASCALIENTES",
+    "poblacion": "863893"
+  },
+  "nodos_secundarios": [
+    {
+      "clave_estado": 1,
+      "clave_localidad": 1025,
+      "clave_municipio": 1,
+      "distancia_directa": 6.2,
+      "lat": 21.92249,
+      "lng": -102.334772,
+      "nombre": "POCITOS, AGUASCALIENTES, AGUASCALIENTES",
+      "poblacion": "8494"
+    },
+    {
+      "clave_estado": 1,
+      "clave_localidad": 479,
+      "clave_municipio": 1,
+      "distancia_directa": 12.76,
+      "lat": 21.824135,
+      "lng": -102.187973,
+      "nombre": "VILLA LICENCIADO JESÚS TERÁN (CALVILLITO), AGUASCALIENTES, AGUASCALIENTES",
+      "poblacion": "5204"
+    },
+    {
+      "clave_estado": 1,
+      "clave_localidad": 293,
+      "clave_municipio": 1,
+      "distancia_directa": 8.2,
+      "lat": 21.889374,
+      "lng": -102.217282,
+      "nombre": "NORIAS DE OJOCALIENTE, AGUASCALIENTES, AGUASCALIENTES",
+      "poblacion": "4476"
+    },
+    {
+      "clave_estado": 1,
+      "clave_localidad": 2371,
+      "clave_municipio": 1,
+      "distancia_directa": 8.76,
+      "lat": 21.956463,
+      "lng": -102.276324,
+      "nombre": "CARTAGENA [FRACCIONAMIENTO], AGUASCALIENTES, AGUASCALIENTES",
+      "poblacion": "3903"
+    },
+    {
+      "clave_estado": 1,
+      "clave_localidad": 239,
+      "clave_municipio": 1,
+      "distancia_directa": 16.65,
+      "lat": 22.000604,
+      "lng": -102.200656,
+      "nombre": "GENERAL JOSÉ MARÍA MORELOS Y PAVÓN (CAÑADA HONDA), AGUASCALIENTES, AGUASCALIENTES",
+      "poblacion": "3822"
+    }
+  ],
+  "rutas_data": [
+    {
+      "destino": {
+        "clave_estado": 1,
+        "clave_localidad": 1025,
+        "clave_municipio": 1,
+        "distancia_directa": 6.2,
+        "lat": 21.92249,
+        "lng": -102.334772,
+        "nombre": "POCITOS, AGUASCALIENTES, AGUASCALIENTES",
+        "poblacion": "8494"
+      },
+      "indice": 0,
+      "rutas": [
+        {
+          "descripcion": "Ruta hacia el destino",
+          "distancia": {
+            "text": "8.0 km",
+            "value": 7983.9
+          },
+          "puntos_ruta": [
+            {
+              "lat": 21.879751,
+              "lng": -102.296313
+            },
+            {
+              "lat": 21.881092,
+              "lng": -102.296546
+            },
+            {
+              "lat": 21.883806,
+              "lng": -102.297853
+            },
+            {
+              "lat": 21.884564,
+              "lng": -102.29782
+            },
+            {
+              "lat": 21.887324,
+              "lng": -102.29674
+            },
+            {
+              "lat": 21.890014,
+              "lng": -102.295068
+            },
+            {
+              "lat": 21.890816,
+              "lng": -102.295595
+            },
+            {
+              "lat": 21.890316,
+              "lng": -102.297414
+            },
+            {
+              "lat": 21.890322,
+              "lng": -102.299375
+            },
+            {
+              "lat": 21.894749,
+              "lng": -102.303258
+            },
+            {
+              "lat": 21.903158,
+              "lng": -102.307765
+            },
+            {
+              "lat": 21.909446,
+              "lng": -102.310697
+            },
+            {
+              "lat": 21.90991,
+              "lng": -102.328831
+            },
+            {
+              "lat": 21.912419,
+              "lng": -102.329409
+            },
+            {
+              "lat": 21.914828,
+              "lng": -102.330413
+            },
+            {
+              "lat": 21.916107,
+              "lng": -102.332777
+            },
+            {
+              "lat": 21.922698,
+              "lng": -102.336934
+            },
+            {
+              "lat": 21.922767,
+              "lng": -102.335049
+            },
+            {
+              "lat": 21.922505,
+              "lng": -102.335065
+            }
+          ],
+          "tipo": "Ruta 1"
+        }
+      ]
+    },
+    {
+      "destino": {
+        "clave_estado": 1,
+        "clave_localidad": 479,
+        "clave_municipio": 1,
+        "distancia_directa": 12.76,
+        "lat": 21.824135,
+        "lng": -102.187973,
+        "nombre": "VILLA LICENCIADO JESÚS TERÁN (CALVILLITO), AGUASCALIENTES, AGUASCALIENTES",
+        "poblacion": "5204"
+      },
+      "indice": 1,
+      "rutas": [
+        {
+          "descripcion": "Ruta hacia el destino",
+          "distancia": {
+            "text": "16.0 km",
+            "value": 15968.1
+          },
+          "puntos_ruta": [
+            {
+              "lat": 21.879751,
+              "lng": -102.296313
+            },
+            {
+              "lat": 21.882883,
+              "lng": -102.297471
+            },
+            {
+              "lat": 21.883732,
+              "lng": -102.29528
+            },
+            {
+              "lat": 21.878915,
+              "lng": -102.293726
+            },
+            {
+              "lat": 21.879306,
+              "lng": -102.288328
+            },
+            {
+              "lat": 21.877643,
+              "lng": -102.264923
+            },
+            {
+              "lat": 21.878947,
+              "lng": -102.262062
+            },
+            {
+              "lat": 21.872218,
+              "lng": -102.252686
+            },
+            {
+              "lat": 21.868112,
+              "lng": -102.245666
+            },
+            {
+              "lat": 21.849537,
+              "lng": -102.187915
+            },
+            {
+              "lat": 21.83797,
+              "lng": -102.191466
+            },
+            {
+              "lat": 21.829811,
+              "lng": -102.18834
+            },
+            {
+              "lat": 21.825498,
+              "lng": -102.189057
+            },
+            {
+              "lat": 21.824549,
+              "lng": -102.187612
+            },
+            {
+              "lat": 21.824109,
+              "lng": -102.188005
+            }
+          ],
+          "tipo": "Ruta 1"
+        }
+      ]
+    },
+    {
+      "destino": {
+        "clave_estado": 1,
+        "clave_localidad": 293,
+        "clave_municipio": 1,
+        "distancia_directa": 8.2,
+        "lat": 21.889374,
+        "lng": -102.217282,
+        "nombre": "NORIAS DE OJOCALIENTE, AGUASCALIENTES, AGUASCALIENTES",
+        "poblacion": "4476"
+      },
+      "indice": 2,
+      "rutas": [
+        {
+          "descripcion": "Ruta hacia el destino",
+          "distancia": {
+            "text": "10.0 km",
+            "value": 10015.6
+          },
+          "puntos_ruta": [
+            {
+              "lat": 21.879751,
+              "lng": -102.296313
+            },
+            {
+              "lat": 21.881092,
+              "lng": -102.296546
+            },
+            {
+              "lat": 21.882883,
+              "lng": -102.297471
+            },
+            {
+              "lat": 21.883732,
+              "lng": -102.29528
+            },
+            {
+              "lat": 21.878915,
+              "lng": -102.293726
+            },
+            {
+              "lat": 21.879306,
+              "lng": -102.288328
+            },
+            {
+              "lat": 21.878424,
+              "lng": -102.281312
+            },
+            {
+              "lat": 21.877643,
+              "lng": -102.264923
+            },
+            {
+              "lat": 21.877951,
+              "lng": -102.263602
+            },
+            {
+              "lat": 21.878947,
+              "lng": -102.262062
+            },
+            {
+              "lat": 21.871544,
+              "lng": -102.251548
+            },
+            {
+              "lat": 21.874377,
+              "lng": -102.242699
+            },
+            {
+              "lat": 21.877053,
+              "lng": -102.238713
+            },
+            {
+              "lat": 21.87771,
+              "lng": -102.235809
+            },
+            {
+              "lat": 21.879512,
+              "lng": -102.233497
+            },
+            {
+              "lat": 21.881577,
+              "lng": -102.22961
+            },
+            {
+              "lat": 21.883123,
+              "lng": -102.227969
+            },
+            {
+              "lat": 21.884467,
+              "lng": -102.223868
+            },
+            {
+              "lat": 21.885664,
+              "lng": -102.221362
+            },
+            {
+              "lat": 21.887822,
+              "lng": -102.218307
+            },
+            {
+              "lat": 21.88927,
+              "lng": -102.21712
+            }
+          ],
+          "tipo": "Ruta 1"
+        }
+      ]
+    },
+    {
+      "destino": {
+        "clave_estado": 1,
+        "clave_localidad": 2371,
+        "clave_municipio": 1,
+        "distancia_directa": 8.76,
+        "lat": 21.956463,
+        "lng": -102.276324,
+        "nombre": "CARTAGENA [FRACCIONAMIENTO], AGUASCALIENTES, AGUASCALIENTES",
+        "poblacion": "3903"
+      },
+      "indice": 3,
+      "rutas": [
+        {
+          "descripcion": "Ruta hacia el destino",
+          "distancia": {
+            "text": "11.1 km",
+            "value": 11052.2
+          },
+          "puntos_ruta": [
+            {
+              "lat": 21.879751,
+              "lng": -102.296313
+            },
+            {
+              "lat": 21.884564,
+              "lng": -102.29782
+            },
+            {
+              "lat": 21.889767,
+              "lng": -102.295166
+            },
+            {
+              "lat": 21.891418,
+              "lng": -102.294978
+            },
+            {
+              "lat": 21.893942,
+              "lng": -102.292927
+            },
+            {
+              "lat": 21.896157,
+              "lng": -102.29276
+            },
+            {
+              "lat": 21.896554,
+              "lng": -102.2914
+            },
+            {
+              "lat": 21.900353,
+              "lng": -102.292502
+            },
+            {
+              "lat": 21.907611,
+              "lng": -102.292245
+            },
+            {
+              "lat": 21.907357,
+              "lng": -102.286337
+            },
+            {
+              "lat": 21.915359,
+              "lng": -102.286454
+            },
+            {
+              "lat": 21.932103,
+              "lng": -102.282867
+            },
+            {
+              "lat": 21.937695,
+              "lng": -102.281024
+            },
+            {
+              "lat": 21.945235,
+              "lng": -102.276347
+            },
+            {
+              "lat": 21.950835,
+              "lng": -102.274998
+            },
+            {
+              "lat": 21.959714,
+              "lng": -102.271163
+            },
+            {
+              "lat": 21.960412,
+              "lng": -102.275931
+            },
+            {
+              "lat": 21.956516,
+              "lng": -102.27663
+            }
+          ],
+          "tipo": "Ruta 1"
+        }
+      ]
+    },
+    {
+      "destino": {
+        "clave_estado": 1,
+        "clave_localidad": 239,
+        "clave_municipio": 1,
+        "distancia_directa": 16.65,
+        "lat": 22.000604,
+        "lng": -102.200656,
+        "nombre": "GENERAL JOSÉ MARÍA MORELOS Y PAVÓN (CAÑADA HONDA), AGUASCALIENTES, AGUASCALIENTES",
+        "poblacion": "3822"
+      },
+      "indice": 4,
+      "rutas": [
+        {
+          "descripcion": "Ruta hacia el destino",
+          "distancia": {
+            "text": "20.5 km",
+            "value": 20490.8
+          },
+          "puntos_ruta": [
+            {
+              "lat": 21.879751,
+              "lng": -102.296313
+            },
+            {
+              "lat": 21.884564,
+              "lng": -102.29782
+            },
+            {
+              "lat": 21.896157,
+              "lng": -102.29276
+            },
+            {
+              "lat": 21.896554,
+              "lng": -102.2914
+            },
+            {
+              "lat": 21.901048,
+              "lng": -102.292501
+            },
+            {
+              "lat": 21.962654,
+              "lng": -102.289732
+            },
+            {
+              "lat": 21.960983,
+              "lng": -102.275287
+            },
+            {
+              "lat": 21.979677,
+              "lng": -102.256744
+            },
+            {
+              "lat": 21.988799,
+              "lng": -102.222648
+            },
+            {
+              "lat": 21.987955,
+              "lng": -102.218292
+            },
+            {
+              "lat": 21.993808,
+              "lng": -102.212434
+            },
+            {
+              "lat": 21.998595,
+              "lng": -102.200239
+            },
+            {
+              "lat": 22.000695,
+              "lng": -102.200657
+            }
+          ],
+          "tipo": "Ruta 1"
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "vehiculos": [
+    {
+      "consumo_litros_km": 0.073,
+      "id": 1,
+      "maximo_peso_ton": 1.2,
+      "modelo": "Toyota Hilux Diesel 4x4",
+      "tipo": "camioneta pickup",
+      "velocidad_kmh": 65
+    },
+    {
+      "consumo_litros_km": 0.095,
+      "id": 2,
+      "maximo_peso_ton": 1.3,
+      "modelo": "Ford F‑150 Triton 4x4",
+      "tipo": "camioneta pickup",
+      "velocidad_kmh": 65
+    },
+    {
+      "consumo_litros_km": 0.09,
+      "id": 3,
+      "maximo_peso_ton": 1,
+      "modelo": "Dodge Dakota 4x4",
+      "tipo": "camioneta pickup",
+      "velocidad_kmh": 60
+    },
+    {
+      "consumo_litros_km": 0.12,
+      "id": 4,
+      "maximo_peso_ton": 3,
+      "modelo": "Isuzu ELF 300",
+      "tipo": "camión ligero",
+      "velocidad_kmh": 60
+    },
+    {
+      "consumo_litros_km": 0.115,
+      "id": 5,
+      "maximo_peso_ton": 2.8,
+      "modelo": "Hino Dutro 716",
+      "tipo": "camión ligero",
+      "velocidad_kmh": 60
+    },
+    {
+      "consumo_litros_km": 0.082,
+      "id": 6,
+      "maximo_peso_ton": 1.8,
+      "modelo": "Mercedes-Benz Sprinter",
+      "tipo": "van de carga",
+      "velocidad_kmh": 75
+    },
+    {
+      "consumo_litros_km": 0.079,
+      "id": 7,
+      "maximo_peso_ton": 1.9,
+      "modelo": "Ford Transit",
+      "tipo": "van de carga",
+      "velocidad_kmh": 75
+    }
+  ],
+  "insumos": [
+    {
+      "categoria": "Alimentación básica",
+      "id_insumo": 0,
+      "nombre": "Granos y cereales",
+      "peso_kg": 4
+    },
+    {
+      "categoria": "Alimentación básica",
+      "id_insumo": 1,
+      "nombre": "Proteínas enlatadas/secas",
+      "peso_kg": 2.5
+    },
+    {
+      "categoria": "Alimentación básica",
+      "id_insumo": 2,
+      "nombre": "Aceites y grasas",
+      "peso_kg": 1
+    },
+    {
+      "categoria": "Alimentación básica",
+      "id_insumo": 3,
+      "nombre": "Lácteos deshidratados",
+      "peso_kg": 1.5
+    },
+    {
+      "categoria": "Alimentación básica",
+      "id_insumo": 4,
+      "nombre": "Endulzantes y condimentos",
+      "peso_kg": 1
+    },
+    {
+      "categoria": "Higiene y cuidado personal",
+      "id_insumo": 5,
+      "nombre": "Jabones y shampoo",
+      "peso_kg": 1.5
+    },
+    {
+      "categoria": "Higiene y cuidado personal",
+      "id_insumo": 6,
+      "nombre": "Salud bucal",
+      "peso_kg": 0.5
+    },
+    {
+      "categoria": "Higiene y cuidado personal",
+      "id_insumo": 7,
+      "nombre": "Protección femenina e infantil",
+      "peso_kg": 1.5
+    },
+    {
+      "categoria": "Higiene y cuidado personal",
+      "id_insumo": 8,
+      "nombre": "Artículos de aseo personal",
+      "peso_kg": 1.5
+    },
+    {
+      "categoria": "Medicamentos e insumos médicos",
+      "id_insumo": 9,
+      "nombre": "Analgésicos básicos",
+      "peso_kg": 0.2
+    },
+    {
+      "categoria": "Medicamentos e insumos médicos",
+      "id_insumo": 10,
+      "nombre": "Antisépticos",
+      "peso_kg": 0.5
+    },
+    {
+      "categoria": "Medicamentos e insumos médicos",
+      "id_insumo": 11,
+      "nombre": "Material de curación",
+      "peso_kg": 0.8
+    },
+    {
+      "categoria": "Medicamentos e insumos médicos",
+      "id_insumo": 12,
+      "nombre": "Sueros y electrolitos",
+      "peso_kg": 3
+    },
+    {
+      "categoria": "Equipamiento de emergencia",
+      "id_insumo": 13,
+      "nombre": "Linternas y baterías",
+      "peso_kg": 1
+    },
+    {
+      "categoria": "Equipamiento de emergencia",
+      "id_insumo": 14,
+      "nombre": "Mantas térmicas",
+      "peso_kg": 3
+    },
+    {
+      "categoria": "Equipamiento de emergencia",
+      "id_insumo": 15,
+      "nombre": "Herramientas multipropósito",
+      "peso_kg": 2
+    },
+    {
+      "categoria": "Equipamiento de emergencia",
+      "id_insumo": 16,
+      "nombre": "Kits de purificación de agua",
+      "peso_kg": 1.2
+    },
+    {
+      "categoria": "Artículos para refugio",
+      "id_insumo": 17,
+      "nombre": "Carpas y toldos",
+      "peso_kg": 7
+    },
+    {
+      "categoria": "Artículos para refugio",
+      "id_insumo": 18,
+      "nombre": "Colchonetas",
+      "peso_kg": 8
+    },
+    {
+      "categoria": "Artículos para refugio",
+      "id_insumo": 19,
+      "nombre": "Mosquiteros",
+      "peso_kg": 2.4
+    },
+    {
+      "categoria": "Logística y almacenamiento",
+      "id_insumo": 20,
+      "nombre": "Contenedores herméticos",
+      "peso_kg": 3
+    },
+    {
+      "categoria": "Logística y almacenamiento",
+      "id_insumo": 21,
+      "nombre": "Cubetas y recipientes",
+      "peso_kg": 5
+    },
+    {
+      "categoria": "Logística y almacenamiento",
+      "id_insumo": 22,
+      "nombre": "Material de embalaje",
+      "peso_kg": 2
+    },
+    {
+      "categoria": "Agua",
+      "id_insumo": 23,
+      "nombre": "Botellas de agua potable",
+      "peso_kg": 18
+    },
+    {
+      "categoria": "Agua",
+      "id_insumo": 24,
+      "nombre": "Garrafones y bidones",
+      "peso_kg": 40
+    }
+  ],
+  "configuracion_escenario": {
+    "tipo_desastre": "inundación",
+    "vehiculos_disponibles": [
+      {
+        "modelo": "Toyota Hilux Diesel 4x4",
+        "tipo": "camioneta pickup",
+        "cantidad": 1
+      },
+      {
+        "modelo": "Ford F‑150 Triton 4x4",
+        "tipo": "camioneta pickup",
+        "cantidad": 1
+      },
+      {
+        "modelo": "Ford F‑150 Triton 4x4",
+        "tipo": "camioneta pickup",
+        "cantidad": 1
+      },
+      {
+        "modelo": "Dodge Dakota 4x4",
+        "tipo": "camioneta pickup",
+        "cantidad": 1
+      }
+    ],
+    "configuracion": {
+      "poblacion_size": 80,
+      "generaciones": 200,
+      "prob_cruza": 0.85,
+      "prob_mutacion": 0.2,
+      "elitismo_rate": 0.15
+    }
+  },
+  "desastre_seleccionado": {
+    "prioridades": [
+      {
+        "categoria": "Agua",
+        "nivel": "alta"
+      },
+      {
+        "categoria": "Alimentación básica",
+        "nivel": "alta"
+      },
+      {
+        "categoria": "Higiene y cuidado personal",
+        "nivel": "alta"
+      },
+      {
+        "categoria": "Medicamentos e insumos médicos",
+        "nivel": "media"
+      },
+      {
+        "categoria": "Artículos para refugio",
+        "nivel": "media"
+      },
+      {
+        "categoria": "Equipamiento de emergencia",
+        "nivel": "baja"
+      }
+    ],
+    "tipo": "inundación"
+  },
+  "estados_rutas": {
+    "0": [
+      {
+        "id": 1,
+        "distancia_km": 7.983899999999999,
+        "clave_localidad": 1025,
+        "estado": "abierta",
+        "vehiculos_permitidos": [
+          "camioneta pickup"
+        ]
+      }
+    ],
+    "1": [
+      {
+        "id": 2,
+        "distancia_km": 15.9681,
+        "clave_localidad": 479,
+        "estado": "abierta",
+        "vehiculos_permitidos": [
+          "camioneta pickup"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "id": 3,
+        "distancia_km": 10.015600000000001,
+        "clave_localidad": 293,
+        "estado": "abierta",
+        "vehiculos_permitidos": [
+          "camioneta pickup"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "id": 4,
+        "distancia_km": 11.052200000000001,
+        "clave_localidad": 2371,
+        "estado": "abierta",
+        "vehiculos_permitidos": [
+          "camioneta pickup"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "id": 5,
+        "distancia_km": 20.4908,
+        "clave_localidad": 239,
+        "estado": "abierta",
+        "vehiculos_permitidos": [
+          "camioneta pickup"
+        ]
+      }
+    ]
+  }
+}
+
+
+

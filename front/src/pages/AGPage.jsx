@@ -17,7 +17,7 @@ const AGPage = () => {
   const navigate = useNavigate();
   const { mapData } = location.state || {};
   
-  const { vehicles, disasters, isLoading: isLoadingInitialData } = useAG();
+  const { vehicles, disasters, supplies, isLoading: isLoadingInitialData } = useAG();
 
   const [selectedVehicles, setSelectedVehicles] = useState({});
   const [selectedDisaster, setSelectedDisaster] = useState('');
@@ -36,14 +36,10 @@ const AGPage = () => {
     return Object.entries(selectedVehicles).flatMap(([vehicleId, quantity]) => {
       const vehicleInfo = vehicles.find(v => String(v.id) === vehicleId);
       if (!vehicleInfo || !quantity || quantity <= 0) return [];
-      return Array.from({ length: quantity }, (_, i) => ({
-        ...vehicleInfo,
+      return Array.from({ length: quantity }, () => ({
         modelo: vehicleInfo.modelo,
         tipo: vehicleInfo.tipo,
-        cantidad: 1,
-        maximo_peso_ton: vehicleInfo.maximo_peso_ton,
-        velocidad_kmh: vehicleInfo.velocidad_kmh,
-        consumo_litros_km: vehicleInfo.consumo_litros_km
+        cantidad: 1
       }));
     });
   }, [selectedVehicles, vehicles]);
@@ -61,12 +57,13 @@ const AGPage = () => {
   useEffect(() => {
     if (!mapData) return;
     const newRouteStates = {};
+    let globalRouteId = 1;
     mapData.rutas_data.forEach((destinoData, destIndex) => {
       if (destinoData.rutas) {
-        newRouteStates[destIndex] = destinoData.rutas.map((_, routeIndex) => ({
-          id_ruta: routeIndex + 1,
-          distancia_km: destinoData.rutas[routeIndex]?.distancia?.value / 1000 || 10,
-          claves_localiada_destinos: destinoData.destino?.clave_localidad || `LOC${destIndex + 1}`,
+        newRouteStates[destIndex] = destinoData.rutas.map((ruta, routeIndex) => ({
+          id: globalRouteId++,  // ✅ ID secuencial único
+          distancia_km: ruta.distancia?.value / 1000 || 10,
+          clave_localidad: destinoData.destino?.clave_localidad || `LOC${destIndex + 1}`,
           estado: 'abierta',
           vehiculos_permitidos: [...activeVehicleTypes]
         }));
@@ -89,10 +86,7 @@ const AGPage = () => {
     const scenarioData = {
         datos_actuales_frontend_a_backend: {
             map_data: {
-                clave_localidad_nodo_principal: mapData.nodo_principal?.clave_localidad || "ORIG001",
-                claves_localiada_destinos: mapData.nodos_secundarios?.map(n => n.clave_localidad) || [],
-                rutas_data: rutasDataFlat,
-                nodos_secundarios: mapData.nodos_secundarios || []
+                rutas_data: rutasDataFlat
             },
             scenario_config: {
                 tipo_desastre: selectedDisaster,
@@ -112,8 +106,10 @@ const AGPage = () => {
                 results: result.data, 
                 mapData: mapData,
                 vehicleData: vehicles,
+                suppliesData: supplies,
                 scenarioConfig: scenarioData.datos_actuales_frontend_a_backend.scenario_config,
-                selectedDisaster: selectedDisasterObject
+                selectedDisaster: selectedDisasterObject,
+                routeStates: routeStates
             } 
         });
       } else {

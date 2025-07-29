@@ -5,12 +5,12 @@ from ..models import *
 class CapacityManager:
     """Gestor de capacidades para optimización de carga"""
     
-    def __init__(self, vehiculos_expandidos: List[Tuple[int, VehiculoBase]], 
+    def __init__(self, vehiculos_expandidos: List[dict],
                  insumos: List[Insumo], tipo_desastre: TipoDesastre):
         self.vehiculos_expandidos = vehiculos_expandidos
         self.insumos = insumos
         self.tipo_desastre = tipo_desastre
-        self.vehiculos_dict = {v_id: vehiculo for v_id, vehiculo in vehiculos_expandidos}
+        self.vehiculos_dict = {v['id']: v for v in vehiculos_expandidos}
         self.prioridades_categorias = self._obtener_prioridades_del_desastre()
     
     def _obtener_prioridades_del_desastre(self) -> Dict[str, float]:
@@ -26,7 +26,7 @@ class CapacityManager:
         
         # Usar las prioridades exactas del JSON del desastre
         for prioridad_categoria in self.tipo_desastre.prioridades:
-            categoria_nombre = prioridad_categoria.categoria.nombre
+            categoria_nombre = prioridad_categoria.categoria
             nivel = prioridad_categoria.nivel
             prioridades[categoria_nombre] = valores_nivel.get(nivel, 0.5)
         
@@ -77,7 +77,7 @@ class CapacityManager:
             return {"utilizacion_peso": 0, "eficiencia": 0}
         
         vehiculo = self.vehiculos_dict[asignacion.vehiculo_id]
-        capacidad_kg = vehiculo.maximo_peso_ton * 1000
+        capacidad_kg = vehiculo['maximo_peso_ton'] * 1000
         
         utilizacion_peso = (asignacion.peso_total_kg / capacidad_kg) * 100
         

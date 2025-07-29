@@ -15,21 +15,24 @@ class DataManager(BaseService):
     def procesar_datos_entrada(self, datos_frontend: Dict[str, Any]) -> Tuple[ScenarioData, List[Insumo]]:
         """Procesar datos del frontend y convertir a estructuras internas"""
         try:
-            # Procesar rutas
-            rutas = self._procesar_rutas(datos_frontend.get('rutas', []))
+            map_data = datos_frontend.get('map_data', {})
+            scenario_config = datos_frontend.get('scenario_config', {})
+            
+            # Procesar rutas desde map_data.rutas_data
+            rutas = self._procesar_rutas(map_data.get('rutas_data', []))
             
             # Procesar vehículos disponibles
             vehiculos_disponibles = self._procesar_vehiculos_disponibles(
-                datos_frontend.get('scenario_config', {}).get('vehiculos_disponibles', [])
+                scenario_config.get('vehiculos_disponibles', [])
             )
             
             # Procesar tipo de desastre
-            tipo_desastre_str = datos_frontend.get('scenario_config', {}).get('tipo_desastre', 'terremoto')
+            tipo_desastre_str = scenario_config.get('tipo_desastre', 'terremoto')
             tipo_desastre = self._procesar_tipo_desastre(tipo_desastre_str)
             
             # Configuración del AG
             config_ag = self._procesar_configuracion_ag(
-                datos_frontend.get('scenario_config', {}).get('configuracion', {})
+                scenario_config.get('configuracion', {})
             )
             
             # Crear ScenarioData
@@ -69,7 +72,7 @@ class DataManager(BaseService):
                     poblacion=poblacion
                 )
                 
-                # Determinar estado de la ruta
+                # Determinar estado de la ruta - CORREGIDO
                 estado_str = ruta_data.get('estado', 'abierta').lower()
                 estado = EstadoRuta.ABIERTA if estado_str == 'abierta' else EstadoRuta.CERRADA
                 
@@ -93,7 +96,6 @@ class DataManager(BaseService):
         """Procesar vehículos disponibles del frontend"""
         vehiculos_disponibles = []
         vehiculos_db = data_loader.get_vehiculos()
-        vehiculos_dict = {v['modelo']: v for v in vehiculos_db}
         
         for vehiculo_data in vehiculos_data:
             try:
@@ -200,8 +202,3 @@ class DataManager(BaseService):
         except Exception as e:
             self.log_error("Error cargando insumos", e)
             return []
-    
-    def validar_datos_completos(self):
-        """Validar que todos los datos necesarios están disponibles"""
-        # Esta función será llamada por el AG principal
-        pass
