@@ -28,7 +28,7 @@ const AssignmentCard = ({ assignment, vehicle, destination, supplies, onHighligh
     >
       <div className="flex justify-between items-center">
         <div>
-          <p className="font-bold text-gray-100">{vehicle?.modelo || 'Vehículo Desconocido'}</p>
+          <p className="font-bold text-gray-100">{assignment.vehiculo_modelo || vehicle?.modelo || 'Vehículo Desconocido'}</p>
           <p className="text-sm text-gray-400">
             Destino: <span className="font-semibold text-blue-300">{destination?.nombre.split(',')[0]}</span>
           </p>
