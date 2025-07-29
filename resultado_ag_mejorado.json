@@ -2,203 +2,68 @@
   "mejor_solucion": {
     "asignaciones": [
       {
-        "vehiculo_id": 2,
-        "ruta_id": 4,
-        "insumos": [
-          {
-            "id": 23,
-            "nombre": "Botellas de agua potable",
-            "categoria": "Agua",
-            "peso_kg": 18.0
-          },
-          {
-            "id": 18,
-            "nombre": "Colchonetas",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 8.0
-          },
-          {
-            "id": 17,
-            "nombre": "Carpas y toldos",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 7.0
-          },
-          {
-            "id": 0,
-            "nombre": "Granos y cereales",
-            "categoria": "Alimentación básica",
-            "peso_kg": 4.0
-          },
-          {
-            "id": 1,
-            "nombre": "Proteínas enlatadas",
-            "categoria": "Alimentación básica",
-            "peso_kg": 2.5
-          },
-          {
-            "id": 5,
-            "nombre": "Jabones y shampoo",
-            "categoria": "Higiene y cuidado personal",
-            "peso_kg": 1.5
-          },
-          {
-            "id": 11,
-            "nombre": "Material de curación",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.8
-          },
-          {
-            "id": 9,
-            "nombre": "Analgésicos básicos",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.2
-          }
-        ],
-        "peso_total_kg": 42.0,
-        "distancia_km": 22.1,
-        "combustible_usado": 2.652
-      },
-      {
-        "vehiculo_id": 3,
-        "ruta_id": 2,
-        "insumos": [
-          {
-            "id": 23,
-            "nombre": "Botellas de agua potable",
-            "categoria": "Agua",
-            "peso_kg": 18.0
-          },
-          {
-            "id": 18,
-            "nombre": "Colchonetas",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 8.0
-          },
-          {
-            "id": 17,
-            "nombre": "Carpas y toldos",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 7.0
-          },
-          {
-            "id": 0,
-            "nombre": "Granos y cereales",
-            "categoria": "Alimentación básica",
-            "peso_kg": 4.0
-          },
-          {
-            "id": 1,
-            "nombre": "Proteínas enlatadas",
-            "categoria": "Alimentación básica",
-            "peso_kg": 2.5
-          },
-          {
-            "id": 5,
-            "nombre": "Jabones y shampoo",
-            "categoria": "Higiene y cuidado personal",
-            "peso_kg": 1.5
-          },
-          {
-            "id": 11,
-            "nombre": "Material de curación",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.8
-          },
-          {
-            "id": 9,
-            "nombre": "Analgésicos básicos",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.2
-          }
-        ],
-        "peso_total_kg": 42.0,
-        "distancia_km": 15.2,
-        "combustible_usado": 1.2464
-      },
-      {
         "vehiculo_id": 0,
-        "ruta_id": 1,
-        "insumos": [
-          {
-            "id": 23,
-            "nombre": "Botellas de agua potable",
-            "categoria": "Agua",
-            "peso_kg": 18.0
-          },
-          {
-            "id": 18,
-            "nombre": "Colchonetas",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 8.0
-          },
-          {
-            "id": 17,
-            "nombre": "Carpas y toldos",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 7.0
-          },
-          {
-            "id": 0,
-            "nombre": "Granos y cereales",
-            "categoria": "Alimentación básica",
-            "peso_kg": 4.0
-          },
-          {
-            "id": 1,
-            "nombre": "Proteínas enlatadas",
-            "categoria": "Alimentación básica",
-            "peso_kg": 2.5
-          },
-          {
-            "id": 5,
-            "nombre": "Jabones y shampoo",
-            "categoria": "Higiene y cuidado personal",
-            "peso_kg": 1.5
-          },
-          {
-            "id": 11,
-            "nombre": "Material de curación",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.8
-          },
-          {
-            "id": 9,
-            "nombre": "Analgésicos básicos",
-            "categoria": "Medicamentos e insumos médicos",
-            "peso_kg": 0.2
-          }
-        ],
-        "peso_total_kg": 42.0,
-        "distancia_km": 10.5,
-        "combustible_usado": 0.7665
-      },
-      {
-        "vehiculo_id": 1,
         "ruta_id": 3,
         "insumos": [
           {
-            "id": 23,
-            "nombre": "Botellas de agua potable",
-            "categoria": "Agua",
-            "peso_kg": 18.0
-          },
-          {
-            "id": 18,
-            "nombre": "Colchonetas",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 8.0
-          },
-          {
-            "id": 17,
-            "nombre": "Carpas y toldos",
-            "categoria": "Artículos para refugio",
-            "peso_kg": 7.0
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
           },
           {
             "id": 0,
             "nombre": "Granos y cereales",
             "categoria": "Alimentación básica",
-            "peso_kg": 4.0
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
           },
           {
             "id": 1,
@@ -207,10 +72,118 @@
             "peso_kg": 2.5
           },
           {
-            "id": 5,
-            "nombre": "Jabones y shampoo",
-            "categoria": "Higiene y cuidado personal",
-            "peso_kg": 1.5
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
           },
           {
             "id": 11,
@@ -219,224 +192,1157 @@
             "peso_kg": 0.8
           },
           {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          }
+        ],
+        "peso_total_kg": 404.2,
+        "distancia_km": 8.3,
+        "combustible_usado": 0.6059
+      },
+      {
+        "vehiculo_id": 2,
+        "ruta_id": 2,
+        "insumos": [
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
             "id": 9,
             "nombre": "Analgésicos básicos",
             "categoria": "Medicamentos e insumos médicos",
             "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
           }
         ],
-        "peso_total_kg": 42.0,
-        "distancia_km": 8.3,
-        "combustible_usado": 0.6059
+        "peso_total_kg": 410.1,
+        "distancia_km": 15.2,
+        "combustible_usado": 1.1096
+      },
+      {
+        "vehiculo_id": 1,
+        "ruta_id": 1,
+        "insumos": [
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          },
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18
+          }
+        ],
+        "peso_total_kg": 333.0,
+        "distancia_km": 10.5,
+        "combustible_usado": 1.26
       }
     ],
-    "fitness": 0.7096571428571429,
-    "rutas_utilizadas": 4,
-    "vehiculos_utilizados": 4,
-    "peso_total_transportado": 168.0,
-    "combustible_total": 5.2708
+    "fitness": 0.7581284621578099,
+    "rutas_utilizadas": 3,
+    "vehiculos_utilizados": 3,
+    "peso_total_transportado": 1147.3,
+    "combustible_total": 2.9755
   },
   "top_3_soluciones": [
     {
       "asignaciones": [
         {
-          "vehiculo_id": 2,
-          "ruta_id": 4,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 22.1,
-          "combustible_usado": 2.652
-        },
-        {
-          "vehiculo_id": 3,
-          "ruta_id": 2,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 15.2,
-          "combustible_usado": 1.2464
-        },
-        {
           "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
-        },
-        {
-          "vehiculo_id": 1,
           "ruta_id": 3,
           "insumos": [
             {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 0,
               "nombre": "Granos y cereales",
               "categoria": "Alimentación básica",
-              "peso_kg": 4.0
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 1,
@@ -445,10 +1351,118 @@
               "peso_kg": 2.5
             },
             {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
             },
             {
               "id": 11,
@@ -457,223 +1471,1156 @@
               "peso_kg": 0.8
             },
             {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 404.2,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        },
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
               "id": 9,
               "nombre": "Analgésicos básicos",
               "categoria": "Medicamentos e insumos médicos",
               "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
             }
           ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 8.3,
-          "combustible_usado": 0.6059
+          "peso_total_kg": 410.1,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.1096
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 333.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 1.26
         }
       ],
-      "fitness": 0.7096571428571429,
-      "rutas_utilizadas": 4,
-      "vehiculos_utilizados": 4,
-      "peso_total_transportado": 168.0,
-      "combustible_total": 5.2708
+      "fitness": 0.7581284621578099,
+      "rutas_utilizadas": 3,
+      "vehiculos_utilizados": 3,
+      "peso_total_transportado": 1147.3,
+      "combustible_total": 2.9755
     },
     {
       "asignaciones": [
         {
-          "vehiculo_id": 2,
-          "ruta_id": 4,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 22.1,
-          "combustible_usado": 2.652
-        },
-        {
-          "vehiculo_id": 3,
-          "ruta_id": 2,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 15.2,
-          "combustible_usado": 1.2464
-        },
-        {
           "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
-        },
-        {
-          "vehiculo_id": 1,
           "ruta_id": 3,
           "insumos": [
             {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 0,
               "nombre": "Granos y cereales",
               "categoria": "Alimentación básica",
-              "peso_kg": 4.0
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 1,
@@ -682,10 +2629,118 @@
               "peso_kg": 2.5
             },
             {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
             },
             {
               "id": 11,
@@ -694,223 +2749,1156 @@
               "peso_kg": 0.8
             },
             {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 404.2,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        },
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
               "id": 9,
               "nombre": "Analgésicos básicos",
               "categoria": "Medicamentos e insumos médicos",
               "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
             }
           ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 8.3,
-          "combustible_usado": 0.6059
+          "peso_total_kg": 410.1,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.1096
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 333.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 1.26
         }
       ],
-      "fitness": 0.7096571428571429,
-      "rutas_utilizadas": 4,
-      "vehiculos_utilizados": 4,
-      "peso_total_transportado": 168.0,
-      "combustible_total": 5.2708
+      "fitness": 0.7581284621578099,
+      "rutas_utilizadas": 3,
+      "vehiculos_utilizados": 3,
+      "peso_total_transportado": 1147.3,
+      "combustible_total": 2.9755
     },
     {
       "asignaciones": [
         {
-          "vehiculo_id": 2,
-          "ruta_id": 4,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 22.1,
-          "combustible_usado": 2.652
-        },
-        {
-          "vehiculo_id": 3,
-          "ruta_id": 2,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 15.2,
-          "combustible_usado": 1.2464
-        },
-        {
           "vehiculo_id": 0,
-          "ruta_id": 1,
-          "insumos": [
-            {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
-            },
-            {
-              "id": 0,
-              "nombre": "Granos y cereales",
-              "categoria": "Alimentación básica",
-              "peso_kg": 4.0
-            },
-            {
-              "id": 1,
-              "nombre": "Proteínas enlatadas",
-              "categoria": "Alimentación básica",
-              "peso_kg": 2.5
-            },
-            {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
-            },
-            {
-              "id": 11,
-              "nombre": "Material de curación",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.8
-            },
-            {
-              "id": 9,
-              "nombre": "Analgésicos básicos",
-              "categoria": "Medicamentos e insumos médicos",
-              "peso_kg": 0.2
-            }
-          ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 10.5,
-          "combustible_usado": 0.7665
-        },
-        {
-          "vehiculo_id": 1,
           "ruta_id": 3,
           "insumos": [
             {
-              "id": 23,
-              "nombre": "Botellas de agua potable",
-              "categoria": "Agua",
-              "peso_kg": 18.0
-            },
-            {
-              "id": 18,
-              "nombre": "Colchonetas",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 8.0
-            },
-            {
-              "id": 17,
-              "nombre": "Carpas y toldos",
-              "categoria": "Artículos para refugio",
-              "peso_kg": 7.0
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 0,
               "nombre": "Granos y cereales",
               "categoria": "Alimentación básica",
-              "peso_kg": 4.0
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
             },
             {
               "id": 1,
@@ -919,10 +3907,118 @@
               "peso_kg": 2.5
             },
             {
-              "id": 5,
-              "nombre": "Jabones y shampoo",
-              "categoria": "Higiene y cuidado personal",
-              "peso_kg": 1.5
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
             },
             {
               "id": 11,
@@ -931,139 +4027,1207 @@
               "peso_kg": 0.8
             },
             {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 404.2,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        },
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
               "id": 9,
               "nombre": "Analgésicos básicos",
               "categoria": "Medicamentos e insumos médicos",
               "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
             }
           ],
-          "peso_total_kg": 42.0,
-          "distancia_km": 8.3,
-          "combustible_usado": 0.6059
+          "peso_total_kg": 410.1,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.1096
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            },
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18
+            }
+          ],
+          "peso_total_kg": 333.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 1.26
         }
       ],
-      "fitness": 0.7096571428571429,
-      "rutas_utilizadas": 4,
-      "vehiculos_utilizados": 4,
-      "peso_total_transportado": 168.0,
-      "combustible_total": 5.2708
+      "fitness": 0.7581284621578099,
+      "rutas_utilizadas": 3,
+      "vehiculos_utilizados": 3,
+      "peso_total_transportado": 1147.3,
+      "combustible_total": 2.9755
     }
   ],
   "evolucion_fitness": [
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429,
-    0.7096571428571429
+    0.7040211538461538,
+    0.7091574915824916,
+    0.7091574915824916,
+    0.7163618380062305,
+    0.721180758807588,
+    0.721180758807588,
+    0.721180758807588,
+    0.721180758807588,
+    0.7219623655913978,
+    0.7224166666666666,
+    0.7226851990049751,
+    0.7251304071246819,
+    0.7273706896551724,
+    0.7296128841607564,
+    0.7361002994011976,
+    0.7361002994011976,
+    0.7381944444444444,
+    0.7412739463601532,
+    0.7412739463601532,
+    0.7430494505494505,
+    0.7444496434937612,
+    0.7467299301919721,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.750806623931624,
+    0.7521869047619048,
+    0.7521869047619048,
+    0.7521869047619048,
+    0.7521869047619048,
+    0.7521869047619048,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7533559701492538,
+    0.7536916666666666,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7541534621578099,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546117954911433,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7546384615384616,
+    0.7549062200956937,
+    0.7549062200956937,
+    0.7549062200956937,
+    0.7549062200956937,
+    0.7549062200956937,
+    0.7549062200956937,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7557132113821138,
+    0.7581284621578099,
+    0.7581284621578099,
+    0.7581284621578099,
+    0.7581284621578099,
+    0.7581284621578099,
+    0.7581284621578099
   ],
   "metricas_optimizacion": {
     "generaciones_ejecutadas": 100,
     "poblacion_size": 50,
-    "fitness_final": 0.7096571428571429,
-    "mejora_total": 0.0
+    "fitness_final": 0.7581284621578099,
+    "mejora_total": 0.05410730831165611
   },
   "resumen_escenario": {
     "tipo_desastre": "terremoto",
-    "total_vehiculos_disponibles": 4,
+    "total_vehiculos_disponibles": 3,
     "total_rutas_abiertas": 4,
-    "vehiculos_utilizados": 4,
-    "rutas_cubiertas": 4,
+    "vehiculos_utilizados": 3,
+    "rutas_cubiertas": 3,
     "eficiencia_vehiculos": 1.0,
-    "cobertura_rutas": 1.0
+    "cobertura_rutas": 0.75
   }
 }

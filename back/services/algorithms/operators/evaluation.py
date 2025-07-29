@@ -1,156 +1,171 @@
-from typing import List, Dict
-from ..models import *
+from typing import List, Dict, Any
+from core.base_service import BaseService
+from ..models import Individual, AsignacionVehiculo, Insumo, TipoDesastre
 
-
-class EvaluationOperator:
-    """Operador de evaluación con cantidades de insumos"""
+class EvaluationOperator(BaseService):
+    """Operador de evaluación para algoritmo genético"""
     
-    def __init__(self, rutas: List[Ruta], tipo_desastre: TipoDesastre, insumos: List[Insumo]):
-        self.rutas = {r.id: r for r in rutas}
+    def __init__(self, rutas: List, tipo_desastre: TipoDesastre, insumos: List[Insumo]):
+        super().__init__()
+        self.rutas = rutas
         self.tipo_desastre = tipo_desastre
         self.insumos = insumos
-        self.prioridades_insumos = self._calcular_prioridades_insumos()
-        self.total_rutas = len(self.rutas)
-        self.total_poblacion = sum(r.localidad.poblacion for r in self.rutas.values())
+        
+        # Crear mapeo de prioridades por categoría
+        self.prioridades_categoria = {}
+        for prioridad in tipo_desastre.prioridades:
+            self.prioridades_categoria[prioridad.categoria] = prioridad.nivel.value
     
-    def evaluar_individuo(self, asignaciones: Individual) -> float:
-        """Evaluar la aptitud de un individuo"""
-        if not asignaciones:
+    def evaluar_individuo(self, individuo: Individual) -> float:
+        """Evaluar fitness de un individuo"""
+        if not individuo:
             return 0.0
         
-        cobertura_rutas = self._evaluar_cobertura_rutas(asignaciones)
-        cobertura_poblacion = self._evaluar_cobertura_poblacion(asignaciones)
-        eficiencia_carga = self._evaluar_eficiencia_carga(asignaciones)
-        diversidad_insumos = self._evaluar_diversidad_insumos(asignaciones)
-        
-        fitness = (
-            cobertura_rutas * 0.40 +
-            cobertura_poblacion * 0.30 +
-            eficiencia_carga * 0.20 +
-            diversidad_insumos * 0.10
-        )
-        
-        return fitness
-    
-    def _evaluar_cobertura_rutas(self, asignaciones: Individual) -> float:
-        """Evaluar qué porcentaje de rutas están cubiertas"""
-        if not asignaciones:
-            return 0.0
-        
-        rutas_cubiertas = len(set(a.ruta_id for a in asignaciones))
-        return rutas_cubiertas / self.total_rutas
-    
-    def _evaluar_cobertura_poblacion(self, asignaciones: Individual) -> float:
-        """Evaluar cobertura de población"""
-        if not asignaciones:
-            return 0.0
-        
-        poblacion_cubierta = 0
-        peso_total_enviado = 0
-        
-        for asignacion in asignaciones:
-            ruta = self.rutas.get(asignacion.ruta_id)
-            if ruta:
-                poblacion_cubierta += ruta.localidad.poblacion
-                peso_total_enviado += asignacion.peso_total_kg
-        
-        cobertura_poblacional = poblacion_cubierta / self.total_poblacion
-        
-        if poblacion_cubierta > 0:
-            eficiencia_distribucion = peso_total_enviado / poblacion_cubierta * 1000
-            eficiencia_distribucion = min(eficiencia_distribucion / 50, 1.0)
-        else:
-            eficiencia_distribucion = 0
-        
-        return (cobertura_poblacional * 0.7) + (eficiencia_distribucion * 0.3)
-    
-    def _evaluar_eficiencia_carga(self, asignaciones: Individual) -> float:
-        """Evaluar eficiencia de carga"""
-        if not asignaciones:
-            return 0.0
-        
-        eficiencias = []
-        penalizacion_subutilizacion = 0
-        
-        for asignacion in asignaciones:
-            capacidad_estimada = 2000.0
-            utilizacion = asignacion.peso_total_kg / capacidad_estimada
+        try:
+            asignaciones = individuo
             
-            if utilizacion < 0.3:
-                penalizacion_subutilizacion += 0.2
-                eficiencia = utilizacion * 0.5
-            elif utilizacion < 0.6:
-                penalizacion_subutilizacion += 0.1
-                eficiencia = utilizacion * 0.8
-            elif utilizacion <= 1.0:
-                eficiencia = utilizacion
+            # Componentes del fitness
+            cobertura_rutas = self._evaluar_cobertura_rutas(asignaciones)
+            eficiencia_vehiculos = self._evaluar_eficiencia_vehiculos(asignaciones)
+            diversidad_insumos = self._evaluar_diversidad_insumos(asignaciones)
+            prioridad_insumos = self._evaluar_prioridad_insumos(asignaciones)
+            
+            # Pesos de cada componente
+            peso_cobertura = 0.3
+            peso_eficiencia = 0.25
+            peso_diversidad = 0.2
+            peso_prioridad = 0.25
+            
+            fitness = (
+                cobertura_rutas * peso_cobertura +
+                eficiencia_vehiculos * peso_eficiencia +
+                diversidad_insumos * peso_diversidad +
+                prioridad_insumos * peso_prioridad
+            )
+            
+            return max(0.0, min(1.0, fitness))
+            
+        except Exception as e:
+            self.log_error(f"Error evaluando individuo", e)
+            return 0.0
+    
+    def _evaluar_cobertura_rutas(self, asignaciones: List[AsignacionVehiculo]) -> float:
+        """Evaluar cobertura de rutas"""
+        if not asignaciones:
+            return 0.0
+        
+        rutas_cubiertas = set(asig.ruta_id for asig in asignaciones)
+        total_rutas = len(self.rutas)
+        
+        return len(rutas_cubiertas) / max(1, total_rutas)
+    
+    def _evaluar_eficiencia_vehiculos(self, asignaciones: List[AsignacionVehiculo]) -> float:
+        """Evaluar eficiencia en uso de vehículos"""
+        if not asignaciones:
+            return 0.0
+        
+        eficiencia_total = 0.0
+        
+        for asignacion in asignaciones:
+            peso_total = asignacion.peso_total_kg
+            # Asumir capacidad máxima de 1000kg si no se especifica
+            capacidad_maxima = 1000.0
+            
+            if peso_total > capacidad_maxima:
+                # Penalizar sobrecarga
+                eficiencia = 0.1
             else:
-                eficiencia = 2.0 - utilizacion
+                eficiencia = min(1.0, peso_total / capacidad_maxima)
             
-            eficiencias.append(eficiencia)
+            eficiencia_total += eficiencia
         
-        eficiencia_promedio = sum(eficiencias) / len(eficiencias)
-        penalizacion = min(penalizacion_subutilizacion, 0.5)
-        
-        return max(0, eficiencia_promedio - penalizacion)
+        return eficiencia_total / len(asignaciones)
     
-    def _evaluar_diversidad_insumos(self, asignaciones: Individual) -> float:
-        """Evaluar diversidad de insumos usando cantidades"""
+    def _evaluar_diversidad_insumos(self, asignaciones: List[AsignacionVehiculo]) -> float:
+        """Evaluar diversidad de insumos - CORREGIDO para manejar ambos formatos"""
         if not asignaciones:
             return 0.0
         
-        # Sumar cantidades por categoría
-        cantidades_por_categoria = {}
-        peso_por_categoria = {}
+        insumos_distribuidos = set()
         
         for asignacion in asignaciones:
-            for i, cantidad in enumerate(asignacion.insumos):
-                if cantidad > 0:
-                    insumo = self.insumos[i]
-                    categoria = insumo.categoria
-                    
-                    if categoria not in cantidades_por_categoria:
-                        cantidades_por_categoria[categoria] = 0
-                        peso_por_categoria[categoria] = 0
-                    
-                    cantidades_por_categoria[categoria] += cantidad
-                    peso_por_categoria[categoria] += cantidad * insumo.peso_kg
+            cantidades_o_insumos = asignacion.insumos
+            
+            # FIX: Determinar si es lista de cantidades o lista de objetos Insumo
+            if not cantidades_o_insumos:
+                continue
+                
+            # Verificar el tipo del primer elemento
+            primer_elemento = cantidades_o_insumos[0]
+            
+            if isinstance(primer_elemento, int):
+                # Es lista de cantidades [int]
+                for i, cantidad in enumerate(cantidades_o_insumos):
+                    if cantidad > 0 and i < len(self.insumos):
+                        insumos_distribuidos.add(self.insumos[i].id)
+                        
+            elif hasattr(primer_elemento, 'id'):
+                # Es lista de objetos Insumo
+                for insumo in cantidades_o_insumos:
+                    if hasattr(insumo, 'id'):
+                        insumos_distribuidos.add(insumo.id)
+            else:
+                # Formato desconocido, intentar convertir
+                try:
+                    for item in cantidades_o_insumos:
+                        if isinstance(item, (int, float)) and item > 0:
+                            continue  # Es cantidad
+                        elif hasattr(item, 'id'):
+                            insumos_distribuidos.add(item.id)
+                except:
+                    continue
         
-        if not cantidades_por_categoria:
+        total_insumos = len(self.insumos)
+        return len(insumos_distribuidos) / max(1, total_insumos)
+    
+    def _evaluar_prioridad_insumos(self, asignaciones: List[AsignacionVehiculo]) -> float:
+        """Evaluar priorización de insumos según tipo de desastre"""
+        if not asignaciones:
             return 0.0
         
-        # Diversidad: cuántas categorías diferentes tienen insumos
-        diversidad = len(cantidades_por_categoria) / len(self.prioridades_insumos)
+        puntuacion_total = 0.0
+        total_items = 0
         
-        # Prioridad ponderada por peso
-        puntuacion_prioridad = 0
-        peso_total = 0
+        for asignacion in asignaciones:
+            cantidades_o_insumos = asignacion.insumos
+            
+            if not cantidades_o_insumos:
+                continue
+            
+            # Verificar el tipo del primer elemento
+            primer_elemento = cantidades_o_insumos[0]
+            
+            if isinstance(primer_elemento, int):
+                # Es lista de cantidades [int]
+                for i, cantidad in enumerate(cantidades_o_insumos):
+                    if cantidad > 0 and i < len(self.insumos):
+                        insumo = self.insumos[i]
+                        prioridad = self.prioridades_categoria.get(insumo.categoria, 'baja')
+                        peso = self._calcular_peso_prioridad(prioridad)
+                        puntuacion_total += cantidad * peso
+                        total_items += cantidad
+                        
+            elif hasattr(primer_elemento, 'categoria'):
+                # Es lista de objetos Insumo
+                for insumo in cantidades_o_insumos:
+                    if hasattr(insumo, 'categoria'):
+                        prioridad = self.prioridades_categoria.get(insumo.categoria, 'baja')
+                        peso = self._calcular_peso_prioridad(prioridad)
+                        puntuacion_total += peso
+                        total_items += 1
         
-        for categoria, peso in peso_por_categoria.items():
-            prioridad = self.prioridades_insumos.get(categoria, 0.3)
-            puntuacion_prioridad += peso * prioridad
-            peso_total += peso
+        if total_items == 0:
+            return 0.0
         
-        if peso_total > 0:
-            prioridad_ponderada = puntuacion_prioridad / peso_total
-        else:
-            prioridad_ponderada = 0
-        
-        return (diversidad * 0.4) + (prioridad_ponderada * 0.6)
+        # Normalizar por la máxima prioridad posible (3.0)
+        return (puntuacion_total / total_items) / 3.0
     
-    def _calcular_prioridades_insumos(self) -> Dict[str, float]:
-        """Calcular prioridades usando valores del JSON del desastre"""
-        prioridades = {}
-        
-        valores_prioridad = {
-            NivelPrioridad.ALTA: 1.0,
-            NivelPrioridad.MEDIA: 0.6,
-            NivelPrioridad.BAJA: 0.3
-        }
-        
-        for prioridad_categoria in self.tipo_desastre.prioridades:
-            categoria_nombre = prioridad_categoria.categoria
-            nivel = prioridad_categoria.nivel
-            prioridades[categoria_nombre] = valores_prioridad.get(nivel, 0.5)
-        
-        return prioridades
+    def _calcular_peso_prioridad(self, nivel: str) -> float:
+        """Convertir nivel de prioridad a peso numérico"""
+        pesos = {'alta': 3.0, 'media': 2.0, 'baja': 1.0}
+        return pesos.get(nivel, 1.0)
