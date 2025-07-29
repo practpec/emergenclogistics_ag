@@ -1,0 +1,1069 @@
+{
+  "mejor_solucion": {
+    "asignaciones": [
+      {
+        "vehiculo_id": 2,
+        "ruta_id": 4,
+        "insumos": [
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18.0
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8.0
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7.0
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4.0
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          }
+        ],
+        "peso_total_kg": 42.0,
+        "distancia_km": 22.1,
+        "combustible_usado": 2.652
+      },
+      {
+        "vehiculo_id": 3,
+        "ruta_id": 2,
+        "insumos": [
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18.0
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8.0
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7.0
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4.0
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          }
+        ],
+        "peso_total_kg": 42.0,
+        "distancia_km": 15.2,
+        "combustible_usado": 1.2464
+      },
+      {
+        "vehiculo_id": 0,
+        "ruta_id": 1,
+        "insumos": [
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18.0
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8.0
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7.0
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4.0
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          }
+        ],
+        "peso_total_kg": 42.0,
+        "distancia_km": 10.5,
+        "combustible_usado": 0.7665
+      },
+      {
+        "vehiculo_id": 1,
+        "ruta_id": 3,
+        "insumos": [
+          {
+            "id": 23,
+            "nombre": "Botellas de agua potable",
+            "categoria": "Agua",
+            "peso_kg": 18.0
+          },
+          {
+            "id": 18,
+            "nombre": "Colchonetas",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 8.0
+          },
+          {
+            "id": 17,
+            "nombre": "Carpas y toldos",
+            "categoria": "Artículos para refugio",
+            "peso_kg": 7.0
+          },
+          {
+            "id": 0,
+            "nombre": "Granos y cereales",
+            "categoria": "Alimentación básica",
+            "peso_kg": 4.0
+          },
+          {
+            "id": 1,
+            "nombre": "Proteínas enlatadas",
+            "categoria": "Alimentación básica",
+            "peso_kg": 2.5
+          },
+          {
+            "id": 5,
+            "nombre": "Jabones y shampoo",
+            "categoria": "Higiene y cuidado personal",
+            "peso_kg": 1.5
+          },
+          {
+            "id": 11,
+            "nombre": "Material de curación",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.8
+          },
+          {
+            "id": 9,
+            "nombre": "Analgésicos básicos",
+            "categoria": "Medicamentos e insumos médicos",
+            "peso_kg": 0.2
+          }
+        ],
+        "peso_total_kg": 42.0,
+        "distancia_km": 8.3,
+        "combustible_usado": 0.6059
+      }
+    ],
+    "fitness": 0.7096571428571429,
+    "rutas_utilizadas": 4,
+    "vehiculos_utilizados": 4,
+    "peso_total_transportado": 168.0,
+    "combustible_total": 5.2708
+  },
+  "top_3_soluciones": [
+    {
+      "asignaciones": [
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 4,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 22.1,
+          "combustible_usado": 2.652
+        },
+        {
+          "vehiculo_id": 3,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.2464
+        },
+        {
+          "vehiculo_id": 0,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 0.7665
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 3,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        }
+      ],
+      "fitness": 0.7096571428571429,
+      "rutas_utilizadas": 4,
+      "vehiculos_utilizados": 4,
+      "peso_total_transportado": 168.0,
+      "combustible_total": 5.2708
+    },
+    {
+      "asignaciones": [
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 4,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 22.1,
+          "combustible_usado": 2.652
+        },
+        {
+          "vehiculo_id": 3,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.2464
+        },
+        {
+          "vehiculo_id": 0,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 0.7665
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 3,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        }
+      ],
+      "fitness": 0.7096571428571429,
+      "rutas_utilizadas": 4,
+      "vehiculos_utilizados": 4,
+      "peso_total_transportado": 168.0,
+      "combustible_total": 5.2708
+    },
+    {
+      "asignaciones": [
+        {
+          "vehiculo_id": 2,
+          "ruta_id": 4,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 22.1,
+          "combustible_usado": 2.652
+        },
+        {
+          "vehiculo_id": 3,
+          "ruta_id": 2,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 15.2,
+          "combustible_usado": 1.2464
+        },
+        {
+          "vehiculo_id": 0,
+          "ruta_id": 1,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 10.5,
+          "combustible_usado": 0.7665
+        },
+        {
+          "vehiculo_id": 1,
+          "ruta_id": 3,
+          "insumos": [
+            {
+              "id": 23,
+              "nombre": "Botellas de agua potable",
+              "categoria": "Agua",
+              "peso_kg": 18.0
+            },
+            {
+              "id": 18,
+              "nombre": "Colchonetas",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 8.0
+            },
+            {
+              "id": 17,
+              "nombre": "Carpas y toldos",
+              "categoria": "Artículos para refugio",
+              "peso_kg": 7.0
+            },
+            {
+              "id": 0,
+              "nombre": "Granos y cereales",
+              "categoria": "Alimentación básica",
+              "peso_kg": 4.0
+            },
+            {
+              "id": 1,
+              "nombre": "Proteínas enlatadas",
+              "categoria": "Alimentación básica",
+              "peso_kg": 2.5
+            },
+            {
+              "id": 5,
+              "nombre": "Jabones y shampoo",
+              "categoria": "Higiene y cuidado personal",
+              "peso_kg": 1.5
+            },
+            {
+              "id": 11,
+              "nombre": "Material de curación",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.8
+            },
+            {
+              "id": 9,
+              "nombre": "Analgésicos básicos",
+              "categoria": "Medicamentos e insumos médicos",
+              "peso_kg": 0.2
+            }
+          ],
+          "peso_total_kg": 42.0,
+          "distancia_km": 8.3,
+          "combustible_usado": 0.6059
+        }
+      ],
+      "fitness": 0.7096571428571429,
+      "rutas_utilizadas": 4,
+      "vehiculos_utilizados": 4,
+      "peso_total_transportado": 168.0,
+      "combustible_total": 5.2708
+    }
+  ],
+  "evolucion_fitness": [
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429,
+    0.7096571428571429
+  ],
+  "metricas_optimizacion": {
+    "generaciones_ejecutadas": 100,
+    "poblacion_size": 50,
+    "fitness_final": 0.7096571428571429,
+    "mejora_total": 0.0
+  },
+  "resumen_escenario": {
+    "tipo_desastre": "terremoto",
+    "total_vehiculos_disponibles": 4,
+    "total_rutas_abiertas": 4,
+    "vehiculos_utilizados": 4,
+    "rutas_cubiertas": 4,
+    "eficiencia_vehiculos": 1.0,
+    "cobertura_rutas": 1.0
+  }
+}
