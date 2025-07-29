@@ -165,3 +165,12 @@ Para información detallada sobre:
 ## Licencia
 
 MIT License - consulta el archivo `LICENSE` para más detalles.
+
+
+
+
+correcciones no se aprovecha el espacio
+otra es que no se respeta el echo de que sundo esta cerrrado nadie puede pasar, por lo cua, si una localidad tiene una ruta, esta buscaria otra ruta porque no podria usar esa y si esta cerrada pues se deja sin llegar
+
+
+

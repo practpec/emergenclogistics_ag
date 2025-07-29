@@ -75,6 +75,7 @@ class LogisticsGeneticAlgorithm(BaseService):
             # PASO 0: Generar población inicial
             poblacion = self.init_operator.generar_poblacion_inicial(self.config.poblacion_size)
             
+            
             mejor_individuo = None
             mejor_fitness = 0
             
