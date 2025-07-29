@@ -23,18 +23,56 @@ const SolutionDetail = ({ solution, mapData, vehicleData, suppliesData }) => {
     const allMarkers = [principal];
     const allPolylines = [];
 
-    (solution.asignaciones || []).forEach((assignment, index) => {
-      // Encontrar la ruta original por ID
-      const routeInfo = rutas_data.find(rd => rd.rutas.some(r => r.distancia.value / 1000 === assignment.distancia_km));
+    // Crear un mapa de rutas por ID para búsqueda más eficiente
+    const rutasPorId = {};
+    rutas_data.forEach((destinoData, destIndex) => {
+      if (destinoData.rutas) {
+        destinoData.rutas.forEach((ruta, rutaIndex) => {
+          // Crear un ID único basado en la posición y datos de la ruta
+          const routeId = `${destIndex}_${rutaIndex}`;
+          rutasPorId[routeId] = {
+            ...ruta,
+            destino: destinoData.destino,
+            destIndex,
+            rutaIndex
+          };
+        });
+      }
+    });
 
-      if (routeInfo) {
-        const routePath = routeInfo.rutas.find(r => r.distancia.value / 1000 === assignment.distancia_km);
-        
+    (solution.asignaciones || []).forEach((assignment, index) => {
+      // Buscar la ruta que coincida con la distancia y ruta_id
+      let routeInfo = null;
+      let routeKey = null;
+
+      // Primero intentar buscar por ruta_id si existe en el mapping
+      for (const [key, ruta] in Object.entries(rutasPorId)) {
+        const distanciaRuta = ruta.distancia?.value ? ruta.distancia.value / 1000 : 0;
+        if (Math.abs(distanciaRuta - assignment.distancia_km) < 0.1) {
+          routeInfo = ruta;
+          routeKey = key;
+          break;
+        }
+      }
+
+      // Si no encontramos por distancia, buscar por ruta_id directo
+      if (!routeInfo && assignment.ruta_id) {
+        for (const [key, ruta] of Object.entries(rutasPorId)) {
+          if (key.includes(`_${assignment.ruta_id - 1}`) || ruta.ruta_id === assignment.ruta_id) {
+            routeInfo = ruta;
+            routeKey = key;
+            break;
+          }
+        }
+      }
+
+      if (routeInfo && routeInfo.puntos_ruta) {
         const isHighlighted = highlightedRoute === index;
         const isAnyHighlighted = highlightedRoute !== null;
 
+        // Agregar polilínea
         allPolylines.push({
-          positions: routePath.puntos_ruta.map(p => [p.lat, p.lng]),
+          positions: routeInfo.puntos_ruta.map(p => [p.lat, p.lng]),
           options: {
             color: getRouteColor(index, isHighlighted),
             weight: isHighlighted ? 7 : 4,
@@ -42,13 +80,19 @@ const SolutionDetail = ({ solution, mapData, vehicleData, suppliesData }) => {
           }
         });
         
-        // Añadir marcador de destino si no existe
+        // Agregar marcador de destino si no existe
         const destination = routeInfo.destino;
-        if (!allMarkers.some(m => m.position[0] === destination.lat && m.position[1] === destination.lng)) {
+        if (destination && !allMarkers.some(m => 
+          Math.abs(m.position[0] - destination.lat) < 0.0001 && 
+          Math.abs(m.position[1] - destination.lng) < 0.0001
+        )) {
           allMarkers.push({
             position: [destination.lat, destination.lng],
-            iconConfig: { color: getRouteColor(index, false), label: index + 1 },
-            popup: { title: destination.nombre.split(',')[0], content: [] }
+            iconConfig: { color: getRouteColor(index, false), label: routeInfo.destIndex + 1 },
+            popup: { 
+              title: destination.nombre.split(',')[0], 
+              content: [`Población: ${parseInt(destination.poblacion).toLocaleString()}`] 
+            }
           });
         }
       }
@@ -57,21 +101,34 @@ const SolutionDetail = ({ solution, mapData, vehicleData, suppliesData }) => {
     return { markers: allMarkers, polylines: allPolylines };
   }, [solution, mapData, highlightedRoute]);
 
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Columna de Asignaciones */}
       <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2">
         {(solution.asignaciones || []).map((assignment, index) => {
           const vehicle = vehicleData.find(v => v.id === assignment.vehiculo_id);
-          const routeInfo = mapData.rutas_data.find(rd => rd.rutas.some(r => r.distancia.value / 1000 === assignment.distancia_km));
+          
+          // Buscar destino de manera más robusta
+          let destination = null;
+          for (const destinoData of mapData.rutas_data) {
+            if (destinoData.rutas) {
+              const rutaEncontrada = destinoData.rutas.find(r => {
+                const distanciaRuta = r.distancia?.value ? r.distancia.value / 1000 : 0;
+                return Math.abs(distanciaRuta - assignment.distancia_km) < 0.1;
+              });
+              if (rutaEncontrada) {
+                destination = destinoData.destino;
+                break;
+              }
+            }
+          }
           
           return (
             <AssignmentCard
               key={index}
               assignment={assignment}
               vehicle={vehicle}
-              destination={routeInfo?.destino}
+              destination={destination}
               supplies={suppliesData}
               isHighlighted={highlightedRoute === index}
               onHighlight={(isHighlighting) => setHighlightedRoute(isHighlighting ? index : null)}

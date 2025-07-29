@@ -6,8 +6,6 @@ from services.data.database_service import DatabaseService
 from ..models import *
 
 class DataManager(BaseService):
-    """Gestor de datos para el algoritmo genético"""
-    
     def __init__(self):
         super().__init__()
         self.db_service = DatabaseService()
@@ -46,7 +44,6 @@ class DataManager(BaseService):
             raise ValidationError(f"Error procesando datos: {e}")
     
     def _procesar_rutas(self, rutas_data: List[Dict[str, Any]]) -> List[Ruta]:
-        """Procesar rutas del frontend"""
         rutas = []
         
         for ruta_data in rutas_data:
@@ -108,6 +105,8 @@ class DataManager(BaseService):
                     consumo_litros_km=vehiculo_info['consumo_litros_km'],
                     maximo_peso_ton=vehiculo_info['maximo_peso_ton']
                 )
+                
+                setattr(vehiculo_base, 'velocidad_kmh', vehiculo_info.get('velocidad_kmh', 65))
                 
                 vehiculo_disponible = VehiculoDisponible(
                     vehiculo=vehiculo_base,

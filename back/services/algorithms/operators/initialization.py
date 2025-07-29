@@ -20,7 +20,8 @@ class InitializationOperator(BaseService):
                     'modelo': f"{vehiculo_disp.vehiculo.modelo} #{i+1}",
                     'tipo': vehiculo_disp.vehiculo.tipo,
                     'consumo_litros_km': vehiculo_disp.vehiculo.consumo_litros_km,
-                    'maximo_peso_ton': vehiculo_disp.vehiculo.maximo_peso_ton
+                    'maximo_peso_ton': vehiculo_disp.vehiculo.maximo_peso_ton,
+                    'velocidad_kmh': getattr(vehiculo_disp.vehiculo, 'velocidad_kmh', 65)
                 })
                 vehiculo_id += 1
     
@@ -57,12 +58,13 @@ class InitializationOperator(BaseService):
         return asignaciones
     
     def _crear_asignacion_con_ruta(self, vehiculo: dict, ruta: Ruta) -> AsignacionVehiculo:
-        cantidades_insumos = self._generar_cantidades_insumos_completas(vehiculo)
+        cantidades_insumos = self._generar_cantidades_optimizadas(vehiculo)
         
         peso_total = sum(cantidad * self.insumos[i].peso_kg 
                         for i, cantidad in enumerate(cantidades_insumos) 
                         if i < len(self.insumos))
         
+        velocidad = vehiculo.get('velocidad_kmh', 65)
         combustible = ruta.distancia_km * vehiculo['consumo_litros_km']
         
         return AsignacionVehiculo(
@@ -86,31 +88,46 @@ class InitializationOperator(BaseService):
             combustible_usado=0
         )
     
-    def _generar_cantidades_insumos_completas(self, vehiculo: dict) -> List[int]:
+    def _generar_cantidades_optimizadas(self, vehiculo: dict) -> List[int]:
         cantidades = [0] * self.TOTAL_INSUMOS
         capacidad_kg = vehiculo['maximo_peso_ton'] * 1000
         peso_actual = 0.0
         
-        objetivo_peso = capacidad_kg * random.uniform(0.80, 0.90)
+        if capacidad_kg >= 2500:
+            objetivo_utilizacion = random.uniform(0.85, 0.95)
+        elif capacidad_kg >= 1500:
+            objetivo_utilizacion = random.uniform(0.80, 0.92)
+        else:
+            objetivo_utilizacion = random.uniform(0.75, 0.88)
         
-        indices_insumos = list(range(min(self.TOTAL_INSUMOS, len(self.insumos))))
-        random.shuffle(indices_insumos)
+        objetivo_peso = capacidad_kg * objetivo_utilizacion
         
-        for i in indices_insumos:
+        insumos_ordenados = list(range(min(self.TOTAL_INSUMOS, len(self.insumos))))
+        insumos_ordenados.sort(key=lambda i: self.insumos[i].peso_kg if i < len(self.insumos) else 999)
+        
+        for i in insumos_ordenados:
             if i >= len(self.insumos):
                 continue
                 
             insumo = self.insumos[i]
             peso_disponible = objetivo_peso - peso_actual
             
-            if peso_disponible <= 0:
-                break
+            if peso_disponible <= insumo.peso_kg:
+                continue
                 
             max_cantidad_por_peso = int(peso_disponible // insumo.peso_kg)
             
             if max_cantidad_por_peso > 0:
-                if random.random() < 0.70:
-                    cantidad_max = min(max_cantidad_por_peso, 10)
+                probabilidad_inclusion = 0.85 if insumo.peso_kg <= 3.0 else 0.65
+                
+                if random.random() < probabilidad_inclusion:
+                    if capacidad_kg >= 2500:
+                        cantidad_max = min(max_cantidad_por_peso, 20)
+                    elif capacidad_kg >= 1500:
+                        cantidad_max = min(max_cantidad_por_peso, 15)
+                    else:
+                        cantidad_max = min(max_cantidad_por_peso, 10)
+                    
                     cantidad = random.randint(1, max(1, cantidad_max))
                     peso_insumo = cantidad * insumo.peso_kg
                     
@@ -118,22 +135,21 @@ class InitializationOperator(BaseService):
                         cantidades[i] = cantidad
                         peso_actual += peso_insumo
         
-        if peso_actual < objetivo_peso * 0.6:
-            insumos_ligeros = [i for i in range(len(self.insumos)) 
-                             if self.insumos[i].peso_kg <= 2.0 and cantidades[i] == 0]
-            
-            for i in insumos_ligeros:
-                peso_disponible = objetivo_peso - peso_actual
-                if peso_disponible <= 0:
-                    break
+        aprovechamiento_actual = (peso_actual / capacidad_kg) * 100
+        
+        if aprovechamiento_actual < 70:
+            for i in range(len(self.insumos)):
+                if cantidades[i] == 0:
+                    peso_disponible = objetivo_peso - peso_actual
+                    if peso_disponible <= 0:
+                        break
                     
-                insumo = self.insumos[i]
-                max_cantidad = int(peso_disponible // insumo.peso_kg)
-                
-                if max_cantidad > 0:
-                    cantidad = random.randint(1, min(max_cantidad, 5))
-                    cantidades[i] = cantidad
-                    peso_actual += cantidad * insumo.peso_kg
+                    insumo = self.insumos[i]
+                    if peso_disponible >= insumo.peso_kg:
+                        cantidad_adicional = min(3, int(peso_disponible // insumo.peso_kg))
+                        if cantidad_adicional > 0:
+                            cantidades[i] = cantidad_adicional
+                            peso_actual += cantidad_adicional * insumo.peso_kg
         
         return cantidades
     

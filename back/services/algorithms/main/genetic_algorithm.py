@@ -1,5 +1,3 @@
-# back/services/algorithms/main/genetic_algorithm.py - ACTUALIZADO
-
 import random
 from typing import List, Dict, Any
 from core.base_service import BaseService
@@ -72,15 +70,12 @@ class LogisticsGeneticAlgorithm(BaseService):
             if not self.scenario_data.vehiculos_disponibles:
                 raise GeneticAlgorithmError("No hay vehículos disponibles")
             
-            # PASO 0: Generar población inicial
             poblacion = self.init_operator.generar_poblacion_inicial(self.config.poblacion_size)
-            
             
             mejor_individuo = None
             mejor_fitness = 0
             
             for generacion in range(self.config.generaciones):
-                # PASO 1: EVALUACIÓN
                 poblacion_evaluada = self._evaluar_poblacion(poblacion)
                 
                 fitness_actual = max(fitness for _, fitness in poblacion_evaluada)
@@ -90,30 +85,21 @@ class LogisticsGeneticAlgorithm(BaseService):
                     mejor_fitness = fitness_actual
                     mejor_individuo = max(poblacion_evaluada, key=lambda x: x[1])[0]
                 
-                # PASO 2: SELECCIÓN POR ORDEN (mejor con segundo, tercero con cuarto)
                 parejas = self.selection_operator.seleccion_por_orden(poblacion_evaluada)
-                
-                # PASO 3: CRUZA SIMPLE (vehículo con vehículo, ruta con ruta, insumos aleatorios)
                 descendencia = self.crossover_operator.cruza_simple(parejas, self.config.prob_cruza)
                 
-                # PASO 4: MUTACIÓN POR SEGMENTOS
                 descendencia_mutada = self.mutation_operator.mutacion_segmento_aleatorio(
                     descendencia, self.config.prob_mutacion
                 )
                 
-                # PASO 5: REPARACIÓN (asegurar uso de todos los vehículos)
                 descendencia_reparada = []
                 for individuo in descendencia_mutada:
                     individuo_reparado = self.repair_operator.reparar_individuo(individuo)
                     descendencia_reparada.append(individuo_reparado)
                 
-                # PASO 6: EVALUACIÓN DE DESCENDENCIA
                 descendencia_evaluada = self._evaluar_poblacion(descendencia_reparada)
-                
-                # PASO 7: COMBINAR POBLACIONES
                 poblacion_total = poblacion_evaluada + descendencia_evaluada
                 
-                # PASO 8: PODA ALEATORIA CONSERVANDO MEJOR
                 poblacion = self.pruning_operator.poda_aleatoria_conservando_mejor(
                     poblacion_total, self.config.poblacion_size
                 )
@@ -188,6 +174,9 @@ class LogisticsGeneticAlgorithm(BaseService):
             if asignacion.ruta_id == -1:
                 continue
             
+            vehiculo_info = self.init_operator.vehiculos_expandidos[asignacion.vehiculo_id]
+            
+            
             insumos_transportados = []
             for i, cantidad in enumerate(asignacion.insumos):
                 if cantidad > 0 and i < len(self.insumos):
@@ -198,6 +187,7 @@ class LogisticsGeneticAlgorithm(BaseService):
             
             asignacion_dict = {
                 "vehiculo_id": asignacion.vehiculo_id,
+                "vehiculo_modelo": vehiculo_info['modelo'],
                 "ruta_id": asignacion.ruta_id,
                 "insumos_cantidades": insumos_transportados,
                 "peso_total_kg": asignacion.peso_total_kg,
@@ -230,7 +220,6 @@ class LogisticsGeneticAlgorithm(BaseService):
         }
     
     def _calcular_entregas_simple(self, individuo: Individual) -> Dict[str, Any]:
-        """Cronología simplificada"""
         entregas_exitosas = len([a for a in individuo if a.ruta_id != -1])
         entregas_fallidas = len([a for a in individuo if a.ruta_id == -1])
         
@@ -243,7 +232,6 @@ class LogisticsGeneticAlgorithm(BaseService):
         }
     
     def _calcular_eficiencia_simple(self, individuo: Individual) -> Dict[str, Any]:
-        """Eficiencia simplificada"""
         vehiculos_activos = [a for a in individuo if a.ruta_id != -1]
         if not vehiculos_activos:
             return {"combustible_promedio": 0, "peso_promedio": 0, "distancia_promedio": 0}

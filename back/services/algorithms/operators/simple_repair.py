@@ -16,8 +16,8 @@ class SimpleRepairOperator(BaseService):
     
         individuo_limpio = self._eliminar_asignaciones_invalidas(individuo)
         individuo_sin_duplicados = self._resolver_duplicados(individuo_limpio)
-        individuo_completo = self._asegurar_uso_todos_vehiculos(individuo_sin_duplicados)
-        individuo_final = self._recalcular_metricas(individuo_completo)
+        individuo_completo = self._asegurar_uso_vehiculos_con_rutas_validas(individuo_sin_duplicados)
+        individuo_final = self._recalcular_metricas_correctas(individuo_completo)
         
         return individuo_final
     
@@ -32,7 +32,8 @@ class SimpleRepairOperator(BaseService):
                 continue
             
             ruta = self.rutas[asignacion.ruta_id]
-            if ruta.estado != EstadoRuta.ABIERTA:
+            
+            if ruta.estado == EstadoRuta.CERRADA:
                 continue
             
             vehiculo = self.vehiculos[asignacion.vehiculo_id]
@@ -58,7 +59,7 @@ class SimpleRepairOperator(BaseService):
         
         return asignaciones_unicas
     
-    def _asegurar_uso_todos_vehiculos(self, individuo: Individual) -> Individual:
+    def _asegurar_uso_vehiculos_con_rutas_validas(self, individuo: Individual) -> Individual:
         vehiculos_usados = {asig.vehiculo_id for asig in individuo}
         rutas_usadas = {asig.ruta_id for asig in individuo}
 
@@ -73,30 +74,50 @@ class SimpleRepairOperator(BaseService):
         individuo_completo = individuo.copy()
         
         for vehiculo in vehiculos_sin_usar:
-            ruta_compatible = None
+            ruta_asignada = None
+            
             for ruta in rutas_disponibles:
                 if self._es_compatible_vehiculo_ruta(vehiculo, ruta):
-                    ruta_compatible = ruta
+                    ruta_asignada = ruta
+                    rutas_disponibles.remove(ruta)
                     break
             
-            if ruta_compatible:
-                nueva_asignacion = self._crear_asignacion_basica(vehiculo, ruta_compatible)
+            if ruta_asignada:
+                nueva_asignacion = self._crear_asignacion_optimizada(vehiculo, ruta_asignada)
                 individuo_completo.append(nueva_asignacion)
-                rutas_disponibles.remove(ruta_compatible)
             else:
                 asignacion_standby = self._crear_asignacion_standby(vehiculo)
                 individuo_completo.append(asignacion_standby)
         
         return individuo_completo
     
-    def _crear_asignacion_basica(self, vehiculo: dict, ruta) -> AsignacionVehiculo:
-        TOTAL_INSUMOS = 25 
-        insumos = []
-        for i in range(TOTAL_INSUMOS):
-            if random.random() < 0.4:
-                insumos.append(random.randint(1, 3))
-            else:
-                insumos.append(0)
+    def _crear_asignacion_optimizada(self, vehiculo: dict, ruta) -> AsignacionVehiculo:
+        TOTAL_INSUMOS = 25
+        capacidad_kg = vehiculo['maximo_peso_ton'] * 1000
+        
+        if capacidad_kg >= 2500:
+            objetivo_aprovechamiento = random.uniform(0.85, 0.95)
+            rango_cantidad = (3, 8)
+        elif capacidad_kg >= 1500:
+            objetivo_aprovechamiento = random.uniform(0.80, 0.92)
+            rango_cantidad = (2, 6)
+        else:
+            objetivo_aprovechamiento = random.uniform(0.75, 0.88)
+            rango_cantidad = (1, 4)
+        
+        insumos = [0] * TOTAL_INSUMOS
+        peso_objetivo = capacidad_kg * objetivo_aprovechamiento
+        peso_promedio_insumo = 5.0
+        
+        cantidad_insumos_activos = random.randint(8, 15)
+        indices_activos = random.sample(range(TOTAL_INSUMOS), cantidad_insumos_activos)
+        
+        peso_por_insumo = peso_objetivo / cantidad_insumos_activos
+        
+        for idx in indices_activos:
+            cantidad_base = int(peso_por_insumo / peso_promedio_insumo)
+            variacion = random.randint(rango_cantidad[0], rango_cantidad[1])
+            insumos[idx] = max(1, cantidad_base + variacion)
         
         return AsignacionVehiculo(
             vehiculo_id=vehiculo['id'],
@@ -129,7 +150,7 @@ class SimpleRepairOperator(BaseService):
                   tipo_vehiculo in tipo_permitido.lower() 
                   for tipo_permitido in ruta.vehiculos_permitidos)
     
-    def _recalcular_metricas(self, individuo: Individual) -> Individual:
+    def _recalcular_metricas_correctas(self, individuo: Individual) -> Individual:
         TOTAL_INSUMOS = 25
         peso_promedio_insumo = 5.0
         
@@ -141,6 +162,8 @@ class SimpleRepairOperator(BaseService):
             
             if asignacion.ruta_id == -1:
                 asignacion.insumos = [0] * TOTAL_INSUMOS
+                asignacion.peso_total_kg = 0
+                asignacion.combustible_usado = 0
                 continue
             
             peso_total = sum(asignacion.insumos) * peso_promedio_insumo
@@ -149,6 +172,12 @@ class SimpleRepairOperator(BaseService):
             if vehiculo:
                 capacidad_kg = vehiculo['maximo_peso_ton'] * 1000
                 asignacion.peso_total_kg = min(peso_total, capacidad_kg)
+                
+                velocidad_kmh = vehiculo.get('velocidad_kmh', 65)
+                if velocidad_kmh > 0:
+                    tiempo_viaje = asignacion.distancia_km / velocidad_kmh
+                else:
+                    tiempo_viaje = 0
                 
                 asignacion.combustible_usado = (asignacion.distancia_km * 
                                               vehiculo['consumo_litros_km'])
@@ -161,16 +190,19 @@ class SimpleRepairOperator(BaseService):
                          if r.estado == EstadoRuta.ABIERTA]
         
         for i, vehiculo in enumerate(self.vehiculos_disponibles):
-            if i < len(rutas_abiertas):
-                ruta = rutas_abiertas[i]
+            ruta_asignada = None
+            
+            for ruta in rutas_abiertas:
                 if self._es_compatible_vehiculo_ruta(vehiculo, ruta):
-                    asignacion = self._crear_asignacion_basica(vehiculo, ruta)
-                    individuo.append(asignacion)
-                else:
-                    asignacion = self._crear_asignacion_standby(vehiculo)
-                    individuo.append(asignacion)
+                    ruta_asignada = ruta
+                    rutas_abiertas.remove(ruta)
+                    break
+            
+            if ruta_asignada:
+                asignacion = self._crear_asignacion_optimizada(vehiculo, ruta_asignada)
+                individuo.append(asignacion)
             else:
                 asignacion = self._crear_asignacion_standby(vehiculo)
                 individuo.append(asignacion)
         
-        return self._recalcular_metricas(individuo)
+        return self._recalcular_metricas_correctas(individuo)
