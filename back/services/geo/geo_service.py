@@ -61,8 +61,8 @@ class GeoService(BaseService):
                                  clave_municipio: str = None) -> Dict:
         """Generar nodos secundarios del mismo municipio"""
         try:
-            if not (1 <= cantidad_nodos <= 15):
-                raise ValueError("Cantidad de nodos debe estar entre 1 y 15")
+            if not (5 <= cantidad_nodos <= 20):
+                raise ValueError("Cantidad de nodos debe estar entre 5 y 20")
             
             estado = self.get_estado_by_nombre(nombre_estado)
             

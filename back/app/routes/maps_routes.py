@@ -93,8 +93,8 @@ def generate_complete_routes():
             raise ValidationError("Estado es requerido")
         if not clave_municipio:
             raise ValidationError("Municipio es requerido")
-        if not (1 <= n_nodos <= 15):
-            raise ValidationError("Número de nodos debe estar entre 1 y 15")
+        if not (5 <= n_nodos <= 20):
+            raise ValidationError("Número de nodos debe estar entre 5 y 20")
         
         nodos_data = geo_service.generar_nodos_secundarios(estado, n_nodos, clave_municipio)
         

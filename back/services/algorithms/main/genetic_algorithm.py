@@ -4,8 +4,7 @@ from core.base_service import BaseService
 from core.exceptions import GeneticAlgorithmError
 from ..core.data_manager import DataManager
 from ..models import (
-    Individual, VehicleAssignment, AsignacionVehiculo, 
-    ResultadoIndividuo, EstadoRuta
+    Individual, ResultadoIndividuo, EstadoRuta
 )
 from ..operators.initialization import InitializationOperator
 from ..operators.evaluation import EvaluationOperator

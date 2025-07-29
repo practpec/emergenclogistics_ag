@@ -5,11 +5,12 @@ from core.base_service import BaseService
 from core.exceptions import DataLoadError
 
 class DatabaseService(BaseService):
-    """Servicio para manejo de base de datos de localidades - EXTENDIDO"""
+    """Servicio para manejo de base de datos de localidades - FILTRADO POR POBLACIÓN"""
     
     def __init__(self, db_path: str = "data/localidades.db"):
         super().__init__()
         self.db_path = db_path
+        self.MIN_POBLACION = 1000
             
     @contextmanager
     def get_connection(self):
@@ -69,7 +70,7 @@ class DatabaseService(BaseService):
             raise DataLoadError(f"Error obteniendo municipios: {e}")
     
     def get_nodo_inicial_municipio(self, clave_estado: str, clave_municipio: str) -> Optional[Dict[str, Any]]:
-        """Obtener el nodo inicial del municipio (localidad con mayor población)"""
+        """Obtener el nodo inicial del municipio (localidad con mayor población >= 1000)"""
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
@@ -82,9 +83,10 @@ class DatabaseService(BaseService):
                     WHERE clave_estado = ? AND clave_municipio = ?
                       AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
+                      AND CAST(poblacion AS INTEGER) >= ?
                     ORDER BY CAST(poblacion AS INTEGER) DESC
                     LIMIT 1
-                """, (clave_estado, clave_municipio))
+                """, (clave_estado, clave_municipio, self.MIN_POBLACION))
                 
                 row = cursor.fetchone()
                 if row:
@@ -109,7 +111,7 @@ class DatabaseService(BaseService):
             raise DataLoadError(f"Error obteniendo nodo inicial: {e}")
     
     def get_localidad_by_clave(self, clave_localidad: str) -> Optional[Dict[str, Any]]:
-        """NUEVA: Consultar localidad específica por clave_localidad"""
+        """Consultar localidad específica por clave_localidad (población >= 1000)"""
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
@@ -122,8 +124,9 @@ class DatabaseService(BaseService):
                     WHERE clave_localidad = ?
                       AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
+                      AND CAST(poblacion AS INTEGER) >= ?
                     LIMIT 1
-                """, (clave_localidad,))
+                """, (clave_localidad, self.MIN_POBLACION))
                 
                 row = cursor.fetchone()
                 if row:
@@ -148,7 +151,7 @@ class DatabaseService(BaseService):
             raise DataLoadError(f"Error obteniendo localidad: {e}")
     
     def get_localidades_by_claves(self, claves_localidades: List[str]) -> List[Dict[str, Any]]:
-        """NUEVA: Consultar múltiples localidades por sus claves"""
+        """Consultar múltiples localidades por sus claves (población >= 1000)"""
         try:
             if not claves_localidades:
                 return []
@@ -165,8 +168,9 @@ class DatabaseService(BaseService):
                     WHERE clave_localidad IN ({placeholders})
                       AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
+                      AND CAST(poblacion AS INTEGER) >= ?
                     ORDER BY CAST(poblacion AS INTEGER) DESC
-                """, claves_localidades)
+                """, claves_localidades + [self.MIN_POBLACION])
                 
                 return [{
                     'clave_estado': row['clave_estado'],
@@ -187,7 +191,7 @@ class DatabaseService(BaseService):
             raise DataLoadError(f"Error obteniendo localidades: {e}")
     
     def count_localidades_municipio(self, clave_estado: str, clave_municipio: str) -> int:
-        """Contar total de localidades en un municipio"""
+        """Contar total de localidades en un municipio (población >= 1000)"""
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
@@ -197,7 +201,8 @@ class DatabaseService(BaseService):
                     WHERE clave_estado = ? AND clave_municipio = ?
                       AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
-                """, (clave_estado, clave_municipio))
+                      AND CAST(poblacion AS INTEGER) >= ?
+                """, (clave_estado, clave_municipio, self.MIN_POBLACION))
                 
                 row = cursor.fetchone()
                 return row['total'] if row else 0
@@ -208,8 +213,13 @@ class DatabaseService(BaseService):
     
     def get_localidades_municipio(self, clave_estado: str, clave_municipio: str, 
                                  clave_localidad_excluir: str, cantidad: int,
-                                 poblacion_minima: int = 20) -> List[Dict[str, Any]]:
-        """Obtener localidades del mismo municipio excluyendo el nodo inicial"""
+                                 poblacion_minima: int = None) -> List[Dict[str, Any]]:
+        """Obtener localidades del mismo municipio excluyendo el nodo inicial (población >= 1000)"""
+        if poblacion_minima is None:
+            poblacion_minima = self.MIN_POBLACION
+        else:
+            poblacion_minima = max(poblacion_minima, self.MIN_POBLACION)
+            
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
@@ -221,7 +231,7 @@ class DatabaseService(BaseService):
                     FROM localidades
                     WHERE clave_estado = ? AND clave_municipio = ?
                       AND clave_localidad != ?
-                      AND poblacion > ?
+                      AND CAST(poblacion AS INTEGER) >= ?
                       AND latitud IS NOT NULL AND longitud IS NOT NULL
                       AND poblacion IS NOT NULL
                     ORDER BY CAST(poblacion AS INTEGER) DESC
@@ -247,7 +257,7 @@ class DatabaseService(BaseService):
             raise DataLoadError(f"Error obteniendo localidades: {e}")
     
     def validate_localidades_existen(self, claves_localidades: List[str]) -> Dict[str, bool]:
-        """NUEVA: Validar que las claves de localidades existen en BD"""
+        """Validar que las claves de localidades existen en BD (población >= 1000)"""
         try:
             if not claves_localidades:
                 return {}
@@ -259,7 +269,8 @@ class DatabaseService(BaseService):
                     SELECT clave_localidad
                     FROM localidades
                     WHERE clave_localidad IN ({placeholders})
-                """, claves_localidades)
+                      AND CAST(poblacion AS INTEGER) >= ?
+                """, claves_localidades + [self.MIN_POBLACION])
                 
                 claves_existentes = set(row['clave_localidad'] for row in cursor.fetchall())
                 
