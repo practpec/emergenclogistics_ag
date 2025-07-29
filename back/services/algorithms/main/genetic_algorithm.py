@@ -1,3 +1,5 @@
+# back/services/algorithms/main/genetic_algorithm.py - ACTUALIZADO
+
 import random
 from typing import List, Dict, Any
 from core.base_service import BaseService
@@ -8,17 +10,14 @@ from ..models import (
 )
 from ..operators.initialization import InitializationOperator
 from ..operators.evaluation import EvaluationOperator
-from ..operators.crossover import CrossoverOperator
-from ..operators.mutation import MutationOperator
-from ..operators.selection import SelectionOperator
-from ..core.assignment_validator import AssignmentValidator
-from ..core.capacity_manager import CapacityManager
+from ..operators.simple_selection import SimpleSelectionOperator
+from ..operators.simple_crossover import SimpleCrossoverOperator
+from ..operators.simple_mutation import SimpleMutationOperator
+from ..operators.simple_pruning import SimplePruningOperator
+from ..operators.simple_repair import SimpleRepairOperator
 from ..output.result_formatter import ResultFormatter
 
-
 class LogisticsGeneticAlgorithm(BaseService):
-    """Algoritmo genético para optimización logística"""
-    
     def __init__(self, datos_frontend: Dict[str, Any], parametros_ag: Dict[str, Any] = None):
         super().__init__()
         self.data_manager = DataManager()
@@ -32,14 +31,11 @@ class LogisticsGeneticAlgorithm(BaseService):
             config.generaciones = parametros_ag.get('generaciones', config.generaciones)
             config.prob_cruza = parametros_ag.get('prob_cruza', config.prob_cruza)
             config.prob_mutacion = parametros_ag.get('prob_mutacion', config.prob_mutacion)
-            config.elitismo_rate = parametros_ag.get('elitismo_rate', config.elitismo_rate)
         
         self.config = config
         self.evolucion_fitness = []
-        self.generaciones_sin_mejora = 0
     
     def _configurar_operadores(self):
-        """Configurar operadores del AG"""
         try:
             self.init_operator = InitializationOperator(
                 self.scenario_data.rutas, 
@@ -53,25 +49,13 @@ class LogisticsGeneticAlgorithm(BaseService):
                 self.insumos
             )
             
-            self.crossover_operator = CrossoverOperator()
-            
-            self.mutation_operator = MutationOperator(
-                self.scenario_data.rutas, 
-                self.init_operator.vehiculos_expandidos, 
-                self.insumos
-            )
-            
-            self.selection_operator = SelectionOperator()
-            
-            self.validator = AssignmentValidator(
-                self.scenario_data.rutas, 
+            self.selection_operator = SimpleSelectionOperator()
+            self.crossover_operator = SimpleCrossoverOperator()
+            self.mutation_operator = SimpleMutationOperator()
+            self.pruning_operator = SimplePruningOperator()
+            self.repair_operator = SimpleRepairOperator(
+                self.scenario_data.rutas,
                 self.init_operator.vehiculos_expandidos
-            )
-            
-            self.capacity_manager = CapacityManager(
-                self.init_operator.vehiculos_expandidos,
-                self.insumos,
-                self.scenario_data.tipo_desastre
             )
             
         except Exception as e:
@@ -79,7 +63,6 @@ class LogisticsGeneticAlgorithm(BaseService):
             raise GeneticAlgorithmError(f"Error en configuración: {e}")
     
     def ejecutar(self) -> Dict[str, Any]:
-        """Ejecutar el algoritmo genético"""
         try:
             rutas_abiertas = [r for r in self.scenario_data.rutas if r.estado == EstadoRuta.ABIERTA]
             
@@ -89,12 +72,14 @@ class LogisticsGeneticAlgorithm(BaseService):
             if not self.scenario_data.vehiculos_disponibles:
                 raise GeneticAlgorithmError("No hay vehículos disponibles")
             
+            # PASO 0: Generar población inicial
             poblacion = self.init_operator.generar_poblacion_inicial(self.config.poblacion_size)
             
             mejor_individuo = None
             mejor_fitness = 0
             
             for generacion in range(self.config.generaciones):
+                # PASO 1: EVALUACIÓN
                 poblacion_evaluada = self._evaluar_poblacion(poblacion)
                 
                 fitness_actual = max(fitness for _, fitness in poblacion_evaluada)
@@ -103,47 +88,34 @@ class LogisticsGeneticAlgorithm(BaseService):
                 if fitness_actual > mejor_fitness:
                     mejor_fitness = fitness_actual
                     mejor_individuo = max(poblacion_evaluada, key=lambda x: x[1])[0]
-                    self.generaciones_sin_mejora = 0
-                else:
-                    self.generaciones_sin_mejora += 1
                 
-                if self.generaciones_sin_mejora > 15 and generacion < self.config.generaciones - 20:
-                    elite_size = int(len(poblacion) * 0.3)
-                    elite = self.selection_operator.seleccion_elitista(poblacion_evaluada, elite_size)
-                    
-                    nueva_poblacion_random = []
-                    for _ in range(len(poblacion) - elite_size):
-                        nuevo_individuo = self.init_operator._generar_individuo_aleatorio()
-                        nueva_poblacion_random.append(nuevo_individuo)
-                    
-                    poblacion = elite + nueva_poblacion_random
-                    self.generaciones_sin_mejora = 0
-                    continue
+                # PASO 2: SELECCIÓN POR ORDEN (mejor con segundo, tercero con cuarto)
+                parejas = self.selection_operator.seleccion_por_orden(poblacion_evaluada)
                 
-                tamaño_elite = int(len(poblacion) * self.config.elitismo_rate)
-                elite = self.selection_operator.seleccion_elitista(poblacion_evaluada, tamaño_elite)
+                # PASO 3: CRUZA SIMPLE (vehículo con vehículo, ruta con ruta, insumos aleatorios)
+                descendencia = self.crossover_operator.cruza_simple(parejas, self.config.prob_cruza)
                 
-                nueva_poblacion = elite.copy()
+                # PASO 4: MUTACIÓN POR SEGMENTOS
+                descendencia_mutada = self.mutation_operator.mutacion_segmento_aleatorio(
+                    descendencia, self.config.prob_mutacion
+                )
                 
-                while len(nueva_poblacion) < self.config.poblacion_size:
-                    padre1 = self.selection_operator.seleccion_torneo(poblacion_evaluada)
-                    padre2 = self.selection_operator.seleccion_torneo(poblacion_evaluada)
-                    
-                    if random.random() < self.config.prob_cruza:
-                        hijo1, hijo2 = self.crossover_operator.cruzar_individuos(padre1, padre2)
-                    else:
-                        hijo1, hijo2 = padre1.copy(), padre2.copy()
-                    
-                    prob_mutacion_adaptativa = self.config.prob_mutacion
-                    if self.generaciones_sin_mejora > 8:
-                        prob_mutacion_adaptativa *= 1.5
-                    
-                    hijo1 = self.mutation_operator.mutar_individuo(hijo1, prob_mutacion_adaptativa)
-                    hijo2 = self.mutation_operator.mutar_individuo(hijo2, prob_mutacion_adaptativa)
-                    
-                    nueva_poblacion.extend([hijo1, hijo2])
+                # PASO 5: REPARACIÓN (asegurar uso de todos los vehículos)
+                descendencia_reparada = []
+                for individuo in descendencia_mutada:
+                    individuo_reparado = self.repair_operator.reparar_individuo(individuo)
+                    descendencia_reparada.append(individuo_reparado)
                 
-                poblacion = nueva_poblacion[:self.config.poblacion_size]
+                # PASO 6: EVALUACIÓN DE DESCENDENCIA
+                descendencia_evaluada = self._evaluar_poblacion(descendencia_reparada)
+                
+                # PASO 7: COMBINAR POBLACIONES
+                poblacion_total = poblacion_evaluada + descendencia_evaluada
+                
+                # PASO 8: PODA ALEATORIA CONSERVANDO MEJOR
+                poblacion = self.pruning_operator.poda_aleatoria_conservando_mejor(
+                    poblacion_total, self.config.poblacion_size
+                )
             
             poblacion_final = self._evaluar_poblacion(poblacion)
             top_3 = sorted(poblacion_final, key=lambda x: x[1], reverse=True)[:3]
@@ -157,7 +129,6 @@ class LogisticsGeneticAlgorithm(BaseService):
             raise GeneticAlgorithmError(f"Error en ejecución: {e}")
     
     def _evaluar_poblacion(self, poblacion: List[Individual]) -> List[tuple]:
-        """Evaluar población"""
         poblacion_evaluada = []
         for individuo in poblacion:
             try:
@@ -169,8 +140,6 @@ class LogisticsGeneticAlgorithm(BaseService):
         return poblacion_evaluada
     
     def _generar_resultados(self, mejor_individuo: Individual, top_3: List[tuple]) -> Dict[str, Any]:
-        """Generar resultados finales"""
-        
         mejor_resultado = self._procesar_individuo_resultado(mejor_individuo, top_3[0][1])
         
         top_3_resultados = []
@@ -181,9 +150,6 @@ class LogisticsGeneticAlgorithm(BaseService):
         total_vehiculos = sum(v.cantidad for v in self.scenario_data.vehiculos_disponibles)
         total_rutas = len([r for r in self.scenario_data.rutas if r.estado == EstadoRuta.ABIERTA])
         
-        # Análisis adicional con capacity_manager
-        analisis_capacidad = self.capacity_manager.validar_capacidades_individuo(mejor_individuo)
-        
         return {
             "mejor_solucion": mejor_resultado.__dict__,
             "top_3_soluciones": [r.__dict__ for r in top_3_resultados],
@@ -192,7 +158,8 @@ class LogisticsGeneticAlgorithm(BaseService):
                 "generaciones_ejecutadas": self.config.generaciones,
                 "poblacion_size": self.config.poblacion_size,
                 "fitness_final": mejor_resultado.fitness,
-                "mejora_total": self.evolucion_fitness[-1] - self.evolucion_fitness[0] if self.evolucion_fitness else 0
+                "mejora_total": (self.evolucion_fitness[-1] - self.evolucion_fitness[0] 
+                               if len(self.evolucion_fitness) > 1 else 0)
             },
             "resumen_escenario": {
                 "tipo_desastre": self.scenario_data.tipo_desastre.tipo,
@@ -203,47 +170,30 @@ class LogisticsGeneticAlgorithm(BaseService):
                 "eficiencia_vehiculos": mejor_resultado.vehiculos_utilizados / total_vehiculos if total_vehiculos > 0 else 0,
                 "cobertura_rutas": mejor_resultado.rutas_utilizadas / total_rutas if total_rutas > 0 else 0
             },
-            "distribucion_carga": analisis_capacidad,
-            "cronologia_entregas": {
-                "entregas_exitosas": len([asig for asig in mejor_individuo]),
-                "entregas_fallidas": 0,
-                "tasa_exito": 100.0,
-                "poblacion_cubierta": sum(ruta.localidad.poblacion for ruta in self.scenario_data.rutas if any(asig.ruta_id == ruta.id for asig in mejor_individuo)),
-                "poblacion_no_cubierta": sum(ruta.localidad.poblacion for ruta in self.scenario_data.rutas if not any(asig.ruta_id == ruta.id for asig in mejor_individuo))
-            },
-            "analisis_eficiencia": {
-                "combustible_promedio": mejor_resultado.combustible_total / len(mejor_individuo) if mejor_individuo else 0,
-                "peso_promedio": mejor_resultado.peso_total_transportado / len(mejor_individuo) if mejor_individuo else 0,
-                "distancia_promedio": sum(asig.distancia_km for asig in mejor_individuo) / len(mejor_individuo) if mejor_individuo else 0
-            }
+            "distribucion_carga": self._calcular_distribucion_simple(mejor_individuo),
+            "cronologia_entregas": self._calcular_entregas_simple(mejor_individuo),
+            "analisis_eficiencia": self._calcular_eficiencia_simple(mejor_individuo)
         }
     
     def _procesar_individuo_resultado(self, individuo: Individual, fitness: float) -> ResultadoIndividuo:
-        """Procesar individuo para resultado"""
         if not individuo:
             return ResultadoIndividuo(
-                asignaciones=[],
-                fitness=0,
-                rutas_utilizadas=0,
-                vehiculos_utilizados=0,
-                peso_total_transportado=0,
-                combustible_total=0
+                asignaciones=[], fitness=0, rutas_utilizadas=0,
+                vehiculos_utilizados=0, peso_total_transportado=0, combustible_total=0
             )
         
         asignaciones_dict = []
         for asignacion in individuo:
-            insumos_transportados = []
-            cantidades_insumos = asignacion.insumos
+            if asignacion.ruta_id == -1:
+                continue
             
-            for i, cantidad in enumerate(cantidades_insumos):
+            insumos_transportados = []
+            for i, cantidad in enumerate(asignacion.insumos):
                 if cantidad > 0 and i < len(self.insumos):
-                    insumo_base = self.insumos[i]
-        
-                    if cantidad > 0 and i < len(self.insumos):
-                        insumos_transportados.append({
-                            "id_insumo": insumo_base.id,
-                            "cantidad": cantidad
-                        })
+                    insumos_transportados.append({
+                        "id_insumo": self.insumos[i].id,
+                        "cantidad": cantidad
+                    })
             
             asignacion_dict = {
                 "vehiculo_id": asignacion.vehiculo_id,
@@ -263,3 +213,42 @@ class LogisticsGeneticAlgorithm(BaseService):
             peso_total_transportado=sum(asig["peso_total_kg"] for asig in asignaciones_dict),
             combustible_total=sum(asig["combustible_usado"] for asig in asignaciones_dict)
         )
+    
+    def _calcular_distribucion_simple(self, individuo: Individual) -> Dict[str, Any]:
+        vehiculos_activos = [a for a in individuo if a.ruta_id != -1]
+        total_peso = sum(a.peso_total_kg for a in vehiculos_activos)
+        total_capacidad = len(self.init_operator.vehiculos_expandidos) * 1000
+        
+        return {
+            "utilizacion_promedio": (total_peso / total_capacidad * 100) if total_capacidad > 0 else 0,
+            "vehiculos_optimos": len([a for a in vehiculos_activos if 700 <= a.peso_total_kg <= 950]),
+            "vehiculos_subutilizados": len([a for a in vehiculos_activos if a.peso_total_kg < 700]),
+            "peso_total_transportado": total_peso,
+            "capacidad_total_disponible": total_capacidad,
+            "utilizacion_total": (total_peso / total_capacidad * 100) if total_capacidad > 0 else 0
+        }
+    
+    def _calcular_entregas_simple(self, individuo: Individual) -> Dict[str, Any]:
+        """Cronología simplificada"""
+        entregas_exitosas = len([a for a in individuo if a.ruta_id != -1])
+        entregas_fallidas = len([a for a in individuo if a.ruta_id == -1])
+        
+        return {
+            "entregas_exitosas": entregas_exitosas,
+            "entregas_fallidas": entregas_fallidas,
+            "tasa_exito": (entregas_exitosas / len(individuo) * 100) if individuo else 0,
+            "poblacion_cubierta": entregas_exitosas * 5000,
+            "poblacion_no_cubierta": entregas_fallidas * 5000
+        }
+    
+    def _calcular_eficiencia_simple(self, individuo: Individual) -> Dict[str, Any]:
+        """Eficiencia simplificada"""
+        vehiculos_activos = [a for a in individuo if a.ruta_id != -1]
+        if not vehiculos_activos:
+            return {"combustible_promedio": 0, "peso_promedio": 0, "distancia_promedio": 0}
+        
+        return {
+            "combustible_promedio": sum(a.combustible_usado for a in vehiculos_activos) / len(vehiculos_activos),
+            "peso_promedio": sum(a.peso_total_kg for a in vehiculos_activos) / len(vehiculos_activos),
+            "distancia_promedio": sum(a.distancia_km for a in vehiculos_activos) / len(vehiculos_activos)
+        }
