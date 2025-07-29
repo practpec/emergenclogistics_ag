@@ -13,29 +13,23 @@ class DataManager(BaseService):
         self.db_service = DatabaseService()
     
     def procesar_datos_entrada(self, datos_frontend: Dict[str, Any]) -> Tuple[ScenarioData, List[Insumo]]:
-        """Procesar datos del frontend y convertir a estructuras internas"""
         try:
             map_data = datos_frontend.get('map_data', {})
             scenario_config = datos_frontend.get('scenario_config', {})
             
-            # Procesar rutas desde map_data.rutas_data
             rutas = self._procesar_rutas(map_data.get('rutas_data', []))
             
-            # Procesar vehículos disponibles
             vehiculos_disponibles = self._procesar_vehiculos_disponibles(
                 scenario_config.get('vehiculos_disponibles', [])
             )
             
-            # Procesar tipo de desastre
             tipo_desastre_str = scenario_config.get('tipo_desastre', 'terremoto')
             tipo_desastre = self._procesar_tipo_desastre(tipo_desastre_str)
             
-            # Configuración del AG
             config_ag = self._procesar_configuracion_ag(
                 scenario_config.get('configuracion', {})
             )
             
-            # Crear ScenarioData
             scenario_data = ScenarioData(
                 rutas=rutas,
                 vehiculos_disponibles=vehiculos_disponibles,
@@ -43,7 +37,6 @@ class DataManager(BaseService):
                 configuracion_ag=config_ag
             )
             
-            # Cargar insumos
             insumos = self._cargar_insumos()
             
             return scenario_data, insumos
@@ -58,21 +51,19 @@ class DataManager(BaseService):
         
         for ruta_data in rutas_data:
             try:
-                # Obtener información de localidad
                 clave_localidad = str(ruta_data.get('clave_localidad', ''))
                 localidad_info = self.db_service.get_localidad_by_clave(clave_localidad)
                 
                 if localidad_info:
                     poblacion = localidad_info.get('poblacion', 1000)
                 else:
-                    poblacion = 1000  # Valor por defecto
+                    poblacion = 1000
                 
                 localidad = Localidad(
                     clave_localidad=clave_localidad,
                     poblacion=poblacion
                 )
                 
-                # Determinar estado de la ruta - CORREGIDO
                 estado_str = ruta_data.get('estado', 'abierta').lower()
                 estado = EstadoRuta.ABIERTA if estado_str == 'abierta' else EstadoRuta.CERRADA
                 
@@ -93,7 +84,6 @@ class DataManager(BaseService):
         return rutas
     
     def _procesar_vehiculos_disponibles(self, vehiculos_data: List[Dict[str, Any]]) -> List[VehiculoDisponible]:
-        """Procesar vehículos disponibles del frontend"""
         vehiculos_disponibles = []
         vehiculos_db = data_loader.get_vehiculos()
         
@@ -102,7 +92,6 @@ class DataManager(BaseService):
                 modelo = vehiculo_data.get('modelo', '')
                 cantidad = vehiculo_data.get('cantidad', 1)
                 
-                # Buscar vehículo en base de datos
                 vehiculo_info = None
                 for v in vehiculos_db:
                     if modelo in v['modelo'] or v['modelo'] in modelo:
@@ -134,7 +123,6 @@ class DataManager(BaseService):
         return vehiculos_disponibles
     
     def _procesar_tipo_desastre(self, tipo_desastre_str: str) -> TipoDesastre:
-        """Procesar tipo de desastre"""
         try:
             desastre_info = data_loader.get_desastre_by_tipo(tipo_desastre_str)
             
@@ -163,7 +151,6 @@ class DataManager(BaseService):
             
         except Exception as e:
             self.log_error(f"Error procesando tipo de desastre: {tipo_desastre_str}", e)
-            # Retornar desastre por defecto
             return TipoDesastre(
                 tipo=tipo_desastre_str,
                 prioridades=[
@@ -173,7 +160,6 @@ class DataManager(BaseService):
             )
     
     def _procesar_configuracion_ag(self, config_data: Dict[str, Any]) -> ConfiguracionAG:
-        """Procesar configuración del algoritmo genético"""
         return ConfiguracionAG(
             poblacion_size=config_data.get('poblacion_size', 50),
             generaciones=config_data.get('generaciones', 100),
@@ -183,7 +169,6 @@ class DataManager(BaseService):
         )
     
     def _cargar_insumos(self) -> List[Insumo]:
-        """Cargar insumos disponibles"""
         try:
             insumos_data = data_loader.get_categorias_insumos()
             insumos = []

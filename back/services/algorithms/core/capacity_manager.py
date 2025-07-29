@@ -3,8 +3,6 @@ from ..models import *
 
 
 class CapacityManager:
-    """Gestor de capacidades para optimización de carga"""
-    
     def __init__(self, vehiculos_expandidos: List[dict],
                  insumos: List[Insumo], tipo_desastre: TipoDesastre):
         self.vehiculos_expandidos = vehiculos_expandidos
@@ -14,17 +12,14 @@ class CapacityManager:
         self.prioridades_categorias = self._obtener_prioridades_del_desastre()
     
     def _obtener_prioridades_del_desastre(self) -> Dict[str, float]:
-        """Obtener prioridades desde el JSON del desastre"""
         prioridades = {}
         
-        # Mapear niveles a valores numéricos
         valores_nivel = {
             NivelPrioridad.ALTA: 1.0,
             NivelPrioridad.MEDIA: 0.6,
             NivelPrioridad.BAJA: 0.3
         }
         
-        # Usar las prioridades exactas del JSON del desastre
         for prioridad_categoria in self.tipo_desastre.prioridades:
             categoria_nombre = prioridad_categoria.categoria
             nivel = prioridad_categoria.nivel
@@ -33,7 +28,6 @@ class CapacityManager:
         return prioridades
     
     def optimizar_carga_vehiculo(self, vehiculo_id: int, insumos_disponibles: List[Insumo] = None) -> List[Insumo]:
-        """Optimizar la carga de un vehículo específico"""
         if vehiculo_id not in self.vehiculos_dict:
             return []
         
@@ -43,7 +37,6 @@ class CapacityManager:
         if insumos_disponibles is None:
             insumos_disponibles = self.insumos
         
-        # Ordenar insumos por prioridad del desastre específico
         insumos_ordenados = self._ordenar_insumos_por_prioridad(insumos_disponibles)
         
         carga_optima = []
@@ -54,25 +47,21 @@ class CapacityManager:
                 carga_optima.append(insumo)
                 peso_actual += insumo.peso_kg
             
-            # Objetivo: usar entre 70-95% de la capacidad
             if peso_actual >= capacidad_kg * 0.7:
                 break
         
         return carga_optima
     
     def _ordenar_insumos_por_prioridad(self, insumos: List[Insumo]) -> List[Insumo]:
-        """Ordenar insumos por prioridad usando los valores del JSON del desastre"""
         
         def calcular_prioridad(insumo: Insumo) -> float:
             categoria_nombre = insumo.categoria.nombre
             prioridad_categoria = self.prioridades_categorias.get(categoria_nombre, 0.1)
-            # Ratio prioridad/peso para optimizar distribución
             return prioridad_categoria / max(insumo.peso_kg, 0.1)
         
         return sorted(insumos, key=calcular_prioridad, reverse=True)
     
     def calcular_utilizacion_vehiculo(self, asignacion: AsignacionVehiculo) -> Dict[str, float]:
-        """Calcular métricas de utilización de un vehículo"""
         if asignacion.vehiculo_id not in self.vehiculos_dict:
             return {"utilizacion_peso": 0, "eficiencia": 0}
         
@@ -81,7 +70,6 @@ class CapacityManager:
         
         utilizacion_peso = (asignacion.peso_total_kg / capacidad_kg) * 100
         
-        # Eficiencia: peso transportado por litro de combustible
         eficiencia = asignacion.peso_total_kg / asignacion.combustible_usado if asignacion.combustible_usado > 0 else 0
         
         return {
@@ -108,7 +96,6 @@ class CapacityManager:
         """Sugerir redistribución de carga entre vehículos"""
         sugerencias = []
         
-        # Identificar vehículos subutilizados y sobrecargados
         vehiculos_subutilizados = []
         vehiculos_sobrecargados = []
         
@@ -120,7 +107,6 @@ class CapacityManager:
             elif utilizacion["estado"] == "Sobrecarga":
                 vehiculos_sobrecargados.append((asignacion, utilizacion))
         
-        # Generar sugerencias de redistribución
         for asig_sobre, util_sobre in vehiculos_sobrecargados:
             for asig_sub, util_sub in vehiculos_subutilizados:
                 exceso = asig_sobre.peso_total_kg - (util_sobre["capacidad_maxima"] * 0.9)
@@ -138,7 +124,6 @@ class CapacityManager:
         return sugerencias
     
     def validar_capacidades_individuo(self, individuo: Individual) -> Dict[str, any]:
-        """Validar todas las capacidades de un individuo"""
         resultados = {
             "total_vehiculos": len(individuo),
             "vehiculos_optimos": 0,

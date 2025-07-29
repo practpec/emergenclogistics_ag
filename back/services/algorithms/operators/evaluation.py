@@ -2,35 +2,29 @@ from typing import List, Dict, Any
 from core.base_service import BaseService
 from ..models import Individual, AsignacionVehiculo, Insumo, TipoDesastre
 
-class EvaluationOperator(BaseService):
-    """Operador de evaluación para algoritmo genético"""
-    
+class EvaluationOperator(BaseService):    
     def __init__(self, rutas: List, tipo_desastre: TipoDesastre, insumos: List[Insumo]):
         super().__init__()
         self.rutas = rutas
         self.tipo_desastre = tipo_desastre
         self.insumos = insumos
         
-        # Crear mapeo de prioridades por categoría
         self.prioridades_categoria = {}
         for prioridad in tipo_desastre.prioridades:
             self.prioridades_categoria[prioridad.categoria] = prioridad.nivel.value
     
     def evaluar_individuo(self, individuo: Individual) -> float:
-        """Evaluar fitness de un individuo"""
         if not individuo:
             return 0.0
         
         try:
             asignaciones = individuo
-            
-            # Componentes del fitness
+    
             cobertura_rutas = self._evaluar_cobertura_rutas(asignaciones)
             eficiencia_vehiculos = self._evaluar_eficiencia_vehiculos(asignaciones)
             diversidad_insumos = self._evaluar_diversidad_insumos(asignaciones)
             prioridad_insumos = self._evaluar_prioridad_insumos(asignaciones)
             
-            # Pesos de cada componente
             peso_cobertura = 0.3
             peso_eficiencia = 0.25
             peso_diversidad = 0.2
@@ -50,7 +44,6 @@ class EvaluationOperator(BaseService):
             return 0.0
     
     def _evaluar_cobertura_rutas(self, asignaciones: List[AsignacionVehiculo]) -> float:
-        """Evaluar cobertura de rutas"""
         if not asignaciones:
             return 0.0
         
@@ -60,7 +53,6 @@ class EvaluationOperator(BaseService):
         return len(rutas_cubiertas) / max(1, total_rutas)
     
     def _evaluar_eficiencia_vehiculos(self, asignaciones: List[AsignacionVehiculo]) -> float:
-        """Evaluar eficiencia en uso de vehículos"""
         if not asignaciones:
             return 0.0
         
@@ -68,11 +60,9 @@ class EvaluationOperator(BaseService):
         
         for asignacion in asignaciones:
             peso_total = asignacion.peso_total_kg
-            # Asumir capacidad máxima de 1000kg si no se especifica
             capacidad_maxima = 1000.0
             
             if peso_total > capacidad_maxima:
-                # Penalizar sobrecarga
                 eficiencia = 0.1
             else:
                 eficiencia = min(1.0, peso_total / capacidad_maxima)
@@ -82,7 +72,6 @@ class EvaluationOperator(BaseService):
         return eficiencia_total / len(asignaciones)
     
     def _evaluar_diversidad_insumos(self, asignaciones: List[AsignacionVehiculo]) -> float:
-        """Evaluar diversidad de insumos - CORREGIDO para manejar ambos formatos"""
         if not asignaciones:
             return 0.0
         
@@ -91,30 +80,25 @@ class EvaluationOperator(BaseService):
         for asignacion in asignaciones:
             cantidades_o_insumos = asignacion.insumos
             
-            # FIX: Determinar si es lista de cantidades o lista de objetos Insumo
             if not cantidades_o_insumos:
                 continue
                 
-            # Verificar el tipo del primer elemento
             primer_elemento = cantidades_o_insumos[0]
             
             if isinstance(primer_elemento, int):
-                # Es lista de cantidades [int]
                 for i, cantidad in enumerate(cantidades_o_insumos):
                     if cantidad > 0 and i < len(self.insumos):
                         insumos_distribuidos.add(self.insumos[i].id)
                         
             elif hasattr(primer_elemento, 'id'):
-                # Es lista de objetos Insumo
                 for insumo in cantidades_o_insumos:
                     if hasattr(insumo, 'id'):
                         insumos_distribuidos.add(insumo.id)
             else:
-                # Formato desconocido, intentar convertir
                 try:
                     for item in cantidades_o_insumos:
                         if isinstance(item, (int, float)) and item > 0:
-                            continue  # Es cantidad
+                            continue
                         elif hasattr(item, 'id'):
                             insumos_distribuidos.add(item.id)
                 except:
@@ -124,7 +108,6 @@ class EvaluationOperator(BaseService):
         return len(insumos_distribuidos) / max(1, total_insumos)
     
     def _evaluar_prioridad_insumos(self, asignaciones: List[AsignacionVehiculo]) -> float:
-        """Evaluar priorización de insumos según tipo de desastre"""
         if not asignaciones:
             return 0.0
         
@@ -137,11 +120,9 @@ class EvaluationOperator(BaseService):
             if not cantidades_o_insumos:
                 continue
             
-            # Verificar el tipo del primer elemento
             primer_elemento = cantidades_o_insumos[0]
             
             if isinstance(primer_elemento, int):
-                # Es lista de cantidades [int]
                 for i, cantidad in enumerate(cantidades_o_insumos):
                     if cantidad > 0 and i < len(self.insumos):
                         insumo = self.insumos[i]
@@ -151,7 +132,6 @@ class EvaluationOperator(BaseService):
                         total_items += cantidad
                         
             elif hasattr(primer_elemento, 'categoria'):
-                # Es lista de objetos Insumo
                 for insumo in cantidades_o_insumos:
                     if hasattr(insumo, 'categoria'):
                         prioridad = self.prioridades_categoria.get(insumo.categoria, 'baja')
@@ -161,11 +141,9 @@ class EvaluationOperator(BaseService):
         
         if total_items == 0:
             return 0.0
-        
-        # Normalizar por la máxima prioridad posible (3.0)
+
         return (puntuacion_total / total_items) / 3.0
     
     def _calcular_peso_prioridad(self, nivel: str) -> float:
-        """Convertir nivel de prioridad a peso numérico"""
         pesos = {'alta': 3.0, 'media': 2.0, 'baja': 1.0}
         return pesos.get(nivel, 1.0)

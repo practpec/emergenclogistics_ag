@@ -15,6 +15,7 @@ from ..core.assignment_validator import AssignmentValidator
 from ..core.capacity_manager import CapacityManager
 from ..output.result_formatter import ResultFormatter
 
+
 class LogisticsGeneticAlgorithm(BaseService):
     """Algoritmo genético para optimización logística"""
     
